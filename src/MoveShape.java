@@ -1,8 +1,10 @@
-public class MoveShape extends AbstractChangeShape {
-  private double from;
-  private double to;
+import java.awt.geom.Point2D;
 
-  public MoveShape(IShape shape, int changeBegin, int changeEnd, double from, double to) {
+public class MoveShape extends AbstractChangeShape {
+  private Point2D from;
+  private Point2D to;
+
+  public MoveShape(IShape shape, int changeBegin, int changeEnd, Point2D from, Point2D to) {
     super(shape, changeBegin, changeEnd);
     this.from = from;
     this.to = to;

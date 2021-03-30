@@ -19,9 +19,9 @@ public class AnimationModelTest {
     // make a new movement with to location
     // and ticks when it moves
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
-    MoveShape move1 = new MoveShape(R, rLocation2);
+    MoveShape move1 = new MoveShape(R, 1, 100, rLocation1, rLocation2);
     Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
-    MoveShape move2 = new MoveShape(C, cNewLocation);
+    MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation, );
     // make new shape change
     // and ticks when it changes
     // change color
