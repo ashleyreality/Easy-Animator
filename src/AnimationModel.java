@@ -1,3 +1,8 @@
+import org.w3c.dom.css.RGBColor;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
+
 /**
  * This interface represents an animation. It includes all the methods an animation model should
  * offer.
@@ -10,5 +15,15 @@ public interface AnimationModel {
    */
   public String getShapesAtTick(int tick);
 
-  public void createShape();
+  /**
+   * Creates a shape with the given parameters.
+   * @param name the name of the shape
+   * @param color the color of the shape
+   * @param type the type of shape
+   * @param location the location of the shape
+   * @param appear the tick when the shape appears
+   * @param disappear the tick when the shape disappears
+   */
+  public void createShape(String name, Color color, Shape type,
+                          Point2D location, int appear, int disappear);
 }
