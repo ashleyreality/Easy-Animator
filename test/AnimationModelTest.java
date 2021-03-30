@@ -12,15 +12,15 @@ public class AnimationModelTest {
   public void TextTest() {
     // create new shapes first
     // give shape a point2D
-    Point2D rLocation1 = new Point2D(200.0, 200.0);
+    Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
     IShape R = new Rectangle(Color.red, rLocation1, 50.0, 100.0);
-    Point2D cLocation = new Point2D(500.0, 100.0);
+    Point2D cLocation = new Point2D.Double(500.0, 100.0);
     IShape C = new Oval(Color.blue, cLocation, 60.0, 30.0);
     // make a new movement with to location
     // and ticks when it moves
-    Point2D rLocation2 = new Point2D(300.0, 300.0);
+    Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
     MoveShape move1 = new MoveShape(R, rLocation2);
-    Point2D cNewLocation = new Point2D(500.0, 400.0);
+    Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
     MoveShape move2 = new MoveShape(C, cNewLocation);
     // make new shape change
     // and ticks when it changes

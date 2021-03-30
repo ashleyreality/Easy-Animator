@@ -5,17 +5,18 @@ import java.awt.geom.Point2D;
  * This class creates and stores information about an Oval shape.
  */
 public class Oval extends AbstractCreateShape {
-  private int radius1;
-  private int radius2;
+  private double radius1;
+  private double radius2;
 
-  /** Generates an Oval shape.
+  /**
+   * Generates an Oval shape.
    *
-   * @param color - the color of the Oval
+   * @param color    - the color of the Oval
    * @param location - the Oval's location
-   * @param radius1 - the first radius of the Oval
-   * @param radius2 - the second radius of the Oval
+   * @param radius1  - the first radius of the Oval
+   * @param radius2  - the second radius of the Oval
    */
-  public Oval(Color color, Point2D location, int radius1, int radius2) {
+  public Oval(Color color, Point2D location, double radius1, double radius2) {
     super(color, location);
     radius1 = this.radius1;
     radius2 = this.radius2;
