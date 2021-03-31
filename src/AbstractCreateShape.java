@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 /**
  * Use this class to change a shape.
  */
-public class AbstractCreateShape implements IShape {
+public abstract class AbstractCreateShape implements IShape {
   private Color color;
   private Point2D location;
 
