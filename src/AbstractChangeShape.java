@@ -2,9 +2,9 @@
  * Use this class to change a shape.
  */
 public abstract class AbstractChangeShape {
-  private int changeBegin;
-  private int changeEnd;
-  private int shape;
+  protected int changeBegin;
+  protected int changeEnd;
+  protected IShape shape;
 
 
   /**
@@ -17,6 +17,7 @@ public abstract class AbstractChangeShape {
   public AbstractChangeShape(IShape shape, int changeBegin, int changeEnd) {
     this.changeBegin = changeBegin;
     this.changeEnd = changeEnd;
+    this.shape = shape;
   }
 
 }

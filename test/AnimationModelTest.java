@@ -25,11 +25,11 @@ public class AnimationModelTest {
     // make new shape change
     // and ticks when it changes
     // change color
-    ChangeShape change1 = new ChangeShape(C, Color.green);
+    ChangeColor change1 = new ChangeColor(C, 50, 75, Color.blue, Color.green);
     //change width and height
-    ChangeShape change2 = new ChangeShape(R, 25, 100);
+    ScaleShape change2 = new ScaleShape(R, 25, 100);
     //another move for R, back to original location
-    MoveShape move3 = new MoveShape(R, rLocation1);
+    MoveShape move3 = new MoveShape(R, 110, 150, rLocation2, rLocation1);
     testAnimation = new AnimationModelImpl();
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
