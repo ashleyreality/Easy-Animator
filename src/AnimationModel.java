@@ -1,6 +1,3 @@
-import org.w3c.dom.css.RGBColor;
-
-import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
@@ -30,14 +27,14 @@ public interface AnimationModel {
                           Point2D location, int appear, int disappear);
 
  // fixme -- should create shape and add shape be merged? or could you add a shape more than once?
-  void addShape(IShape shape);
+  void addShape(Shape shape);
 
 
-  void addColorChange(IShape shape, Color newColor, int startChange, int endChange);
+  void addColorChange(Shape shape, Color newColor, int startChange, int endChange);
 
-  void addSizeChange(IShape shape, double newParam1, double newParam2, int startChange, int endChange);
+  void addSizeChange(Shape shape, double newParam1, double newParam2, int startChange, int endChange);
 
-  void addMove(IShape shape, Point2D moveTo, int startChange, int endChange);
+  void addMove(Shape shape, Point2D moveTo, int startChange, int endChange);
 
 
 }

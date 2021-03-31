@@ -10,6 +10,7 @@ public class MoveShape extends ChangeShape {
     this.to = to;
   }
 
+  @Override
   public String toString() {
   // Example output: Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
     // fixme -- need to figure out how to represent this given the super issue -- getters?

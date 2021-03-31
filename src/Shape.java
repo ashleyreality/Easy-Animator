@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 /**
  * This interface describes the methods required to create a Shape class.
  */
-public interface IShape {
+public interface Shape {
 
   /**
    * Returns the current color of a shape.

@@ -4,8 +4,10 @@ import java.awt.geom.Point2D;
  * This class creates and stores information about an Oval shape.
  */
 public class Oval extends CreateShape {
-  private double radius1;
-  private double radius2;
+  // radiusX, from the center point to the outer edge of the circle along the X-axis/width
+  private double radiusX;
+  // radiusY, from the center point to the outer edge of the circle along the Y-axis/height
+  private double radiusY;
 
   /**
    * Generates an Oval shape.
@@ -18,7 +20,7 @@ public class Oval extends CreateShape {
   public Oval(Color color, Point2D location, int appear, int disappear, double radius1,
               double radius2) {
     super(color, location, appear, disappear);
-    radius1 = this.radius1;
-    radius2 = this.radius2;
+    radius1 = this.radiusX;
+    radius2 = this.radiusY;
   }
 }
