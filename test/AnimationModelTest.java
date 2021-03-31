@@ -14,10 +14,10 @@ public class AnimationModelTest {
 
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    Shape R = new Rectangle(Color.R, rLocation1, 1, 100,50.0, 100.0);
+    Shape R = new Rectangle(Color.RED, rLocation1, 1, 100,50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    Shape C = new Oval(Color.B, cLocation, 6, 100, 60.0, 30.0);
+    Shape C = new Oval(Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
@@ -27,7 +27,7 @@ public class AnimationModelTest {
     MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
 
     // change a shape's color
-    ChangeColor change1 = new ChangeColor(C, 50, 75, Color.B, Color.G);
+    ChangeColor change1 = new ChangeColor(C, 50, 75, Color.BLUE, Color.GREEN);
 
     //change a shape's width and height
     ScaleShape change2 = new ScaleShape(R, 25, 100, 50,
@@ -50,7 +50,7 @@ public class AnimationModelTest {
 
     testAnimation.addMove(R, rLocation2, 10, 50);
     testAnimation.addMove(C, cNewLocation, 20, 70);
-    testAnimation.addColorChange(C, Color.B, 50, 80);
+    testAnimation.addColorChange(C, Color.BLUE, 50, 80);
     testAnimation.addSizeChange(R, 25.0, 100.0, 51, 70);
     testAnimation.addMove(R, rLocation1, 70, 100);
 

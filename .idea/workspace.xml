@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="Fixing Shape">
-      <change beforePath="$PROJECT_DIR$/src/ScaleShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScaleShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Easy-Animator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/AnimationModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/AnimationModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +47,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-15" />
@@ -88,7 +93,7 @@
       <updated>1617126064148</updated>
       <workItem from="1617126066659" duration="2777000" />
       <workItem from="1617129056844" duration="9811000" />
-      <workItem from="1617201859360" duration="5998000" />
+      <workItem from="1617201859360" duration="7849000" />
     </task>
     <task id="LOCAL-00001" summary="Checking to see if this works">
       <created>1617129874063</created>
