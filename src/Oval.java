@@ -15,8 +15,9 @@ public class Oval extends AbstractCreateShape {
    * @param radius1  - the first radius of the Oval
    * @param radius2  - the second radius of the Oval
    */
-  public Oval(Color color, Point2D location, double radius1, double radius2) {
-    super(color, location);
+  public Oval(Color color, Point2D location, int appear, int disappear, double radius1,
+              double radius2) {
+    super(color, location, appear, disappear);
     radius1 = this.radius1;
     radius2 = this.radius2;
   }
