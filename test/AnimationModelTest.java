@@ -27,7 +27,8 @@ public class AnimationModelTest {
     // change color
     ChangeColor change1 = new ChangeColor(C, 50, 75, Color.blue, Color.green);
     //change width and height
-    ScaleShape change2 = new ScaleShape(R, 25, 100);
+    ScaleShape change2 = new ScaleShape(R, 25, 100, 50,
+            100, 5, 10);
     //another move for R, back to original location
     MoveShape move3 = new MoveShape(R, 110, 150, rLocation2, rLocation1);
     testAnimation = new AnimationModelImpl();
