@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 
 import static org.junit.Assert.assertEquals;
@@ -15,10 +14,10 @@ public class AnimationModelTest {
 
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    IShape R = new Rectangle(Color.R, rLocation1, 1, 100,50.0, 100.0);
+    Shape R = new Rectangle(Color.R, rLocation1, 1, 100,50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    IShape C = new Oval(Color.B, cLocation, 6, 100, 60.0, 30.0);
+    Shape C = new Oval(Color.B, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
