@@ -29,14 +29,10 @@ public interface AnimationModel {
   void createShape(String name, Color color, Shape type,
                           Point2D location, int appear, int disappear);
 
-  /**
-   * Adds a shape to the model.
-   */
-  void addShape(IShape shape, int appear, int disappear);
+ // fixme -- should create shape and add shape be merged? or could you add a shape more than once?
+  void addShape(IShape shape);
 
-  /**
-   * Adds a shape color change to the model.
-   */
+
   void addColorChange(IShape shape, Color newColor, int startChange, int endChange);
 
   void addSizeChange(IShape shape, double newParam1, double newParam2, int startChange, int endChange);

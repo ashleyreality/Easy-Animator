@@ -10,12 +10,15 @@ public class AnimationModelTest {
 
   @Test
   public void TextTest() {
+
+    //fixme -- I thiiiiiiink we maybe need to start with the user's perspective?
+
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    IShape R = new Rectangle(Color.R, rLocation1, 50.0, 100.0);
+    IShape R = new Rectangle(Color.R, rLocation1, 1, 100,50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    IShape C = new Oval(Color.B, cLocation, 60.0, 30.0);
+    IShape C = new Oval(Color.B, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
@@ -40,8 +43,8 @@ public class AnimationModelTest {
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
-    testAnimation.addShape(R, 1, 100);
-    testAnimation.addShape(C, 6, 100);
+    testAnimation.addShape(R);
+    testAnimation.addShape(C);
 
     // includes timing of changes
     // add shape changes to animation model

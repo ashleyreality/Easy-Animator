@@ -15,9 +15,10 @@ public class Rectangle extends AbstractCreateShape {
    * @param width    - int, a width
    * @param height   - int, a height
    */
-  public Rectangle(Color color, Point2D location, double width, double height) {
+  public Rectangle(Color color, Point2D location, int appear, int disappear, double width,
+                   double height) {
 
-    super(color, location);
+    super(color, location, appear, disappear);
     width = this.width;
     height = this.height;
   }
