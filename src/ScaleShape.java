@@ -7,7 +7,7 @@ public class ScaleShape extends AbstractChangeShape {
   /**
    * Generate a shape change.
    *
-   * @param shape - the shape to be changed
+   * @param shape       - the shape to be changed
    * @param changeBegin - the time in ticks from which the change begins
    * @param changeEnd   - the time in ticks when the change ends
    */
@@ -18,5 +18,11 @@ public class ScaleShape extends AbstractChangeShape {
     this.oldParamB = oldParamB;
     this.newParamA = newParamA;
     this.newParamB = newParamB;
+  }
+
+  public String toString() {
+    // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
+    // fixme -- need to find a way to get old params AND new params?
+    return ("Shape " + shape.getName() + " scales from ");
   }
 }
