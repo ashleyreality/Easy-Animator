@@ -1,4 +1,3 @@
-import java.awt.Color;
 
 public class ChangeColor extends AbstractChangeShape {
   private Color from;

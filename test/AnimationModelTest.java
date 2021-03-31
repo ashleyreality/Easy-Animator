@@ -15,7 +15,7 @@ public class AnimationModelTest {
     IShape R = new Rectangle(Color.R, rLocation1, 50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    IShape C = new Oval(Color.blue, cLocation, 60.0, 30.0);
+    IShape C = new Oval(Color.B, cLocation, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
@@ -25,7 +25,7 @@ public class AnimationModelTest {
     MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
 
     // change a shape's color
-    ChangeColor change1 = new ChangeColor(C, 50, 75, Color.blue, Color.green);
+    ChangeColor change1 = new ChangeColor(C, 50, 75, Color.B, Color.G);
 
     //change a shape's width and height
     ScaleShape change2 = new ScaleShape(R, 25, 100, 50,
