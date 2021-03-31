@@ -1,10 +1,9 @@
-import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
  * Use this class to change a shape.
  */
-public abstract class AbstractCreateShape implements IShape {
+public abstract class CreateShape implements Shape {
   private Color color;
   private Point2D location;
   private int appear;
@@ -16,7 +15,7 @@ public abstract class AbstractCreateShape implements IShape {
    * @param color - the color of the shape
    * @param location - the shape's location as a Point2D
    */
-  public AbstractCreateShape(Color color, Point2D location, int appear, int disappear) {
+  public CreateShape(Color color, Point2D location, int appear, int disappear) {
     this.color = color;
     this.location = location;
     this.appear = appear;

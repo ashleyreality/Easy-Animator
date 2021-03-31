@@ -1,5 +1,5 @@
 
-public class ChangeColor extends AbstractChangeShape {
+public class ChangeColor extends ChangeShape {
   private Color from;
   private Color to;
 
@@ -13,7 +13,7 @@ public class ChangeColor extends AbstractChangeShape {
    * @param to          - color to be changed to
    */
 
-  public ChangeColor(IShape shape, int changeBegin, int changeEnd, Color from, Color to) {
+  public ChangeColor(Shape shape, int changeBegin, int changeEnd, Color from, Color to) {
     super(shape, changeBegin, changeEnd);
     this.from = from;
     this.to = to;

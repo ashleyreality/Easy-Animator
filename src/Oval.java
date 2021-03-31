@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 /**
  * This class creates and stores information about an Oval shape.
  */
-public class Oval extends AbstractCreateShape {
+public class Oval extends CreateShape {
   private double radius1;
   private double radius2;
 

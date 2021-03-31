@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 /**
  * This class creates and stores information about a Rectangle shape.
  */
-public class Rectangle extends AbstractCreateShape {
+public class Rectangle extends CreateShape {
   private double width;
   private double height;
 

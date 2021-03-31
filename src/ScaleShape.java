@@ -1,4 +1,4 @@
-public class ScaleShape extends AbstractChangeShape {
+public class ScaleShape extends ChangeShape {
   int oldParamA;
   int oldParamB;
   int newParamA;
@@ -11,7 +11,7 @@ public class ScaleShape extends AbstractChangeShape {
    * @param changeBegin - the time in ticks from which the change begins
    * @param changeEnd   - the time in ticks when the change ends
    */
-  public ScaleShape(IShape shape, int changeBegin, int changeEnd, int oldParamA, int oldParamB,
+  public ScaleShape(Shape shape, int changeBegin, int changeEnd, int oldParamA, int oldParamB,
                     int newParamA, int newParamB) {
     super(shape, changeBegin, changeEnd);
     this.oldParamA = oldParamA;
