@@ -32,16 +32,16 @@ public interface AnimationModel {
   /**
    * Adds a shape to the model.
    */
-  void addShape();
+  void addShape(IShape shape, int appear, int disappear);
 
   /**
-   * Adds a changed shape to the model.
+   * Adds a shape color change to the model.
    */
-  void addColorChange(IShape shape, Color newColor);
+  void addColorChange(IShape shape, Color newColor, int startChange, int endChange);
 
-  void addSizeChange(IShape shape, double newParam1, double newParam2);
+  void addSizeChange(IShape shape, double newParam1, double newParam2, int startChange, int endChange);
 
-  void addMove(IShape shape, Point2D moveTo);
+  void addMove(IShape shape, Point2D moveTo, int startChange, int endChange);
 
 
 }

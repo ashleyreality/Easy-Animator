@@ -12,7 +12,7 @@ public class AnimationModelTest {
   public void TextTest() {
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    IShape R = new Rectangle(Color.red, rLocation1, 50.0, 100.0);
+    IShape R = new Rectangle(Color.R, rLocation1, 50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
     IShape C = new Oval(Color.blue, cLocation, 60.0, 30.0);
@@ -39,18 +39,18 @@ public class AnimationModelTest {
 
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
-    // fixme -- where does timing happen?
     // rectangle appears at 1, disappears at 100
     testAnimation.addShape(R, 1, 100);
     testAnimation.addShape(C, 6, 100);
 
     // includes timing of changes
     // add shape changes to animation model
-    testAnimation.addChange(move1, 10, 50);
-    testAnimation.addChange(move2, 20, 70);
-    testAnimation.addChange(change1, 50, 80);
-    testAnimation.addChange(change2, 51, 70);
-    testAnimation.addChange(move3, 70, 100);
+
+    testAnimation.addMove(R, rLocation2, 10, 50);
+    testAnimation.addMove(C, cNewLocation, 20, 70);
+    testAnimation.addColorChange(C, Color.B, 50, 80);
+    testAnimation.addSizeChange(R, 25.0, 100.0, 51, 70);
+    testAnimation.addMove(R, rLocation1, 70, 100);
 
     // maybe in the toString method?
 

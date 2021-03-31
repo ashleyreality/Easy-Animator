@@ -1,4 +1,4 @@
-import java.awt.Color;
+
 import java.awt.geom.Point2D;
 
 /**
@@ -10,8 +10,7 @@ public class Rectangle extends AbstractCreateShape {
 
   /**
    * Generates a Rectangle shape.
-   *
-   * @param color    - the color of the Rectangle
+   *  @param color    - the color of the Rectangle
    * @param location - the rectangle's location
    * @param width    - int, a width
    * @param height   - int, a height
