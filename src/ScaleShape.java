@@ -21,7 +21,7 @@ public class ScaleShape extends ChangeShape {
   }
 
   public String toString() {
-    // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
+    // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, " "Height: 100.0 from t=51 to t=70
     // fixme -- need to find a way to get old params AND new params?
     return ("Shape " + CreateShape.getName()
             + " scales from Width: " + this.widthBefore
