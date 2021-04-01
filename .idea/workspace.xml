@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="Fixing Shape">
-      <change afterPath="$PROJECT_DIR$/Easy-Animator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="Updating Color enum">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnimationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnimationModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimationModelImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/AnimationModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/AnimationModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +59,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -93,7 +92,7 @@
       <updated>1617126064148</updated>
       <workItem from="1617126066659" duration="2777000" />
       <workItem from="1617129056844" duration="9811000" />
-      <workItem from="1617201859360" duration="7849000" />
+      <workItem from="1617201859360" duration="12600000" />
     </task>
     <task id="LOCAL-00001" summary="Checking to see if this works">
       <created>1617129874063</created>
@@ -207,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617228043231</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Updating Color enum">
+      <created>1617232606962</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1617232606962</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +246,18 @@
     <MESSAGE value="Fixing parameters" />
     <MESSAGE value="Tried to work on toStrings but got stuck, let's discuss" />
     <MESSAGE value="Fixing Shape" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing Shape" />
+    <MESSAGE value="Updating Color enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating Color enum" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/AnimationModelTest.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

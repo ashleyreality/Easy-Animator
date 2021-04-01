@@ -42,7 +42,7 @@ public class AnimationModelTest {
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
-    testAnimation.addShape(R);
+    Shape R = testAnimation.addShape(R);
     testAnimation.addShape(C);
 
     // includes timing of changes

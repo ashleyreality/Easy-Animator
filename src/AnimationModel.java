@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
  * offer.
  */
 public interface AnimationModel {
+
   /**
    * Gets a string with the name, type, location, size, and color of the shapes at that tick.
    *
@@ -23,11 +24,8 @@ public interface AnimationModel {
    * @param appear - the tick when the shape appears
    * @param disappear - the tick when the shape disappears
    */
-  void createShape(String name, Color color, Shape type,
+  void addShape(String name, Color color, Shape type,
                           Point2D location, int appear, int disappear);
-
- // fixme -- should create shape and add shape be merged? or could you add a shape more than once?
-  void addShape(Shape shape);
 
 
   void addColorChange(Shape shape, Color newColor, int startChange, int endChange);

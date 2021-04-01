@@ -1,33 +1,58 @@
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnimationModelImpl implements AnimationModel {
+  private List<Shape> shapes;
+  private List<ChangeShape> changes;
+
+  public AnimationModelImpl() {
+    shapes = new ArrayList<>();
+    changes = new ArrayList<>();
+  }
+
   @Override
   public String getShapesAtTick(int tick) {
+    // create new list (shapesAtTick)
+    // iterate through the list of shapes
+    // for each shape, check if appear < tick < disappear
+    // this is a filter
+    // if true, add shape to new list
+
+    // iterate through the list of changes
+    // for each shape, check if startChange < tick < endChange
+    // if true, apply change to shape
+    // return list
+    // Jen
     return null;
   }
 
   @Override
-  public void createShape(String name, Color color, Shape type, Point2D location, int appear, int disappear) {
-
-  }
-
-  @Override
-  public void addShape(Shape shape) {
-
+  public void addShape(String name, Color color, Shape type, Point2D location, int appear, int disappear) {
+    // send information to correct Shape class
+    // names must be unique -- throw an error if name is not unique
+    // add return to shapes list
+    // Aya
   }
 
   @Override
   public void addColorChange(Shape shape, Color newColor, int startChange, int endChange) {
-
+    // send information to ChangeColor
+    // add return to changes list
+    // Aya
   }
 
   @Override
   public void addSizeChange(Shape shape, double newParam1, double newParam2, int startChange, int endChange) {
-
+    // send information to ScaleShape
+    // add return to changes list
+    // Ashley
   }
 
   @Override
   public void addMove(Shape shape, Point2D moveTo, int startChange, int endChange) {
-
+    // send information to MoveShape
+    // add return to changes list
+    // Ashley
   }
 }
