@@ -7,6 +7,13 @@ public class AnimationModelImpl implements AnimationModel {
   private List<Shape> shapes;
   private List<ChangeShape> changes;
 
+  /*
+  all the change methods mutate the shape list
+  and add to an "event list" (which is kind of what changes is)
+
+  reconsider storing appear and disappear in shapes - might run into issues later
+   */
+
   public AnimationModelImpl() {
     shapes = new ArrayList<>();
     changes = new ArrayList<>();
