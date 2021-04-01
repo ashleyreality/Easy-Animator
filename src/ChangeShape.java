@@ -20,4 +20,10 @@ public abstract class ChangeShape {
     this.shape = shape;
   }
 
+  public int getChangeBegin() {
+    return changeBegin;
+  }
+  public int getChangeEnd() {
+    return changeEnd;
+  }
 }

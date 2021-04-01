@@ -14,20 +14,24 @@ public class AnimationModelImpl implements AnimationModel {
 
   @Override
   public String getShapesAtTick(int tick) {
-    List<Shape> tickShapes = shapes.stream().filter(n -> n.).collect(Collectors.toList());
+    List<Shape> tickShapes = shapes.stream()
+            .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
+            .collect(Collectors.toList());
 
     // create new list (shapesAtTick)
     // iterate through the list of shapes
     // for each shape, check if appear < tick < disappear
     // this is a filter
     // if true, add shape to new list
-
+    changes.stream().filter(n->n.getChangeBegin()<tick&&tick< n.getChangeEnd()).forEach(n->{
+      n.shape = //TODO change the shape somehow
+    });
     // iterate through the list of changes
     // for each shape, check if startChange < tick < endChange
     // if true, apply change to shape
     // return list
     // Jen
-    return null;
+    return tickShapes;
   }
 
   @Override

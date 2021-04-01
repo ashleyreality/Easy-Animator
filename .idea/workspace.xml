@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="Updating Color enum">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="added getters for appear and disappear in CreateShape">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Easy-Animator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Easy-Animator.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnimationModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimationModelImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChangeShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChangeShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617232606962</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added getters for appear and disappear in CreateShape">
+      <created>1617240006100</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1617240006100</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +258,8 @@
     <MESSAGE value="Tried to work on toStrings but got stuck, let's discuss" />
     <MESSAGE value="Fixing Shape" />
     <MESSAGE value="Updating Color enum" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating Color enum" />
+    <MESSAGE value="added getters for appear and disappear in CreateShape" />
+    <option name="LAST_COMMIT_MESSAGE" value="added getters for appear and disappear in CreateShape" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -19,4 +19,7 @@ public interface Shape {
    * @return a Point2D location
    */
   Point2D getLocation();
+
+  int getAppear();
+  int getDisappear();
 }
