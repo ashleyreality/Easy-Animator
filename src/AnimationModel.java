@@ -30,11 +30,11 @@ public interface AnimationModel {
                 double param2, int appear, int disappear);
 
 
-  void addColorChange(Shape shape, Color newColor, int startChange, int endChange);
+  void addColorChange(String name, Color newColor, int startChange, int endChange);
 
-  void addSizeChange(Shape shape, double newParam1, double newParam2, int startChange, int endChange);
+  void addSizeChange(String name, double newParam1, double newParam2, int startChange, int endChange);
 
-  void addMove(Shape shape, Point2D moveTo, int startChange, int endChange);
+  void addMove(String name, Point2D moveTo, int startChange, int endChange);
 
 
 }

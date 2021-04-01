@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
@@ -6,22 +7,56 @@ import static org.junit.Assert.assertEquals;
 
 public class AnimationModelTest {
   private AnimationModel testAnimation;
+  private Point2D rLocation;
+  private Point2D rNewLocation;
+  private Point2D cLocation;
+  private Point2D cNewLocation;
 
+  @Before
+  public void setUp() {
+    // create the animation model
+    testAnimation = new AnimationModelImpl();
+    Point2D rLocation = new Point2D.Double(200.0, 200.0);
+    Point2D rNewLocation = new Point2D.Double(300.0, 300.0);
+
+    Point2D cLocation = new Point2D.Double(500.0, 100.0);
+    Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
+
+  }
 
   @Test
   public void testAddShape() {
+
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
-    Point2D rLocation = new Point2D.Double(200.0, 200.0);
+
     testAnimation.addShape("R", Color.RED, ShapeType.RECTANGLE, rLocation, 50.0,
             100.0, 1, 100);
 
-    Point2D cLocation = new Point2D.Double(500.0, 100.0);
     testAnimation.addShape("C", Color.BLUE, ShapeType.OVAL, cLocation, 60.0,
             30.0, 6, 100);
 
     assertEquals("", testAnimation.toString());
+  }
+
+  @Test
+  public void testAddSizeChange() {
+    testAnimation.addSizeChange("R", 25.0, 100.0, 51,
+            70);
+
+    assertEquals("", testAnimation.toString());
+  }
+
+  @Test
+  public void testAddMove() {
+
+    testAnimation.addMove("R", rNewLocation, 10, 50);
+    testAnimation.addMove("C", cNewLocation, 20, 70);
+    testAnimation.addMove("R", rLocation, 70, 100);
+
+    assertEquals("", testAnimation.toString());
+
   }
 
   @Test
@@ -59,17 +94,18 @@ public class AnimationModelTest {
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
-    testAnimation.addShape("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
-    testAnimation.addShape(C);
+    //fixme -- commented the below two lines out so the test would run
+    //testAnimation.addShape("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
+    //testAnimation.addShape(C);
 
     // includes timing of changes
     // add shape changes to animation model
 
-    testAnimation.addMove(R, rLocation2, 10, 50);
-    testAnimation.addMove(C, cNewLocation, 20, 70);
-    testAnimation.addColorChange(C, Color.BLUE, 50, 80);
-    testAnimation.addSizeChange(R, 25.0, 100.0, 51, 70);
-    testAnimation.addMove(R, rLocation1, 70, 100);
+    testAnimation.addMove("R", rLocation2, 10, 50);
+    testAnimation.addMove("C", cNewLocation, 20, 70);
+    testAnimation.addColorChange("C", Color.BLUE, 50, 80);
+    testAnimation.addSizeChange("R", 25.0, 100.0, 51, 70);
+    testAnimation.addMove("R", rLocation1, 70, 100);
 
     // maybe in the toString method?
 

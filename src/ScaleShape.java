@@ -25,7 +25,7 @@ public class ScaleShape extends ChangeShape {
   public String toString() {
     // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
     // fixme -- how to call super method to get shape name?
-    return ("Shape " + CreateShape.getName()
+    return ("Shape " + "CreateShape.getName()"
             + " scales from Width: " + this.widthBefore
             + ", Height: " + this.heightBefore
             + " to Width: " + this.widthAfter + ", Height: " + this.heightAfter);

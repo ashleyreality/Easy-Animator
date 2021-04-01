@@ -42,14 +42,27 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
   @Override
-  public void addColorChange(Shape shape, Color newColor, int startChange, int endChange) {
+  public void addColorChange(String name, Color newColor, int startChange, int endChange) {
+    // get shape from list
+
     // send information to ChangeColor
     // add return to changes list
     // Aya
   }
 
   @Override
-  public void addSizeChange(Shape shape, double newParam1, double newParam2, int startChange, int endChange) {
+  public void addSizeChange(String name, double newParam1, double newParam2, int startChange, int endChange) {
+    // get shape from list
+    Shape shape = null;
+    for (Shape s : shapes) {
+      if (s.getName().equals(name)) {
+        shape = s;
+      }
+    }
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape not found in animation!");
+    }
+
     // send information to ScaleShape
     ScaleShape scaled = new ScaleShape(shape, startChange, endChange, shape.getParam1(), newParam1,
             shape.getParam2(), newParam2);
@@ -59,7 +72,17 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
   @Override
-  public void addMove(Shape shape, Point2D moveTo, int startChange, int endChange) {
+  public void addMove(String name, Point2D moveTo, int startChange, int endChange) {
+    // get shape from list
+    Shape shape = null;
+    for (Shape s : shapes) {
+      if (s.getName().equals(name)) {
+        shape = s;
+      }
+    }
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape not found in animation!");
+    }
     // send information to MoveShape
     MoveShape moved = new MoveShape(shape, startChange, endChange, shape.getLocation(), moveTo);
 
@@ -69,6 +92,8 @@ public class AnimationModelImpl implements AnimationModel {
 
   @Override
   public String toString() {
+
+    System.out.println(shapes);
     // new StringBuilder
     StringBuilder sb = new StringBuilder();
 
