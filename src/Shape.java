@@ -6,6 +6,8 @@ import java.awt.geom.Point2D;
  */
 public interface Shape {
 
+  String getName();
+
   /**
    * Returns the current color of a shape.
    *
@@ -22,4 +24,7 @@ public interface Shape {
 
   int getAppear();
   int getDisappear();
+
+  double getParam1();
+  double getParam2();
 }

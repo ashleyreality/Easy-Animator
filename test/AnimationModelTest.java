@@ -7,6 +7,23 @@ import static org.junit.Assert.assertEquals;
 public class AnimationModelTest {
   private AnimationModel testAnimation;
 
+
+  @Test
+  public void testAddShape() {
+    // add the shapes to a shape list in the animation model
+    // decide when they appear and disappear here
+    // rectangle appears at 1, disappears at 100
+    Point2D rLocation = new Point2D.Double(200.0, 200.0);
+    testAnimation.addShape("R", Color.RED, ShapeType.RECTANGLE, rLocation, 50.0,
+            100.0, 1, 100);
+
+    Point2D cLocation = new Point2D.Double(500.0, 100.0);
+    testAnimation.addShape("C", Color.BLUE, ShapeType.OVAL, cLocation, 60.0,
+            30.0, 6, 100);
+
+    assertEquals("", testAnimation.toString());
+  }
+
   @Test
   public void TextTest() {
 
@@ -14,10 +31,10 @@ public class AnimationModelTest {
 
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    Shape R = new Rectangle(Color.RED, rLocation1, 1, 100,50.0, 100.0);
+    Shape R = new Rectangle("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    Shape C = new Oval(Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
+    Shape C = new Oval("C", Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
@@ -42,7 +59,7 @@ public class AnimationModelTest {
     // add the shapes to a shape list in the animation model
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
-    Shape R = testAnimation.addShape(R);
+    testAnimation.addShape("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
     testAnimation.addShape(C);
 
     // includes timing of changes

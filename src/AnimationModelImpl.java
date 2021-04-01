@@ -15,7 +15,7 @@ public class AnimationModelImpl implements AnimationModel {
   @Override
   public String getShapesAtTick(int tick) {
     List<String> tickShapes = shapes.stream()
-            .filter(n -> n.getAppear() < tick && tick < n.getDisappear()).map(n->n.toString())
+            .filter(n -> n.getAppear() < tick && tick < n.getDisappear()).map(Object::toString)
             .collect(Collectors.toList());
 
     // create new list (shapesAtTick)
@@ -33,7 +33,8 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
   @Override
-  public void addShape(String name, Color color, Shape type, Point2D location, int appear, int disappear) {
+  public void addShape(String name, Color color, ShapeType type, Point2D location, double param1,
+                       double param2, int appear, int disappear) {
     // send information to correct Shape class
     // names must be unique -- throw an error if name is not unique
     // add return to shapes list
@@ -50,14 +51,39 @@ public class AnimationModelImpl implements AnimationModel {
   @Override
   public void addSizeChange(Shape shape, double newParam1, double newParam2, int startChange, int endChange) {
     // send information to ScaleShape
+    ScaleShape scaled = new ScaleShape(shape, startChange, endChange, shape.getParam1(), newParam1,
+            shape.getParam2(), newParam2);
+
     // add return to changes list
-    // Ashley
+    changes.add(scaled);
   }
 
   @Override
   public void addMove(Shape shape, Point2D moveTo, int startChange, int endChange) {
     // send information to MoveShape
+    MoveShape moved = new MoveShape(shape, startChange, endChange, shape.getLocation(), moveTo);
+
     // add return to changes list
-    // Ashley
+    changes.add(moved);
   }
+
+  @Override
+  public String toString() {
+    // new StringBuilder
+    StringBuilder sb = new StringBuilder();
+
+    // add the shapes to sb
+    sb.append("Shapes:\n");
+    for (Shape shape : shapes) {
+      sb.append(shape.toString()).append("\n");
+    }
+
+    // add the changes to sb
+    for (ChangeShape change : changes) {
+      sb.append(change.toString()).append("\n");
+    }
+
+    return sb.toString();
+  }
+
 }

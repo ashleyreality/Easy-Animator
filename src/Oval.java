@@ -17,14 +17,14 @@ public class Oval extends CreateShape {
    * @param radius1  - the first radius of the Oval
    * @param radius2  - the second radius of the Oval
    */
-  public Oval(Color color, Point2D location, int appear, int disappear, double radius1,
+  public Oval(String name, Color color, Point2D location, int appear, int disappear, double radius1,
               double radius2) {
-    super(color, location, appear, disappear);
+    super(name, color, location, appear, disappear);
     radius1 = this.radiusX;
     radius2 = this.radiusY;
   }
 
-  public double getRadiusX() {
+  public double getParam1() {
     return radiusX;
   }
 
@@ -32,11 +32,22 @@ public class Oval extends CreateShape {
     this.radiusX = radiusX;
   }
 
-  public double getRadiusY() {
+  public double getParam2() {
     return radiusY;
   }
 
   public void setRadiusY(double radiusY) {
     this.radiusY = radiusY;
+  }
+
+  // fixme -- see note in superclass
+  @Override
+  public String toString() {
+    return "Name: " // super get name?
+          + "\nType: Oval"
+          + "\n Center: " + this.getLocation() + ", X radius: " + this.getParam1() + ", Y radius: "
+          + this.getParam2() + ", Color: " // super get color?
+          + "\nAppears at t=" + this.getAppear()
+            + "\nDisappears at t=" + this.getDisappear() + "\n";
   }
 }

@@ -21,11 +21,13 @@ public interface AnimationModel {
    * @param color - the color of the shape
    * @param type - the type of shape
    * @param location - the location of the shape
+   * @param param1 - the width or X radius of the shape
+   * @param param2 - the height or Y radius of the shape
    * @param appear - the tick when the shape appears
    * @param disappear - the tick when the shape disappears
    */
-  void addShape(String name, Color color, Shape type,
-                          Point2D location, int appear, int disappear);
+  void addShape(String name, Color color, ShapeType type, Point2D location, double param1,
+                double param2, int appear, int disappear);
 
 
   void addColorChange(Shape shape, Color newColor, int startChange, int endChange);

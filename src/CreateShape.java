@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
  * Use this class to change a shape.
  */
 public abstract class CreateShape implements Shape {
+  private String name;
   private Color color;
   private Point2D location;
 
@@ -16,12 +17,16 @@ public abstract class CreateShape implements Shape {
    * @param color - the color of the shape
    * @param location - the shape's location as a Point2D
    */
-  public CreateShape(Color color, Point2D location, int appear, int disappear) {
+  public CreateShape(String name, Color color, Point2D location, int appear, int disappear) {
+    this.name = name;
     this.color = color;
     this.location = location;
     this.appear = appear;
     this.disappear = disappear;
   }
+
+  @Override
+  public String getName() { return this.name; }
 
   @Override
   public Color getColor() {
@@ -64,5 +69,18 @@ public abstract class CreateShape implements Shape {
 
   public void setDisappear(int disappear) {
     this.disappear = disappear;
+  }
+
+// fixme -- what do y'all think about the toStrings for shapes? We could leave them here and the
+  // text would be slightly different than shown -- or we could dynamically get the text? :(
+  // or we could leave them as shown in the subclasses, but that is repeated code. lmk what you think
+  @Override
+  public String toString() {
+    return "Name: " + this.getName()
+            + "\nType: Oval"
+            + "\n Location: " + this.getLocation() + ", Param 1: " + this.getParam1() + ", Param 2: "
+            + this.getParam2() + ", Color: " + this.getColor()
+            + "\nAppears at t=" + this.getAppear()
+            + "\nDisappears at t=" + this.getDisappear() + "\n";
   }
 }
