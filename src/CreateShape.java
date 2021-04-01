@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
 public abstract class CreateShape implements Shape {
   private Color color;
   private Point2D location;
+
   private int appear;
   private int disappear;
 
@@ -41,5 +42,13 @@ public abstract class CreateShape implements Shape {
    */
   public void changeColor(Color color) {
     this.color = color;
+  }
+
+  public int getAppear() {
+    return appear;
+  }
+
+  public int getDisappear() {
+    return disappear;
   }
 }

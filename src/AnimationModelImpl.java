@@ -1,6 +1,7 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnimationModelImpl implements AnimationModel {
   private List<Shape> shapes;
@@ -13,6 +14,8 @@ public class AnimationModelImpl implements AnimationModel {
 
   @Override
   public String getShapesAtTick(int tick) {
+    List<Shape> tickShapes = shapes.stream().filter(n -> n.).collect(Collectors.toList());
+
     // create new list (shapesAtTick)
     // iterate through the list of shapes
     // for each shape, check if appear < tick < disappear

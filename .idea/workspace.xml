@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d22f13be-ab44-4608-9474-708c99faa5e1" name="Default Changelist" comment="Updating Color enum">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AnimationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Easy-Animator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Easy-Animator.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnimationModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnimationModelImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/AnimationModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/AnimationModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1qUF3b0y1zrYf6320cPP1BHXyjh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -70,13 +73,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
