@@ -33,8 +33,6 @@ public abstract class CreateShape implements Shape {
     return this.location;
   }
 
-
-
   /**
    * Changes the color associated with a Shape.
    *
@@ -50,5 +48,21 @@ public abstract class CreateShape implements Shape {
 
   public int getDisappear() {
     return disappear;
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
+  public void setLocation(Point2D location) {
+    this.location = location;
+  }
+
+  public void setAppear(int appear) {
+    this.appear = appear;
+  }
+
+  public void setDisappear(int disappear) {
+    this.disappear = disappear;
   }
 }

@@ -1,7 +1,7 @@
 /**
  * Use this class to change a shape.
  */
-public abstract class ChangeShape {
+public abstract class ChangeShape implements iChange{
   protected int changeBegin;
   protected int changeEnd;
   protected Shape shape;
@@ -25,5 +25,12 @@ public abstract class ChangeShape {
   }
   public int getChangeEnd() {
     return changeEnd;
+  }
+
+  /**
+   * Change the parameters of the shape
+   */
+  public void change() {
+    // override this in each change class to change the shape parameters
   }
 }
