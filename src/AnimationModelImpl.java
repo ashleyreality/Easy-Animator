@@ -9,7 +9,7 @@ import java.util.Scanner;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private static final Scanner object = new Scanner(System.in);
+  //private static final Scanner object = new Scanner(System.in);
   private List<IShape> shapes;
   private List<IEvent> changes;
 
@@ -91,9 +91,9 @@ public class AnimationModelImpl implements IAnimationModel {
    * with the given parameters.
    * An "Event" has a: "Shape", eventBegin, eventEnd
    *
-   * @param event       - the change made to the shape
-   * @param eventBegin  - the time in ticks when the event begins
-   * @param eventEnd    - the time in ticks when the event ends
+   * @param event       - the change made to the shape, an IEvent
+   * @param eventBegin  - the time in ticks when the event begins, an int
+   * @param eventEnd    - the time in ticks when the event ends, an int
    */
   @Override
   public void addEvent(IEvent event, int eventBegin, int eventEnd) {
