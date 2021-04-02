@@ -1,6 +1,6 @@
 public interface IEvent {
   /**
-   * changes the shape
+   * The IEvent interface creates a shape change event.
    */
   public void change();
 }

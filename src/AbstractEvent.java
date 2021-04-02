@@ -2,35 +2,27 @@
  * Use this class to change a shape.
  */
 public abstract class AbstractEvent implements IEvent {
-  protected int changeBegin;
-  protected int changeEnd;
   protected IShape shape;
+  protected int eventBegin;
+  protected int eventEnd;
 
-
-  /**
-   * Generate a shape change.
-   *
-   * @param shape - the shape to be changed
-   * @param changeBegin - the time in ticks from which the change begins
-   * @param changeEnd - the time in ticks when the change ends
-   */
-  public AbstractEvent(IShape shape, int changeBegin, int changeEnd) {
-    this.changeBegin = changeBegin;
-    this.changeEnd = changeEnd;
+  public AbstractEvent(IShape shape, int eventBegin, int eventEnd) {
     this.shape = shape;
+    this.eventBegin = eventBegin;
+    this.eventEnd = eventEnd;
   }
 
-  public int getChangeBegin() {
-    return changeBegin;
-  }
-  public int getChangeEnd() {
-    return changeEnd;
+  public IShape getShape() { return shape; }
+
+  public int getEventBegin() {
+    return eventBegin;
   }
 
-  /**
-   * Change the parameters of the shape
-   */
+  public int getEventEnd() {
+    return eventEnd;
+  }
+
   public void change() {
-    // override this in each change class to change the shape parameters
+    // this method is a stub for now, until we have more information about how changes will work
   }
 }
