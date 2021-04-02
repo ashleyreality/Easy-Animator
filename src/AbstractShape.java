@@ -14,6 +14,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * Creates a shape with the given width and height, color parameters, and location coordinates .
    *
+   * @param name   name of the shape
    * @param width  width of the shape (x)
    * @param height height of the shape (y)
    * @param red    red value of shape
@@ -23,12 +24,13 @@ public abstract class AbstractShape implements IShape {
    * @param y      y coordinate of shape
    * @throws IllegalArgumentException if width or height are negative
    */
-  public AbstractShape(double width, double height,
+  public AbstractShape(String name, double width, double height,
                        int red, int green, int blue, double x, double y) {
     this.color = new Color(red, green, blue);
     if (width < 0 || height < 0) {
       throw new IllegalArgumentException("Width and height must be positive.");
     }
+    this.name = name;
     this.location = new Point2D(x, y);
     this.width = width;
     this.height = height;

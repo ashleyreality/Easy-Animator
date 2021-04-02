@@ -11,6 +11,7 @@ public class Oval extends AbstractShape {
   /**
    * Creates an oval with the given width and height, color parameters, and location coordinates.
    *
+   * @param name   name of the oval
    * @param width  width of the oval (x)
    * @param height height of the oval (y)
    * @param red    red value of oval
@@ -19,9 +20,9 @@ public class Oval extends AbstractShape {
    * @param x      x coordinate of oval
    * @param y      y coordinate of oval
    */
-  public Oval(double width, double height,
+  public Oval(String name, double width, double height,
               int red, int green, int blue, double x, double y) {
-    super(width, height, red, green, blue, x, y);
+    super(name, width, height, red, green, blue, x, y);
     this.radiusX = width / 2;
     this.radiusY = height / 2;
   }
