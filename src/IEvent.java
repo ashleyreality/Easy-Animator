@@ -1,6 +1,13 @@
+/**
+ * The IEvent interface creates a shape change event.
+ */
 public interface IEvent {
+
   /**
-   * The IEvent interface creates a shape change event.
+   * The change method creates a changed shape event.
+   *
+   * @param shape - the shape you want to change
+   * @throws IllegalArgumentException if the shape does not exist
    */
-  public void change();
+  public void change(IShape shape) throws IllegalArgumentException;
 }
