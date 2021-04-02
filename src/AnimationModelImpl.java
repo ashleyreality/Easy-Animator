@@ -113,8 +113,6 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public String toString() {
-
-    System.out.println(shapes);
     // new StringBuilder
     StringBuilder sb = new StringBuilder();
 
