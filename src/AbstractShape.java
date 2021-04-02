@@ -25,6 +25,9 @@ public abstract class AbstractShape implements IShape {
   public AbstractShape(double width, double height,
                        int red, int green, int blue, double x, double y) {
     this.color = new Color(red, green, blue);
+    if (width < 0 || height < 0) {
+      throw new IllegalArgumentException("Width and height must be positive.");
+    }
     this.location = new Point2D(x, y);
     this.width = width;
     this.height = height;
