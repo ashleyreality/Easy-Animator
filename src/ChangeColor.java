@@ -9,13 +9,11 @@ public class ChangeColor extends AbstractEvent {
    * Generate a shape change.
    *
    * @param shape - the shape to be changed
-   * @param eventBegin - the time in ticks when the change begins
-   * @param eventEnd   - the time in ticks when the change ends
-   * @param to          - color to be changed to
+   * @param to    - color to be changed to
    */
 
-  public ChangeColor(IShape shape, int eventBegin, int eventEnd, Color to) {
-    super(shape, eventBegin, eventEnd);
+  public ChangeColor(IShape shape, Color to) {
+    super(shape);
     this.from = shape.getColor();
     this.to = to;
   }
@@ -26,6 +24,6 @@ public class ChangeColor extends AbstractEvent {
     return "Shape " + this.getShape().getName()
             + " changes color from (" + this.from
             + ") to (" + this.to
-            + " from t=" + this.eventBegin + " to t=" + this.eventEnd;
+            + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 }

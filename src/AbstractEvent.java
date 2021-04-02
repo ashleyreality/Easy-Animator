@@ -22,9 +22,9 @@ public abstract class AbstractEvent implements IEvent {
    */
   public IShape getShape() { return shape; }
 
-  public int setEventBegin(int begin) { this.eventBegin = begin; }
+  public void setEventBegin(int begin) { this.eventBegin = begin; }
 
-  public int setEventEnd(int end) { this.eventBegin = end; }
+  public void setEventEnd(int end) { this.eventBegin = end; }
 
   public int getEventBegin() {
     return eventBegin;

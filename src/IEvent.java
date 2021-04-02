@@ -11,9 +11,9 @@ public interface IEvent {
    */
   public void change(IShape shape) throws IllegalArgumentException;
 
-  public int setEventBegin(int begin);
+  public void setEventBegin(int begin);
 
-  public int setEventEnd(int end);
+  public void setEventEnd(int end);
 
   public int getEventBegin();
 
