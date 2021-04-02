@@ -64,15 +64,15 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   private boolean nameMatch(IShape shape) {
     // Create a new list of type String
-    List<String> newList = new ArrayList<String>();
+    List<String> names = new ArrayList<>();
     // For each "Shape" that exists in the list of shapes
-    for (IShape eachShape : shapes) {
+    for (IShape s : shapes) {
       // Iterate through the list of "Shapes"
       // Get the name of the shape & append it to the new list of Strings
-      newList.add(eachShape.getName());
+      names.add(s.getName());
     // If a given name in the list of "Shapes" DOES match the provided shape name
     // of Strings, return true
-    for (String eachName : newList) {
+    for (String eachName : names) {
       return shape.getName().equals(eachName);
       }
     }
