@@ -136,7 +136,7 @@ public class AnimationModelTest {
                     "from t=50 to t=80\n" +
                     "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, " +
                     "Height: 100.0 from t=51 to t=70\n" +
-                    "Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100"
+                    "Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100\n"
             , testAnimation.toString());
   }
 }
