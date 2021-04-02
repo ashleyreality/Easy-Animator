@@ -19,25 +19,33 @@ public class AnimationModelImpl implements AnimationModel {
     changes = new ArrayList<>();
   }
 
-  @Override
-  public String getShapesAtTick(int tick) {
-    List<String> tickShapes = shapes.stream()
-            .filter(n -> n.getAppear() < tick && tick < n.getDisappear()).map(Object::toString)
-            .collect(Collectors.toList());
-
-    // create new list (shapesAtTick)
-    // iterate through the list of shapes
-    // for each shape, check if appear < tick < disappear
-    // this is a filter
-    // if true, add shape to new list
-    changes.stream().filter(n->n.getChangeBegin()<tick&&tick< n.getChangeEnd()).forEach(ChangeShape::change);
-    // iterate through the list of changes
-    // for each shape, check if startChange < tick < endChange
-    // if true, apply change to shape
-    // return list
-    // Jen
-    return tickShapes.toString();
-  }
+//  /**
+//   * This method getShapesAtTick() should be a stub. It does not get implemented in this model.
+//   * This method will be implemented in the controller, instead.
+//   * "The return type will be some form of a collection of shapes, as hinted by your...
+//   * description that it "gets all the shapes." - Freifeld
+//   */
+//  @Override
+//  public String getShapesAtTick(int tick) {
+//    List<String> tickShapes = shapes.stream()
+//            .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
+//            .map(Object::toString)
+//            .collect(Collectors.toList());
+//
+//    // create new list (shapesAtTick)
+//    // iterate through the list of shapes
+//    // for each shape, check if appear < tick < disappear
+//    // this is a filter
+//    // if true, add shape to new list
+//    changes.stream().filter(n -> n.getChangeBegin() < tick && tick < n.getChangeEnd())
+//            .forEach(ChangeShape::change);
+//    // iterate through the list of changes
+//    // for each shape, check if startChange < tick < endChange
+//    // if true, apply change to shape
+//    // return list
+//    // Jen
+//    return tickShapes.toString();
+//  }
 
   @Override
   public void addShape(String name, Color color, ShapeType type, Point2D location, double param1,
