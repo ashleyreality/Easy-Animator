@@ -1,6 +1,7 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * __________________INTERFACE IMPLEMENTATION CLASS: AnimationModelImpl {} ________________________.
@@ -8,6 +9,7 @@ import java.util.List;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
+  private static final Scanner object = new Scanner(System.in);
   private List<IShape> shapes;
   private List<AbstractEvent> changes;
 
@@ -42,15 +44,21 @@ public class AnimationModelImpl implements IAnimationModel {
     // add return to shapes list
     // Aya
 
+    // (Each "Shape" has a name, color, location, appear, disappear)
+    // For each element/index in the list of shapes
     for (int index = 0; index < shapes.size(); index++) {
-      // for each item in the list of shapes, if a name exists more than once is true
+      // If duplicate Shape names exist in the list of shapes
       if (nameMatch()) {
-        // throw an error
+        // Throw an error
         throw new IllegalArgumentException("Each shape name must be unique.");
-      } else if (shapes.get(index) == ShapeType.OVAL) {
-        shapes.add(ShapeType.OVAL);
-      } else if (shapes.get(index) == ShapeType.RECTANGLE) {
-        shapes.add(ShapeType.OVAL);
+        // If no duplicate Shape names exist in the list of shapes...
+        // Append the Shape to the list
+      } else {
+        // Get the element for each index in the list of "Shapes"
+        //shapes.add(object.next());
+        IShape eachShape = shapes.get(index);
+        // Append the "Shape" to the list of "Shapes"
+        shapes.add(eachShape);
       }
     }
   }
@@ -59,7 +67,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * ____________________________________ METHOD: nameMatch() _____________________________________.
    * This is a helper method that iterates through the ArrayList of IShapes, shapes, and checks
    * whether two shapes have the same name.
-   * @return true if the ArrayList of shapes contains duplicates
+   * @return true if the ArrayList of Shapes contains duplicate Shape names
    */
   private boolean nameMatch() {
     // Create a new list of type String
@@ -70,20 +78,13 @@ public class AnimationModelImpl implements IAnimationModel {
       // Iterate through the list of "Shapes"
       // Get the name of the IShape & append it to the new list of Strings
       newList.add(eachShape.getName());
-      // If a given name in the list of "Shapes" does NOT match any of the names in the list
+      // If a given name in the list of "Shapes" DOES match any of the names in the list
       // of Strings, return true
       for (String eachName : newList) {
-        return !eachShape.getName().equals(eachName);
+        return eachShape.getName().equals(eachName);
       }
     }
     return false;
-  }
-
-
-
-  @Override
-  public void addShape(IShape shape, int appear, int disappear) {
-
   }
 
   /**
