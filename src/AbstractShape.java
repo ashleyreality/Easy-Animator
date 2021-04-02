@@ -11,20 +11,6 @@ public abstract class AbstractShape implements IShape {
   protected int appear;
   protected int disappear;
 
-  /**
-   * Generate a shape change.
-   *
-   * @param color - the color of the shape
-   * @param location - the shape's location as a Point2D
-   */
-  public AbstractShape(String name, Color color, Point2D location, int appear, int disappear) {
-    this.name = name;
-    this.color = color;
-    this.location = location;
-    this.appear = appear;
-    this.disappear = disappear;
-  }
-
   @Override
   public String getName() { return this.name; }
 

@@ -1,5 +1,5 @@
 /**
- * This is the ScaleShape class. It extends the abstract class ChangeShape.
+ * The ScaleShape class extends ChangeShape. Use it to scale a shape from one size to another size.
  */
 public class ScaleShape extends AbstractEvent {
   protected double widthBefore;
@@ -8,39 +8,34 @@ public class ScaleShape extends AbstractEvent {
   protected double heightAfter;
   protected IShape shape;
 
-  // Note:
-  // width = horizontal length of rectangle = horizontal diameter of oval
-  // height = vertical length of rectangle = vertical length of oval
 
   /**
-   * _______________________________ CONSTRUCTOR: ScaleShape() ____________________________________.
-   * The ScaleShape() constructor generates a shape change.
+   * Generates a shape change.
    *
-   * @param shape       - the shape to be changed
-   * @param changeBegin - the time in ticks from which the change begins
-   * @param changeEnd   - the time in ticks when the change ends
+   * @param shape
+   * @param eventBegin
+   * @param eventEnd
+   * @param widthBefore
+   * @param widthAfter
+   * @param heightBefore
+   * @param heightAfter
    */
-  public ScaleShape(IShape shape, int changeBegin, int changeEnd, double widthBefore,
+  public ScaleShape(IShape shape, int eventBegin, int eventEnd, double widthBefore,
                     double widthAfter, double heightBefore, double heightAfter) {
-    super(shape, changeBegin, changeEnd);
+    super(shape, eventBegin, eventEnd);
     this.widthBefore = widthBefore;
     this.widthAfter = widthAfter;
     this.heightBefore = heightBefore;
     this.heightAfter = heightAfter;
   }
 
-  /**
-   * ____________________________________ METHOD: toString() ______________________________________.
-   * The toString() method override.
-   *
-   * @return
-   */
+  @Override
   public String toString() {
     // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-    // fixme -- how to call super method to get shape name?
-    return ("Shape " + "CreateShape.getName()"
+    return ("Shape " + this.getShape().getName()
             + " scales from Width: " + this.widthBefore
             + ", Height: " + this.heightBefore
-            + " to Width: " + this.widthAfter + ", Height: " + this.heightAfter);
+            + " to Width: " + this.widthAfter + ", Height: " + this.heightAfter)
+            + " from t=" + this.eventBegin + " to t=" + this.eventEnd;
   }
 }
