@@ -28,7 +28,7 @@ public class AnimationModelTest {
 
     // create the shapes
     R = new Rectangle("R", 50.0, 100.0, 1,0,0,200.0,200.0);
-    C = new Oval("C",60.0, 30.0, 0, 0, 1, 500.0, 100.0);
+    C = new Oval("C",120.0, 60.0, 0, 0, 1, 500.0, 100.0);
 
     // create the moves
     move1 = new MoveShape(R, 300.0, 300.0);
@@ -60,14 +60,14 @@ public class AnimationModelTest {
 
     assertEquals("Shapes:\n"
                     + "Name: R\n"
-                    + "Type: Rectangle\n"
+                    + "Type: rectangle\n"
                     + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
                     + "Appears at t=1\n"
                     + "Disappears at t=100\n"
                     + "\n"
                     + "Name: C\n"
-                    + "Type: Oval\n"
-                    + "Center: (500.0,100.0), X radius: 30.0, Y radius: 15.0, Color: (0,0,1)\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
                     + "Appears at t=6\n"
             + "Disappears at t=100\n\n", testAnimation.toString());
   }
@@ -119,20 +119,20 @@ public class AnimationModelTest {
                     "Name: R\n" +
                     "Type: rectangle\n" +
                     "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, " +
-                    "Color: (1.0,0.0,0.0)\n" +
+                    "Color: (1,0,0)\n" +
                     "Appears at t=1\n" +
                     "Disappears at t=100\n" +
                     " \n" +
                     "Name: C\n" +
                     "Type: oval\n" +
                     "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, " +
-                    "Color: (0.0,0.0,1.0)\n" +
+                    "Color: (0,0,1)\n" +
                     "Appears at t=6\n" +
                     "Disappears at t=100\n" +
                     " \n" +
                     "Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50\n" +
                     "Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70\n" +
-                    "Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) " +
+                    "Shape C changes color from (0,0,1) to (0,1,0) " +
                     "from t=50 to t=80\n" +
                     "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, " +
                     "Height: 100.0 from t=51 to t=70\n" +

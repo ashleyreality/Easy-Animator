@@ -30,7 +30,7 @@ public class Oval extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name
-            + "\nType: Oval"
+            + "\nType: oval"
             + "\nCenter: " + this.location.toString() + ", X radius: " + this.radiusX + ", Y radius: "
             + this.radiusY + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
