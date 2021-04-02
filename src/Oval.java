@@ -1,4 +1,3 @@
-import java.awt.geom.Point2D;
 
 /**
  * This class creates and stores information about an Oval shape.
@@ -10,44 +9,31 @@ public class Oval extends AbstractShape {
   private double radiusY;
 
   /**
-   * Generates an Oval shape.
+   * Creates an oval with the given width and height, color parameters, and location coordinates.
    *
-   * @param color    - the color of the Oval
-   * @param location - the Oval's location
-   * @param radius1  - the first radius of the Oval
-   * @param radius2  - the second radius of the Oval
+   * @param width  width of the oval (x)
+   * @param height height of the oval (y)
+   * @param red    red value of oval
+   * @param green  green value of oval
+   * @param blue   blue value of oval
+   * @param x      x coordinate of oval
+   * @param y      y coordinate of oval
    */
-  public Oval(String name, Color color, Point2D location, int appear, int disappear, double radius1,
-              double radius2) {
-    super(name, color, location, appear, disappear);
-    radius1 = this.radiusX;
-    radius2 = this.radiusY;
+  public Oval(double width, double height,
+              int red, int green, int blue, double x, double y) {
+    super(width, height, red, green, blue, x, y);
+    this.radiusX = width / 2;
+    this.radiusY = height / 2;
   }
 
-  public double getWidth() {
-    return radiusX;
-  }
-
-  public void setRadiusX(double radiusX) {
-    this.radiusX = radiusX;
-  }
-
-  public double getHeight() {
-    return radiusY;
-  }
-
-  public void setRadiusY(double radiusY) {
-    this.radiusY = radiusY;
-  }
-
-  // fixme -- see note in superclass
   @Override
   public String toString() {
-    return "Name: " + this.name // super get name?
-          + "\nType: Oval"
-          + "\n Center: " + this.getLocation() + ", X radius: " + this.getWidth() + ", Y radius: "
-          + this.getHeight() + ", Color: " // super get color?
-          + "\nAppears at t=" + this.getAppear()
-            + "\nDisappears at t=" + this.getDisappear() + "\n";
+    return "Name: " + this.name
+            + "\nType: Oval"
+            + "\nCenter: " + this.location + ", X radius: " + this.radiusX + ", Y radius: "
+            + this.radiusY + ", Color: " + this.color
+            + "\nAppears at t=" + this.appear
+            + "\nDisappears at t=" + this.disappear + "\n";
+    // TODO might need to make toStrings fo color and point2D
   }
 }

@@ -5,56 +5,31 @@ import java.awt.geom.Point2D;
  * This class creates and stores information about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
-  private double width;
-  private double height;
-
   /**
-   * Generates a Rectangle shape.
-   *  @param color    - the color of the Rectangle
-   * @param location - the rectangle's location
-   * @param width    - int, a width
-   * @param height   - int, a height
+   * Creates a rectangle with the given width and height, color parameters, and location
+   * coordinates.
+   *
+   * @param width  width of the rectangle (x)
+   * @param height height of the rectangle (y)
+   * @param red    red value of rectangle
+   * @param green  green value of rectangle
+   * @param blue   blue value of rectangle
+   * @param x      x coordinate of rectangle
+   * @param y      y coordinate of rectangle
    */
-  public Rectangle(String name, Color color, Point2D location, int appear, int disappear, double width,
-                   double height) {
-
-    super(name, color, location, appear, disappear);
-    width = this.width;
-    height = this.height;
+  public Rectangle(double width, double height,
+                   int red, int green, int blue, double x, double y) {
+    super(width, height, red, green, blue, x, y);
   }
 
-  /**
-   * ___________________________________ METHOD: getWidth() _______________________________________.
-   * @return the width of the rectangle shape, a double
-   */
-  public double getWidth() {
-    return width;
-  }
-
-  /**
-   * ___________________________________ METHOD: setWidth() _______________________________________.
-   * @param
-   */
-  public void setWidth(double width) {
-    this.width = width;
-  }
-
-  public double getHeight() {
-    return height;
-  }
-
-  public void setHeight(double height) {
-    this.height = height;
-  }
-
-  // fixme -- see note in superclass
   @Override
   public String toString() {
-    return "Name: " // super get name?
+    return "Name: " + this.name
             + "\nType: Rectangle"
-            + "\nMin corner: " + this.getLocation() + ", Width: " + this.getWidth() + ", Height: "
-            + this.getHeight() + ", Color: " // super get color?
-            + "\nAppears at t=" + this.getAppear()
-            + "\nDisappears at t=" + this.getDisappear() + "\n";
+            + "\nMin corner: " + this.location + ", Width: " + this.width + ", Height: "
+            + this.height + ", Color: " + this.color
+            + "\nAppears at t=" + this.appear
+            + "\nDisappears at t=" + this.disappear + "\n";
+    // TODO might need to make toStrings fo color and point2D
   }
 }

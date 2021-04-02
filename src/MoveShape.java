@@ -8,11 +8,11 @@ public class MoveShape extends AbstractEvent {
   /**
    * Generates a shape move.
    *
-   * @param shape
-   * @param eventBegin
-   * @param eventEnd
-   * @param from
-   * @param to
+   * @param shape - the shape you want to move
+   * @param eventBegin - the time in ticks when the event begins
+   * @param eventEnd - the time in ticks when the event ends
+   * @param from - the Point2D you are moving the shape from
+   * @param to - the Point2D you are moving the shape to
    */
   public MoveShape(IShape shape, int eventBegin, int eventEnd, Point2D from, Point2D to) {
     super(shape, eventBegin, eventEnd);
