@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.geom.Point2D;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,15 +13,23 @@ public class AnimationModelTest {
   private Point2D cLocation;
   private Point2D cNewLocation;
 
+  Color red;
+  Color blue;
+  Color green;
+
+  IShape R;
+  IShape C;
+
   @Before
   public void setUp() {
     // create the animation model
     testAnimation = new AnimationModelImpl();
-    Point2D rLocation = new Point2D.Double(200.0, 200.0);
-    Point2D rNewLocation = new Point2D.Double(300.0, 300.0);
+    R = new Rectangle(50.0, 100.0, 1,0,0,200.0,200.0);
+    C = new Oval(60.0, 30.0, 0, 0, 1, 500.0, 100.0);
 
-    Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
+    Point2D rNewLocation = new Point2D(300.0, 300.0);
+
+    Point2D cNewLocation = new Point2D(500.0, 400.0);
 
   }
 
@@ -36,18 +42,16 @@ public class AnimationModelTest {
 
     // Get the color of the Shape
    // testAnimation.getColor();
-    testAnimation.addShape("R", Color.RED, ShapeType.RECTANGLE, rLocation, 50.0,
-            100.0, 1, 100);
+    testAnimation.addShape(R, 1, 100);
 
-    testAnimation.addShape("C", Color.BLUE, ShapeType.OVAL, cLocation, 60.0,
-            30.0, 6, 100);
+    testAnimation.addShape(C, 6, 100);
 
     assertEquals("", testAnimation.toString());
   }
 
   @Test
   public void testAddSizeChange() {
-    testAnimation.addSizeChange("R", 25.0, 100.0, 51,
+    testAnimation.addEvent("R", 25.0, 100.0, 51,
             70);
 
     assertEquals("", testAnimation.toString());

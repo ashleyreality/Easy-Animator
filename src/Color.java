@@ -2,9 +2,9 @@
  * The Color class defines colors that can be assigned to Shapes.
  */
 public class Color {
-  private double red;
-  private double green;
-  private double blue;
+  private int red;
+  private int green;
+  private int blue;
 
   /**
    * Creates a color using the given red, green and blue values.
@@ -14,7 +14,7 @@ public class Color {
    * @param blue  the blue value for this color
    * @throws IllegalArgumentException when a color value is not between 0 and 255
    */
-  public Color(double red, double green, double blue) {
+  public Color(int red, int green, int blue) {
     if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255) {
       throw new IllegalArgumentException("Color values must be between 0 and 255.");
     }
