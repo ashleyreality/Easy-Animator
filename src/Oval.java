@@ -24,7 +24,7 @@ public class Oval extends CreateShape {
     radius2 = this.radiusY;
   }
 
-  public double getParam1() {
+  public double getWidth() {
     return radiusX;
   }
 
@@ -32,7 +32,7 @@ public class Oval extends CreateShape {
     this.radiusX = radiusX;
   }
 
-  public double getParam2() {
+  public double getHeight() {
     return radiusY;
   }
 
@@ -45,8 +45,8 @@ public class Oval extends CreateShape {
   public String toString() {
     return "Name: " // super get name?
           + "\nType: Oval"
-          + "\n Center: " + this.getLocation() + ", X radius: " + this.getParam1() + ", Y radius: "
-          + this.getParam2() + ", Color: " // super get color?
+          + "\n Center: " + this.getLocation() + ", X radius: " + this.getWidth() + ", Y radius: "
+          + this.getHeight() + ", Color: " // super get color?
           + "\nAppears at t=" + this.getAppear()
             + "\nDisappears at t=" + this.getDisappear() + "\n";
   }

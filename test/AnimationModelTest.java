@@ -5,6 +5,9 @@ import java.awt.geom.Point2D;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This is the AnimationModelTest class. It tests the AnimationModel interface.
+ */
 public class AnimationModelTest {
   private AnimationModel testAnimation;
   private Point2D rLocation;

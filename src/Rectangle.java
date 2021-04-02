@@ -23,7 +23,7 @@ public class Rectangle extends CreateShape {
     height = this.height;
   }
 
-  public double getParam1() {
+  public double getWidth() {
     return width;
   }
 
@@ -31,7 +31,7 @@ public class Rectangle extends CreateShape {
     this.width = width;
   }
 
-  public double getParam2() {
+  public double getHeight() {
     return height;
   }
 
@@ -44,8 +44,8 @@ public class Rectangle extends CreateShape {
   public String toString() {
     return "Name: " // super get name?
             + "\nType: Rectangle"
-            + "\nMin corner: " + this.getLocation() + ", Width: " + this.getParam1() + ", Height: "
-            + this.getParam2() + ", Color: " // super get color?
+            + "\nMin corner: " + this.getLocation() + ", Width: " + this.getWidth() + ", Height: "
+            + this.getHeight() + ", Color: " // super get color?
             + "\nAppears at t=" + this.getAppear()
             + "\nDisappears at t=" + this.getDisappear() + "\n";
   }

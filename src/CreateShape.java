@@ -78,8 +78,8 @@ public abstract class CreateShape implements Shape {
   public String toString() {
     return "Name: " + this.getName()
             + "\nType: Oval"
-            + "\n Location: " + this.getLocation() + ", Param 1: " + this.getParam1() + ", Param 2: "
-            + this.getParam2() + ", Color: " + this.getColor()
+            + "\n Location: " + this.getLocation() + ", Param 1: " + this.getWidth() + ", Param 2: "
+            + this.getHeight() + ", Color: " + this.getColor()
             + "\nAppears at t=" + this.getAppear()
             + "\nDisappears at t=" + this.getDisappear() + "\n";
   }
