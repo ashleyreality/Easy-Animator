@@ -24,7 +24,7 @@ public abstract class AbstractEvent implements IEvent {
 
   public void setEventBegin(int begin) { this.eventBegin = begin; }
 
-  public void setEventEnd(int end) { this.eventBegin = end; }
+  public void setEventEnd(int end) { this.eventEnd = end; }
 
   public int getEventBegin() {
     return eventBegin;
