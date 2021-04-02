@@ -18,6 +18,8 @@ public class ChangeColor extends AbstractEvent {
     super(shape);
     this.from = shape.getColor();
     this.to = new Color(R, G, B);
+
+    shape.setColor(R, G, B);
   }
 
   @Override
