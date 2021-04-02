@@ -121,7 +121,7 @@ public class AnimationModelImpl implements IAnimationModel {
     }
 
     // add the changes to sb
-    for (AbstractEvent change : changes) {
+    for (IEvent change : changes) {
       sb.append(change.toString()).append("\n");
     }
 
