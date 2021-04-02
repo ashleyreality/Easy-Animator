@@ -30,7 +30,7 @@ public abstract class AbstractShape implements IShape {
   public AbstractShape(String name, double width, double height,
                        int red, int green, int blue, double x, double y) {
     this.color = new Color(red, green, blue);
-    if (width < 0 || height < 0) {
+    if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Width and height must be positive.");
     }
     this.name = name;
@@ -55,7 +55,7 @@ public abstract class AbstractShape implements IShape {
    */
   @Override
   public void setWidth(double width) {
-    if (width < 0) {
+    if (width <= 0) {
       throw new IllegalArgumentException("Width must be positive.");
     }
     this.width = width;
@@ -77,7 +77,7 @@ public abstract class AbstractShape implements IShape {
    */
   @Override
   public void setHeight(double height) {
-    if (height < 0) {
+    if (height <= 0) {
       throw new IllegalArgumentException("Height must be positive.");
     }
     this.height = height;
