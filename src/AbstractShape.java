@@ -1,18 +1,64 @@
-import java.awt.geom.Point2D;
-
 /**
- * Use this class to change a shape.
+ * This class includes the code shared by some shapes.
  */
 public abstract class AbstractShape implements IShape {
-  protected String name;
   protected Color color;
   protected Point2D location;
+  protected double width;
+  protected double height;
 
+  protected String name;
   protected int appear;
   protected int disappear;
 
+  /**
+   * Creates a shape with the given width and height, color parameters, and location coordinates .
+   *
+   * @param width  width of the shape (x)
+   * @param height height of the shape (y)
+   * @param red    red value of shape
+   * @param green  green value of shape
+   * @param blue   blue value of shape
+   * @param x      x coordinate of shape
+   * @param y      y coordinate of shape
+   */
+  public AbstractShape(double width, double height,
+                       int red, int green, int blue, double x, double y) {
+    this.color = new Color(red, green, blue);
+    this.location = new Point2D(x, y);
+    this.width = width;
+    this.height = height;
+  }
+
   @Override
-  public String getName() { return this.name; }
+  public double getWidth() {
+    return width;
+  }
+
+  @Override
+  public void setWidth(double width) {
+    this.width = width;
+  }
+
+  @Override
+  public double getHeight() {
+    return height;
+  }
+
+  @Override
+  public void setHeight(double height) {
+    this.height = height;
+  }
+
+  @Override
+  public String getName() {
+    return this.name;
+  }
+
+  @Override
+  public void setName(String name) {
+    this.name = name;
+  }
 
   @Override
   public Color getColor() {
@@ -20,53 +66,38 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
+  public void setColor(int red, int green, int blue) {
+    this.color = new Color(red, green, blue);
+  }
+
+  @Override
   public Point2D getLocation() {
     return this.location;
   }
 
-  /**
-   * Changes the color associated with a Shape.
-   *
-   * @param color - the color to change the shape to
-   */
-  public void changeColor(Color color) {
-    this.color = color;
+  @Override
+  public void setLocation(double x, double y) {
+    this.location = new Point2D(x, y);
   }
 
+  @Override
   public int getAppear() {
     return appear;
   }
 
-  public int getDisappear() {
-    return disappear;
-  }
-
-  public void setColor(Color color) {
-    this.color = color;
-  }
-
-  public void setLocation(Point2D location) {
-    this.location = location;
-  }
-
+  @Override
   public void setAppear(int appear) {
     this.appear = appear;
   }
 
+  @Override
+  public int getDisappear() {
+    return disappear;
+  }
+
+  @Override
   public void setDisappear(int disappear) {
     this.disappear = disappear;
   }
 
-// fixme -- what do y'all think about the toStrings for shapes? We could leave them here and the
-  // text would be slightly different than shown -- or we could dynamically get the text? :(
-  // or we could leave them as shown in the subclasses, but that is repeated code. lmk what you think
-  @Override
-  public String toString() {
-    return "Name: " + this.getName()
-            + "\nType: Oval"
-            + "\n Location: " + this.getLocation() + ", Param 1: " + this.getWidth() + ", Param 2: "
-            + this.getHeight() + ", Color: " + this.getColor()
-            + "\nAppears at t=" + this.getAppear()
-            + "\nDisappears at t=" + this.getDisappear() + "\n";
-  }
 }
