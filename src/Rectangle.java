@@ -1,13 +1,15 @@
-
-import java.awt.geom.Point2D;
-
 /**
- * This class creates and stores information about a Rectangle shape.
+ * __________________________________ CLASS: Rectangle {} _________________________________________.
+ * This is the Rectangle class. It extends the AbstractShape abstract class and implements the
+ * method declarations that are unique to the Rectangle class. It creates and stores information
+ * about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
+
   /**
-   * Creates a rectangle with the given width and height, color parameters, and location
-   * coordinates.
+   * __________________________________ CONSTRUCTOR: Rectangle() _______________________________________.
+   * This is the Rectangle() constructor. It creates a rectangle with the given width and height,
+   * color parameters, and location coordinates.
    *
    * @param name   name of the rectangle
    * @param width  width of the rectangle (x)
@@ -23,6 +25,13 @@ public class Rectangle extends AbstractShape {
     super(name, width, height, red, green, blue, x, y);
   }
 
+  /**
+   * ___________________________________ METHOD: toString() _______________________________________.
+   * This is the toString() method override. It outputs a String with the name, location,
+   * horizontal radius, vertical radius, color, and appear and disappear time of the rectangle.
+   *
+   * @return a String of the rectangle attributes
+   */
   @Override
   public String toString() {
     return "Name: " + this.name
