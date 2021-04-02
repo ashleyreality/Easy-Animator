@@ -10,22 +10,20 @@ public class ScaleShape extends AbstractEvent {
 
 
   /**
-   * Generates a shape change.
+   * Generates a scaled shape.
    *
-   * @param shape
-   * @param eventBegin
-   * @param eventEnd
-   * @param widthBefore
-   * @param widthAfter
-   * @param heightBefore
-   * @param heightAfter
+   * @param shape - the shape to be scaled
+   * @param eventBegin - the time in ticks when the event begins
+   * @param eventEnd - the time in ticks when the event ends
+   * @param widthAfter - the new width
+   * @param heightAfter - the new height
    */
-  public ScaleShape(IShape shape, int eventBegin, int eventEnd, double widthBefore,
-                    double widthAfter, double heightBefore, double heightAfter) {
+  public ScaleShape(IShape shape, int eventBegin, int eventEnd,
+                    double widthAfter, double heightAfter) {
     super(shape, eventBegin, eventEnd);
-    this.widthBefore = widthBefore;
+    this.widthBefore = shape.getWidth();
     this.widthAfter = widthAfter;
-    this.heightBefore = heightBefore;
+    this.heightBefore = shape.getHeight();
     this.heightAfter = heightAfter;
   }
 

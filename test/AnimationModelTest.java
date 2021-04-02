@@ -59,19 +59,25 @@ public class AnimationModelTest {
 
   @Test
   public void testAddMove() {
+    MoveShape move1 = new MoveShape(R, 1, 100, rLocation1, rLocation2);
+    MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
+    MoveShape move3 = new MoveShape(R, 110, 150, rLocation2, rLocation1);
 
-    testAnimation.addMove("R", rNewLocation, 10, 50);
-    testAnimation.addMove("C", cNewLocation, 20, 70);
-    testAnimation.addMove("R", rLocation, 70, 100);
+    testAnimation.addEvent(//event goes here, 10, 50);
+    testAnimation.addEvent(//event goes here 20, 70);
+    testAnimation.addEvent(//event goes here, 70, 100);
 
     assertEquals("", testAnimation.toString());
 
   }
 
   @Test
-  public void TextTest() {
+  public void testColorChange() {
 
-    //fixme -- I thiiiiiiink we maybe need to start with the user's perspective?
+  }
+
+  @Test
+  public void TextTest() {
 
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
@@ -85,7 +91,7 @@ public class AnimationModelTest {
     MoveShape move1 = new MoveShape(R, 1, 100, rLocation1, rLocation2);
 
     Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
-    MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
+
 
     // change a shape's color
     ChangeColor change1 = new ChangeColor(C, 50, 75, Color.BLUE, Color.GREEN);

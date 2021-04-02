@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * The MoveShape class extends ChangeShape. Use it to move a shape from one location to another.
  */
@@ -11,13 +13,13 @@ public class MoveShape extends AbstractEvent {
    * @param shape - the shape you want to move
    * @param eventBegin - the time in ticks when the event begins
    * @param eventEnd - the time in ticks when the event ends
-   * @param from - the Point2D you are moving the shape from
-   * @param to - the Point2D you are moving the shape to
+   * @param x - a double, the new x location
+   * @param y - a double, the new y location
    */
-  public MoveShape(IShape shape, int eventBegin, int eventEnd, Point2D from, Point2D to) {
+  public MoveShape(IShape shape, int eventBegin, int eventEnd, double x, double y) {
     super(shape, eventBegin, eventEnd);
-    this.from = from;
-    this.to = to;
+    this.from = shape.getLocation();
+    this.to = new Point2D(x, y);
   }
 
   @Override
