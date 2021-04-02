@@ -42,7 +42,13 @@ public class AnimationModelImpl implements IAnimationModel {
   @Override
   public void addShape(IShape shape, int appear, int disappear) {
 
-    // (Each "Shape" has a name, color, location, appear, disappear)
+    // check whether shape name is unique
+
+    // if no, throw error
+
+    // if yes, set appear and disappear
+    // then shapes.add(shape)
+
     // For each element/index in the list of shapes
     for (int index = 0; index < shapes.size(); index++) {
       // If duplicate Shape names exist in the list of shapes

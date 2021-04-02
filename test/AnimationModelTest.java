@@ -30,15 +30,15 @@ public class AnimationModelTest {
     C = new Oval(60.0, 30.0, 0, 0, 1, 500.0, 100.0);
 
     // create the moves
-    move1 = new MoveShape(R, 10, 50, 300.0, 300.0);
-    move2 = new MoveShape(C,20, 70, 500.0, 400.0);
-    move3 = new MoveShape(R, 70, 100, 200.0, 200.0);
+    move1 = new MoveShape(R, 300.0, 300.0);
+    move2 = new MoveShape(C, 500.0, 400.0);
+    move3 = new MoveShape(R, 200.0, 200.0);
 
     // create the size change
-    size1 = new ScaleShape();
+    size1 = new ScaleShape(R, 25.0, 100.0);
 
     // create the color change
-    colorChange1 = new ChangeColor();
+    colorChange1 = new ChangeColor(C, 0, 1, 0);
 
   }
 
@@ -59,19 +59,18 @@ public class AnimationModelTest {
     testAnimation.addEvent(move3, 70, 100);
 
     assertEquals("", testAnimation.toString());
-
   }
 
   @Test
   public void testAddSizeChange() {
-    testAnimation.addEvent();
+    testAnimation.addEvent(size1, 51, 70);
 
     assertEquals("", testAnimation.toString());
   }
 
   @Test
   public void testColorChange() {
-    testAnimation.addEvent();
+    testAnimation.addEvent(colorChange1, 50, 80);
 
     assertEquals("", testAnimation.toString());
   }
