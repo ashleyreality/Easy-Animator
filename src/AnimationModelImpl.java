@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class AnimationModelImpl implements IAnimationModel {
   private static final Scanner object = new Scanner(System.in);
   private List<IShape> shapes;
-  private List<AbstractEvent> changes;
+  private List<IEvent> changes;
 
   // Notes:
   // HW 7 -- we will need to impl getShapesAtTick() where we are given a tick, & we have to determine
@@ -97,7 +97,7 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public void addEvent(IEvent event, int eventBegin, int eventEnd) {
-    for (AbstractEvent eachShape : changes) {
+    for (IEvent eachShape : changes) {
       changes.add(eachShape);
     }
   }
