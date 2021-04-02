@@ -59,13 +59,13 @@ public class AnimationModelTest {
 
   @Test
   public void testAddMove() {
-    MoveShape move1 = new MoveShape(R, 1, 100, rLocation1, rLocation2);
-    MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
-    MoveShape move3 = new MoveShape(R, 110, 150, rLocation2, rLocation1);
+    IEvent move1 = new MoveShape(R, 10, 50, 300.0, 300.0);
+    IEvent move2 = new MoveShape(C,20, 70, 500.0, 400.0);
+    IEvent move3 = new MoveShape(R, 70, 100, 200.0, 200.0);
 
-    testAnimation.addEvent(//event goes here, 10, 50);
-    testAnimation.addEvent(//event goes here 20, 70);
-    testAnimation.addEvent(//event goes here, 70, 100);
+    testAnimation.addEvent(move1, 10, 50);
+    testAnimation.addEvent(move2, 20, 70);
+    testAnimation.addEvent(move3, 70, 100);
 
     assertEquals("", testAnimation.toString());
 
