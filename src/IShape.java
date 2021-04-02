@@ -73,15 +73,16 @@ public interface IShape {
   double getWidth();
 
   /**
-   * Sets the width of a given shape. The width is the horizontal length of
-   * a rectangle and the horizontal diameter of an oval.
+   * Sets the width of a given shape. The width is the horizontal length of a rectangle and the
+   * horizontal diameter of an oval.
    *
    * @param width - a double, the width of a Shape
+   * @throws IllegalArgumentException if width is negative
    */
   void setWidth(double width);
 
   /**
-   * ____________________________________ METHOD: getHeight() ______________________________________.
+   * ____________________________________ METHOD: getHeight() _____________________________________.
    * The getHeight() method outputs the height of a given shape. The height is the vertical length
    * of a rectangle, or the vertical length of an oval.
    *
@@ -90,10 +91,11 @@ public interface IShape {
   double getHeight();
 
   /**
-   * Sets the height of a given shape. The height is the vertical length
-   * of a rectangle, or the vertical length of an oval.
+   * Sets the height of a given shape. The height is the vertical length of a rectangle, or the
+   * vertical length of an oval.
    *
    * @param height - the height value of the given shape, a double
+   * @throws IllegalArgumentException if height is negative
    */
   void setHeight(double height);
 }
