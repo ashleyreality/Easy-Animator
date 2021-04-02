@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.geom.Point2D;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,15 +13,31 @@ public class AnimationModelTest {
   private Point2D cLocation;
   private Point2D cNewLocation;
 
+  private Color red;
+  private Color blue;
+  private Color green;
+
+  private IShape rectangle;
+  private IShape oval;
+
   @Before
   public void setUp() {
     // create the animation model
     testAnimation = new AnimationModelImpl();
-    Point2D rLocation = new Point2D.Double(200.0, 200.0);
-    Point2D rNewLocation = new Point2D.Double(300.0, 300.0);
+    Point2D rLocation = new Point2D(200.0, 200.0);
+    Point2D rNewLocation = new Point2D(300.0, 300.0);
 
-    Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
+    Point2D cLocation = new Point2D(500.0, 100.0);
+    Point2D cNewLocation = new Point2D(500.0, 400.0);
+
+    red = new Color(1.0, 0.0,0.0);
+    blue = new Color(0.0, 0.0,1.0);
+    green = new Color(0.0, 1.0,0.0);
+
+  }
+
+  @Test
+  public void testCreateShape() {
 
   }
 
@@ -34,7 +48,7 @@ public class AnimationModelTest {
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
 
-    testAnimation.addShape("R", Color.RED, ShapeType.RECTANGLE, rLocation, 50.0,
+    testAnimation.addShape("R", red, ShapeType.RECTANGLE, rLocation, 50.0,
             100.0, 1, 100);
 
     testAnimation.addShape("C", Color.BLUE, ShapeType.OVAL, cLocation, 60.0,
@@ -68,17 +82,17 @@ public class AnimationModelTest {
     //fixme -- I thiiiiiiink we maybe need to start with the user's perspective?
 
     // create a Point2D for each shape, then create the shape
-    Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
+    Point2D rLocation1 = new Point2D(200.0, 200.0);
     IShape R = new Rectangle("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
 
-    Point2D cLocation = new Point2D.Double(500.0, 100.0);
+    Point2D cLocation = new Point2D(500.0, 100.0);
     IShape C = new Oval("C", Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
-    Point2D rLocation2 = new Point2D.Double(300.0, 300.0);
+    Point2D rLocation2 = new Point2D(300.0, 300.0);
     MoveShape move1 = new MoveShape(R, 1, 100, rLocation1, rLocation2);
 
-    Point2D cNewLocation = new Point2D.Double(500.0, 400.0);
+    Point2D cNewLocation = new Point2D(500.0, 400.0);
     MoveShape move2 = new MoveShape(C,10, 50, cLocation, cNewLocation);
 
     // change a shape's color
