@@ -24,8 +24,8 @@ public class ChangeColor extends AbstractEvent {
   public String toString() {
     // Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) from t=50 to t=80
     return "Shape " + this.getShape().getName()
-            + " changes color from (" + this.from
-            + ") to (" + this.to
+            + " changes color from " + this.from.toString()
+            + " to " + this.to.toString()
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 }
