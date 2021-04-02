@@ -31,18 +31,16 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
-   * The addShape() method adds a shape with the given parameters.
+   * The addShape() method adds a new "Shape" to the ArrayList of type "Shape", shapes, with the
+   * given parameters.
    *
-   * @param shape     - the shape, an IShape
+   * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
    * @param appear    - the tick when the shape appears, an int
    * @param disappear - the tick when the shape disappears, an int
+   * @throws IllegalArgumentException if a duplicate of the Shape name already exists in the list
    */
   @Override
   public void addShape(IShape shape, int appear, int disappear) {
-    // send information to correct Shape class
-    // names must be unique -- throw an error if name is not unique
-    // add return to shapes list
-    // Aya
 
     // (Each "Shape" has a name, color, location, appear, disappear)
     // For each element/index in the list of shapes
@@ -65,7 +63,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
-   * This is a helper method that iterates through the ArrayList of IShapes, shapes, and checks
+   * This is a helper method that iterates through the ArrayList of "Shapes", shapes, and checks
    * whether two shapes have the same name.
    * @return true if the ArrayList of Shapes contains duplicate Shape names
    */
@@ -88,88 +86,18 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
   /**
+   * ____________________________________ METHOD: addEvent() _____________________________________.
+   * The addEvent() method adds a new "Shape" to the ArrayList of type "Shape", shapes, with the
+   * given parameters.
+   * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes,
+   * with the given parameters.
    *
-   * @param event the change of the shape
-   * @param eventBegin
-   * @param eventEnd
+   * @param event       - the shape you want to change
+   * @param eventBegin  - the time in ticks when the event begins
+   * @param eventEnd    - the time in ticks when the event ends
    */
   @Override
   public void addEvent(IEvent event, int eventBegin, int eventEnd) {
-
-  }
-
-  /**
-   * _________________________________ METHOD: addColorChange() ___________________________________.
-   *
-   * @param name        - the name of the shape, a String
-   * @param newColor    - the new color of the shape, an enumeration
-   * @param startChange - the *** tick *** at which the color of the shape changes, an int
-   * @param endChange   - the *** tick *** at which the color of the shape, an int
-   */
-  @Override
-  public void addColorChange(String name, Color newColor, int startChange, int endChange) {
-    // get shape from list
-
-    // send information to ChangeColor
-    // add return to changes list
-    // Aya
-  }
-
-  /**
-   * _________________________________ METHOD: addSizeChange() ____________________________________.
-   *
-   * @param name        - the name of the shape, a String
-   * @param newWidth    - the new width of the shape, a double
-   * @param newHeight   - the new height of the shape, a double
-   * @param startChange - the *** tick *** at which the color of the shape changes, an int
-   * @param endChange   - the *** tick *** at which the color of the shape, an int
-   */
-  @Override
-  public void addSizeChange(String name, double newWidth, double newHeight, int startChange, int endChange) {
-    // get shape from list
-    IShape shape = null;
-    for (IShape s : shapes) {
-      if (s.getName().equals(name)) {
-        shape = s;
-      }
-    }
-    if (shape == null) {
-      throw new IllegalArgumentException("Shape not found in animation!");
-    }
-
-    // send information to ScaleShape
-    ScaleShape scaled = new ScaleShape(shape, startChange, endChange, shape.getWidth(), newWidth,
-            shape.getHeight(), newHeight);
-
-    // add return to changes list
-    changes.add(scaled);
-  }
-
-  /**
-   * ____________________________________ METHOD: addMove() _______________________________________.
-   *
-   * @param name        - the name of the shape, a String
-   * @param moveTo      - the coordinates of where the shape is moving to, a Point2D
-   * @param startChange - the *** tick *** at which the color of the shape changes, an int
-   * @param endChange   - the *** tick *** at which the color of the shape, an int
-   */
-  @Override
-  public void addMove(String name, Point2D moveTo, int startChange, int endChange) {
-    // get shape from list
-    IShape shape = null;
-    for (IShape s : shapes) {
-      if (s.getName().equals(name)) {
-        shape = s;
-      }
-    }
-    if (shape == null) {
-      throw new IllegalArgumentException("Shape not found in animation!");
-    }
-    // send information to MoveShape
-    MoveShape moved = new MoveShape(shape, startChange, endChange, shape.getLocation(), moveTo);
-
-    // add return to changes list
-    changes.add(moved);
   }
 
   /**
@@ -200,7 +128,8 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   * This method getShapesAtTick() should be a stub. It does not get implemented in this model. This
+   * _________________________________ STUB: getShapesAtTick() ____________________________________.
+   * This method getShapesAtTick() is a stub. It does not get implemented in this model. This
    * method will be implemented in the controller, instead. "The return type will be some form of a
    * collection of shapes, as hinted by your... description that it "gets all the shapes." -
    * Freifeld* * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
@@ -208,25 +137,26 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   public String getShapesAtTick(int tick) {
     return null; // this is a stub & will be impl later.
+    /*
+        List<String> tickShapes = shapes.stream()
+                .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
+                .map(Object::toString)
+                .collect(Collectors.toList());
 
-//    List<String> tickShapes = shapes.stream()
-//            .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
-//            .map(Object::toString)
-//            .collect(Collectors.toList());
-//
-//    // create new list (shapesAtTick)
-//    // iterate through the list of shapes
-//    // for each shape, check if appear < tick < disappear
-//    // this is a filter
-//    // if true, add shape to new list
-//    changes.stream().filter(n -> n.getChangeBegin() < tick && tick < n.getChangeEnd())
-//            .forEach(ChangeShape::change);
-//    // iterate through the list of changes
-//    // for each shape, check if startChange < tick < endChange
-//    // if true, apply change to shape
-//    // return list
-//    // Jen
-//    return tickShapes.toString();
-//  }
+        // create new list (shapesAtTick)
+        // iterate through the list of shapes
+        // for each shape, check if appear < tick < disappear
+        // this is a filter
+        // if true, add shape to new list
+        changes.stream().filter(n -> n.getChangeBegin() < tick && tick < n.getChangeEnd())
+                .forEach(ChangeShape::change);
+        // iterate through the list of changes
+        // for each shape, check if startChange < tick < endChange
+        // if true, apply change to shape
+        // return list
+        // Jen
+        return tickShapes.toString();
+      }
+     */
   }
 }

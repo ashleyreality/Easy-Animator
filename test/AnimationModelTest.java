@@ -34,6 +34,8 @@ public class AnimationModelTest {
     // decide when they appear and disappear here
     // rectangle appears at 1, disappears at 100
 
+    // Get the color of the Shape
+   // testAnimation.getColor();
     testAnimation.addShape("R", Color.RED, ShapeType.RECTANGLE, rLocation, 50.0,
             100.0, 1, 100);
 
