@@ -1,7 +1,5 @@
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * __________________INTERFACE IMPLEMENTATION CLASS: AnimationModelImpl {} ________________________.
@@ -9,16 +7,10 @@ import java.util.Scanner;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  //private static final Scanner object = new Scanner(System.in);
   private List<IShape> shapes;
   private List<IEvent> changes;
 
-  // Notes:
-  // HW 7 -- we will need to impl getShapesAtTick() where we are given a tick, & we have to determine
-  // what the screen looks like at that tick. Our data should show us what that description.
-  // All the change methods mutate the shape list and add to an "event list" (which is kind of what
-  // changes is)
-  // Reconsider storing appear and disappear in shapes - might run into issues later
+
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -28,6 +20,8 @@ public class AnimationModelImpl implements IAnimationModel {
     shapes = new ArrayList<>();
     changes = new ArrayList<>();
   }
+
+
 
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
@@ -85,6 +79,8 @@ public class AnimationModelImpl implements IAnimationModel {
     return false;
   }
 
+
+
   /**
    * ____________________________________ METHOD: addEvent() _____________________________________.
    * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes,
@@ -106,8 +102,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // Append the provided event instance of IEvent to the ArrayList of IEvent types, changes.
     changes.add(event);
-
   }
+
+
 
   /**
    * ____________________________________ METHOD: toString() ______________________________________.
@@ -134,6 +131,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
     return sb.toString();
   }
+
 
 
   /**
