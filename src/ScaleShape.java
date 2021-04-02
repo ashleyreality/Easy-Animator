@@ -11,8 +11,8 @@ public class ScaleShape extends AbstractEvent {
   /**
    * Generates a scaled shape.
    *
-   * @param shape - the shape to be scaled
-   * @param widthAfter - the new width
+   * @param shape       - the shape to be scaled
+   * @param widthAfter  - the new width
    * @param heightAfter - the new height
    */
   public ScaleShape(IShape shape, double widthAfter, double heightAfter) {
@@ -26,10 +26,11 @@ public class ScaleShape extends AbstractEvent {
   @Override
   public String toString() {
     // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-    return ("Shape " + this.getShape().getName()
-            + " scales from Width: " + this.widthBefore
-            + ", Height: " + this.heightBefore
-            + " to Width: " + this.widthAfter + ", Height: " + this.heightAfter)
+    return "Shape " + this.getShape().getName()
+            + " scales from Width: " + String.format("%.1f", this.widthBefore)
+            + ", Height: " + String.format("%.1f", this.heightBefore)
+            + " to Width: " + String.format("%.1f", this.widthAfter) + ", Height: "
+            + String.format("%.1f", this.heightAfter)
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 }
