@@ -51,7 +51,8 @@ public class AnimationModelTest {
 
   @Test
   public void testAddSizeChange() {
-    testAnimation.addEvent();
+    testAnimation.addEvent("R", 25.0, 100.0, 51,
+            70);
 
     assertEquals("", testAnimation.toString());
   }
