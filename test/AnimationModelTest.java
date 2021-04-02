@@ -1,3 +1,4 @@
+import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,8 +27,8 @@ public class AnimationModelTest {
     testAnimation = new AnimationModelImpl();
 
     // create the shapes
-    R = new Rectangle(50.0, 100.0, 1,0,0,200.0,200.0);
-    C = new Oval(60.0, 30.0, 0, 0, 1, 500.0, 100.0);
+    R = new Rectangle("R", 50.0, 100.0, 1,0,0,200.0,200.0);
+    C = new Oval("C",60.0, 30.0, 0, 0, 1, 500.0, 100.0);
 
     // create the moves
     move1 = new MoveShape(R, 300.0, 300.0);
@@ -42,13 +43,32 @@ public class AnimationModelTest {
 
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void sameShapeName() {
+    testAnimation.addShape(R, 1, 100);
+    // new shape with same name
+    IShape F = new Rectangle("R", 2, 4, 3, 50, 10, 30.0, 75.0);
+    testAnimation.addShape(F, 30, 80);
+  }
+
   @Test
   public void testAddShape() {
     // add the shapes to the animation
     testAnimation.addShape(R, 1, 100);
     testAnimation.addShape(C, 6, 100);
 
-    assertEquals("", testAnimation.toString());
+    assertEquals("Shapes:\n" +
+            "Name: R\n" +
+            "Type: Rectangle\n" +
+            "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n" +
+            "Appears at t=1\n" +
+            "Disappears at t=100\n" +
+            "\n" +
+            "Name: C\n" +
+            "Type: Oval\n" +
+            "Center: (500.0,100.0), X radius: 30.0, Y radius: 15.0, Color: (0,0,1)\n" +
+            "Appears at t=6\n" +
+            "Disappears at t=100\n\n", testAnimation.toString());
   }
 
   @Test
