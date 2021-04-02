@@ -9,7 +9,9 @@ public class ChangeColor extends AbstractEvent {
    * Generate a shape change.
    *
    * @param shape - the shape to be changed
-   * @param to    - color to be changed to
+   * @param R - the red value of the new color
+   * @param G - the green value of the new color
+   * @param B - the blue value of the new color
    */
 
   public ChangeColor(IShape shape, int R, int G, int B) {
