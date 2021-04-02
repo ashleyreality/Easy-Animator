@@ -6,6 +6,8 @@ public class Color {
   private int green;
   private int blue;
 
+  // these are ints, the color representation in the example string is not RGB
+
   /**
    * Creates a color using the given red, green and blue values.
    *

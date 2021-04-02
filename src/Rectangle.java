@@ -30,6 +30,5 @@ public class Rectangle extends AbstractShape {
             + this.height + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
-    // TODO might need to make toStrings fo color and point2D
   }
 }
