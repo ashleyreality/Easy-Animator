@@ -37,35 +37,30 @@ public class AnimationModelImpl implements IAnimationModel {
    * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
    * @param appear    - the tick when the shape appears, an int
    * @param disappear - the tick when the shape disappears, an int
+   * @throws IllegalArgumentException if appear time is greater than disappear time, or is negative
    * @throws IllegalArgumentException if a duplicate of the Shape name already exists in the list
    */
   @Override
   public void addShape(IShape shape, int appear, int disappear) {
-
-    // check whether shape name is unique
-
-    // if no, throw error
-
-    // if yes, set appear and disappear
-    // then shapes.add(shape)
-
-    // For each element/index in the list of shapes
-    for (int index = 0; index < shapes.size(); index++) {
-      // If duplicate Shape names exist in the list of shapes
-      if (nameMatch()) {
-        // Throw an error
-        throw new IllegalArgumentException("Each shape name must be unique.");
-        // If no duplicate Shape names exist in the list of shapes...
-        // Append the Shape to the list
-      } else {
-        // Get the element for each index in the list of "Shapes"
-        //shapes.add(object.next());
-        IShape eachShape = shapes.get(index);
-        // Append the "Shape" to the list of "Shapes"
-        shapes.add(eachShape);
-      }
+    if (appear > disappear || appear < 0) {
+      throw new IllegalArgumentException("The appear time must be greater than the disappear"
+              + " time, and neither can be a negative integer value.");
     }
+
+    if (nameMatch(shape)) {
+      throw new IllegalArgumentException("Each shape name must be unique.");
+    }
+
+    // Pass in the provided appear time into the setter setAppear() and the provided disappear time
+    // into the setter setDisappear() methods which exist in the provided shape instance of IShape.
+    shape.setAppear(appear);
+    shape.setDisappear(disappear);
+
+    // Append the provided shape instance of IShape to the ArrayList of IShape types, shapes.
+    shapes.add(shape);
   }
+
+
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
@@ -73,7 +68,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * whether two shapes have the same name.
    * @return true if the ArrayList of Shapes contains duplicate Shape names
    */
-  private boolean nameMatch() {
+  private boolean nameMatch(IShape shape) {
     // Create a new list of type String
     List<String> newList = new ArrayList<String>();
     // For each "Shape" that exists in the list of shapes of type "Shape"
@@ -82,10 +77,10 @@ public class AnimationModelImpl implements IAnimationModel {
       // Iterate through the list of "Shapes"
       // Get the name of the IShape & append it to the new list of Strings
       newList.add(eachShape.getName());
-      // If a given name in the list of "Shapes" DOES match any of the names in the list
-      // of Strings, return true
-      for (String eachName : newList) {
-        return eachShape.getName().equals(eachName);
+    // If a given name in the list of "Shapes" DOES match the provided shape name
+    // of Strings, return true
+    for (String eachName : newList) {
+      return shape.getName().equals(eachName);
       }
     }
     return false;
