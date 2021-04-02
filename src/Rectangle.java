@@ -26,8 +26,8 @@ public class Rectangle extends AbstractShape {
   public String toString() {
     return "Name: " + this.name
             + "\nType: Rectangle"
-            + "\nMin corner: " + this.location + ", Width: " + this.width + ", Height: "
-            + this.height + ", Color: " + this.color
+            + "\nMin corner: " + this.location.toString() + ", Width: " + this.width + ", Height: "
+            + this.height + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
     // TODO might need to make toStrings fo color and point2D

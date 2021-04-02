@@ -1,6 +1,5 @@
 /**
- * Prof. Park's Point2D class.
- * This class represents a 2D point. This point is denoted in Cartesian
+ * Prof. Park's Point2D class. This class represents a 2D point. This point is denoted in Cartesian
  * coordinates as (x,y).
  */
 public class Point2D {
@@ -16,17 +15,6 @@ public class Point2D {
   public Point2D(double x, double y) {
     this.x = x;
     this.y = y;
-  }
-
-  //might not need dist ot origin
-  /**
-   * Compute and return the Euclidean distance of this point to the origin
-   *
-   * @return the euclidean distance
-   */
-
-  public double distToOrigin() {
-    return Math.sqrt(x * x + y * y);
   }
 
   /**
@@ -45,5 +33,9 @@ public class Point2D {
    */
   public double getY() {
     return y;
+  }
+
+  public String toString() {
+    return String.format("(%.1f,%.1f)", this.x, this.y);
   }
 }

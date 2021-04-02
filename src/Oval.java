@@ -30,8 +30,8 @@ public class Oval extends AbstractShape {
   public String toString() {
     return "Name: " + this.name
             + "\nType: Oval"
-            + "\nCenter: " + this.location + ", X radius: " + this.radiusX + ", Y radius: "
-            + this.radiusY + ", Color: " + this.color
+            + "\nCenter: " + this.location.toString() + ", X radius: " + this.radiusX + ", Y radius: "
+            + this.radiusY + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
     // TODO might need to make toStrings fo color and point2D
