@@ -97,8 +97,14 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public void addEvent(IEvent event, int eventBegin, int eventEnd) {
+
+    // Pass in the provided eventBegin time into the setter setEventBegin() and the provided
+    // eventEnd time into the setter setEventEnd() time which exist in the provided event instance
+    // of IEvent.
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);
+
+    // Append the provided event instance of IEvent to the ArrayList of IEvent types, changes.
     changes.add(event);
 
   }
