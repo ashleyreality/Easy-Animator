@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 /**
  * This is the Shape interface. It declares the methods required to create a Shape class.
  */
-public interface Shape {
+public interface IShape {
 
   String getName();
 

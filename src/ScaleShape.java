@@ -1,12 +1,12 @@
 /**
  * This is the ScaleShape class. It extends the abstract class ChangeShape.
  */
-public class ScaleShape extends ChangeShape {
+public class ScaleShape extends AbstractEvent {
   protected double widthBefore;
   protected double widthAfter;
   protected double heightBefore;
   protected double heightAfter;
-  protected Shape shape;
+  protected IShape shape;
 
   // Note:
   // width = horizontal length of rectangle = horizontal diameter of oval
@@ -20,7 +20,7 @@ public class ScaleShape extends ChangeShape {
    * @param changeBegin - the time in ticks from which the change begins
    * @param changeEnd   - the time in ticks when the change ends
    */
-  public ScaleShape(Shape shape, int changeBegin, int changeEnd, double widthBefore,
+  public ScaleShape(IShape shape, int changeBegin, int changeEnd, double widthBefore,
                     double widthAfter, double heightBefore, double heightAfter) {
     super(shape, changeBegin, changeEnd);
     this.widthBefore = widthBefore;

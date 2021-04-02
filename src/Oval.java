@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 /**
  * This class creates and stores information about an Oval shape.
  */
-public class Oval extends CreateShape {
+public class Oval extends AbstractShape {
   // radiusX, from the center point to the outer edge of the circle along the X-axis/width
   private double radiusX;
   // radiusY, from the center point to the outer edge of the circle along the Y-axis/height
@@ -43,7 +43,7 @@ public class Oval extends CreateShape {
   // fixme -- see note in superclass
   @Override
   public String toString() {
-    return "Name: " // super get name?
+    return "Name: " + this.name // super get name?
           + "\nType: Oval"
           + "\n Center: " + this.getLocation() + ", X radius: " + this.getWidth() + ", Y radius: "
           + this.getHeight() + ", Color: " // super get color?

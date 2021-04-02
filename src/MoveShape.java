@@ -1,10 +1,10 @@
 import java.awt.geom.Point2D;
 
-public class MoveShape extends ChangeShape {
+public class MoveShape extends AbstractEvent {
   private Point2D from;
   private Point2D to;
 
-  public MoveShape(Shape shape, int changeBegin, int changeEnd, Point2D from, Point2D to) {
+  public MoveShape(IShape shape, int changeBegin, int changeEnd, Point2D from, Point2D to) {
     super(shape, changeBegin, changeEnd);
     this.from = from;
     this.to = to;

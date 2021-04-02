@@ -6,9 +6,11 @@ import java.util.List;
  * This is the AnimationModelImpl class. It implements the method declarations of the AnimationModel
  * interface.
  */
-public class AnimationModelImpl implements AnimationModel {
-  private List<Shape> shapes;
-  private List<ChangeShape> changes;
+public class AnimationModelImpl implements IAnimationModel {
+  private List<IShape> shapes;
+  private List<AbstractEvent> changes;
+  // HW 7 -- we will need to impl getShapesAtTick() where we are given a tick, & we have to determine
+  // what the screen looks like at that tick. Our data should show us what that description.
 
   /*
   all the change methods mutate the shape list
@@ -28,11 +30,12 @@ public class AnimationModelImpl implements AnimationModel {
 
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
+   *
    * @param name      - the name of the shape, a String
    * @param color     - the color of the shape, an enumeration
    * @param type      - the type of shape, an enumeration
    * @param location  - the location of the shape, a Point2D
-   * @param width    - the width or X radius of the shape, an int
+   * @param width     - the width or X radius of the shape, an int
    * @param height    - the height or Y radius of the shape, an int
    * @param appear    - the tick when the shape appears, an int
    * @param disappear - the tick when the shape disappears, an int
@@ -60,22 +63,24 @@ public class AnimationModelImpl implements AnimationModel {
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
+   *
    * @return true if the ArrayList of shapes contains duplicates
    */
   private boolean nameMatch() {
-    for (Shape eachShape : shapes) {
+    for (IShape eachShape : shapes) {
       return eachShape.equals(shapes.get(0));
-  }
+    }
     return false;
   }
 
 
   /**
    * _________________________________ METHOD: addColorChange() ___________________________________.
+   *
    * @param name        - the name of the shape, a String
    * @param newColor    - the new color of the shape, an enumeration
-   * @param startChange - the *** tick *** at which the color of the shape changes.
-   * @param endChange   - the *** tick *** at which the color of the shape
+   * @param startChange - the *** tick *** at which the color of the shape changes, an int
+   * @param endChange   - the *** tick *** at which the color of the shape, an int
    */
   @Override
   public void addColorChange(String name, Color newColor, int startChange, int endChange) {
@@ -88,17 +93,18 @@ public class AnimationModelImpl implements AnimationModel {
 
   /**
    * _________________________________ METHOD: addSizeChange() ____________________________________.
+   *
    * @param name        - the name of the shape, a String
    * @param newWidth    - the new width of the shape, a double
    * @param newHeight   - the new height of the shape, a double
-   * @param startChange - the *** tick *** at which the color of the shape changes.
-   * @param endChange   - the *** tick *** at which the color of the shape
+   * @param startChange - the *** tick *** at which the color of the shape changes, an int
+   * @param endChange   - the *** tick *** at which the color of the shape, an int
    */
   @Override
   public void addSizeChange(String name, double newWidth, double newHeight, int startChange, int endChange) {
     // get shape from list
-    Shape shape = null;
-    for (Shape s : shapes) {
+    IShape shape = null;
+    for (IShape s : shapes) {
       if (s.getName().equals(name)) {
         shape = s;
       }
@@ -116,17 +122,18 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
   /**
-   * ____________________________________ METHOD: addMove_() ______________________________________.
+   * ____________________________________ METHOD: addMove() _______________________________________.
+   *
    * @param name        - the name of the shape, a String
    * @param moveTo      - the coordinates of where the shape is moving to, a Point2D
-   * @param startChange - the *** tick *** at which the color of the shape changes.
-   * @param endChange   - the *** tick *** at which the color of the shape
+   * @param startChange - the *** tick *** at which the color of the shape changes, an int
+   * @param endChange   - the *** tick *** at which the color of the shape, an int
    */
   @Override
   public void addMove(String name, Point2D moveTo, int startChange, int endChange) {
     // get shape from list
-    Shape shape = null;
-    for (Shape s : shapes) {
+    IShape shape = null;
+    for (IShape s : shapes) {
       if (s.getName().equals(name)) {
         shape = s;
       }
@@ -143,6 +150,7 @@ public class AnimationModelImpl implements AnimationModel {
 
   /**
    * ____________________________________ METHOD: toString() ______________________________________.
+   *
    * @return the String form of the lists declared and instantiated within this class.
    */
   @Override
@@ -154,12 +162,12 @@ public class AnimationModelImpl implements AnimationModel {
 
     // add the shapes to sb
     sb.append("Shapes:\n");
-    for (Shape shape : shapes) {
+    for (IShape shape : shapes) {
       sb.append(shape.toString()).append("\n");
     }
 
     // add the changes to sb
-    for (ChangeShape change : changes) {
+    for (AbstractEvent change : changes) {
       sb.append(change.toString()).append("\n");
     }
 
@@ -167,14 +175,16 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
 
-  //  /**
-//   * This method getShapesAtTick() should be a stub. It does not get implemented in this model.
-//   * This method will be implemented in the controller, instead.
-//   * "The return type will be some form of a collection of shapes, as hinted by your...
-//   * description that it "gets all the shapes." - Freifeld
-//   */
-//  @Override
-//  public String getShapesAtTick(int tick) {
+  /**
+   * This method getShapesAtTick() should be a stub. It does not get implemented in this model. This
+   * method will be implemented in the controller, instead. "The return type will be some form of a
+   * collection of shapes, as hinted by your... description that it "gets all the shapes." -
+   * Freifeld* * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
+   * map class in java implements the navigable map
+   */
+  public String getShapesAtTick(int tick) {
+    return null; // this is a stub & will be impl later.
+
 //    List<String> tickShapes = shapes.stream()
 //            .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
 //            .map(Object::toString)
@@ -194,4 +204,5 @@ public class AnimationModelImpl implements AnimationModel {
 //    // Jen
 //    return tickShapes.toString();
 //  }
+  }
 }

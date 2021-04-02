@@ -1,4 +1,4 @@
-public interface iChange {
+public interface IEvent {
   /**
    * changes the shape
    */

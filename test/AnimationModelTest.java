@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * This is the AnimationModelTest class. It tests the AnimationModel interface.
  */
 public class AnimationModelTest {
-  private AnimationModel testAnimation;
+  private IAnimationModel testAnimation;
   private Point2D rLocation;
   private Point2D rNewLocation;
   private Point2D cLocation;
@@ -69,10 +69,10 @@ public class AnimationModelTest {
 
     // create a Point2D for each shape, then create the shape
     Point2D rLocation1 = new Point2D.Double(200.0, 200.0);
-    Shape R = new Rectangle("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
+    IShape R = new Rectangle("R", Color.RED, rLocation1, 1, 100,50.0, 100.0);
 
     Point2D cLocation = new Point2D.Double(500.0, 100.0);
-    Shape C = new Oval("C", Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
+    IShape C = new Oval("C", Color.BLUE, cLocation, 6, 100, 60.0, 30.0);
 
     // move each shape to a new location
     Point2D rLocation2 = new Point2D.Double(300.0, 300.0);

@@ -1,10 +1,10 @@
 /**
  * Use this class to change a shape.
  */
-public abstract class ChangeShape implements iChange{
+public abstract class AbstractEvent implements IEvent {
   protected int changeBegin;
   protected int changeEnd;
-  protected Shape shape;
+  protected IShape shape;
 
 
   /**
@@ -14,7 +14,7 @@ public abstract class ChangeShape implements iChange{
    * @param changeBegin - the time in ticks from which the change begins
    * @param changeEnd - the time in ticks when the change ends
    */
-  public ChangeShape(Shape shape, int changeBegin, int changeEnd) {
+  public AbstractEvent(IShape shape, int changeBegin, int changeEnd) {
     this.changeBegin = changeBegin;
     this.changeEnd = changeEnd;
     this.shape = shape;

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 /**
  * This class creates and stores information about a Rectangle shape.
  */
-public class Rectangle extends CreateShape {
+public class Rectangle extends AbstractShape {
   private double width;
   private double height;
 
@@ -23,10 +23,18 @@ public class Rectangle extends CreateShape {
     height = this.height;
   }
 
+  /**
+   * ___________________________________ METHOD: getWidth() _______________________________________.
+   * @return the width of the rectangle shape, a double
+   */
   public double getWidth() {
     return width;
   }
 
+  /**
+   * ___________________________________ METHOD: setWidth() _______________________________________.
+   * @param
+   */
   public void setWidth(double width) {
     this.width = width;
   }
