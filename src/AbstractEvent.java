@@ -10,13 +10,9 @@ public abstract class AbstractEvent implements IEvent {
    * Constructs a shape change event.
    *
    * @param shape - the shape you want to change
-   * @param eventBegin - the time in ticks when the event begins
-   * @param eventEnd - the time in ticks when the event ends
    */
-  public AbstractEvent(IShape shape, int eventBegin, int eventEnd) {
+  public AbstractEvent(IShape shape) {
     this.shape = shape;
-    this.eventBegin = eventBegin;
-    this.eventEnd = eventEnd;
   }
 
   /**
@@ -25,6 +21,10 @@ public abstract class AbstractEvent implements IEvent {
    * @return an IShape being changed
    */
   public IShape getShape() { return shape; }
+
+  public int setEventBegin(int begin) { this.eventBegin = begin; }
+
+  public int setEventEnd(int end) { this.eventBegin = end; }
 
   public int getEventBegin() {
     return eventBegin;

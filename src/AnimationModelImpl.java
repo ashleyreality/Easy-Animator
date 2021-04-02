@@ -97,9 +97,10 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public void addEvent(IEvent event, int eventBegin, int eventEnd) {
-    for (IEvent eachShape : changes) {
-      changes.add(eachShape);
-    }
+    event.setEventBegin(eventBegin);
+    event.setEventEnd(eventEnd);
+    changes.add(event);
+
   }
 
   /**
