@@ -11,8 +11,8 @@ public class MoveShape extends AbstractEvent {
    * Generates a shape move.
    *
    * @param shape - the shape you want to move
-   * @param x - a double, the new x location
-   * @param y - a double, the new y location
+   * @param x     - a double, the new x location
+   * @param y     - a double, the new y location
    */
   public MoveShape(IShape shape, double x, double y) {
     super(shape);
@@ -22,10 +22,10 @@ public class MoveShape extends AbstractEvent {
 
   @Override
   public String toString() {
-  // Example output: Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
+    // Example output: Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
 
-    return "Shape" + this.shape.getName()
-      + " moves from " + this.from.toString() + " to " + this.to.toString() + " from t=" +  this.getEventBegin()
-    + " to t=" + this.getEventEnd();
+    return "Shape " + this.shape.getName()
+            + " moves from " + this.from.toString() + " to " + this.to.toString() + " from t=" + this.getEventBegin()
+            + " to t=" + this.getEventEnd();
   }
 }
