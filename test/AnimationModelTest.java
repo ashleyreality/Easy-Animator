@@ -46,6 +46,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void sameShapeName() {
     testAnimation.addShape(R, 1, 100);
+
     // new shape with same name
     IShape F = new Rectangle("R", 2, 4, 3, 50, 10, 30.0, 75.0);
     testAnimation.addShape(F, 30, 80);
@@ -57,18 +58,18 @@ public class AnimationModelTest {
     testAnimation.addShape(R, 1, 100);
     testAnimation.addShape(C, 6, 100);
 
-    assertEquals("Shapes:\n" +
-            "Name: R\n" +
-            "Type: Rectangle\n" +
-            "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n" +
-            "Appears at t=1\n" +
-            "Disappears at t=100\n" +
-            "\n" +
-            "Name: C\n" +
-            "Type: Oval\n" +
-            "Center: (500.0,100.0), X radius: 30.0, Y radius: 15.0, Color: (0,0,1)\n" +
-            "Appears at t=6\n" +
-            "Disappears at t=100\n\n", testAnimation.toString());
+    assertEquals("Shapes:\n"
+                    + "Name: R\n"
+                    + "Type: Rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=1\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Name: C\n"
+                    + "Type: Oval\n"
+                    + "Center: (500.0,100.0), X radius: 30.0, Y radius: 15.0, Color: (0,0,1)\n"
+                    + "Appears at t=6\n"
+            + "Disappears at t=100\n\n", testAnimation.toString());
   }
 
   @Test
@@ -78,32 +79,43 @@ public class AnimationModelTest {
     testAnimation.addEvent(move2, 20, 70);
     testAnimation.addEvent(move3, 70, 100);
 
-    assertEquals("", testAnimation.toString());
+    assertEquals("Shapes:\n" +
+            "ShapeR moves from (200.0,200.0) to (300.0,300.0) from t=50 to t=0\n"
+            + "ShapeC moves from (500.0,100.0) to (500.0,400.0) from t=70 to t=0\n"
+            + "ShapeR moves from (200.0,200.0) to (200.0,200.0) from t=100 to t=0\n",
+            testAnimation.toString());
   }
 
   @Test
   public void testAddSizeChange() {
     testAnimation.addEvent(size1, 51, 70);
 
-    assertEquals("", testAnimation.toString());
+    assertEquals("Shapes:\n" +
+            "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from "
+            + "t=70 to t=0\n", testAnimation.toString());
   }
 
   @Test
   public void testColorChange() {
     testAnimation.addEvent(colorChange1, 50, 80);
 
-    assertEquals("", testAnimation.toString());
+    assertEquals("Shapes:\n"
+            + "Shape C changes color from (0,0,1) to (0,1,0) from t=80 to t=0\n",
+            testAnimation.toString());
   }
 
   @Test
   public void testEverything() {
-    testAddShape();
-    testAddMove();
-    testColorChange();
-    testAddSizeChange();
+    testAnimation.addShape(R, 1, 100);
+    testAnimation.addShape(C, 6, 100);
 
-    assertEquals("\n" +
-                    "Shapes:\n" +
+    testAnimation.addEvent(move1, 10, 50);
+    testAnimation.addEvent(move2, 20, 70);
+    testAnimation.addEvent(colorChange1, 50, 80);
+    testAnimation.addEvent(size1, 51, 70);
+    testAnimation.addEvent(move3, 70, 100);
+
+    assertEquals("Shapes:\n" +
                     "Name: R\n" +
                     "Type: rectangle\n" +
                     "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, " +
