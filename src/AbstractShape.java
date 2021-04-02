@@ -21,10 +21,14 @@ public abstract class AbstractShape implements IShape {
    * @param blue   blue value of shape
    * @param x      x coordinate of shape
    * @param y      y coordinate of shape
+   * @throws IllegalArgumentException if width or height are negative
    */
   public AbstractShape(double width, double height,
                        int red, int green, int blue, double x, double y) {
     this.color = new Color(red, green, blue);
+    if (width < 0 || height < 0) {
+      throw new IllegalArgumentException("Width and height must be positive.");
+    }
     this.location = new Point2D(x, y);
     this.width = width;
     this.height = height;
@@ -37,6 +41,9 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setWidth(double width) {
+    if (width < 0) {
+      throw new IllegalArgumentException("Width must be positive.");
+    }
     this.width = width;
   }
 
@@ -47,6 +54,9 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setHeight(double height) {
+    if (height < 0) {
+      throw new IllegalArgumentException("Height must be positive.");
+    }
     this.height = height;
   }
 

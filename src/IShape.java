@@ -25,6 +25,12 @@ public interface IShape {
    */
   Point2D getLocation();
 
+  /**
+   * Sets an object's location.
+   *
+   * @param x - the x value of the location
+   * @param y - the y value of the location
+   */
   void setLocation(double x, double y);
 
   /**
@@ -35,6 +41,11 @@ public interface IShape {
    */
   int getAppear();
 
+  /**
+   * Sets the time a Shape appears.
+   *
+   * @param appear - the time in ticks when the Shape appears
+   */
   void setAppear(int appear);
 
   /**
@@ -45,27 +56,46 @@ public interface IShape {
    */
   int getDisappear();
 
+  /**
+   * Sets the time a Shape disappears.
+   *
+   * @param disappear - the time in ticks when a Shape disappears
+   */
   void setDisappear(int disappear);
 
   /**
    * ____________________________________ METHOD: getWidth() ______________________________________.
-   * The getWidth() method outputs the width of a given shape. width = horizontal length of
-   * rectangle = horizontal diameter of oval
+   * The getWidth() method outputs the width of a given shape. The width is the horizontal length of
+   * a rectangle and the horizontal diameter of an oval.
    *
    * @return the width value of the given shape, a double
    */
   double getWidth();
 
+  /**
+   * Sets the width of a given shape. The width is the horizontal length of a rectangle and the
+   * horizontal diameter of an oval.
+   *
+   * @param width - a double, the width of a Shape
+   * @throws IllegalArgumentException if width is negative
+   */
   void setWidth(double width);
 
   /**
-   * ____________________________________ METHOD: getHeight() ______________________________________.
-   * The getHeight() method outputs the height of a given shape. height = vertical length of
-   * rectangle = vertical length of oval
+   * ____________________________________ METHOD: getHeight() _____________________________________.
+   * The getHeight() method outputs the height of a given shape. The height is the vertical length
+   * of a rectangle, or the vertical length of an oval.
    *
    * @return the height value of the given shape, a double
    */
   double getHeight();
 
+  /**
+   * Sets the height of a given shape. The height is the vertical length of a rectangle, or the
+   * vertical length of an oval.
+   *
+   * @param height - the height value of the given shape, a double
+   * @throws IllegalArgumentException if height is negative
+   */
   void setHeight(double height);
 }
