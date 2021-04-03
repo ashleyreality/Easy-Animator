@@ -1,4 +1,5 @@
 /**
+ * _________________________________ CONCRETE CLASS: Color ________________________________________.
  * The Color class defines colors that can be assigned to Shapes.
  */
 public class Color {
@@ -6,10 +7,9 @@ public class Color {
   private int green;
   private int blue;
 
-  // these are ints, the color representation in the example string is not RGB
-
   /**
-   * Creates a color using the given red, green and blue values.
+   * __________________________________ CONSTRUCTOR: Color() ______________________________________.
+   * Creates a color using the given red, green and blue integer values at & between 0 and 255.
    *
    * @param red   the red value for this color
    * @param green the green value for this color
@@ -25,10 +25,12 @@ public class Color {
     this.blue = blue;
   }
 
-  // RED, GREEN, BLUE integer values
-  // Use AWT color instead of this enumeration!
-  // OR have a class that just holds the 3 colors
-  // 0 to 255
+  /**
+   * _________________________________ METHOD: toString() _________________________________________.
+   * This is a toString() override.
+   *
+   * @return a string that describes the color RGB values of a shape
+   */
   public String toString() {
     return "(" + this.red + "," + this.green + "," + this.blue + ")";
   }
