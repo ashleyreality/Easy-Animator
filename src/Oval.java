@@ -31,6 +31,13 @@ public class Oval extends AbstractShape {
     this.radiusY = height / 2;
   }
 
+  private Oval(String name, double width, double height,
+                   Color color, Point2D location) {
+    super(name, width, height, color, location);
+    this.radiusX = width / 2;
+    this.radiusY = height / 2;
+  }
+
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
    * This is the toString() method override. It outputs a String with the name, location,
@@ -46,5 +53,10 @@ public class Oval extends AbstractShape {
             + this.radiusY + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
+  }
+
+  @Override
+  public IShape copy() {
+    return new Oval(this.name,this.width,this.height,this.color,this.location);
   }
 }

@@ -39,6 +39,15 @@ public abstract class AbstractShape implements IShape {
     this.height = height;
   }
 
+  protected AbstractShape(String name, double width, double height,
+                   Color color, Point2D location) {
+    this.name = name;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+    this.location = location;
+  }
+
   /**
    * ___________________________________ METHOD: getWidth() _______________________________________.
    * This is a getter that gets the width of the shape.

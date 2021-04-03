@@ -25,6 +25,11 @@ public class Rectangle extends AbstractShape {
     super(name, width, height, red, green, blue, x, y);
   }
 
+  public Rectangle(String name, double width, double height,
+                   Color color, Point2D location) {
+    super(name, width, height, color, location);
+  }
+
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
    * This is the toString() method override. It outputs a String with the name, location,
@@ -40,5 +45,10 @@ public class Rectangle extends AbstractShape {
             + this.height + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
+  }
+
+  @Override
+  public IShape copy() {
+    return new Rectangle(this.name,this.width,this.height,this.color,this.location);
   }
 }

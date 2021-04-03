@@ -99,6 +99,5 @@ public interface IShape extends Comparable<IShape> {
    */
   void setHeight(double height);
 
- // @Override
-  //int compareTo(IShape o);
+  IShape copy();
 }
