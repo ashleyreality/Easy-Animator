@@ -159,7 +159,7 @@ public class EventTest {
   public void testNegativeBlue() {
     new ChangeColor(oval,
             0, 0, 1,
-            200, 200, 200);
+            200, 200, -200);
   }
 
   // _________________________________ EXCEPTIONS: Rectangle ______________________________________.
@@ -200,6 +200,59 @@ public class EventTest {
             10, -1.3);
   }
 
+  // set event begin
+  // valid positive begin int
+  @Test
+  public void testEventBeginSetter() {
+    assertEquals(0,this.colorEvent.getEventBegin());
+    this.colorEvent.setEventBegin(0);
+    assertEquals(0,this.colorEvent.getEventBegin());
+    this.moveEvent.setEventBegin(50);
+    assertEquals(50,this.moveEvent.getEventBegin());
+    this.scaleEvent.setEventBegin(700);
+    assertEquals(700,this.scaleEvent.getEventBegin());
+  }
+
+  // negative being int
+  @Test (expected = IllegalArgumentException.class)
+  public void testNegativeEventBeginSetter() {
+    this.colorEvent.setEventBegin(-10);
+  }
+
+  // set event end
+  // valid end, set begin first
+  @Test
+  public void testEventEndSetter() {
+    assertEquals(0,this.colorEvent.getEventEnd());
+    this.colorEvent.setEventBegin(0);
+    this.colorEvent.setEventEnd(2);
+    assertEquals(2,this.colorEvent.getEventEnd());
+    this.moveEvent.setEventBegin(50);
+    this.moveEvent.setEventEnd(200);
+    assertEquals(200,this.moveEvent.getEventEnd());
+    this.scaleEvent.setEventBegin(700);
+    this.scaleEvent.setEventEnd(87435);
+    assertEquals(87435,this.scaleEvent.getEventEnd());
+  }
+
+  // negative end
+  @Test (expected = IllegalArgumentException.class)
+  public void testNegativeEventEndSetter() {
+    this.colorEvent.setEventEnd(-100);
+  }
+
+  // 0 end
+  @Test (expected = IllegalArgumentException.class)
+  public void testZeroEventEndSetter() {
+    this.moveEvent.setEventEnd(0);
+  }
+
+  // set end before (lower) than begin
+  @Test (expected = IllegalArgumentException.class)
+  public void testEarlyEventEndSetter() {
+    this.moveEvent.setEventBegin(80);
+    this.moveEvent.setEventEnd(79);
+  }
 
 }
 

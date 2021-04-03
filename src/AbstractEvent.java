@@ -16,6 +16,8 @@ public abstract class AbstractEvent implements IEvent {
    */
   public AbstractEvent(IShape shape) {
     this.shape = shape;
+    // event end can not be 0 or same as event begin
+    this.eventEnd = 1;
   }
 
   /**
@@ -33,8 +35,12 @@ public abstract class AbstractEvent implements IEvent {
    * Sets the start time of the shape change.
    *
    * @param begin the start time of the change
+   * @throws IllegalArgumentException if start tick is negative
    */
   public void setEventBegin(int begin) {
+    if (begin < 0) {
+      throw new IllegalArgumentException("Event begin tick can not be negative");
+    }
     this.eventBegin = begin;
   }
 
@@ -43,8 +49,12 @@ public abstract class AbstractEvent implements IEvent {
    * Sets the end time of the shape change.
    *
    * @param end the end time of the change
+   * @throws IllegalArgumentException if end tick is negative or less than begin
    */
   public void setEventEnd(int end) {
+    if (end <= 0 || end < this.eventBegin) {
+      throw new IllegalArgumentException("Event end tick can not be negative or less than begin");
+    }
     this.eventEnd = end;
   }
 
