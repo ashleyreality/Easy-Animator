@@ -1,5 +1,5 @@
 /**
- * __________________________ ABSTRACT CLASS: AnimationModelImpl {} _______________________________.
+ * _______________________________ ABSTRACT: AnimationModelImpl ___________________________________.
  * This is the AnimationModelImpl class. It implements the methods declarations of the IShape
  * interface for the methods that are shared by some shapes.
  */
@@ -39,6 +39,15 @@ public abstract class AbstractShape implements IShape {
     this.height = height;
   }
 
+  /**
+   * _____________________________ CONSTRUCTOR: AbstractShape() ___________________________________.
+   * Creates a clone of the shape.
+   * @param name      name of the shape
+   * @param width     width of the shape (x)
+   * @param height    height of the shape (y)
+   * @param color     color of the shape
+   * @param location  location of the shape
+   */
   protected AbstractShape(String name, double width, double height,
                    Color color, Point2D location) {
     this.name = name;
@@ -187,6 +196,11 @@ public abstract class AbstractShape implements IShape {
     this.disappear = disappear;
   }
 
+  /**
+   * ___________________________________ METHOD: compareTo() ______________________________________.
+   * This is an override of the compareTo() method of the Comparable interface. It sorts the shape
+   * objects in terms of width.
+   */
   @Override
   public int compareTo(IShape o) {
     if (this.width > o.getWidth()) {

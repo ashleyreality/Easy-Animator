@@ -7,12 +7,11 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * __________________INTERFACE IMPLEMENTATION CLASS: AnimationModelImpl {} ________________________.
+ * _______________________ INTERFACE IMPLEMENTATION: AnimationModelImpl ___________________________.
  * This is the AnimationModelImpl class. It implements the method declarations of the AnimationModel
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-
   private NavigableMap<IShape, List<IEvent>> shapeMap;
 
   /**
