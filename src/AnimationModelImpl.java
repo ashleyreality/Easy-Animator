@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NavigableMap;
@@ -129,35 +130,16 @@ public class AnimationModelImpl implements IAnimationModel {
       sb.append(l);
       sb.append("\n");
     }
-    //for (IShape shape : shapes) {
-    //  sb.append(shape.toString()).append("\n");
-    //}
-
 
     // idk comparator???
     Comparator<IEvent> sortByEventBegin = (a, b) -> a.getEventBegin() - b.getEventBegin();
-
     // add the changes to sb
-    List<List<IEvent>> t = shapeMap.values().stream().collect(Collectors.toList());
-
-    List<IEvent> anotherList = new ArrayList<>();
-    for (List<IEvent> l : t) {
-      for (IEvent m : l) {
-        anotherList.add(m);
-      }
-    }
-
-    List<IEvent> sortedList = anotherList.stream().sorted(sortByEventBegin).collect(Collectors.toList());
-
-    for (IEvent a : sortedList) {
+    List<IEvent> t = shapeMap.values().stream().flatMap(Collection::stream)
+            .sorted(sortByEventBegin).collect(Collectors.toList());
+    for (IEvent a : t) {
       sb.append(a.toString());
       sb.append("\n");
     }
-
-
-   /* for (IEvent change : changes) {
-      sb.append(change.toString()).append("\n");
-    }*/
 
     return sb.toString();
   }
