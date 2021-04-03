@@ -6,14 +6,16 @@ public class ChangeColor extends AbstractEvent {
   private Color to;
 
   /**
-   * Generate a shape change.
+   * Generate a color change.
    *
-   * @param shape - the shape to be changed
-   * @param R - the red value of the new color
-   * @param G - the green value of the new color
-   * @param B - the blue value of the new color
+   * @param shape the shape to be changed
+   * @param fromR the red value of the original color
+   * @param fromG the green value of the original color
+   * @param fromB the blue value of the original color
+   * @param toR   the red value of the new color
+   * @param toG   the green value of the new color
+   * @param toB   the blue value of the new color
    */
-
   public ChangeColor(IShape shape, int fromR, int fromG, int fromB, int toR, int toG, int toB) {
     super(shape);
     this.from = new Color(fromR, fromG, fromB);
