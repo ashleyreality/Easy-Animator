@@ -12,11 +12,13 @@ import java.util.stream.Collectors;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
+
   private NavigableMap<IShape, List<IEvent>> shapeMap;
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
-   * The AnimationModelImpl() constructor instantiates the declared fields.
+   * The AnimationModelImpl() constructor instantiates the declared field.
+   * A TreeMap stores a key Shape and its associated value, a list of Events.
    */
   public AnimationModelImpl() {
     shapeMap = new TreeMap<>();
@@ -35,6 +37,7 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public void addShape(IShape shape, int appear, int disappear) {
+
     if (appear > disappear || appear < 0) {
       throw new IllegalArgumentException("The appear time must be greater than the disappear"
               + " time, and neither can be a negative integer value.");
@@ -44,7 +47,7 @@ public class AnimationModelImpl implements IAnimationModel {
       throw new IllegalArgumentException("Each shape name must be unique.");
     }
 
-    // Send appear and disappear times to the IShape
+    // Send appear and disappear times to the shape
     shape.setAppear(appear);
     shape.setDisappear(disappear);
 

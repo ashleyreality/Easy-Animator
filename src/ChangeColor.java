@@ -14,12 +14,10 @@ public class ChangeColor extends AbstractEvent {
    * @param B - the blue value of the new color
    */
 
-  public ChangeColor(IShape shape, int R, int G, int B) {
+  public ChangeColor(IShape shape, int fromR, int fromG, int fromB, int toR, int toG, int toB) {
     super(shape);
-    this.from = shape.getColor();
-    this.to = new Color(R, G, B);
-
-    shape.setColor(R, G, B);
+    this.from = new Color(fromR, fromG, fromB);
+    this.to = new Color(toR, toG, toB);
   }
 
   @Override

@@ -14,10 +14,10 @@ public class MoveShape extends AbstractEvent {
    * @param x     - a double, the new x location
    * @param y     - a double, the new y location
    */
-  public MoveShape(IShape shape, double x, double y) {
+  public MoveShape(IShape shape, double xBefore, double yBefore, double xAfter, double yAfter) {
     super(shape);
-    this.from = shape.getLocation();
-    this.to = new Point2D(x, y);
+    this.from = new Point2D(xBefore, yBefore);
+    this.to = new Point2D(xAfter, yAfter);
 
   }
 
