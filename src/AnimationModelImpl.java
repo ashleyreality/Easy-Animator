@@ -14,23 +14,13 @@ import java.util.stream.Collectors;
 public class AnimationModelImpl implements IAnimationModel {
   private NavigableMap<IShape, List<IEvent>> shapeMap;
 
-  //private List<IShape> shapes;
-  //private List<IEvent> changes;
-
-
-
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
    * The AnimationModelImpl() constructor instantiates the declared fields.
    */
   public AnimationModelImpl() {
     shapeMap = new TreeMap<>();
-    // we will need to have Shape implement Comparable eventually
-    // shapes = new ArrayList<>();
-    //changes = new ArrayList<>();
   }
-
-
 
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
@@ -54,18 +44,14 @@ public class AnimationModelImpl implements IAnimationModel {
       throw new IllegalArgumentException("Each shape name must be unique.");
     }
 
-    // Pass in the provided appear time into the setter setAppear() and the provided disappear time
-    // into the setter setDisappear() methods which exist in the provided shape instance of IShape.
+    // Send appear and disappear times to the IShape
     shape.setAppear(appear);
     shape.setDisappear(disappear);
 
-    // Append the provided shape instance of IShape to the ArrayList of IShape types, shapes.
-
+    // Append the IShape to the list along with an empty list of changes
     shapeMap.put(shape, new ArrayList<>());
 
   }
-
-
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
@@ -75,7 +61,8 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   private boolean nameMatch(IShape shape) {
 
-    // For each "Shape" that exists in the list of shapes
+    // For each shape in the list of shapes, return true if
+    // the shape's name equals the new shape's name
     for (IShape s : shapeMap.keySet()) {
       if (s.getName().equals(shape.getName())) {
         return true;
@@ -99,13 +86,11 @@ public class AnimationModelImpl implements IAnimationModel {
   @Override
   public void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd) {
 
-    // Pass in the provided eventBegin time into the setter setEventBegin() and the provided
-    // eventEnd time into the setter setEventEnd() time which exist in the provided event instance
-    // of IEvent.
+    // Send the event begin and end times to the IEvent
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);
 
-    // Append the provided event instance of IEvent to the ArrayList of IEvent types, changes.
+    // Add the event to the shape it acts on
     List<IEvent> eventList = shapeMap.get(shape);
 
     eventList.add(event);

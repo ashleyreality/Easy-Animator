@@ -19,7 +19,6 @@ public class MoveShape extends AbstractEvent {
     this.from = shape.getLocation();
     this.to = new Point2D(x, y);
 
-    shape.setLocation(x, y);
   }
 
   @Override

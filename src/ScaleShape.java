@@ -22,8 +22,7 @@ public class ScaleShape extends AbstractEvent {
     this.heightBefore = shape.getHeight();
     this.heightAfter = heightAfter;
 
-    shape.setWidth(widthAfter);
-    shape.setHeight(heightAfter);
+
   }
 
   @Override
