@@ -19,6 +19,9 @@ public class ScaleShape extends AbstractEvent {
   public ScaleShape(IShape shape, double widthBefore, double heightBefore,
                     double widthAfter, double heightAfter) {
     super(shape);
+    if (widthAfter <= 0 || heightAfter <= 0 || widthBefore <= 0 || heightBefore <= 0) {
+      throw new IllegalArgumentException("Width and height must be positive.");
+    }
     this.widthBefore = widthBefore;
     this.widthAfter = widthAfter;
     this.heightBefore = heightBefore;
