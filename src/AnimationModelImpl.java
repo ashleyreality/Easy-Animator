@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class AnimationModelImpl implements IAnimationModel {
   private NavigableMap<IShape, List<IEvent>> shapeMap;
 
+
+
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
    * The AnimationModelImpl() constructor instantiates the declared field.
@@ -23,6 +25,8 @@ public class AnimationModelImpl implements IAnimationModel {
     shapeMap = new TreeMap<>();
   }
 
+
+
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
    * The addShape() method adds a new "Shape" to the ArrayList of type "Shape", shapes, with the
@@ -31,13 +35,16 @@ public class AnimationModelImpl implements IAnimationModel {
    * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
    * @param appear    - the tick when the shape appears, an int
    * @param disappear - the tick when the shape disappears, an int
+   * @throws IllegalArgumentException if the shape is null
    * @throws IllegalArgumentException if appear time is greater than disappear time, or is negative
    * @throws IllegalArgumentException if a duplicate of the Shape name already exists in the list
    */
   @Override
   public void addShape(IShape shape, int appear, int disappear) {
 
-    if (appear > disappear || appear < 0) {
+    shapeNullException(shape);
+
+    if (appear >= disappear || appear < 0) {
       throw new IllegalArgumentException("The appear time must be greater than the disappear"
               + " time, and neither can be a negative integer value.");
     }
@@ -50,20 +57,25 @@ public class AnimationModelImpl implements IAnimationModel {
     shape.setAppear(appear);
     shape.setDisappear(disappear);
 
-    // Append the IShape to the list along with an empty list of changes
+    // Append the shape to the list along with an empty list of changes
     shapeMap.put(shape, new ArrayList<>());
 
   }
+
+
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
    * This is a helper method that iterates through the ArrayList of "Shapes", shapes, and checks
    * whether two shapes have the same name.
    * @return true if the ArrayList of Shapes contains duplicate Shape names
+   * @throws IllegalArgumentException if the shape is null
    */
   private boolean nameMatch(IShape shape) {
 
-    // For each shape in the list of shapes, return true if
+    shapeNullException(shape);
+
+    // For each key/shape in the map of shapes, return true if
     // the shape's name equals the new shape's name
     for (IShape s : shapeMap.keySet()) {
       if (s.getName().equals(shape.getName())) {
@@ -79,23 +91,50 @@ public class AnimationModelImpl implements IAnimationModel {
    * ____________________________________ METHOD: addEvent() _____________________________________.
    * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes,
    * with the given parameters.
-   * An "Event" has a: "Shape", eventBegin, eventEnd
+   * An "Event" has a:
    *
-   * @param event       - the change made to the shape, an IEvent
+   * @param event   - the change made to the shape (has a "Shape", eventBegin, eventEnd), an IEvent
    * @param eventBegin  - the time in ticks when the event begins, an int
    * @param eventEnd    - the time in ticks when the event ends, an int
+   * @throws IllegalArgumentException if the shape is null
+   * @throws IllegalArgumentException if event start time is greater than its end, or is negative
    */
   @Override
   public void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd) {
 
-    // Send the event begin and end times to the IEvent
+    shapeNullException(shape);
+
+    if (eventEnd >= eventBegin || eventBegin < 0) {
+      throw new IllegalArgumentException("The event begin time must be greater than the event end"
+              + " time, and neither can be a negative integer value.");
+    }
+
+    // Send the begin and end times to the event
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);
 
-    // Add the event to the shape it acts on
+    if (shapeMap.get(shape) == null) {
+      throw new IllegalArgumentException("The event list can not be null.");
+    }
+
+    // A list of events for the provided shape
     List<IEvent> eventList = shapeMap.get(shape);
 
+    // Add the event to the shape it acts on
     eventList.add(event);
+  }
+
+
+
+  /**
+   * ______________________________ METHOD: shapeNullException() __________________________________.
+   * @param shape the shape being checked
+   * @throws IllegalArgumentException if the shape is null
+   */
+  private void shapeNullException(IShape shape) {
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape can not be null.");
+    }
   }
 
 
@@ -107,10 +146,11 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public String toString() {
-    // new StringBuilder
+
+    // New StringBuilder
     StringBuilder sb = new StringBuilder();
 
-    // add the shapes to sb
+    // Add the shapes to the StringBuilder, sb
     sb.append("Shapes:\n");
     List<String> s = shapeMap.keySet().stream().map(n -> n.toString()).collect(Collectors.toList());
     for (String l : s) {
@@ -118,11 +158,14 @@ public class AnimationModelImpl implements IAnimationModel {
       sb.append("\n");
     }
 
-    // idk comparator???
+    // Sort the events in terms of begin & end time
     Comparator<IEvent> sortByEventBegin = (a, b) -> a.getEventBegin() - b.getEventBegin();
-    // add the changes to sb
+
+    // Create a list of sorted events
     List<IEvent> t = shapeMap.values().stream().flatMap(Collection::stream)
             .sorted(sortByEventBegin).collect(Collectors.toList());
+
+    // Add the changes/events to sb
     for (IEvent a : t) {
       sb.append(a.toString());
       sb.append("\n");
