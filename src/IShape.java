@@ -1,7 +1,7 @@
 /**
  * This is the Shape interface. It declares the methods all types of shapes should support.
  */
-public interface IShape {
+public interface IShape extends Comparable<IShape> {
 
   String getName();
 
@@ -98,4 +98,7 @@ public interface IShape {
    * @throws IllegalArgumentException if height is negative
    */
   void setHeight(double height);
+
+ // @Override
+  //int compareTo(IShape o);
 }

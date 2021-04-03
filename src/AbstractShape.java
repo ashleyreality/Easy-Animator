@@ -178,4 +178,14 @@ public abstract class AbstractShape implements IShape {
     this.disappear = disappear;
   }
 
+  @Override
+  public int compareTo(IShape o) {
+    if (this.width > o.getWidth()) {
+      return 1;
+    } else if (this.width < o.getWidth()) {
+      return -1;
+    }
+    return 0;
+  }
+
 }

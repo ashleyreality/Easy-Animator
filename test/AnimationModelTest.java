@@ -68,9 +68,9 @@ public class AnimationModelTest {
     move2 = new MoveShape(C, 500.0, 400.0);
     move3 = new MoveShape(R, 200.0, 200.0);
 
-    testAnimation.addEvent(move1, 10, 50);
-    testAnimation.addEvent(move2, 20, 70);
-    testAnimation.addEvent(move3, 70, 100);
+    testAnimation.addEvent(R, move1, 10, 50);
+    testAnimation.addEvent(C, move2, 20, 70);
+    testAnimation.addEvent(R, move3, 70, 100);
 
     assertEquals("Shapes:\n"
                     + "Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50\n"
@@ -84,7 +84,7 @@ public class AnimationModelTest {
     // create the size change
     size1 = new ScaleShape(R, 25.0, 100.0);
 
-    testAnimation.addEvent(size1, 51, 70);
+    testAnimation.addEvent(R, size1, 51, 70);
 
     assertEquals("Shapes:\n" +
             "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from "
@@ -97,7 +97,7 @@ public class AnimationModelTest {
     // create the color change
     colorChange1 = new ChangeColor(C, 0, 1, 0);
 
-    testAnimation.addEvent(colorChange1, 50, 80);
+    testAnimation.addEvent(C, colorChange1, 50, 80);
 
     assertEquals("Shapes:\n"
             + "Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80\n",
@@ -117,11 +117,11 @@ public class AnimationModelTest {
 
     colorChange1 = new ChangeColor(C, 0, 1, 0);
 
-    testAnimation.addEvent(move1, 10, 50);
-    testAnimation.addEvent(move2, 20, 70);
-    testAnimation.addEvent(colorChange1, 50, 80);
-    testAnimation.addEvent(size1, 51, 70);
-    testAnimation.addEvent(move3, 70, 100);
+    testAnimation.addEvent(R, move1, 10, 50);
+    testAnimation.addEvent(C, move2, 20, 70);
+    testAnimation.addEvent(C, colorChange1, 50, 80);
+    testAnimation.addEvent(R, size1, 51, 70);
+    testAnimation.addEvent(R, move3, 70, 100);
 
     assertEquals("Shapes:\n" +
                     "Name: R\n" +

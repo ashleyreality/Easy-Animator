@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NavigableMap;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * __________________INTERFACE IMPLEMENTATION CLASS: AnimationModelImpl {} ________________________.
@@ -7,8 +11,10 @@ import java.util.List;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private List<IShape> shapes;
-  private List<IEvent> changes;
+  private NavigableMap<IShape, List<IEvent>> shapeMap;
+
+  //private List<IShape> shapes;
+  //private List<IEvent> changes;
 
 
 
@@ -17,8 +23,10 @@ public class AnimationModelImpl implements IAnimationModel {
    * The AnimationModelImpl() constructor instantiates the declared fields.
    */
   public AnimationModelImpl() {
-    shapes = new ArrayList<>();
-    changes = new ArrayList<>();
+    shapeMap = new TreeMap<>();
+    // we will need to have Shape implement Comparable eventually
+    // shapes = new ArrayList<>();
+    //changes = new ArrayList<>();
   }
 
 
@@ -51,7 +59,9 @@ public class AnimationModelImpl implements IAnimationModel {
     shape.setDisappear(disappear);
 
     // Append the provided shape instance of IShape to the ArrayList of IShape types, shapes.
-    shapes.add(shape);
+
+    shapeMap.put(shape, new ArrayList<>());
+
   }
 
 
@@ -63,17 +73,11 @@ public class AnimationModelImpl implements IAnimationModel {
    * @return true if the ArrayList of Shapes contains duplicate Shape names
    */
   private boolean nameMatch(IShape shape) {
-    // Create a new list of type String
-    List<String> names = new ArrayList<>();
+
     // For each "Shape" that exists in the list of shapes
-    for (IShape s : shapes) {
-      // Iterate through the list of "Shapes"
-      // Get the name of the shape & append it to the new list of Strings
-      names.add(s.getName());
-    // If a given name in the list of "Shapes" DOES match the provided shape name
-    // of Strings, return true
-    for (String eachName : names) {
-      return shape.getName().equals(eachName);
+    for (IShape s : shapeMap.keySet()) {
+      if (s.getName().equals(shape.getName())) {
+        return true;
       }
     }
     return false;
@@ -92,7 +96,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * @param eventEnd    - the time in ticks when the event ends, an int
    */
   @Override
-  public void addEvent(IEvent event, int eventBegin, int eventEnd) {
+  public void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd) {
 
     // Pass in the provided eventBegin time into the setter setEventBegin() and the provided
     // eventEnd time into the setter setEventEnd() time which exist in the provided event instance
@@ -101,7 +105,9 @@ public class AnimationModelImpl implements IAnimationModel {
     event.setEventEnd(eventEnd);
 
     // Append the provided event instance of IEvent to the ArrayList of IEvent types, changes.
-    changes.add(event);
+    List<IEvent> eventList = shapeMap.get(shape);
+
+    eventList.add(event);
   }
 
 
@@ -118,14 +124,40 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // add the shapes to sb
     sb.append("Shapes:\n");
-    for (IShape shape : shapes) {
-      sb.append(shape.toString()).append("\n");
+    List<String> s = shapeMap.keySet().stream().map(n -> n.toString()).collect(Collectors.toList());
+    for (String l : s) {
+      sb.append(l);
+      sb.append("\n");
     }
+    //for (IShape shape : shapes) {
+    //  sb.append(shape.toString()).append("\n");
+    //}
+
+
+    // idk comparator???
+    Comparator<IEvent> sortByEventBegin = (a, b) -> a.getEventBegin() - b.getEventBegin();
 
     // add the changes to sb
-    for (IEvent change : changes) {
-      sb.append(change.toString()).append("\n");
+    List<List<IEvent>> t = shapeMap.values().stream().collect(Collectors.toList());
+
+    List<IEvent> anotherList = new ArrayList<>();
+    for (List<IEvent> l : t) {
+      for (IEvent m : l) {
+        anotherList.add(m);
+      }
     }
+
+    List<IEvent> sortedList = anotherList.stream().sorted(sortByEventBegin).collect(Collectors.toList());
+
+    for (IEvent a : sortedList) {
+      sb.append(a.toString());
+      sb.append("\n");
+    }
+
+
+   /* for (IEvent change : changes) {
+      sb.append(change.toString()).append("\n");
+    }*/
 
     return sb.toString();
   }

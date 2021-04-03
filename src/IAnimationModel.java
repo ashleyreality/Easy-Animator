@@ -27,5 +27,5 @@ public interface IAnimationModel {
    * @param eventBegin    - the start of when the changes to the shape occur
    * @param eventEnd      - the end of the changes to the shape
    */
-  void addEvent(IEvent event, int eventBegin, int eventEnd);
+  void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd);
 }
