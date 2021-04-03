@@ -32,8 +32,8 @@ public class Rectangle extends AbstractShape {
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
-   * This is the toString() method override. It outputs a String with the name, location,
-   * horizontal radius, vertical radius, color, and appear and disappear time of the rectangle.
+   * This is the toString() method override. It outputs a String with the name, location, horizontal
+   * radius, vertical radius, color, and appear and disappear time of the rectangle.
    *
    * @return a String of the rectangle attributes
    */
@@ -46,9 +46,9 @@ public class Rectangle extends AbstractShape {
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
   }
-
-  @Override
-  public IShape copy() {
-    return new Rectangle(this.name,this.width,this.height,this.color,this.location);
-  }
 }
+
+//  @Override
+//  public IShape copy() {
+//    return new Rectangle(this.name,this.width,this.height,this.color,this.location);
+//  }

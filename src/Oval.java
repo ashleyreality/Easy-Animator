@@ -55,8 +55,8 @@ public class Oval extends AbstractShape {
             + "\nDisappears at t=" + this.disappear + "\n";
   }
 
-  @Override
-  public IShape copy() {
-    return new Oval(this.name,this.width,this.height,this.color,this.location);
-  }
+//  @Override
+//  public IShape copy() {
+//    return new Oval(this.name,this.width,this.height,this.color,this.location);
+//  }
 }

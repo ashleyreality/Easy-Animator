@@ -99,5 +99,5 @@ public interface IShape extends Comparable<IShape> {
    */
   void setHeight(double height);
 
-  IShape copy();
+//  IShape copy();
 }
