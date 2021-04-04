@@ -1,3 +1,4 @@
+package cs5004.animationmodel;
 import java.util.Objects;
 
 /**

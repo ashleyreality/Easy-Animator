@@ -1,6 +1,12 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import cs5004.animationmodel.Color;
+import cs5004.animationmodel.IShape;
+import cs5004.animationmodel.Oval;
+import cs5004.animationmodel.Point2D;
+import cs5004.animationmodel.Rectangle;
+
 import static org.junit.Assert.assertEquals;
 
 /**

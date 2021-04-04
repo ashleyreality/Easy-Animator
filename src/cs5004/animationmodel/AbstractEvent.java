@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * _________________________________ ABSTRACT: AbstractEvent ______________________________________.
  * This is the AbstractEvent abstract class. It makes changes to a shape.

@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * ___________________________________ INTERFACE: IEvent {} _______________________________________.
  * The IEvent interface creates a shape change event.

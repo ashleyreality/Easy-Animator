@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * __________________________________ CLASS: Rectangle {} _________________________________________.
  * The Rectangle class extends AbstractShape and implements method declarations that are unique

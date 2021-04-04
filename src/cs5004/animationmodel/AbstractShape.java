@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * _______________________________ ABSTRACT: AnimationModelImpl ___________________________________.
  * The AnimationModelImpl class implements the method declarations of the IShape

@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * _____________________________ CONCRETE CLASS: ChangeColor ______________________________________.
  * The ChangeColor class extends AbstractEvent. It changes the color of a shape.

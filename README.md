@@ -4,6 +4,16 @@
 The Easy Animator model accepts IShape objects and IEvent objects. You can use these objects to 
 create a simple animation model.
 
+// questions for TA
+// README??
+// talk about the class and why you decided to implement it that way
+// why did we abstract? 
+// plane of view -- should we accept negative values for location?
+// usually no -- likely we would start from 0,0 at top left, increase from there
+// packages??
+// model package
+//
+
 ### AnimationModel
 The AnimationModel interface describes methods you must use if you implement AnimationModel. 
 AnimationModel objects are designed to represent an animation. 

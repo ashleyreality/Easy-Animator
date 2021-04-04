@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * _____________________________________ CLASS: Oval {} ___________________________________________.
  * The Oval class extends AbstractShape and implements the method declarations that are unique to

@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * ___________________________________ INTERFACE: IShape {} _______________________________________.
  * The Shape interface declares the methods all types of shapes should support.

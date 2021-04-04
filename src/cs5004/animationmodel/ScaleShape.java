@@ -1,3 +1,5 @@
+package cs5004.animationmodel;
+
 /**
  * ______________________________ CONCRETE CLASS: ScaleShape ______________________________________.
  * The ScaleShape class extends ChangeShape. Use it to scale a shape from one size to another size.
