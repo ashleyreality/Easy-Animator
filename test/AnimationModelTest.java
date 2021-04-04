@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * This is the AnimationModelTest class. It tests the AnimationModel interface.
+ * The AnimationModelTest class tests the AnimationModel interface.
  */
 public class AnimationModelTest {
 

@@ -9,12 +9,11 @@ import java.util.stream.Collectors;
 
 /**
  * _______________________ INTERFACE IMPLEMENTATION: AnimationModelImpl ___________________________.
- * This is the AnimationModelImpl class. It implements the method declarations of the AnimationModel
+ * The AnimationModelImpl class implements the method declarations of the AnimationModel
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
   private NavigableMap<IShape, List<IEvent>> shapeMap;
-
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -25,11 +24,9 @@ public class AnimationModelImpl implements IAnimationModel {
     shapeMap = new TreeMap<>();
   }
 
-
   /**
    * ____________________________________ METHOD: addShape() ______________________________________.
-   * The addShape() method adds a new "Shape" to the ArrayList of type "Shape", shapes, with the
-   * given parameters.
+   * The addShape() method adds a new "Shape" and its given parameters to the animation.
    *
    * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
    * @param appear    - the tick when the shape appears, an int
@@ -58,9 +55,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // Append the shape to the list along with an empty list of changes
     shapeMap.put(shape, new ArrayList<>());
-
   }
-
 
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
@@ -71,7 +66,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * @throws IllegalArgumentException if the shape is null
    */
   private boolean nameMatch(IShape shape) {
-
+    // check to make sure shape isn't null
     shapeNullException(shape);
 
     // For each key/shape in the map of shapes, return true if
@@ -83,7 +78,6 @@ public class AnimationModelImpl implements IAnimationModel {
     }
     return false;
   }
-
 
   /**
    * ____________________________________ METHOD: addEvent() _____________________________________.
@@ -99,12 +93,15 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   @Override
   public void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd) {
-
+    // check to make sure shape isn't null
     shapeNullException(shape);
+
+    // check to make sure event isn't null
     if (event == null) {
-      throw new IllegalArgumentException("Event can not be null.");
+      throw new IllegalArgumentException("Event can't be null.");
     }
 
+    // check to make sure event time makes sense
     if (eventEnd <= eventBegin || eventBegin < 0) {
       throw new IllegalArgumentException("The event begin time must be greater than the event end"
               + " time, and neither can be a negative integer value.");
@@ -112,10 +109,10 @@ public class AnimationModelImpl implements IAnimationModel {
 
     if (eventBegin < shape.getAppear() || eventBegin > shape.getDisappear()
             || eventEnd < shape.getAppear() || eventEnd > shape.getDisappear()) {
-      throw new IllegalArgumentException("The shape can not be changed before it appears, the"
-              + " shape can not change after it disappears, the shape can not stop changing before"
-              + " the shape appears, nor can the shape stop changing after it has already"
-              + " disappeared.");
+      throw new IllegalArgumentException("The shape can't be changed before it appears; nor"
+              + " can it change after it disappears. The shape can't stop changing before"
+              + " it appears; nor can the shape stop changing after it has already"
+              + " disappeared. Try to add the event again.");
     }
 
     // Iterate through the event list
@@ -148,20 +145,30 @@ public class AnimationModelImpl implements IAnimationModel {
     // If event TYPE is the same
     // B/c if event type is the same then it falls under this exception
 
+    // for each shape that's already in the shape list
     for (IShape otherShape : shapeList) {
+      // if the shape we passed in has the same name as the shape in the list
       if (shape.getName().equals(otherShape.getName())) {
+        // for each event that's in the list of events
         for (IEvent otherEvent : eventList) {
+          // if the type of the event we passed in is the same type as the event in the list
           if (event.getEventType() == otherEvent.getEventType()
+                  // AND this event begins before the other event begins
                   && (eventBegin <= otherEvent.getEventBegin()
+                  // AND the other event begins before this event ends
                   && otherEvent.getEventBegin() <= eventEnd
+                  // OR the other event begins before this event begins
                   || otherEvent.getEventBegin() <= eventBegin
+                  // AND this event ends before the other event ends
                   && eventEnd <= otherEvent.getEventEnd()
+                  // OR this event begins before the other event ends
                   || eventBegin <= otherEvent.getEventEnd()
+                  // AND the other event ends before this event ens
                   && otherEvent.getEventEnd() <= eventEnd)) {
             //|| otherEvent.getEventBegin() <= eventBegin
             //&& otherEvent.getEventEnd() <= eventEnd) {
-            throw new IllegalArgumentException("The shape can not have a change of the same type "
-                    + "overlap in terms of event time.");
+            throw new IllegalArgumentException("Events of the same type can't happen at the same "
+                    + "time. Try again with a different event time.");
           }
 
         }
@@ -209,7 +216,7 @@ public class AnimationModelImpl implements IAnimationModel {
    */
   private void shapeNullException(IShape shape) {
     if (shape == null) {
-      throw new IllegalArgumentException("Shape can not be null.");
+      throw new IllegalArgumentException("Shape can't be null.");
     }
   }
 

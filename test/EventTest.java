@@ -251,7 +251,7 @@ public class EventTest {
     assertEquals(700, this.scaleEvent.getEventBegin());
   }
 
-  // negative being int
+  // negative begin int
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeEventBeginSetter() {
     this.colorEvent.setEventBegin(-10);
