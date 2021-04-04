@@ -1,6 +1,6 @@
 /**
  * _______________________________ ABSTRACT: AnimationModelImpl ___________________________________.
- * This is the AnimationModelImpl class. It implements the methods declarations of the IShape
+ * The AnimationModelImpl class implements the method declarations of the IShape
  * interface for the methods that are shared by some shapes.
  */
 public abstract class AbstractShape implements IShape {
@@ -15,7 +15,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _____________________________ CONSTRUCTOR: AbstractShape() ___________________________________.
-   * Creates a shape with the given width and height, color parameters, and location coordinates .
+   * Creates a shape with the given width and height, color parameters, and location coordinates.
    *
    * @param name   name of the shape
    * @param width  width of the shape (x)
@@ -81,7 +81,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: getHeight() ______________________________________.
-   * This is a getter that gets the height of the shape.
+   * Gets the height of the shape.
+   *
    * @return the height of the shape, a double
    */
   @Override
@@ -91,7 +92,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: setHeight() ______________________________________.
-   * This is a setter that sets the height of the shape.
+   * Sets the height of the shape.
    */
   @Override
   public void setHeight(double height) {
@@ -103,7 +104,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: getName() _______________________________________.
-   * This is a getter that gets the name of the shape.
+   * Gets the name of the shape.
+   *
    * @return the name of the shape, a String
    */
   @Override
@@ -113,7 +115,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: setName() _______________________________________.
-   * This is a setter that sets the name of the shape.
+   * Sets the name of the shape.
    */
   @Override
   public void setName(String name) {
@@ -122,7 +124,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: getColor() _______________________________________.
-   * This is a getter that gets the color of the shape.
+   * Gets the color of the shape.
+   *
    * @return the color of the shape, a Color
    */
   @Override
@@ -132,7 +135,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: setColor() _______________________________________.
-   * This is a setter that sets the color of the shape.
+   * Sets the color of the shape.
    */
   @Override
   public void setColor(int red, int green, int blue) {
@@ -141,7 +144,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: getLocation() ______________________________________.
-   * This is a getter that gets the location of the shape.
+   * Gets the location of the shape.
+   *
    * @return the location of the shape, a Point2D
    */
   @Override
@@ -151,7 +155,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: setLocation() ______________________________________.
-   * This is a setter that sets the location of the shape.
+   * Sets the location of the shape.
    */
   @Override
   public void setLocation(double x, double y) {
@@ -160,7 +164,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: getAppear() ______________________________________.
-   * This is a getter that gets the appear time of the shape.
+   * Gets the appear time of the shape.
+   *
    * @return the appear time of the shape, an int
    */
   @Override
@@ -170,7 +175,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: setAppear() ______________________________________.
-   * This is a setter that sets the appear time of the shape.
+   * Sets the appear time of the shape.
    */
   @Override
   public void setAppear(int appear) {
@@ -179,7 +184,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: getDisappear() _____________________________________.
-   * This is a getter that gets the disappear time of the shape.
+   * Gets the disappear time of the shape.
+   *
    * @return the disappear time of the shape, an int
    */
   @Override
@@ -189,7 +195,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: setDisappear() _____________________________________.
-   * This is a setter that sets the disappear time of the shape.
+   * Sets the disappear time of the shape.
    */
   @Override
   public void setDisappear(int disappear) {
@@ -199,7 +205,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * ___________________________________ METHOD: compareTo() ______________________________________.
    * This is an override of the compareTo() method of the Comparable interface. It sorts the shape
-   * objects in terms of width.
+   * objects by width.
    */
   @Override
   public int compareTo(IShape o) {
