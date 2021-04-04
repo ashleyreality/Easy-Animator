@@ -176,7 +176,7 @@ public class ShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testZeroWidthRect() {
     IShape rect3 = new Rectangle("rect3",
-            1, 1,
+            0, 1,
             0, 0, 0,
             0.0, 0.0);
   }
@@ -184,7 +184,7 @@ public class ShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testZeroHeightRect() {
     IShape rect3 = new Rectangle("rect3",
-            1, 1,
+            1, 0,
             0, 0, 0,
             0.0, 0.0);
   }
@@ -192,7 +192,7 @@ public class ShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeWidthRect() {
     IShape rect3 = new Rectangle("rect3",
-            1, 1,
+            -1, 1,
             0, 0, 0,
             0.0, 0.0);
   }
@@ -200,7 +200,7 @@ public class ShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeHeightRect() {
     IShape rect3 = new Rectangle("rect3",
-            1, 1,
+            1, -1,
             0, 0, 0,
             0.0, 0.0);
   }
@@ -209,13 +209,13 @@ public class ShapeTest {
   public void testNegativeColorRect() {
     IShape rect3 = new Rectangle("rect3",
             1, 1,
-            0, 0, 0,
+            -90, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullArgRect() {
-    IShape rect3 = new Rectangle("rect3",
+    IShape rect3 = new Rectangle(null,
             1, 1,
             0, 0, 0,
             0.0, 0.0);
@@ -224,64 +224,138 @@ public class ShapeTest {
 
   @Test
   public void getName() {
+    assertEquals("rect1", rect.getName());
+    assertEquals("oval1", oval.getName());
 
   }
 
   @Test
   public void setName() {
+    oval.setName("Gudetama");
+    rect.setName("Ikura");
+    assertEquals("Ikura", rect.getName());
+    assertEquals("Gudetama", oval.getName());
   }
 
   @Test
   public void getColor() {
+    // fixme - help, how to check color? contents are identical
+    Color color1 = new Color(0,0,1);
+    Color color2 = new Color(1,0,0);
+    assertEquals(color1, oval.getColor());
+    assertEquals(color2, rect.getColor());
   }
 
   @Test
   public void setColor() {
+    Color color1 = new Color(2,2,2);
+    Color color2 = new Color(100,0,100);
+    rect.setColor(2, 2,2);
+    oval.setColor(100,0,100);
+    assertEquals(color1, rect.getColor());
+    assertEquals(color2, oval.getColor());
   }
 
   @Test
   public void getLocation() {
+    Point2D loc1 = new Point2D(200.0,200.0);
+    Point2D loc2 = new Point2D(500.0,100.0);
+    assertEquals(loc1, rect.getLocation());
+    assertEquals(loc2, oval.getLocation());
   }
 
   @Test
   public void setLocation() {
+    Point2D loc1 = new Point2D(0,0);
+    Point2D loc2 = new Point2D(0,0);
+    rect.setLocation(0,0);
+    oval.setLocation(0,0);
+    assertEquals(loc1, rect.getLocation());
+    assertEquals(loc2, oval.getLocation());
   }
 
   @Test
   public void getAppear() {
+    assertEquals(0, rect.getAppear());
+    assertEquals(0, oval.getAppear());
   }
 
   @Test
   public void setAppear() {
+    rect.setAppear(100);
+    oval.setAppear(10000);
+    assertEquals(100, rect.getAppear());
+    assertEquals(10000, oval.getAppear());
   }
 
   @Test
   public void getDisappear() {
+    assertEquals(0, rect.getDisappear());
+    assertEquals(0, oval.getDisappear());
   }
 
   @Test
   public void setDisappear() {
+    rect.setDisappear(100);
+    oval.setDisappear(10000);
+    assertEquals(100, rect.getDisappear());
+    assertEquals(10000, oval.getDisappear());
   }
 
   @Test
   public void getWidth() {
+    assertEquals(50.0, rect.getWidth(), 0.1);
+    assertEquals(120.0, oval.getWidth(), 0.1);
+
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void setNegativeWidth() {
+    oval.setWidth(-100);
   }
 
   @Test
   public void setWidth() {
-    // test for negative
+    rect.setWidth(100);
+    oval.setWidth(7362);
+    assertEquals(100, rect.getWidth(), 0.01);
+    assertEquals(7362, oval.getWidth(),0.01);
   }
 
   @Test
   public void getHeight() {
+    assertEquals(100.0, rect.getHeight(), 0.01);
+    assertEquals(60.0, oval.getHeight(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void setNegativeHeight() {
+    oval.setHeight(-100);
   }
 
   @Test
   public void setHeight() {
-    // test for negative
+    rect.setHeight(500);
+    oval.setHeight(7654.22);
+    assertEquals(500, rect.getHeight(), 0.01);
+    assertEquals(7654.22, oval.getHeight(), 0.01);
   }
 
   @Test
   public void testToString() {
+    assertEquals("""
+            Name: rect1
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
+            Appears at t=0
+            Disappears at t=0
+            """, rect.toString());
+    assertEquals("""
+            Name: oval1
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
+            Appears at t=0
+            Disappears at t=0
+            """, oval.toString());
   }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * _________________________________ CONCRETE CLASS: Color ________________________________________.
  * The Color class defines colors that can be assigned to Shapes.
@@ -23,6 +25,19 @@ public class Color {
     this.red = red;
     this.green = green;
     this.blue = blue;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Color color = (Color) o;
+    return red == color.red && green == color.green && blue == color.blue;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(red, green, blue);
   }
 
   /**
