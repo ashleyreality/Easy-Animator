@@ -1,6 +1,5 @@
-import java.awt.*;
-
 /**
+ * _____________________________ CONCRETE CLASS: MoveShape ______________________________________.
  * The MoveShape class extends ChangeShape. Use it to move a shape from one location to another.
  */
 public class MoveShape extends AbstractEvent {
@@ -8,19 +7,36 @@ public class MoveShape extends AbstractEvent {
   private Point2D to;
 
   /**
-   * Generates a shape move.
+   * ________________________________ CONSTRUCTOR: MoveShape() ____________________________________.
+   * The MoveShape() constructor instantiates the declared fields. Generates a shape move.
    *
    * @param shape - the shape you want to move
-   * @param x     - a double, the new x location
-   * @param y     - a double, the new y location
+   * @param xBefore     - a double, the previous x location
+   * @param yBefore     - a double, the previous y location
+   * @param xAfter      - a double, the new x location
+   * @param yAfter      - a double, the new y location
    */
   public MoveShape(IShape shape, double xBefore, double yBefore, double xAfter, double yAfter) {
     super(shape);
+
+    if (shape == null) {
+      throw new IllegalArgumentException("The shape can not be null.");
+    }
+
+    if (xBefore < 0 || yBefore < 0 || xAfter < 0 || yAfter <0) {
+      throw new IllegalArgumentException("The location can not be negative.");
+    }
+
     this.from = new Point2D(xBefore, yBefore);
     this.to = new Point2D(xAfter, yAfter);
-
   }
 
+  /**
+   * _________________________________ METHOD: toString() _________________________________________.
+   * This is a toString() override.
+   *
+   * @return a string that describes the location move of a shape
+   */
   @Override
   public String toString() {
     // Example output: Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
