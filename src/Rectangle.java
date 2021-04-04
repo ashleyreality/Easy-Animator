@@ -1,15 +1,14 @@
 /**
  * __________________________________ CLASS: Rectangle {} _________________________________________.
- * This is the Rectangle class. It extends the AbstractShape abstract class and implements the
- * method declarations that are unique to the Rectangle class. It creates and stores information
- * about a Rectangle shape.
+ * The Rectangle class extends AbstractShape and implements method declarations that are unique
+ * to the Rectangle class. It creates and stores information about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
 
   /**
    * _____________________________ CONSTRUCTOR: Rectangle() _______________________________________.
-   * This is the Rectangle() constructor. It creates a rectangle with the given width and height,
-   * color parameters, and location coordinates.
+   * Constructs a rectangle with the given width and height, color parameters, and location
+   * coordinates.
    *
    * @param name   name of the rectangle
    * @param width  width of the rectangle (x)
@@ -27,10 +26,10 @@ public class Rectangle extends AbstractShape {
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
-   * This is the toString() method override. It outputs a String with the name, location, horizontal
-   * radius, vertical radius, color, and appear and disappear time of the rectangle.
+   * Returns a String with the name, location, width, height, color, and appear and disappear times
+   * of the rectangle.
    *
-   * @return a String of the rectangle attributes
+   * @return a String displaying the rectangle's attributes
    */
   @Override
   public String toString() {

@@ -1,8 +1,7 @@
 /**
  * _____________________________________ CLASS: Oval {} ___________________________________________.
- * This is the Oval class. It extends the AbstractShape abstract class and implements the method
- * declarations that are unique to the Oval class. It creates and stores information about an Oval
- * shape.
+ * The Oval class extends AbstractShape and implements the method declarations that are unique to
+ * the Oval class. It creates and stores information about an Oval shape.
  */
 public class Oval extends AbstractShape {
   // radiusX, from the center point to the outer edge of the circle along the X-axis/width
@@ -12,8 +11,8 @@ public class Oval extends AbstractShape {
 
   /**
    * __________________________________ CONSTRUCTOR: Oval() _______________________________________.
-   * This is the Oval() constructor. It creates an oval with the given width and height, color
-   * parameters, and location coordinates.
+   * The Oval() constructor creates an oval with the given width, height, color parameters, and
+   * location coordinates.
    *
    * @param name   name of the oval
    * @param width  width of the oval (x)
@@ -33,10 +32,10 @@ public class Oval extends AbstractShape {
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
-   * This is the toString() method override. It outputs a String with the name, location,
-   * horizontal radius, vertical radius, color, and appear and disappear time of the oval.
+   * Returns a String with the name, location, horizontal radius, vertical radius, color, and
+   * appear and disappear times of the oval.
    *
-   * @return a String of the oval attributes
+   * @return a String displaying the oval's attributes
    */
   @Override
   public String toString() {
