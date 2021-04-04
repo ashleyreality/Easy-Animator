@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
+ * ___________________________________ CLASS: EventTest() ________________________________________.
  * This class contains the unit tests for the Events.
  */
 public class EventTest {

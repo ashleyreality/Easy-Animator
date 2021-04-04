@@ -25,13 +25,16 @@ public abstract class AbstractShape implements IShape {
    * @param blue   blue value of shape
    * @param x      x coordinate of shape
    * @param y      y coordinate of shape
-   * @throws IllegalArgumentException if width or height are negative
+   * @throws IllegalArgumentException if width or height are negative or if name is vull
    */
   public AbstractShape(String name, double width, double height,
                        int red, int green, int blue, double x, double y) {
     this.color = new Color(red, green, blue);
     if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Width and height must be positive.");
+    }
+    if (name == null) {
+      throw new IllegalArgumentException("Name can't be null");
     }
     this.name = name;
     this.location = new Point2D(x, y);
