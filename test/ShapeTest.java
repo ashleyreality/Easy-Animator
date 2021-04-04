@@ -48,8 +48,8 @@ public class ShapeTest {
                     + "Type: oval\n"
                     + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
                     + "Appears at t=0\n"
-            + "Disappears at t=0\n"
-            , oval.toString());
+            + "Disappears at t=0\n",
+             oval.toString());
 
     // huge numbers
     IShape oval2 = new Oval("oval2",
@@ -59,8 +59,9 @@ public class ShapeTest {
 
     assertEquals("Name: oval2\n"
             + "Type: oval\n"
-                    + "Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color: (240,120,221)\n"
-                    + "Appears at t=0\n"
+            + "Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color:"
+            + " (240,120,221)\n"
+            + "Appears at t=0\n"
             + "Disappears at t=0\n", oval2.toString());
 
     // zeroes

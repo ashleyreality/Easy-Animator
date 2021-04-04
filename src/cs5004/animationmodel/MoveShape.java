@@ -1,9 +1,11 @@
 package cs5004.animationmodel;
+
 /**
  * _____________________________ CONCRETE CLASS: MoveShape ______________________________________.
  * The MoveShape class extends ChangeShape. Use it to move a shape from one location to another.
  */
 public class MoveShape extends AbstractEvent {
+
   private final Point2D from;
   private final Point2D to;
 

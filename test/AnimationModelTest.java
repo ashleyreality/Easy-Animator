@@ -21,8 +21,8 @@ public class AnimationModelTest {
   private IAnimationModel testAnimation;
 
   // IShapes: Rectangle named R & Oval named C
-  IShape R;
-  IShape C;
+  IShape r;
+  IShape c;
 
   // IEvents for IShape moves
   IEvent move1;
@@ -43,12 +43,12 @@ public class AnimationModelTest {
     testAnimation = new AnimationModelImpl();
 
     // Instantiate the IShapes
-    R = new Rectangle("R",
+    r = new Rectangle("R",
             50.0, 100.0,
             1, 0, 0,
             200.0, 200.0);
 
-    C = new Oval("C",
+    c = new Oval("C",
             120.0, 60.0,
             0, 0, 1,
             500.0, 100.0);
@@ -58,38 +58,38 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void sameShapeName() {
 
-    testAnimation.addShape(R, 1, 100);
+    testAnimation.addShape(r, 1, 100);
 
     // new shape with same name
-    IShape F = new Rectangle("R",
+    IShape f = new Rectangle("R",
             2, 4,
             3, 50, 10,
             30.0, 75.0);
 
-    testAnimation.addShape(F, 30, 80);
+    testAnimation.addShape(f, 30, 80);
   }
 
   // ___________________________ EXCEPTIONS: Duplicate shape ______________________________________.
   @Test(expected = IllegalArgumentException.class)
   public void testAddSameShapeTwice() {
-    testAnimation.addShape(C, 1, 100);
-    testAnimation.addShape(C, 50, 70);
+    testAnimation.addShape(c, 1, 100);
+    testAnimation.addShape(c, 50, 70);
   }
 
   // ___________________________ EXCEPTIONS: Appear and Disappear _________________________________.
   @Test(expected = IllegalArgumentException.class)
   public void testAppearEqualsDisappear() {
-    testAnimation.addShape(C, 100, 100);
+    testAnimation.addShape(c, 100, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testDisappearAt0() {
-    testAnimation.addShape(R, 0, 0);
+    testAnimation.addShape(r, 0, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAppearAfterDisappear() {
-    testAnimation.addShape(R, 13, 1);
+    testAnimation.addShape(r, 13, 1);
   }
 
   // ___________________________ EXCEPTIONS: Null tests ______________________________________.
@@ -100,23 +100,23 @@ public class AnimationModelTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullShapeEvent() {
-    testAnimation.addShape(C, 1, 100);
-    move1 = new MoveShape(C, 500.0, 100.0, 300.0, 300.0);
+    testAnimation.addShape(c, 1, 100);
+    move1 = new MoveShape(c, 500.0, 100.0, 300.0, 300.0);
     testAnimation.addEvent(null, move1, 20, 45);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullEvent() {
-    testAnimation.addShape(C, 1, 100);
-    testAnimation.addEvent(C, null, 29, 85);
+    testAnimation.addShape(c, 1, 100);
+    testAnimation.addEvent(c, null, 29, 85);
   }
 
   // _____________________________________ AddShape() Test ________________________________________.
   @Test
   public void testAddShape() {
     // add the "R" & "C" shapes to the animation
-    testAnimation.addShape(R, 1, 100);
-    testAnimation.addShape(C, 6, 100);
+    testAnimation.addShape(r, 1, 100);
+    testAnimation.addShape(c, 6, 100);
 
     assertEquals("Shapes:\n"
                     + "Name: R\n"
@@ -136,109 +136,109 @@ public class AnimationModelTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddMoveEventWithoutAddShape() {
-    move1 = new MoveShape(R, 200.0, 200.0, 300.0, 300.0);
-    testAnimation.addEvent(R, move1, 10, 50);
+    move1 = new MoveShape(r, 200.0, 200.0, 300.0, 300.0);
+    testAnimation.addEvent(r, move1, 10, 50);
   }
 
   // _____________________________ EXCEPTIONS: Begin and End ______________________________________.
   @Test(expected = IllegalArgumentException.class)
   public void testAddMoveEndBeforeBegin() {
-    testAnimation.addShape(R, 1, 100);
-    size1 = new ScaleShape(R, 50.0, 100.0, 25.0, 100.0);
-    testAnimation.addEvent(R, size1, 90, 2);
+    testAnimation.addShape(r, 1, 100);
+    size1 = new ScaleShape(r, 50.0, 100.0, 25.0, 100.0);
+    testAnimation.addEvent(r, size1, 90, 2);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testBeforeAppear() {
-    testAnimation.addShape(C, 30, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 30, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(R, size1, 20, 45);
+    testAnimation.addEvent(r, size1, 20, 45);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testEventBeforeAppear() {
-    testAnimation.addShape(C, 30, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 30, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(R, size1, 0, 29);
+    testAnimation.addEvent(r, size1, 0, 29);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAfterAppear() {
-    testAnimation.addShape(C, 30, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 30, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(R, size1, 31, 166);
+    testAnimation.addEvent(r, size1, 31, 166);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testEventAfterDisappear() {
-    testAnimation.addShape(C, 30, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 30, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(R, size1, 101, 166);
+    testAnimation.addEvent(r, size1, 101, 166);
   }
 
   // ____________ EXCEPTIONS: Add Same Event types With Overlapping tick range  ___________________.
   @Test(expected = IllegalArgumentException.class)
   public void testScaleOverlap() {
-    testAnimation.addShape(R, 1, 100);
-    size1 = new ScaleShape(R, 50.0, 100.0, 25.0, 100.0);
-    size2 = new ScaleShape(R, 25.0, 100.0, 70.0, 1000.0);
-    testAnimation.addEvent(R, size1, 90, 100);
-    testAnimation.addEvent(R, size2, 89, 95);
+    testAnimation.addShape(r, 1, 100);
+    size1 = new ScaleShape(r, 50.0, 100.0, 25.0, 100.0);
+    size2 = new ScaleShape(r, 25.0, 100.0, 70.0, 1000.0);
+    testAnimation.addEvent(r, size1, 90, 100);
+    testAnimation.addEvent(r, size2, 89, 95);
   }
 
 
   @Test(expected = IllegalArgumentException.class)
   public void testMoveOverlap() {
-    testAnimation.addShape(R, 1, 100);
-    move1 = new MoveShape(R, 200.0, 200.0, 300.0, 300.0);
-    move2 = new MoveShape(R, 300.0, 300.0, 200.0, 200.0);
-    testAnimation.addEvent(R, move1, 60, 100);
-    testAnimation.addEvent(R, move2, 89, 95);
+    testAnimation.addShape(r, 1, 100);
+    move1 = new MoveShape(r, 200.0, 200.0, 300.0, 300.0);
+    move2 = new MoveShape(r, 300.0, 300.0, 200.0, 200.0);
+    testAnimation.addEvent(r, move1, 60, 100);
+    testAnimation.addEvent(r, move2, 89, 95);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testColorOverlap() {
-    testAnimation.addShape(C, 1, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 1, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    colorChange2 = new ChangeColor(C,
+    colorChange2 = new ChangeColor(c,
             0, 1, 0,
             25, 1, 0);
-    testAnimation.addEvent(C, colorChange1, 20, 45);
-    testAnimation.addEvent(C, colorChange2, 36, 95);
+    testAnimation.addEvent(c, colorChange1, 20, 45);
+    testAnimation.addEvent(c, colorChange2, 36, 95);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testDuplicateEvent() {
-    testAnimation.addShape(C, 1, 100);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 1, 100);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(C, colorChange1, 20, 45);
-    testAnimation.addEvent(C, colorChange1, 36, 95);
+    testAnimation.addEvent(c, colorChange1, 20, 45);
+    testAnimation.addEvent(c, colorChange1, 36, 95);
   }
 
   // _________________________ Overlapping Different Changes Test _______________________________.
   @Test
   public void testDifferentChangeTypeOverlap() {
-    testAnimation.addShape(C, 1, 100);
-    move1 = new MoveShape(C, 500.0, 100.0, 300.0, 300.0);
-    size1 = new ScaleShape(C, 120.0, 60.0, 85.0, 10.67);
-    colorChange1 = new ChangeColor(C,
+    testAnimation.addShape(c, 1, 100);
+    move1 = new MoveShape(c, 500.0, 100.0, 300.0, 300.0);
+    size1 = new ScaleShape(c, 120.0, 60.0, 85.0, 10.67);
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    testAnimation.addEvent(C, move1, 20, 45);
-    testAnimation.addEvent(C, size1, 28, 88);
-    testAnimation.addEvent(C, colorChange1, 36, 95);
+    testAnimation.addEvent(c, move1, 20, 45);
+    testAnimation.addEvent(c, size1, 28, 88);
+    testAnimation.addEvent(c, colorChange1, 36, 95);
     assertEquals("Shapes:\n"
             + "Name: C\n"
                     + "Type: oval\n"
@@ -248,24 +248,25 @@ public class AnimationModelTest {
                     + "\n"
                     + "Shape C moves from (500.0,100.0) to (300.0,300.0) from t=20 to t=45\n"
                     + "Shape C scales from Width: 120.0, Height: 60.0 to Width: 85.0, Height: 10.7"
-            + " from t=28 to t=88\nShape C changes color from (0,0,1) to (0,1,0) from t=36 to t=95\n",
+            + " from t=28 to t=88\nShape C changes color from (0,0,1) to (0,1,0) from t=36 "
+                    + "to t=95\n",
             testAnimation.toString());
   }
 
   // ______________________________________ AddMove() Test ________________________________________.
   @Test
   public void testAddMove() {
-    testAnimation.addShape(R, 1, 100);
-    testAnimation.addShape(C, 6, 100);
+    testAnimation.addShape(r, 1, 100);
+    testAnimation.addShape(c, 6, 100);
 
     // Instantiate the moves
-    move1 = new MoveShape(R, 200.0, 200.0, 300.0, 300.0);
-    move2 = new MoveShape(C, 500.0, 100.0, 500.0, 400.0);
-    move3 = new MoveShape(R, 300.0, 300.0, 200.0, 200.0);
+    move1 = new MoveShape(r, 200.0, 200.0, 300.0, 300.0);
+    move2 = new MoveShape(c, 500.0, 100.0, 500.0, 400.0);
+    move3 = new MoveShape(r, 300.0, 300.0, 200.0, 200.0);
 
-    testAnimation.addEvent(R, move1, 10, 50);
-    testAnimation.addEvent(C, move2, 20, 70);
-    testAnimation.addEvent(R, move3, 70, 100);
+    testAnimation.addEvent(r, move1, 10, 50);
+    testAnimation.addEvent(c, move2, 20, 70);
+    testAnimation.addEvent(r, move3, 70, 100);
 
     assertEquals("Shapes:\n"
                     + "Name: R\n"
@@ -289,12 +290,12 @@ public class AnimationModelTest {
   // __________________________________ AddSizeChange() Test ______________________________________.
   @Test
   public void testAddSizeChange() {
-    testAnimation.addShape(R, 1, 100);
+    testAnimation.addShape(r, 1, 100);
     // Instantiate the size change
-    size1 = new ScaleShape(R, 50.0, 100.0, 25.0, 100.0);
-    size2 = new ScaleShape(R, 25.0, 100.0, 25.0, 13.0);
-    testAnimation.addEvent(R, size1, 51, 70);
-    testAnimation.addEvent(R, size2, 71, 73);
+    size1 = new ScaleShape(r, 50.0, 100.0, 25.0, 100.0);
+    size2 = new ScaleShape(r, 25.0, 100.0, 25.0, 13.0);
+    testAnimation.addEvent(r, size1, 51, 70);
+    testAnimation.addEvent(r, size2, 71, 73);
 
     assertEquals("Shapes:\n"
                     + "Name: R\n"
@@ -305,23 +306,23 @@ public class AnimationModelTest {
                     + "\n"
                     + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0"
                     + " from t=51 to t=70\nShape R scales from Width: 25.0, Height: 100.0 to Width:"
-                    + " 25.0, Height: 13.0 from t=71 to t=73\n"
-            , testAnimation.toString());
+                    + " 25.0, Height: 13.0 from t=71 to t=73\n",
+             testAnimation.toString());
   }
 
   // ____________________________________ ColorChange() Test ______________________________________.
   @Test
   public void testColorChange() {
-    testAnimation.addShape(C, 6, 100);
+    testAnimation.addShape(c, 6, 100);
     // Instantiate the color change
-    colorChange1 = new ChangeColor(C,
+    colorChange1 = new ChangeColor(c,
             0, 0, 1,
             0, 1, 0);
-    colorChange2 = new ChangeColor(C,
+    colorChange2 = new ChangeColor(c,
             0, 1, 0,
             25, 1, 0);
-    testAnimation.addEvent(C, colorChange1, 50, 80);
-    testAnimation.addEvent(C, colorChange2, 81, 90);
+    testAnimation.addEvent(c, colorChange1, 50, 80);
+    testAnimation.addEvent(c, colorChange2, 81, 90);
     assertEquals("Shapes:\n"
                     + "Name: C\n"
                     + "Type: oval\n"
@@ -337,22 +338,22 @@ public class AnimationModelTest {
   // _____________________________________ Test Everything ________________________________________.
   @Test
   public void testEverything() {
-    testAnimation.addShape(R, 1, 100);
-    testAnimation.addShape(C, 6, 100);
+    testAnimation.addShape(r, 1, 100);
+    testAnimation.addShape(c, 6, 100);
 
-    move1 = new MoveShape(R, 200.0, 200.0, 300.0, 300.0);
-    move2 = new MoveShape(C, 500.0, 100.0, 500.0, 400.0);
-    move3 = new MoveShape(R, 300.0, 300.0, 200.0, 200.0);
+    move1 = new MoveShape(r, 200.0, 200.0, 300.0, 300.0);
+    move2 = new MoveShape(c, 500.0, 100.0, 500.0, 400.0);
+    move3 = new MoveShape(r, 300.0, 300.0, 200.0, 200.0);
 
-    size1 = new ScaleShape(R, 50.0, 100.0, 25.0, 100.0);
+    size1 = new ScaleShape(r, 50.0, 100.0, 25.0, 100.0);
 
-    colorChange1 = new ChangeColor(C, 0, 0, 1, 0, 1, 0);
+    colorChange1 = new ChangeColor(c, 0, 0, 1, 0, 1, 0);
 
-    testAnimation.addEvent(R, move1, 10, 50);
-    testAnimation.addEvent(C, move2, 20, 70);
-    testAnimation.addEvent(C, colorChange1, 50, 80);
-    testAnimation.addEvent(R, size1, 51, 70);
-    testAnimation.addEvent(R, move3, 70, 100);
+    testAnimation.addEvent(r, move1, 10, 50);
+    testAnimation.addEvent(c, move2, 20, 70);
+    testAnimation.addEvent(c, colorChange1, 50, 80);
+    testAnimation.addEvent(r, size1, 51, 70);
+    testAnimation.addEvent(r, move3, 70, 100);
 
     assertEquals("Shapes:\n"
                     + "Name: R\n"
@@ -372,7 +373,7 @@ public class AnimationModelTest {
                     + "Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80\n"
                     + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0"
                     + " from t=51 to t=70\nShape R moves from (300.0,300.0) to (200.0,200.0) from"
-                    + " t=70 to t=100\n"
-            , testAnimation.toString());
+                    + " t=70 to t=100\n",
+             testAnimation.toString());
   }
 }
