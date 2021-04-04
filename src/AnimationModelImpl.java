@@ -104,7 +104,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
     shapeNullException(shape);
 
-    if (eventEnd >= eventBegin || eventBegin < 0) {
+    if (eventEnd <= eventBegin || eventBegin < 0) {
       throw new IllegalArgumentException("The event begin time must be greater than the event end"
               + " time, and neither can be a negative integer value.");
     }
@@ -114,7 +114,7 @@ public class AnimationModelImpl implements IAnimationModel {
     event.setEventEnd(eventEnd);
 
     if (shapeMap.get(shape) == null) {
-      throw new IllegalArgumentException("The event list can not be null.");
+      throw new IllegalArgumentException("The shape is not in the list.");
     }
 
     // A list of events for the provided shape
