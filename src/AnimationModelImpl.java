@@ -109,6 +109,8 @@ public class AnimationModelImpl implements IAnimationModel {
               + " time, and neither can be a negative integer value.");
     }
 
+    // begin < appear || begin >= disappear || end< appear || end >= disappear
+
     // Send the begin and end times to the event
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);

@@ -1,4 +1,5 @@
 /**
+ * ______________________________ CONCRETE CLASS: ScaleShape ______________________________________.
  * The ScaleShape class extends ChangeShape. Use it to scale a shape from one size to another size.
  */
 public class ScaleShape extends AbstractEvent {
@@ -9,14 +10,17 @@ public class ScaleShape extends AbstractEvent {
   protected IShape shape;
 
   /**
-   * Generates a scaled shape.
+   * _______________________________ CONSTRUCTOR: ScaleShape() ____________________________________.
+   * The ScaleShape() constructor instantiates the declared fields. Generates a scaled shape.
    *
-   * @param shape       - the shape to be scaled
-   *                    ADD
-   * @param widthAfter  - the new width
-   * @param heightAfter - the new height
+   * @param shape         - the shape to be scaled
+   * @param widthBefore   - the previous width of the shape
+   * @param heightBefore  - the previous height of the shape
+   * @param widthAfter    - the new width of the shape
+   * @param heightAfter   - the new height of the shape
    */
-  public ScaleShape(IShape shape, double widthBefore, double heightBefore,
+  public ScaleShape(IShape shape,
+                    double widthBefore, double heightBefore,
                     double widthAfter, double heightAfter) {
     super(shape);
     if (widthAfter <= 0 || heightAfter <= 0 || widthBefore <= 0 || heightBefore <= 0) {
@@ -28,6 +32,12 @@ public class ScaleShape extends AbstractEvent {
     this.heightAfter = heightAfter;
   }
 
+  /**
+   * _________________________________ METHOD: toString() _________________________________________.
+   * This is a toString() override.
+   *
+   * @return a string that describes the size of a shape
+   */
   @Override
   public String toString() {
     // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
