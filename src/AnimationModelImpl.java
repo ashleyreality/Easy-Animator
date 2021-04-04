@@ -109,7 +109,13 @@ public class AnimationModelImpl implements IAnimationModel {
               + " time, and neither can be a negative integer value.");
     }
 
-    // begin < appear || begin >= disappear || end< appear || end >= disappear
+    if (eventBegin < shape.getAppear() || eventBegin >= shape.getDisappear()
+            || eventEnd < shape.getAppear() || eventEnd >= shape.getDisappear()) {
+      throw new IllegalArgumentException("The shape can not be changed before it appears, the" +
+              " shape can not change after it disappears, the shape can not stop changing before" +
+              " the shape appears, nor can the shape stop changing after it has already" +
+              " disappeared.");
+    }
 
     // Send the begin and end times to the event
     event.setEventBegin(eventBegin);
