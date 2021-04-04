@@ -140,6 +140,10 @@ public class AnimationModelImpl implements IAnimationModel {
       }
     }
 
+    // Need to add a check for:
+    // If event TYPE is the same
+    // B/c if event type is the same then it falls under this exception
+
     for (IShape otherShape : shapeList) {
       if (shape.getName().equals(otherShape.getName())) {
         for (IEvent otherEvent : eventList) {
