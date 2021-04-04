@@ -44,13 +44,12 @@ public class ShapeTest {
             0, 0, 1,
             500.0, 100.0);
 
-    assertEquals("""
-            Name: oval1
-            Type: oval
-            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-            Appears at t=0
-            Disappears at t=0
-            """, oval.toString());
+    assertEquals("Name: oval1\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n"
+            , oval.toString());
 
     // huge numbers
     IShape oval2 = new Oval("oval2",
@@ -58,13 +57,11 @@ public class ShapeTest {
             240, 120, 221,
             54637.559, 928736.021);
 
-    assertEquals("""
-            Name: oval2
-            Type: oval
-            Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color: (240,120,221)
-            Appears at t=0
-            Disappears at t=0
-            """, oval2.toString());
+    assertEquals("Name: oval2\n"
+            + "Type: oval\n"
+                    + "Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color: (240,120,221)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n", oval2.toString());
 
     // zeroes
 
@@ -73,13 +70,11 @@ public class ShapeTest {
             0, 0, 0,
             0.0, 0.0);
 
-    assertEquals("""
-            Name: oval3
-            Type: oval
-            Center: (0.0,0.0), X radius: 0.5, Y radius: 0.5, Color: (0,0,0)
-            Appears at t=0
-            Disappears at t=0
-            """, oval3.toString());
+    assertEquals("Name: oval3\n"
+                    + "Type: oval\n"
+                    + "Center: (0.0,0.0), X radius: 0.5, Y radius: 0.5, Color: (0,0,0)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n", oval3.toString());
 
     //_____________________________________ Rectangle Objects _____________________________________.
 
@@ -88,13 +83,11 @@ public class ShapeTest {
             1, 0, 0,
             200.0, 200.0);
 
-    assertEquals("""
-            Name: rect1
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-            Appears at t=0
-            Disappears at t=0
-            """, rect.toString());
+    assertEquals("Name: rect1\n"
+            + "Type: rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n", rect.toString());
 
     // huge numbers
     IShape rect2 = new Rectangle("rect2",
@@ -102,13 +95,11 @@ public class ShapeTest {
             240, 120, 221,
             54637.559, 928736.021);
 
-    assertEquals("""
-            Name: rect2
-            Type: rectangle
-            Min corner: (54637.6,928736.0), Width: 12000.001, Height: 602828.6, Color: (240,120,221)
-            Appears at t=0
-            Disappears at t=0
-            """, rect2.toString());
+    assertEquals("Name: rect2\n"
+                    + "Type: rectangle\n"
+                    + "Min corner: (54637.6,928736.0), Width: 12000.001, Height: 602828.6, Color: "
+            + "(240,120,221)\nAppears at t=0\n"
+            + "Disappears at t=0\n", rect2.toString());
 
     // zeroes
 
@@ -117,13 +108,11 @@ public class ShapeTest {
             0, 0, 0,
             0.0, 0.0);
 
-    assertEquals("""
-            Name: rect3
-            Type: rectangle
-            Min corner: (0.0,0.0), Width: 1.0, Height: 1.0, Color: (0,0,0)
-            Appears at t=0
-            Disappears at t=0
-            """, rect3.toString());
+    assertEquals("Name: rect3\n"
+            + "Type: rectangle\n"
+                    + "Min corner: (0.0,0.0), Width: 1.0, Height: 1.0, Color: (0,0,0)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n", rect3.toString());
 
   }
 
@@ -245,7 +234,6 @@ public class ShapeTest {
 
   @Test
   public void getColor() {
-    // fixme - help, how to check color? contents are identical
     Color color1 = new Color(0,0,1);
     Color color2 = new Color(1,0,0);
     assertEquals(color1, oval.getColor());
@@ -355,19 +343,15 @@ public class ShapeTest {
 
   @Test
   public void testToString() {
-    assertEquals("""
-            Name: rect1
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-            Appears at t=0
-            Disappears at t=0
-            """, rect.toString());
-    assertEquals("""
-            Name: oval1
-            Type: oval
-            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-            Appears at t=0
-            Disappears at t=0
-            """, oval.toString());
+    assertEquals("Name: rect1\n"
+            + "Type: rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=0\n"
+            + "Disappears at t=0\n", rect.toString());
+    assertEquals("Name: oval1\n"
+            + "Type: oval\n"
+            + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+            + "Appears at t=0\n"
+            + "Disappears at t=0\n", oval.toString());
   }
 }

@@ -118,21 +118,18 @@ public class AnimationModelTest {
     testAnimation.addShape(R, 1, 100);
     testAnimation.addShape(C, 6, 100);
 
-    assertEquals("""
-            Shapes:
-            Name: R
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-            Appears at t=1
-            Disappears at t=100
-
-            Name: C
-            Type: oval
-            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-            Appears at t=6
-            Disappears at t=100
-
-            """, testAnimation.toString());
+    assertEquals("Shapes:\n"
+                    + "Name: R\n"
+            + "Type: rectangle\n"
+            + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+            + "Appears at t=1\n"
+            + "Disappears at t=100\n"
+            + "\n"
+            + "Name: C\n"
+            + "Type: oval\n"
+            + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+            + "Appears at t=6\n"
+            + "Disappears at t=100\n\n", testAnimation.toString());
   }
 
   // ____________________________ EXCEPTIONS: Event without Shape _________________________________.
@@ -242,18 +239,17 @@ public class AnimationModelTest {
     testAnimation.addEvent(C, move1, 20, 45);
     testAnimation.addEvent(C, size1, 28, 88);
     testAnimation.addEvent(C, colorChange1, 36, 95);
-    assertEquals("""
-            Shapes:
-            Name: C
-            Type: oval
-            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-            Appears at t=1
-            Disappears at t=100
-
-            Shape C moves from (500.0,100.0) to (300.0,300.0) from t=20 to t=45
-            Shape C scales from Width: 120.0, Height: 60.0 to Width: 85.0, Height: 10.7 from t=28 to t=88
-            Shape C changes color from (0,0,1) to (0,1,0) from t=36 to t=95
-            """,testAnimation.toString());
+    assertEquals("Shapes:\n"
+            + "Name: C\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+                    + "Appears at t=1\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Shape C moves from (500.0,100.0) to (300.0,300.0) from t=20 to t=45\n"
+                    + "Shape C scales from Width: 120.0, Height: 60.0 to Width: 85.0, Height: 10.7"
+            + " from t=28 to t=88\nShape C changes color from (0,0,1) to (0,1,0) from t=36 to t=95\n",
+            testAnimation.toString());
   }
 
   // ______________________________________ AddMove() Test ________________________________________.
@@ -271,24 +267,22 @@ public class AnimationModelTest {
     testAnimation.addEvent(C, move2, 20, 70);
     testAnimation.addEvent(R, move3, 70, 100);
 
-    assertEquals("""
-                    Shapes:
-                    Name: R
-                    Type: rectangle
-                    Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-                    Appears at t=1
-                    Disappears at t=100
-                                        
-                    Name: C
-                    Type: oval
-                    Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-                    Appears at t=6
-                    Disappears at t=100
-                                       
-                    Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
-                    Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70
-                    Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100
-                    """,
+    assertEquals("Shapes:\n"
+                    + "Name: R\n"
+                    + "Type: rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=1\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Name: C\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+                    + "Appears at t=6\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50\n"
+                    + "Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70\n"
+            + "Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100\n",
             testAnimation.toString());
   }
 
@@ -302,17 +296,17 @@ public class AnimationModelTest {
     testAnimation.addEvent(R, size1, 51, 70);
     testAnimation.addEvent(R, size2, 71, 73);
 
-    assertEquals("""
-            Shapes:
-            Name: R
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-            Appears at t=1
-            Disappears at t=100
-                        
-            Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-            Shape R scales from Width: 25.0, Height: 100.0 to Width: 25.0, Height: 13.0 from t=71 to t=73
-            """, testAnimation.toString());
+    assertEquals("Shapes:\n"
+                    + "Name: R\n"
+                    + "Type: rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=1\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0"
+                    + " from t=51 to t=70\nShape R scales from Width: 25.0, Height: 100.0 to Width:"
+                    + " 25.0, Height: 13.0 from t=71 to t=73\n"
+            , testAnimation.toString());
   }
 
   // ____________________________________ ColorChange() Test ______________________________________.
@@ -328,17 +322,15 @@ public class AnimationModelTest {
             25, 1, 0);
     testAnimation.addEvent(C, colorChange1, 50, 80);
     testAnimation.addEvent(C, colorChange2, 81, 90);
-    assertEquals("""
-                    Shapes:
-                    Name: C
-                    Type: oval
-                    Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-                    Appears at t=6
-                    Disappears at t=100
-                                        
-                    Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80
-                    Shape C changes color from (0,1,0) to (25,1,0) from t=81 to t=90
-                    """,
+    assertEquals("Shapes:\n"
+                    + "Name: C\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+                    + "Appears at t=6\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80\n"
+            + "Shape C changes color from (0,1,0) to (25,1,0) from t=81 to t=90\n",
             testAnimation.toString());
   }
 
@@ -362,26 +354,25 @@ public class AnimationModelTest {
     testAnimation.addEvent(R, size1, 51, 70);
     testAnimation.addEvent(R, move3, 70, 100);
 
-    assertEquals("""
-                    Shapes:
-                    Name: R
-                    Type: rectangle
-                    Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)
-                    Appears at t=1
-                    Disappears at t=100
-
-                    Name: C
-                    Type: oval
-                    Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
-                    Appears at t=6
-                    Disappears at t=100
-
-                    Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
-                    Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70
-                    Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80
-                    Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-                    Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100
-                    """
+    assertEquals("Shapes:\n"
+                    + "Name: R\n"
+                    + "Type: rectangle\n"
+                    + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
+                    + "Appears at t=1\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Name: C\n"
+                    + "Type: oval\n"
+                    + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
+                    + "Appears at t=6\n"
+                    + "Disappears at t=100\n"
+                    + "\n"
+                    + "Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50\n"
+                    + "Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70\n"
+                    + "Shape C changes color from (0,0,1) to (0,1,0) from t=50 to t=80\n"
+                    + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0"
+                    + " from t=51 to t=70\nShape R moves from (300.0,300.0) to (200.0,200.0) from"
+                    + " t=70 to t=100\n"
             , testAnimation.toString());
   }
 }
