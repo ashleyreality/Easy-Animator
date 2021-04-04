@@ -23,9 +23,9 @@ public class MoveShape extends AbstractEvent {
       throw new IllegalArgumentException("The shape can not be null.");
     }
 
-    if (xBefore < 0 || yBefore < 0 || xAfter < 0 || yAfter <0) {
-      throw new IllegalArgumentException("The location can not be negative.");
-    }
+//    if (xBefore < 0 || yBefore < 0 || xAfter < 0 || yAfter <0) {
+//      throw new IllegalArgumentException("The location can not be negative.");
+//    }
 
     this.from = new Point2D(xBefore, yBefore);
     this.to = new Point2D(xAfter, yAfter);
