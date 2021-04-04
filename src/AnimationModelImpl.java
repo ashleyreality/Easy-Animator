@@ -16,16 +16,14 @@ public class AnimationModelImpl implements IAnimationModel {
   private NavigableMap<IShape, List<IEvent>> shapeMap;
 
 
-
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
-   * The AnimationModelImpl() constructor instantiates the declared field.
-   * A TreeMap stores a key Shape and its associated value, a list of Events.
+   * The AnimationModelImpl() constructor instantiates the declared field. A TreeMap stores a key
+   * Shape and its associated value, a list of Events.
    */
   public AnimationModelImpl() {
     shapeMap = new TreeMap<>();
   }
-
 
 
   /**
@@ -64,11 +62,11 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
 
-
   /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
    * This is a helper method that iterates through the ArrayList of "Shapes", shapes, and checks
    * whether two shapes have the same name.
+   *
    * @return true if the ArrayList of Shapes contains duplicate Shape names
    * @throws IllegalArgumentException if the shape is null
    */
@@ -87,16 +85,15 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
 
-
   /**
    * ____________________________________ METHOD: addEvent() _____________________________________.
-   * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes,
-   * with the given parameters.
-   * An "Event" has a:
+   * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes, with
+   * the given parameters. An "Event" has a:
    *
-   * @param event   - the change made to the shape (has a "Shape", eventBegin, eventEnd), an IEvent
-   * @param eventBegin  - the time in ticks when the event begins, an int
-   * @param eventEnd    - the time in ticks when the event ends, an int
+   * @param event      - the change made to the shape (has a "Shape", eventBegin, eventEnd), an
+   *                   IEvent
+   * @param eventBegin - the time in ticks when the event begins, an int
+   * @param eventEnd   - the time in ticks when the event ends, an int
    * @throws IllegalArgumentException if the shape is null
    * @throws IllegalArgumentException if event start time is greater than its end, or is negative
    */
@@ -133,42 +130,43 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // A list of events for the provided shape
     List<IEvent> eventList = shapeMap.get(shape);
-
-    for (IShape otherShape : shapeList) {
-      if (shape.getName().equals(otherShape.getName())) {
-        for (IEvent otherEvent : eventList) {
-          if (event.equals(otherEvent)) {
-            if (eventBegin <= otherEvent.getEventBegin()
-                    && otherEvent.getEventBegin() <= eventEnd
-                    || otherEvent.getEventBegin() <= eventBegin
-                    && eventEnd <= otherEvent.getEventEnd()
-                    || eventBegin <= otherEvent.getEventEnd()
-                    && otherEvent.getEventEnd() <= eventEnd
-                    || otherEvent.getEventBegin() <= eventBegin
-                    && otherEvent.getEventEnd() <= eventEnd) {
-              throw new IllegalArgumentException("The shape can not have a change of the same type " +
-                      "overlap in terms of event time.");
-            }
-
-          }
-        }
-      }
-    }
-
-    // Send the begin and end times to the event
-    event.setEventBegin(eventBegin);
-    event.setEventEnd(eventEnd);
-
     if (shapeMap.get(shape) == null) {
       throw new IllegalArgumentException("The shape is not in the list.");
     }
 
-    // A list of events for the provided shape
-    // List<IEvent> eventList = shapeMap.get(shape);
+    for (IEvent otherEvent : eventList) {
+      if (event.equals(otherEvent)) {
+        throw new IllegalArgumentException("Each event name must be unique.");
+      }
+    }
+
+    for (IShape otherShape : shapeList) {
+      if (shape.getName().equals(otherShape.getName())) {
+        for (IEvent otherEvent : eventList) {
+          if (eventBegin <= otherEvent.getEventBegin()
+                  && otherEvent.getEventBegin() <= eventEnd
+                  || otherEvent.getEventBegin() <= eventBegin
+                  && eventEnd <= otherEvent.getEventEnd()
+                  || eventBegin <= otherEvent.getEventEnd()
+                  && otherEvent.getEventEnd() <= eventEnd) {
+                  //|| otherEvent.getEventBegin() <= eventBegin
+                  //&& otherEvent.getEventEnd() <= eventEnd) {
+            throw new IllegalArgumentException("The shape can not have a change of the same type " +
+                    "overlap in terms of event time.");
+          }
+
+        }
+      }
+    }
+    // Send the begin and end times to the event
+    event.setEventBegin(eventBegin);
+    event.setEventEnd(eventEnd);
 
     // Add the event to the shape it acts on
     eventList.add(event);
   }
+
+
 
 
   /**

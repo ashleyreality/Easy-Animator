@@ -168,14 +168,6 @@ public class AnimationModelTest {
     testAnimation.addEvent(R, size2, 89, 95);
   }
 
-  @Test // REMOVE ONCE FIXED
-  public void testAbove() {
-    testAnimation.addShape(R, 1, 100);
-    size1 = new ScaleShape(R, 50.0, 100.0, 25.0, 100.0);
-    size2 = new ScaleShape(R, 25.0, 100.0, 70.0, 1000.0);
-    testAnimation.addEvent(R, size1, 90, 100);
-    testAnimation.addEvent(R, size2, 89, 95);
-  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testMoveOverlap() {
