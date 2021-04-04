@@ -185,7 +185,7 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * _________________________________ METHOD: getShapeMap() ______________________________________.
    *
-   * @param shape the shape for which the event list is tied to, an IShape
+   * @param shape the shape to which the event list is tied, an IShape
    * @return the map of shapes and their associated event lists
    */
   @Override
