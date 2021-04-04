@@ -1,4 +1,6 @@
 import java.awt.geom.Point2D;
+import java.util.List;
+import java.util.NavigableMap;
 
 /**
  * _______________________________ INTERFACE: AnimationModel {} ___________________________________.
@@ -28,4 +30,18 @@ public interface IAnimationModel {
    * @param eventEnd      - the end of the changes to the shape
    */
   void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd);
+
+  /**
+   * _________________________________ METHOD: getShapeMap() ______________________________________.
+   * @param shape the shape for which the event list is tied to, an IShape
+   * @return the map of shapes and their associated event lists
+   */
+  NavigableMap<IShape, List<IEvent>> getShapeMap(IShape shape);
+
+  /**
+   * ________________________________ METHOD: getEventList() ______________________________________.
+   * @param shape the shape for which the event list is tied to, an IShape
+   * @return the list of events
+   */
+  List<IEvent> getEventList(IShape shape);
 }

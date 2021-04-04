@@ -109,8 +109,8 @@ public class AnimationModelImpl implements IAnimationModel {
               + " time, and neither can be a negative integer value.");
     }
 
-    if (eventBegin < shape.getAppear() || eventBegin >= shape.getDisappear()
-            || eventEnd < shape.getAppear() || eventEnd >= shape.getDisappear()) {
+    if (eventBegin < shape.getAppear() || eventBegin > shape.getDisappear()
+            || eventEnd < shape.getAppear() || eventEnd > shape.getDisappear()) {
       throw new IllegalArgumentException("The shape can not be changed before it appears, the" +
               " shape can not change after it disappears, the shape can not stop changing before" +
               " the shape appears, nor can the shape stop changing after it has already" +
@@ -158,6 +158,29 @@ public class AnimationModelImpl implements IAnimationModel {
     eventList.add(event);
   }
 
+
+  /**
+   * _________________________________ METHOD: getShapeMap() ______________________________________.
+   * @param shape the shape for which the event list is tied to, an IShape
+   * @return the map of shapes and their associated event lists
+   */
+  @Override
+  public NavigableMap<IShape, List<IEvent>> getShapeMap(IShape shape) {
+    // A list of events for the provided shape
+    return this.shapeMap;
+  }
+
+
+  /**
+   * ________________________________ METHOD: getEventList() ______________________________________.
+   * @param shape the shape for which the event list is tied to, an IShape
+   * @return the list of events
+   */
+  @Override
+  public List<IEvent> getEventList(IShape shape) {
+    // A list of events for the provided shape
+    return shapeMap.get(shape);
+  }
 
 
   /**
