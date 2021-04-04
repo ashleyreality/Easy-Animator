@@ -26,7 +26,9 @@ public class ScaleShape extends AbstractEvent {
                     double widthBefore, double heightBefore,
                     double widthAfter, double heightAfter) {
     super(shape);
-
+    if (widthBefore == widthAfter && heightBefore == heightAfter) {
+      throw new IllegalArgumentException("The new scale can not be the same.");
+    }
     if (widthAfter <= 0 || heightAfter <= 0 || widthBefore <= 0 || heightBefore <= 0) {
       throw new IllegalArgumentException("Width and height must be positive.");
     }
