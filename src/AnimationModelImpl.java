@@ -3,6 +3,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NavigableMap;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -126,19 +127,30 @@ public class AnimationModelImpl implements IAnimationModel {
     // If it is not...
     // Add this change to the event list
 
+    // A list of shapes in the shapeMap
+    Set<IShape> shapeSet = shapeMap.keySet();
+    List<IShape> shapeList = new ArrayList<>(shapeSet);
+
     // A list of events for the provided shape
     List<IEvent> eventList = shapeMap.get(shape);
 
-    for (IEvent otherEvent : eventList) {
-      if (event.equals(otherEvent)) {
-        if (eventBegin <= otherEvent.getEventBegin()
-                && otherEvent.getEventBegin() <= eventEnd
-                || otherEvent.getEventBegin() <= eventBegin
-                && eventEnd <= otherEvent.getEventEnd()
-                || eventBegin <= otherEvent.getEventEnd()
-                && otherEvent.getEventEnd() <= eventEnd) {
-          throw new IllegalArgumentException("The shape can not have a change of the same type " +
-                  "overlap in terms of event time.");
+    for (IShape otherShape : shapeList) {
+      if (shape.getName().equals(otherShape.getName())) {
+        for (IEvent otherEvent : eventList) {
+          if (event.equals(otherEvent)) {
+            if (eventBegin <= otherEvent.getEventBegin()
+                    && otherEvent.getEventBegin() <= eventEnd
+                    || otherEvent.getEventBegin() <= eventBegin
+                    && eventEnd <= otherEvent.getEventEnd()
+                    || eventBegin <= otherEvent.getEventEnd()
+                    && otherEvent.getEventEnd() <= eventEnd
+                    || otherEvent.getEventBegin() <= eventBegin
+                    && otherEvent.getEventEnd() <= eventEnd) {
+              throw new IllegalArgumentException("The shape can not have a change of the same type " +
+                      "overlap in terms of event time.");
+            }
+
+          }
         }
       }
     }
