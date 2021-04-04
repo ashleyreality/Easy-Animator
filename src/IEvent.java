@@ -24,7 +24,7 @@ public interface IEvent {
 
   /**
    * _________________________________ METHOD: getEventBegin() ____________________________________.
-   * Get the start time of the shape change.
+   * Gets the start time of the shape change.
    *
    * @return the time for when the change started
    */
@@ -32,7 +32,7 @@ public interface IEvent {
 
   /**
    * _________________________________ METHOD: getEventEnd() ______________________________________.
-   * Get the end time of the shape change.
+   * Gets the end time of the shape change.
    *
    * @return the time for when the change stopped
    */
@@ -40,7 +40,7 @@ public interface IEvent {
 
   /**
    * _________________________________ METHOD: getEventType() _____________________________________.
-   * Get the type of the event.
+   * Gets the type of the event.
    *
    * @return the event type enum
    */

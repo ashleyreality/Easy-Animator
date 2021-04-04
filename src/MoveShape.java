@@ -8,7 +8,7 @@ public class MoveShape extends AbstractEvent {
 
   /**
    * ________________________________ CONSTRUCTOR: MoveShape() ____________________________________.
-   * The MoveShape() constructor instantiates the declared fields. Generates a shape move.
+   * Generates a shape move event.
    *
    * @param shape   - the shape you want to move
    * @param xBefore - a double, the previous x location
@@ -28,7 +28,7 @@ public class MoveShape extends AbstractEvent {
 
   /**
    * _________________________________ METHOD: toString() _________________________________________.
-   * This is a toString() override.
+   * Returns a string describing this event's attributes.
    *
    * @return a string that describes the location move of a shape
    */
@@ -41,6 +41,12 @@ public class MoveShape extends AbstractEvent {
             + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 
+  /**
+   * _________________________________ METHOD: getEventType() _____________________________________.
+   * Gets the type of this event.
+   *
+   * @return an enum storing the event's type
+   */
   public EventType getEventType() {
     return EventType.MOVE;
   }

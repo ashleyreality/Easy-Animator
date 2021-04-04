@@ -11,7 +11,7 @@ public class ScaleShape extends AbstractEvent {
 
   /**
    * _______________________________ CONSTRUCTOR: ScaleShape() ____________________________________.
-   * The ScaleShape() constructor instantiates the declared fields. Generates a scaled shape.
+   * Generates a scaled shape event.
    *
    * @param shape         - the shape to be scaled
    * @param widthBefore   - the previous width of the shape
@@ -39,7 +39,7 @@ public class ScaleShape extends AbstractEvent {
 
   /**
    * _________________________________ METHOD: toString() _________________________________________.
-   * This is a toString() override.
+   * Returns a string describing this event's attributes.
    *
    * @return a string that describes the size of a shape
    */
@@ -55,6 +55,12 @@ public class ScaleShape extends AbstractEvent {
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 
+  /**
+   * _________________________________ METHOD: getEventType() _____________________________________.
+   * Gets the type of this event.
+   *
+   * @return an enum storing the event's type
+   */
   public EventType getEventType() {
     return EventType.SCALE;
   }
