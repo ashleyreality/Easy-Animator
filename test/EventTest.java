@@ -13,13 +13,6 @@ public class EventTest {
   private IEvent scaleEvent;
   private IEvent moveEvent;
 
-  /*
-  things to test:
-  constructor
-  getters and setters for event begin
-  and event end
-  and toStrings
-   */
   @Before
   public void setUp() {
     // make some shapes
@@ -66,7 +59,7 @@ public class EventTest {
             0, 0, 1,
             100, 25, 3);
 
-    assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=0",
+    assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
             colorEvent.toString());
 
     this.scaleEvent = new ScaleShape(oval,
@@ -74,14 +67,14 @@ public class EventTest {
             10.1, 30.90123);
 
     assertEquals("Shape oval1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
-            + "Height: 30.9 from t=0 to t=0",
+                    + "Height: 30.9 from t=0 to t=1",
             scaleEvent.toString());
 
     this.moveEvent = new MoveShape(oval,
             500.0, 100.0,
             14.5, 78.432);
 
-    assertEquals("Shape oval1 moves from (500.0,100.0) to (14.5,78.4) from t=0 to t=0",
+    assertEquals("Shape oval1 moves from (500.0,100.0) to (14.5,78.4) from t=0 to t=1",
             moveEvent.toString());
 
     //_____________________________________ Rectangle Events ______________________________________.
@@ -89,7 +82,7 @@ public class EventTest {
             1, 0, 0,
             255, 255, 255);
 
-    assertEquals("Shape rect1 changes color from (1,0,0) to (255,255,255) from t=0 to t=0",
+    assertEquals("Shape rect1 changes color from (1,0,0) to (255,255,255) from t=0 to t=1",
             colorCheck.toString());
 
     IEvent scaleCheck = new ScaleShape(rect,
@@ -97,7 +90,7 @@ public class EventTest {
             1784357921834.28349, 9872345.8300);
 
     assertEquals("Shape rect1 scales from Width: 50.0, Height: 100.0 to "
-            + "Width: 1784357921834.3, Height: 9872345.8 from t=0 to t=0",
+                    + "Width: 1784357921834.3, Height: 9872345.8 from t=0 to t=1",
             scaleCheck.toString());
 
     IEvent moveCheck = new MoveShape(rect,
@@ -105,7 +98,7 @@ public class EventTest {
             754732847528.00042, 8247582);
 
     assertEquals("Shape rect1 moves from (200.0,200.0) to "
-            + "(754732847528.0,8247582.0) from t=0 to t=0",
+                    + "(754732847528.0,8247582.0) from t=0 to t=1",
             moveCheck.toString());
 
     // ____________________ Negative Move ____________________
@@ -114,22 +107,22 @@ public class EventTest {
             -234753489.346, -2);
 
     assertEquals("Shape rect1 moves from (200.0,200.0) to "
-            + "(-234753489.3,-2.0) from t=0 to t=0",
+                    + "(-234753489.3,-2.0) from t=0 to t=1",
             negMoveCheck.toString());
 
     // ____________________ Test With Zeros ____________________
     IEvent zeroColorCheck = new ChangeColor(rect,
             1, 0, 0,
-            0,0,0);
+            0, 0, 0);
 
-    assertEquals("Shape rect1 changes color from (1,0,0) to (0,0,0) from t=0 to t=0",
+    assertEquals("Shape rect1 changes color from (1,0,0) to (0,0,0) from t=0 to t=1",
             zeroColorCheck.toString());
 
     IEvent zeroMoveCheck = new MoveShape(rect,
             200.0, 200.0,
             0, 0);
     assertEquals("Shape rect1 moves from (200.0,200.0) to "
-            + "(0.0,0.0) from t=0 to t=0", zeroMoveCheck.toString());
+            + "(0.0,0.0) from t=0 to t=1", zeroMoveCheck.toString());
   }
 
 
@@ -204,17 +197,17 @@ public class EventTest {
   // valid positive begin int
   @Test
   public void testEventBeginSetter() {
-    assertEquals(0,this.colorEvent.getEventBegin());
+    assertEquals(0, this.colorEvent.getEventBegin());
     this.colorEvent.setEventBegin(0);
-    assertEquals(0,this.colorEvent.getEventBegin());
+    assertEquals(0, this.colorEvent.getEventBegin());
     this.moveEvent.setEventBegin(50);
-    assertEquals(50,this.moveEvent.getEventBegin());
+    assertEquals(50, this.moveEvent.getEventBegin());
     this.scaleEvent.setEventBegin(700);
-    assertEquals(700,this.scaleEvent.getEventBegin());
+    assertEquals(700, this.scaleEvent.getEventBegin());
   }
 
   // negative being int
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNegativeEventBeginSetter() {
     this.colorEvent.setEventBegin(-10);
   }
@@ -223,35 +216,45 @@ public class EventTest {
   // valid end, set begin first
   @Test
   public void testEventEndSetter() {
-    assertEquals(0,this.colorEvent.getEventEnd());
+    assertEquals(1, this.colorEvent.getEventEnd());
     this.colorEvent.setEventBegin(0);
     this.colorEvent.setEventEnd(2);
-    assertEquals(2,this.colorEvent.getEventEnd());
+    assertEquals(2, this.colorEvent.getEventEnd());
     this.moveEvent.setEventBegin(50);
     this.moveEvent.setEventEnd(200);
-    assertEquals(200,this.moveEvent.getEventEnd());
+    assertEquals(200, this.moveEvent.getEventEnd());
     this.scaleEvent.setEventBegin(700);
     this.scaleEvent.setEventEnd(87435);
-    assertEquals(87435,this.scaleEvent.getEventEnd());
+    assertEquals(87435, this.scaleEvent.getEventEnd());
   }
 
   // negative end
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNegativeEventEndSetter() {
     this.colorEvent.setEventEnd(-100);
   }
 
   // 0 end
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testZeroEventEndSetter() {
     this.moveEvent.setEventEnd(0);
   }
 
   // set end before (lower) than begin
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testEarlyEventEndSetter() {
     this.moveEvent.setEventBegin(80);
     this.moveEvent.setEventEnd(79);
+  }
+
+  @Test
+  public void testToString() {
+    assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
+            colorEvent.toString());
+    assertEquals("Shape rect1 moves from (200.0,200.0) to (50.0,100.0) from t=0 to t=1",
+            moveEvent.toString());
+    assertEquals("Shape oval1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
+            + "Height: 30.9 from t=0 to t=1", scaleEvent.toString());
   }
 
 }
