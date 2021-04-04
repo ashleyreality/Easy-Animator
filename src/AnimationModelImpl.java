@@ -117,6 +117,32 @@ public class AnimationModelImpl implements IAnimationModel {
               " disappeared.");
     }
 
+    // Iterate through the event list
+    // Check for matches that exist in the list for the type of change being passed into addEvent()
+    // If there is a match...
+    // Check that the other change of the same type is not between this change's event times
+    // If it is...
+    // Throw an exception
+    // If it is not...
+    // Add this change to the event list
+
+    // A list of events for the provided shape
+    List<IEvent> eventList = shapeMap.get(shape);
+
+    for (IEvent otherEvent : eventList) {
+      if (event.equals(otherEvent)) {
+        if (eventBegin <= otherEvent.getEventBegin()
+                && otherEvent.getEventBegin() <= eventEnd
+                || otherEvent.getEventBegin() <= eventBegin
+                && eventEnd <= otherEvent.getEventEnd()
+                || eventBegin <= otherEvent.getEventEnd()
+                && otherEvent.getEventEnd() <= eventEnd) {
+          throw new IllegalArgumentException("The shape can not have a change of the same type " +
+                  "overlap in terms of event time.");
+        }
+      }
+    }
+
     // Send the begin and end times to the event
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);
@@ -126,7 +152,7 @@ public class AnimationModelImpl implements IAnimationModel {
     }
 
     // A list of events for the provided shape
-    List<IEvent> eventList = shapeMap.get(shape);
+    // List<IEvent> eventList = shapeMap.get(shape);
 
     // Add the event to the shape it acts on
     eventList.add(event);
