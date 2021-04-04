@@ -24,11 +24,11 @@ public class Rectangle extends AbstractShape {
                    int red, int green, int blue, double x, double y) {
     super(name, width, height, red, green, blue, x, y);
   }
-
+/*
   public Rectangle(String name, double width, double height,
                    Color color, Point2D location) {
     super(name, width, height, color, location);
-  }
+  } */
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.

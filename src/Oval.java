@@ -30,13 +30,13 @@ public class Oval extends AbstractShape {
     this.radiusX = width / 2;
     this.radiusY = height / 2;
   }
-
+/*
   private Oval(String name, double width, double height,
                    Color color, Point2D location) {
     super(name, width, height, color, location);
     this.radiusX = width / 2;
     this.radiusY = height / 2;
-  }
+  }*/
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
