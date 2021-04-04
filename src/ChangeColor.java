@@ -24,7 +24,7 @@ public class ChangeColor extends AbstractEvent {
       throw new IllegalArgumentException("The new color can not be the same.");
     }
     if (fromR < 0 || fromR > 255 || fromG < 0 || fromG > 255 || fromB < 0 || fromB > 255
-            ||toR < 0 || toR > 255 || toG < 0 || toG > 255 || toB < 0 || toB > 255 ) {
+            || toR < 0 || toR > 255 || toG < 0 || toG > 255 || toB < 0 || toB > 255 ) {
       throw new IllegalArgumentException("RGB color values must be between 0 and 255.");
     }
 

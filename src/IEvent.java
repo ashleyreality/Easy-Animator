@@ -38,6 +38,12 @@ public interface IEvent {
    */
   public int getEventEnd();
 
+  /**
+   * _________________________________ METHOD: getEventType() _____________________________________.
+   * Get the type of the event.
+   *
+   * @return the event type enum
+   */
   public EventType getEventType();
 
   //  /**

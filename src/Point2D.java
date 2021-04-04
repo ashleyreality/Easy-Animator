@@ -17,7 +17,8 @@ public class Point2D {
   public Point2D(double x, double y) {
 
     //    if (x < 0 || y < 0) {
-    //      throw new IllegalArgumentException("The x and y coordinates can not be negative values.");
+    //      throw new IllegalArgumentException
+    //      ("The x and y coordinates can not be negative values.");
     //    }
 
     this.x = x;

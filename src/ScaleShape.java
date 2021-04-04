@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.NavigableMap;
-
 /**
  * ______________________________ CONCRETE CLASS: ScaleShape ______________________________________.
  * The ScaleShape class extends ChangeShape. Use it to scale a shape from one size to another size.
@@ -33,22 +30,6 @@ public class ScaleShape extends AbstractEvent {
       throw new IllegalArgumentException("Width and height must be positive.");
     }
 
-    //    NavigableMap<IShape, List<IEvent>> shapeMap = shape.getShapeMap(shape);
-    //    List<IEvent> eventList = shapeMap.getEventList(shape);
-    //
-    //    for (IEvent otherEvent : eventList) {
-    //      if (event.equals(otherEvent)) {
-    //        if (eventBegin <= otherEvent.getEventBegin()
-    //                && otherEvent.getEventBegin() <= eventEnd
-    //                || otherEvent.getEventBegin() <= eventBegin
-    //                && eventEnd <= otherEvent.getEventEnd()
-    //                || eventBegin <= otherEvent.getEventEnd()
-    //                && otherEvent.getEventEnd() <= eventEnd) {
-    //          throw new IllegalArgumentException("The shape can not have a change of the same type " +
-    //                  "overlap in terms of event time.");
-    //        }
-    //      }
-    //    }
 
     this.widthBefore = widthBefore;
     this.widthAfter = widthAfter;
@@ -64,7 +45,8 @@ public class ScaleShape extends AbstractEvent {
    */
   @Override
   public String toString() {
-    // "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
+    // "Shape R scales from Width: 50.0,
+    // Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
     return "Shape " + this.getShape().getName()
             + " scales from Width: " + String.format("%.1f", this.widthBefore)
             + ", Height: " + String.format("%.1f", this.heightBefore)

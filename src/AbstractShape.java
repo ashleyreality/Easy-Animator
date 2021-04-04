@@ -80,7 +80,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   /**
-   * ___________________________________ METHOD: getHeight() _______________________________________.
+   * ___________________________________ METHOD: getHeight() ______________________________________.
    * This is a getter that gets the height of the shape.
    * @return the height of the shape, a double
    */
@@ -90,7 +90,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   /**
-   * ___________________________________ METHOD: setHeight() _______________________________________.
+   * ___________________________________ METHOD: setHeight() ______________________________________.
    * This is a setter that sets the height of the shape.
    */
   @Override
@@ -178,7 +178,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   /**
-   * _________________________________ METHOD: getDisappear() ______________________________________.
+   * _________________________________ METHOD: getDisappear() _____________________________________.
    * This is a getter that gets the disappear time of the shape.
    * @return the disappear time of the shape, an int
    */
@@ -188,7 +188,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   /**
-   * _________________________________ METHOD: setDisappear() ______________________________________.
+   * _________________________________ METHOD: setDisappear() _____________________________________.
    * This is a setter that sets the disappear time of the shape.
    */
   @Override

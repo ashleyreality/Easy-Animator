@@ -71,7 +71,7 @@ public interface IShape extends Comparable<IShape> {
   int getDisappear();
 
   /**
-   * ___________________________________ METHOD: setDisappear() ______________________________________.
+   * ___________________________________ METHOD: setDisappear() __________________________________.
    *
    * @param disappear - the time in ticks when the Shape is set to disappear, an int
    */

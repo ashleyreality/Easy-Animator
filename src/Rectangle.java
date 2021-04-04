@@ -7,7 +7,7 @@
 public class Rectangle extends AbstractShape {
 
   /**
-   * __________________________________ CONSTRUCTOR: Rectangle() _______________________________________.
+   * _____________________________ CONSTRUCTOR: Rectangle() _______________________________________.
    * This is the Rectangle() constructor. It creates a rectangle with the given width and height,
    * color parameters, and location coordinates.
    *
@@ -24,11 +24,6 @@ public class Rectangle extends AbstractShape {
                    int red, int green, int blue, double x, double y) {
     super(name, width, height, red, green, blue, x, y);
   }
-/*
-  public Rectangle(String name, double width, double height,
-                   Color color, Point2D location) {
-    super(name, width, height, color, location);
-  } */
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
@@ -47,8 +42,3 @@ public class Rectangle extends AbstractShape {
             + "\nDisappears at t=" + this.disappear + "\n";
   }
 }
-
-//  @Override
-//  public IShape copy() {
-//    return new Rectangle(this.name,this.width,this.height,this.color,this.location);
-//  }

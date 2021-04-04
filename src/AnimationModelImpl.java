@@ -112,10 +112,10 @@ public class AnimationModelImpl implements IAnimationModel {
 
     if (eventBegin < shape.getAppear() || eventBegin > shape.getDisappear()
             || eventEnd < shape.getAppear() || eventEnd > shape.getDisappear()) {
-      throw new IllegalArgumentException("The shape can not be changed before it appears, the" +
-              " shape can not change after it disappears, the shape can not stop changing before" +
-              " the shape appears, nor can the shape stop changing after it has already" +
-              " disappeared.");
+      throw new IllegalArgumentException("The shape can not be changed before it appears, the"
+              + " shape can not change after it disappears, the shape can not stop changing before"
+              + " the shape appears, nor can the shape stop changing after it has already"
+              + " disappeared.");
     }
 
     // Iterate through the event list
@@ -160,8 +160,8 @@ public class AnimationModelImpl implements IAnimationModel {
                   && otherEvent.getEventEnd() <= eventEnd)) {
             //|| otherEvent.getEventBegin() <= eventBegin
             //&& otherEvent.getEventEnd() <= eventEnd) {
-            throw new IllegalArgumentException("The shape can not have a change of the same type " +
-                    "overlap in terms of event time.");
+            throw new IllegalArgumentException("The shape can not have a change of the same type "
+                    + "overlap in terms of event time.");
           }
 
         }
