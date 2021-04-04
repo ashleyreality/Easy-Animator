@@ -82,6 +82,25 @@ public class AnimationModelTest {
     testAnimation.addShape(R, 13, 1);
   }
 
+  // ___________________________ EXCEPTIONS: Null tests ______________________________________.
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullShape() {
+    testAnimation.addShape(null, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullShapeEvent() {
+    testAnimation.addShape(C, 1, 100);
+    move1 = new MoveShape(C, 500.0, 100.0, 300.0, 300.0);
+    testAnimation.addEvent(null, move1, 20, 45);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullEvent() {
+    testAnimation.addShape(C, 1, 100);
+    testAnimation.addEvent(C, null, 29, 85);
+  }
+
   // _____________________________________ AddShape() Test ________________________________________.
   @Test
   public void testAddShape() {
@@ -199,6 +218,32 @@ public class AnimationModelTest {
             0, 1, 0);
     testAnimation.addEvent(C, colorChange1, 20, 45);
     testAnimation.addEvent(C, colorChange1, 36, 95);
+  }
+
+  // _________________________ Overlapping Different Changes Test _______________________________.
+  @Test
+  public void testDifferentChangeTypeOverlap() {
+    testAnimation.addShape(C, 1, 100);
+    move1 = new MoveShape(C, 500.0, 100.0, 300.0, 300.0);
+    size1 = new ScaleShape(C, 120.0, 60.0, 85.0, 10.67);
+    colorChange1 = new ChangeColor(C,
+            0, 0, 1,
+            0, 1, 0);
+    testAnimation.addEvent(C, move1, 20, 45);
+    testAnimation.addEvent(C, size1, 28, 88);
+    testAnimation.addEvent(C, colorChange1, 36, 95);
+    assertEquals("""
+            Shapes:
+            Name: C
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)
+            Appears at t=1
+            Disappears at t=100
+
+            Shape C moves from (500.0,100.0) to (300.0,300.0) from t=20 to t=45
+            Shape C scales from Width: 120.0, Height: 60.0 to Width: 85.0, Height: 10.7 from t=28 to t=88
+            Shape C changes color from (0,0,1) to (0,1,0) from t=36 to t=95
+            """,testAnimation.toString());
   }
 
   // ______________________________________ AddMove() Test ________________________________________.

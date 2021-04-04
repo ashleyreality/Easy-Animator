@@ -101,6 +101,9 @@ public class AnimationModelImpl implements IAnimationModel {
   public void addEvent(IShape shape, IEvent event, int eventBegin, int eventEnd) {
 
     shapeNullException(shape);
+    if (event == null) {
+      throw new IllegalArgumentException("Event can not be null.");
+    }
 
     if (eventEnd <= eventBegin || eventBegin < 0) {
       throw new IllegalArgumentException("The event begin time must be greater than the event end"
@@ -134,11 +137,12 @@ public class AnimationModelImpl implements IAnimationModel {
       throw new IllegalArgumentException("The shape is not in the list.");
     }
 
-    for (IEvent otherEvent : eventList) {
+    // I dont think event names need to be unique -  discuss today
+    /*for (IEvent otherEvent : eventList) {
       if (event.equals(otherEvent)) {
         throw new IllegalArgumentException("Each event name must be unique.");
       }
-    }
+    }*/
 
     // Need to add a check for:
     // If event TYPE is the same
@@ -147,14 +151,15 @@ public class AnimationModelImpl implements IAnimationModel {
     for (IShape otherShape : shapeList) {
       if (shape.getName().equals(otherShape.getName())) {
         for (IEvent otherEvent : eventList) {
-          if (eventBegin <= otherEvent.getEventBegin()
+          if (event.getEventType() == otherEvent.getEventType()
+                  && (eventBegin <= otherEvent.getEventBegin()
                   && otherEvent.getEventBegin() <= eventEnd
                   || otherEvent.getEventBegin() <= eventBegin
                   && eventEnd <= otherEvent.getEventEnd()
                   || eventBegin <= otherEvent.getEventEnd()
-                  && otherEvent.getEventEnd() <= eventEnd) {
-                  //|| otherEvent.getEventBegin() <= eventBegin
-                  //&& otherEvent.getEventEnd() <= eventEnd) {
+                  && otherEvent.getEventEnd() <= eventEnd)) {
+            //|| otherEvent.getEventBegin() <= eventBegin
+            //&& otherEvent.getEventEnd() <= eventEnd) {
             throw new IllegalArgumentException("The shape can not have a change of the same type " +
                     "overlap in terms of event time.");
           }
@@ -165,16 +170,14 @@ public class AnimationModelImpl implements IAnimationModel {
     // Send the begin and end times to the event
     event.setEventBegin(eventBegin);
     event.setEventEnd(eventEnd);
-
     // Add the event to the shape it acts on
     eventList.add(event);
   }
 
 
-
-
   /**
    * _________________________________ METHOD: getShapeMap() ______________________________________.
+   *
    * @param shape the shape for which the event list is tied to, an IShape
    * @return the map of shapes and their associated event lists
    */
@@ -187,6 +190,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getEventList() ______________________________________.
+   *
    * @param shape the shape for which the event list is tied to, an IShape
    * @return the list of events
    */
@@ -199,6 +203,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ______________________________ METHOD: shapeNullException() __________________________________.
+   *
    * @param shape the shape being checked
    * @throws IllegalArgumentException if the shape is null
    */
@@ -207,7 +212,6 @@ public class AnimationModelImpl implements IAnimationModel {
       throw new IllegalArgumentException("Shape can not be null.");
     }
   }
-
 
 
   /**
@@ -246,11 +250,10 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
 
-
   /**
    * _________________________________ STUB: getShapesAtTick() ____________________________________.
-   * This method getShapesAtTick() is a stub. It does not get implemented in this model. This
-   * method will be implemented in the controller, instead. "The return type will be some form of a
+   * This method getShapesAtTick() is a stub. It does not get implemented in this model. This method
+   * will be implemented in the controller, instead. "The return type will be some form of a
    * collection of shapes, as hinted by your... description that it "gets all the shapes." -
    * Freifeld* * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
    * map class in java implements the navigable map

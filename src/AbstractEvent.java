@@ -15,6 +15,9 @@ public abstract class AbstractEvent implements IEvent {
    * @param shape - the shape you want to change
    */
   public AbstractEvent(IShape shape) {
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape cant be null");
+    }
     this.shape = shape;
     // event end can not be 0 or same as event begin
     this.eventEnd = 1;

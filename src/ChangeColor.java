@@ -20,11 +20,6 @@ public class ChangeColor extends AbstractEvent {
    */
   public ChangeColor(IShape shape, int fromR, int fromG, int fromB, int toR, int toG, int toB) {
     super(shape);
-
-    if (shape == null) {
-      throw new IllegalArgumentException("The shape can not be null.");
-    }
-
     if (fromR < 0 || fromR > 255 || fromG < 0 || fromG > 255 || fromB < 0 || fromB > 255
             ||toR < 0 || toR > 255 || toG < 0 || toG > 255 || toB < 0 || toB > 255 ) {
       throw new IllegalArgumentException("RGB color values must be between 0 and 255.");
@@ -47,5 +42,9 @@ public class ChangeColor extends AbstractEvent {
             + " changes color from " + this.from.toString()
             + " to " + this.to.toString()
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
+  }
+
+  public EventType getEventType() {
+    return EventType.RECOLOR;
   }
 }

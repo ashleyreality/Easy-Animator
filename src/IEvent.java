@@ -38,6 +38,8 @@ public interface IEvent {
    */
   public int getEventEnd();
 
+  public EventType getEventType();
+
   //  /**
   //   * The change method creates a changed shape event.
   //   *

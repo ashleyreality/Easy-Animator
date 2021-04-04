@@ -10,22 +10,17 @@ public class MoveShape extends AbstractEvent {
    * ________________________________ CONSTRUCTOR: MoveShape() ____________________________________.
    * The MoveShape() constructor instantiates the declared fields. Generates a shape move.
    *
-   * @param shape - the shape you want to move
-   * @param xBefore     - a double, the previous x location
-   * @param yBefore     - a double, the previous y location
-   * @param xAfter      - a double, the new x location
-   * @param yAfter      - a double, the new y location
+   * @param shape   - the shape you want to move
+   * @param xBefore - a double, the previous x location
+   * @param yBefore - a double, the previous y location
+   * @param xAfter  - a double, the new x location
+   * @param yAfter  - a double, the new y location
    */
   public MoveShape(IShape shape, double xBefore, double yBefore, double xAfter, double yAfter) {
     super(shape);
-
-    if (shape == null) {
-      throw new IllegalArgumentException("The shape can not be null.");
+    if (xBefore == xAfter && yBefore == yAfter) {
+      throw new IllegalArgumentException("The location can not be the same.");
     }
-
-//    if (xBefore < 0 || yBefore < 0 || xAfter < 0 || yAfter <0) {
-//      throw new IllegalArgumentException("The location can not be negative.");
-//    }
 
     this.from = new Point2D(xBefore, yBefore);
     this.to = new Point2D(xAfter, yAfter);
@@ -44,5 +39,9 @@ public class MoveShape extends AbstractEvent {
     return "Shape " + this.shape.getName()
             + " moves from " + this.from.toString() + " to " + this.to.toString() + " from t="
             + this.getEventBegin() + " to t=" + this.getEventEnd();
+  }
+
+  public EventType getEventType() {
+    return EventType.MOVE;
   }
 }

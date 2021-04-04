@@ -70,4 +70,8 @@ public class ScaleShape extends AbstractEvent {
             + String.format("%.1f", this.heightAfter)
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
+
+  public EventType getEventType() {
+    return EventType.SCALE;
+  }
 }
