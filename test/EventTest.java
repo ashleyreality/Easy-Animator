@@ -193,6 +193,51 @@ public class EventTest {
             10, -1.3);
   }
 
+  // null tests
+  @Test(expected = IllegalArgumentException.class)
+  public void nullScaleShape() {
+    new ScaleShape(null,
+            50.0, 100.0,
+            10, 13);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void nullColorShape() {
+    new ChangeColor(null,
+            0, 0, 1,
+            200, 200, 200);
+  }
+
+
+  @Test(expected = IllegalArgumentException.class)
+  public void nullMoveShape() {
+    new MoveShape(null,
+            64880.0, 130.0,
+            10, -1.3);
+  }
+
+  // change to the same
+  @Test(expected = IllegalArgumentException.class)
+  public void noColorChange() {
+    new ChangeColor(oval,
+            0, 0, 1,
+            0, 0, 1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void noSizeChange() {
+    new ScaleShape(rect,
+            50.0, 100.0,
+            50.0, 100.0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void noMoveChange() {
+    new MoveShape(rect,
+            200.0, 200.0,
+            200.0, 200.0);
+  }
+
   // set event begin
   // valid positive begin int
   @Test
