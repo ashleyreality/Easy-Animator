@@ -51,14 +51,14 @@ The MoveShape class extends AbstractEvent. Use the MoveShape class to create a m
 #### ChangeColor
 The MoveShape class extends AbstractEvent. Use the ChangeColor class to create a color change event on an IShape.
 
-`IEvent example = new ChangeColor(example, 1.0, 1.0, 2.0, 2.0);`
+`IEvent example = new ChangeColor(example, 0, 0, 0, 255, 255, 255);`
 
 #### ScaleShape
 The MoveShape class extends AbstractEvent. Use the ScaleShape class to create a scale shape event on an IShape.
 
 `IEvent example = new ScaleShape(example, 1.0, 1.0, 2.0, 2.0);`
 
-### Helper classes 
+### Helper classes and enums
 #### Color
 Color is a class used to store RGB colors. Its constructor accepts three parameters: 
 **R**, **G**, and **B**. We created this class so that we could more easily store color values. 
