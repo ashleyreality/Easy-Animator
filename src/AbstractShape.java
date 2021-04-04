@@ -25,7 +25,7 @@ public abstract class AbstractShape implements IShape {
    * @param blue   blue value of shape
    * @param x      x coordinate of shape
    * @param y      y coordinate of shape
-   * @throws IllegalArgumentException if width or height are negative or if name is vull
+   * @throws IllegalArgumentException if width or height are negative or if name is null
    */
   public AbstractShape(String name, double width, double height,
                        int red, int green, int blue, double x, double y) {

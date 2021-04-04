@@ -6,8 +6,8 @@ import java.util.Objects;
  * coordinates as (x,y).
  */
 public class Point2D {
-  private double x;
-  private double y;
+  private final double x;
+  private final double y;
 
   /**
    * _________________________________ CONSTRUCTOR: Point2D() _____________________________________.

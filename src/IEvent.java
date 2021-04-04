@@ -11,7 +11,7 @@ public interface IEvent {
    * @param begin the start time of the change
    * @throws IllegalArgumentException if start tick is negative
    */
-  public void setEventBegin(int begin);
+  void setEventBegin(int begin);
 
   /**
    * ___________________________________ METHOD: setEventEnd() ____________________________________.
@@ -20,7 +20,7 @@ public interface IEvent {
    * @param end the end time of the change
    * @throws IllegalArgumentException if end tick is negative or less than begin
    */
-  public void setEventEnd(int end);
+  void setEventEnd(int end);
 
   /**
    * _________________________________ METHOD: getEventBegin() ____________________________________.
@@ -28,7 +28,7 @@ public interface IEvent {
    *
    * @return the time for when the change started
    */
-  public int getEventBegin();
+  int getEventBegin();
 
   /**
    * _________________________________ METHOD: getEventEnd() ______________________________________.
@@ -36,7 +36,7 @@ public interface IEvent {
    *
    * @return the time for when the change stopped
    */
-  public int getEventEnd();
+  int getEventEnd();
 
   /**
    * _________________________________ METHOD: getEventType() _____________________________________.
@@ -44,7 +44,7 @@ public interface IEvent {
    *
    * @return the event type enum
    */
-  public EventType getEventType();
+  EventType getEventType();
 
   //  /**
   //   * The change method creates a changed shape event.

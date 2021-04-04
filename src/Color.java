@@ -5,9 +5,9 @@ import java.util.Objects;
  * The Color class defines colors that can be assigned to Shapes.
  */
 public class Color {
-  private int red;
-  private int green;
-  private int blue;
+  private final int red;
+  private final int green;
+  private final int blue;
 
   /**
    * __________________________________ CONSTRUCTOR: Color() ______________________________________.

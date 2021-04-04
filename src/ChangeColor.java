@@ -3,8 +3,8 @@
  * The ChangeColor class extends AbstractEvent. It changes the color of a shape.
  */
 public class ChangeColor extends AbstractEvent {
-  private Color from;
-  private Color to;
+  private final Color from;
+  private final Color to;
 
   /**
    * ________________________________ CONSTRUCTOR: ChangeColor() __________________________________.

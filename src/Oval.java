@@ -5,9 +5,9 @@
  */
 public class Oval extends AbstractShape {
   // radiusX, from the center point to the outer edge of the circle along the X-axis/width
-  private double radiusX;
+  private final double radiusX;
   // radiusY, from the center point to the outer edge of the circle along the Y-axis/height
-  private double radiusY;
+  private final double radiusY;
 
   /**
    * __________________________________ CONSTRUCTOR: Oval() _______________________________________.

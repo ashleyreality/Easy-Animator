@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private NavigableMap<IShape, List<IEvent>> shapeMap;
+  private final NavigableMap<IShape, List<IEvent>> shapeMap;
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -234,14 +234,14 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // Add the shapes to the StringBuilder, sb
     sb.append("Shapes:\n");
-    List<String> s = shapeMap.keySet().stream().map(n -> n.toString()).collect(Collectors.toList());
+    List<String> s = shapeMap.keySet().stream().map(Object::toString).collect(Collectors.toList());
     for (String l : s) {
       sb.append(l);
       sb.append("\n");
     }
 
     // Sort the events in terms of begin & end time
-    Comparator<IEvent> sortByEventBegin = (a, b) -> a.getEventBegin() - b.getEventBegin();
+    Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
 
     // Create a list of sorted events
     List<IEvent> t = shapeMap.values().stream().flatMap(Collection::stream)
@@ -261,8 +261,8 @@ public class AnimationModelImpl implements IAnimationModel {
    * _________________________________ STUB: getShapesAtTick() ____________________________________.
    * This method getShapesAtTick() is a stub. It does not get implemented in this model. This method
    * will be implemented in the controller, instead. "The return type will be some form of a
-   * collection of shapes, as hinted by your... description that it "gets all the shapes." -
-   * Freifeld* * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
+   * collection of shapes, as hinted by your description that it "gets all the shapes." -
+   * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
    * map class in java implements the navigable map
    */
   public String getShapesAtTick(int tick) {

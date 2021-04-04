@@ -3,8 +3,8 @@
  * The MoveShape class extends ChangeShape. Use it to move a shape from one location to another.
  */
 public class MoveShape extends AbstractEvent {
-  private Point2D from;
-  private Point2D to;
+  private final Point2D from;
+  private final Point2D to;
 
   /**
    * ________________________________ CONSTRUCTOR: MoveShape() ____________________________________.

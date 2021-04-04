@@ -342,6 +342,12 @@ public class ShapeTest {
   }
 
   @Test
+  public void testCompareTo() {
+    assertEquals(-1, rect.compareTo(oval));
+    assertEquals(1, oval.compareTo(rect));
+  }
+
+  @Test
   public void testToString() {
     assertEquals("""
             Name: rect1
