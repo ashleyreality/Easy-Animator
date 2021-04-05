@@ -1,8 +1,7 @@
 # Easy-Animator
-// Still a draft but feel free to add or change things!
 
-The Easy Animator model accepts IShape objects and IEvent objects. You can use these objects to 
-create a simple animation model.
+The Easy Animator model accepts IShape objects and IEvent objects. You can add these objects 
+to the model to create text output describing a simple animation.
 
 ### AnimationModel
 The AnimationModel interface describes methods you must use if you implement AnimationModel. 
@@ -17,11 +16,13 @@ implementation includes private helper methods that don't need to be exposed to 
 * `addShape(IShape shape, int appear, int disappear)` - add an IShape to your animation
 * `addEvent(IShape shape, IEvent event, int appear, int disappear)` - add an IEvent to your IShape
 * `getEventList(IShape shape)` - returns a list of all events associated with a shape
-* `getShapesAtTick(int tick)` - get all shapes and their states at a given tick 
+* `getShapesAtTick(int tick)` - get all shapes and their states at a given tick. Currently a stub. 
 
 ### IShape 
 The IShape interface describes methods you must use if you implement IShape. IShape objects are 
-designed to represent shapes.  We created this interface so that...
+designed to represent shapes.  We created this interface so that any helper methods stay private 
+and don't need to be exposed to the client, and there's no need for the client to look at the 
+implementation itself.
 
 #### AbstractShape 
 The AbstractShape class implements IShape. It includes a comparator that enables comparison by shape 
@@ -43,7 +44,8 @@ concrete class to enable the client to generate an oval shape.
 ### IEvent
 The IEvent interface describes methods you must use if you implement IEvent. IEvent objects are
 designed to represent events that happen on shapes: move, scale, and change color. We created this 
-interface to...
+interface as a contract for the client, so that helper methods aren't exposed and there's no need 
+for the client to look at the implementation itself. 
 
 #### AbstractEvent
 The AbstractEvent class implements IEvent. It includes a change() stub that will be implemented once 
