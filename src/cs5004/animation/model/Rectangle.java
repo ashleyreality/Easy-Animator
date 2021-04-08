@@ -1,4 +1,4 @@
-package cs5004.animationmodel;
+package cs5004.animation.model;
 
 /**
  * __________________________________ CLASS: Rectangle {} _________________________________________.

@@ -1,15 +1,15 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.animationmodel.AnimationModelImpl;
-import cs5004.animationmodel.ChangeColor;
-import cs5004.animationmodel.IAnimationModel;
-import cs5004.animationmodel.IEvent;
-import cs5004.animationmodel.IShape;
-import cs5004.animationmodel.MoveShape;
-import cs5004.animationmodel.Oval;
-import cs5004.animationmodel.Rectangle;
-import cs5004.animationmodel.ScaleShape;
+import cs5004.animation.model.AnimationModelImpl;
+import cs5004.animation.model.ChangeColor;
+import cs5004.animation.model.IAnimationModel;
+import cs5004.animation.model.IEvent;
+import cs5004.animation.model.IShape;
+import cs5004.animation.model.MoveShape;
+import cs5004.animation.model.Oval;
+import cs5004.animation.model.Rectangle;
+import cs5004.animation.model.ScaleShape;
 
 import static org.junit.Assert.assertEquals;
 

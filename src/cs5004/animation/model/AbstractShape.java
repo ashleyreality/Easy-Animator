@@ -1,4 +1,4 @@
-package cs5004.animationmodel;
+package cs5004.animation.model;
 
 /**
  * _______________________________ ABSTRACT: AnimationModelImpl ___________________________________.
