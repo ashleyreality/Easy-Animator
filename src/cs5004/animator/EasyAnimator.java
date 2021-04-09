@@ -1,9 +1,20 @@
 package cs5004.animator;
 
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
+
+import cs5004.animator.model.AnimationModelImpl;
+import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationReader;
+import cs5004.animator.util.Builder;
 
 
 public class EasyAnimator {
+  private static IAnimationModel model;
+
   public static void main(String[] args) {
     // This is the entry point for our program. We will pass in command line arguments
     // which are put into a String array (args).
@@ -13,6 +24,7 @@ public class EasyAnimator {
     // -speed "integer-ticks-per-second"
     // See section 5 of assignment for more info
 
+    model = new AnimationModelImpl();
 
     // convert array to string
     StringBuilder sb = new StringBuilder();
@@ -26,7 +38,17 @@ public class EasyAnimator {
     in.findInLine("-in");
     String inResult = in.next();
     System.out.println(inResult);
+
     // open this file and send it to Builder?
+    Readable file = null;
+    try {
+      file = new FileReader(inResult);
+    } catch (FileNotFoundException e) {
+      System.out.println("The input file was not found.");
+      e.printStackTrace();
+    }
+    AnimationBuilder build = new Builder(model);
+    model  = (IAnimationModel) AnimationReader.parseFile(file, build);
 
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");

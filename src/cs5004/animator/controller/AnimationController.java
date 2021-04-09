@@ -11,8 +11,10 @@ public class AnimationController implements IAnimationController {
   private IAnimationModel model;
   final Readable in;
   final Appendable out;
+  private String[] args;
 
-  public AnimationController(Readable in, Appendable out) {
+  public AnimationController(String[] args, Readable in, Appendable out) {
+    this.args = args;
     this.in = in;
     this.out = out;
   }
