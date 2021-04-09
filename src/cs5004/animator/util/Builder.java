@@ -2,6 +2,8 @@ package cs5004.animator.util;
 
 public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationModel> {
 
+  // We need to implement this class so that it works with IAnimationModel. --AB
+
   public Builder() {
   }
 
