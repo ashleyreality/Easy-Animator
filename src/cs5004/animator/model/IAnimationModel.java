@@ -23,6 +23,14 @@ public interface IAnimationModel {
   void addShape(IShape shape, int appear, int disappear);
 
   /**
+   * _____________________________________ METHOD: addShape() _____________________________________.
+   * The addShape() method adds a shape with the given parameters.
+   *
+   * @param shape     - the shape, an IShape
+   */
+  void addShape(IShape shape);
+
+  /**
    * _____________________________________ METHOD: addEvent() _____________________________________.
    * The addEvent() method adds an event/shape change with the given parameters.
    *
@@ -55,4 +63,6 @@ public interface IAnimationModel {
    * @return TBD
    */
   String getShapesAtTick(int tick);
+
+  IShape getShape(String name);
 }

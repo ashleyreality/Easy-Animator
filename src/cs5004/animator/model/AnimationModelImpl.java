@@ -60,6 +60,26 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
   /**
+   * ____________________________________ METHOD: addShape() ______________________________________.
+   * The addShape() method adds a new "Shape" and its given parameters to the animation.
+   *
+   * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
+   * @throws IllegalArgumentException if the shape is null
+   * @throws IllegalArgumentException if a duplicate of the Shape name already exists in the list
+   */
+
+  @Override
+  public void addShape(IShape shape) {
+    shapeNullException(shape);
+
+    if (nameMatch(shape)) {
+      throw new IllegalArgumentException("Each shape name must be unique.");
+    }
+
+    shapeMap.put(shape, new ArrayList<>());
+  }
+
+  /**
    * ____________________________________ METHOD: nameMatch() _____________________________________.
    * This is a helper method that iterates through the ArrayList of "Shapes", shapes, and checks
    * whether two shapes have the same name.
@@ -195,6 +215,27 @@ public class AnimationModelImpl implements IAnimationModel {
     // A list of events for the provided shape
     return this.shapeMap;
   }
+
+  /**
+   * _________________________________ METHOD: getShape() ______________________________________.
+   *
+   * @param name - the name of the shape you want to get
+   * @return the IShape associated with that name
+   */
+
+  public IShape getShape(String name) {
+    IShape n = null;
+    for (IShape s : shapeMap.keySet()) {
+      if (s.getName().equals(name)) {
+        n = s;
+      }
+    }
+    if (n == null) {
+      throw new IllegalArgumentException("Shape name not present in the list of shapes");
+    }
+    return n;
+  }
+
 
 
   /**

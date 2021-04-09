@@ -48,7 +48,7 @@ public class EasyAnimator {
       e.printStackTrace();
     }
     AnimationBuilder build = new Builder(model);
-    model  = (IAnimationModel) AnimationReader.parseFile(file, build);
+    model = (IAnimationModel) AnimationReader.parseFile(file, build);
 
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");

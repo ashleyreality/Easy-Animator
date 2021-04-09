@@ -1,14 +1,19 @@
 package cs5004.animator.util;
 
+import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.Ellipse;
+import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
+import cs5004.animator.model.MoveShape;
 import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.ScaleShape;
 
-
-public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationModel> {
+// fixme -- intelliJ will not accept the right identifier??
+public class Builder<T> implements AnimationBuilder<IAnimationModel> {
 
   // We need to implement this class so that it works with IAnimationModel. --AB
-  IAnimationModel model;
+  cs5004.animator.model.IAnimationModel model;
 
   public Builder(IAnimationModel model) {
     this.model = model;
@@ -48,8 +53,23 @@ public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationMode
                                                      int h1, int r1, int g1, int b1, int t2, int x2,
                                                      int y2, int w2, int h2, int r2, int g2, int b2)
   {
-    // add events to model
+    // get shape from name
+    IShape shape = model.getShape(name);
 
+    // create event
+    // fixme -- first appearance has no change so doesn't show up yet with this code
+    if (x1 != x2 || y1 != y2) {
+      IEvent event = new MoveShape(shape, x1, y1, x2, y2);
+      model.addEvent(shape, event, t1, t2);
+    } else if (w1 != w2 || h1 != h2) {
+      IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
+      model.addEvent(shape, event, t1, t2);
+    } else if (r1 != r2 || b1 != b2 || g1 != g2) {
+      IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
+      model.addEvent(shape, event, t1, t2);
+    } else {
+      throw new IllegalArgumentException("No event detected");
+    }
 
     return this;
   }
