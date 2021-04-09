@@ -18,7 +18,7 @@ public abstract class AbstractEvent implements IEvent {
    */
   public AbstractEvent(IShape shape) {
     if (shape == null) {
-      throw new IllegalArgumentException("Shape cant be null");
+      throw new IllegalArgumentException("Shape can't be null");
     }
     this.shape = shape;
     // event end can not be 0 or same as event begin
@@ -44,7 +44,7 @@ public abstract class AbstractEvent implements IEvent {
    */
   public void setEventBegin(int begin) {
     if (begin < 0) {
-      throw new IllegalArgumentException("Event begin tick can not be negative");
+      throw new IllegalArgumentException("Event begin tick can't be negative");
     }
     this.eventBegin = begin;
   }
@@ -58,7 +58,8 @@ public abstract class AbstractEvent implements IEvent {
    */
   public void setEventEnd(int end) {
     if (end <= 0 || end < this.eventBegin) {
-      throw new IllegalArgumentException("Event end tick can not be negative or less than begin");
+      throw new IllegalArgumentException("Event end tick can't be negative or before the "
+              + "event begins");
     }
     this.eventEnd = end;
   }

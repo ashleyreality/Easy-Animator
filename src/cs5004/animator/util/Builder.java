@@ -1,5 +1,10 @@
 package cs5004.animator.util;
 
+import cs5004.animator.model.Ellipse;
+import cs5004.animator.model.IShape;
+import cs5004.animator.model.Rectangle;
+
+
 public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationModel> {
 
   // We need to implement this class so that it works with IAnimationModel. --AB
@@ -26,7 +31,15 @@ public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationMode
   @Override
   public AnimationBuilder<IAnimationModel> declareShape(String name, String type) {
     // add shapes to model
-    System.out.println("Shape " + name + " will be declared as " + type);
+    if (type.equalsIgnoreCase("ellipse")) {
+      IShape shape = new Ellipse(name);
+      model.addShape(shape);
+    } else if (type.equalsIgnoreCase("rectangle")) {
+      IShape shape = new Rectangle(name);
+      model.addShape(shape);
+    } else {
+      throw new IllegalArgumentException("Invalid shape type!");
+    }
     return this;
   }
 
@@ -36,7 +49,8 @@ public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationMode
                                                      int y2, int w2, int h2, int r2, int g2, int b2)
   {
     // add events to model
-    System.out.println("Event " + name + " seen by Builder");
+
+
     return this;
   }
 }

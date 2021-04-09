@@ -27,6 +27,18 @@ public class Rectangle extends AbstractShape {
   }
 
   /**
+   * _________________________SECOND CONSTRUCTOR: Rectangle() _________________________________.
+   * Creates a shape with the given name. Further attributes are instantiated with the first event
+   * called on the shape.
+   *
+   * @param name   name of the shape
+   * @throws IllegalArgumentException if name is null
+   */
+  public Rectangle(String name) {
+    super(name);
+  }
+
+  /**
    * ___________________________________ METHOD: toString() _______________________________________.
    * Returns a String with the name, location, width, height, color, and appear and disappear times
    * of the rectangle.

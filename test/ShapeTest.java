@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import cs5004.animator.model.Color;
 import cs5004.animator.model.IShape;
-import cs5004.animator.model.Oval;
+import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.Point2D;
 import cs5004.animator.model.Rectangle;
 
@@ -21,7 +21,7 @@ public class ShapeTest {
   public void setUp() {
     //________________________________________ Oval Objects _______________________________________.
 
-    this.oval = new Oval("oval1",
+    this.oval = new Ellipse("oval1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
@@ -39,7 +39,7 @@ public class ShapeTest {
 
     //________________________________________ Oval Objects _______________________________________.
 
-    this.oval = new Oval("oval1",
+    this.oval = new Ellipse("oval1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
@@ -52,7 +52,7 @@ public class ShapeTest {
              oval.toString());
 
     // huge numbers
-    IShape oval2 = new Oval("oval2",
+    IShape oval2 = new Ellipse("oval2",
             12000.001, 602828.6,
             240, 120, 221,
             54637.559, 928736.021);
@@ -66,7 +66,7 @@ public class ShapeTest {
 
     // zeroes
 
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             1, 1,
             0, 0, 0,
             0.0, 0.0);
@@ -121,7 +121,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testZeroWidthOval() {
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             0, 1,
             0, 0, 0,
             0.0, 0.0);
@@ -129,7 +129,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testZeroHeightOval() {
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             1, 0,
             0, 0, 0,
             0.0, 0.0);
@@ -137,7 +137,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeWidthOval() {
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             -1, 1,
             0, 0, 0,
             0.0, 0.0);
@@ -145,7 +145,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeHeightOval() {
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             1, -1,
             0, 0, 0,
             0.0, 0.0);
@@ -153,7 +153,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeColorOval() {
-    IShape oval3 = new Oval("oval3",
+    IShape oval3 = new Ellipse("oval3",
             1, 1,
             -10, 0, 0,
             0.0, 0.0);
@@ -161,7 +161,7 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullArgOval() {
-    IShape oval3 = new Oval(null,
+    IShape oval3 = new Ellipse(null,
             1, 1,
             0, 0, 0,
             0.0, 0.0);

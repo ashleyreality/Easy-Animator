@@ -5,11 +5,11 @@ package cs5004.animator.model;
  * The Oval class extends AbstractShape and implements the method declarations that are unique to
  * the Oval class. It creates and stores information about an Oval shape.
  */
-public class Oval extends AbstractShape {
+public class Ellipse extends AbstractShape {
   // radiusX, from the center point to the outer edge of the circle along the X-axis/width
-  private final double radiusX;
+  private double radiusX = 0;
   // radiusY, from the center point to the outer edge of the circle along the Y-axis/height
-  private final double radiusY;
+  private double radiusY = 0;
 
   /**
    * __________________________________ CONSTRUCTOR: Oval() _______________________________________.
@@ -25,11 +25,23 @@ public class Oval extends AbstractShape {
    * @param x      x coordinate of oval
    * @param y      y coordinate of oval
    */
-  public Oval(String name, double width, double height,
-              int red, int green, int blue, double x, double y) {
+  public Ellipse(String name, double width, double height,
+                 int red, int green, int blue, double x, double y) {
     super(name, width, height, red, green, blue, x, y);
     this.radiusX = width / 2;
     this.radiusY = height / 2;
+  }
+
+  /**
+   * _________________________SECOND CONSTRUCTOR: Ellipse() _________________________________.
+   * Creates a shape with the given name. Further attributes are instantiated with the first event
+   * called on the shape.
+   *
+   * @param name   name of the shape
+   * @throws IllegalArgumentException if name is null
+   */
+  public Ellipse(String name) {
+    super(name);
   }
 
   /**

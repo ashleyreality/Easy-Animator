@@ -7,7 +7,7 @@ import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
-import cs5004.animator.model.Oval;
+import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
 
@@ -48,7 +48,7 @@ public class AnimationModelTest {
             1, 0, 0,
             200.0, 200.0);
 
-    c = new Oval("C",
+    c = new Ellipse("C",
             120.0, 60.0,
             0, 0, 1,
             500.0, 100.0);

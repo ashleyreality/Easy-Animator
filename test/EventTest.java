@@ -5,7 +5,7 @@ import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
-import cs5004.animator.model.Oval;
+import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
 
@@ -29,7 +29,7 @@ public class EventTest {
 
     //________________________________________ Oval Objects _______________________________________.
 
-    this.oval = new Oval("oval1",
+    this.oval = new Ellipse("oval1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);

@@ -1,8 +1,8 @@
 package cs5004.animator.model;
 
 /**
- * _______________________________ ABSTRACT: AnimationModelImpl ___________________________________.
- * The AnimationModelImpl class implements the method declarations of the IShape
+ * _______________________________ ABSTRACT: AbstractShape ___________________________________.
+ * The AbstractShape class implements the method declarations of the IShape
  * interface for the methods that are shared by some shapes.
  */
 public abstract class AbstractShape implements IShape {
@@ -42,6 +42,21 @@ public abstract class AbstractShape implements IShape {
     this.location = new Point2D(x, y);
     this.width = width;
     this.height = height;
+  }
+
+  /**
+   * _________________________SECOND CONSTRUCTOR: AbstractShape() _________________________________.
+   * Creates a shape with the given name. Further attributes are instantiated with the first event
+   * called on the shape.
+   *
+   * @param name   name of the shape
+   * @throws IllegalArgumentException if name is null
+   */
+  public AbstractShape(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name can't be null");
+    }
+    this.name = name;
   }
 
   /*
