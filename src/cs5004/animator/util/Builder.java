@@ -2,6 +2,9 @@ package cs5004.animator.util;
 
 public class Builder<IAnimationModel> implements AnimationBuilder<IAnimationModel> {
 
+  public Builder() {
+  }
+
   @Override
   public IAnimationModel build() {
     return null;

@@ -26,7 +26,7 @@ public class EasyAnimator {
     in.findInLine("-in");
     String inResult = in.next();
     System.out.println(inResult);
-    // send inResult to builder?
+    // open this file and send it to Builder?
 
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");
