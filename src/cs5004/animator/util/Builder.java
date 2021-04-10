@@ -59,6 +59,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
 
     // create event
     // fixme -- need to figure out how to set disappear (t2 of final motion)
+    // fixme -- figure out radii for ellipses
     if (x1 != x2 || y1 != y2) {
       // set unrelated attributes
       shape.setDisappear(t2 + 1);
@@ -93,6 +94,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
       // set unrelated attributes
       shape.setDisappear(t2 + 1);
       shape.setAppear(t1);
+      shape.setLocation(x1, y1);
       shape.setHeight(h1);
       shape.setWidth(w1);
       shape.setColor(r1, g1, b1);

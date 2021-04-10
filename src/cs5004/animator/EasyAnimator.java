@@ -53,6 +53,7 @@ public class EasyAnimator {
     view.findInLine("-view");
     String viewResult = view.next();
     System.out.println(viewResult);
+    // something like ViewFactory(viewResult)
     // this is the view type we want -- we will need to send it to something that knows what to do with it
 
     Scanner out = new Scanner(sb.toString());
