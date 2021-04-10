@@ -49,13 +49,32 @@ public class ScaleShape extends AbstractEvent {
   public String toString() {
     // "Shape R scales from Width: 50.0,
     // Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-    return "Shape " + this.getShape().getName()
+    /*return "Shape " + this.getShape().getName()
             + " scales from Width: " + String.format("%.1f", this.widthBefore)
             + ", Height: " + String.format("%.1f", this.heightBefore)
             + " to Width: " + String.format("%.1f", this.widthAfter) + ", Height: "
             + String.format("%.1f", this.heightAfter)
-            + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
+            + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();*/
+    if (this.widthBefore == this.widthAfter) {
+      return this.shape.getName() + " changes height from " + this.heightBefore + " to "
+              + this.heightAfter + " from time t=" + this.getEventBegin() + " to t="
+              + this.getEventEnd();
+    }
+    else if (this.heightBefore == this.heightAfter) {
+      return this.shape.getName() + " changes width from " + this.widthBefore + " to "
+              + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
+              + this.getEventEnd();
+    }
+    else {
+      return this.shape.getName() + " changes height from " + this.heightBefore + " to "
+              + this.heightAfter + " and changes width from " + this.widthBefore + " to "
+              + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
+              + this.getEventEnd();
+    }
   }
+
+  // R changes width from 50 to 25 from time t=51 to t=70
+  //specifies when only width or only height changes
 
   /**
    * _________________________________ METHOD: getEventType() _____________________________________.
