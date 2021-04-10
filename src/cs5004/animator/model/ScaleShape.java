@@ -37,6 +37,7 @@ public class ScaleShape extends AbstractEvent {
     this.widthAfter = widthAfter;
     this.heightBefore = heightBefore;
     this.heightAfter = heightAfter;
+    this.shape = shape;
   }
 
   /**
