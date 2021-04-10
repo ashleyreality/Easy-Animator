@@ -18,7 +18,12 @@ public class ViewFactory {
 
   // Question: Is it bad/good design to pass around the model to different constructors?
 
-  public ViewFactory(String viewResult, IAnimationModel model, String outResult, String speedResult) {
+  public ViewFactory(String viewType, IAnimationModel model, String out, String speed) {
+
+    // passing to the view the things that it needs
+    // viewType is the view type --> send it to create so it knows which view
+
+    // speed is only used for visual
   }
 
   public IView create(String viewType, IAnimationModel model) {
