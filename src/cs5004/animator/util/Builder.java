@@ -76,6 +76,9 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
 //
 //  void addMoveKeyPoint(String shapeName, int time, int x, int y) {}
 
+  // Question: should we account for more than one change per row that would be passed into addMotion?
+  // Question: For testing, should we create txt files for specific cases?
+
   @Override
   public AnimationBuilder<IAnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
                                                      int h1, int r1, int g1, int b1, int t2, int x2,
@@ -100,9 +103,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
       // create event and add it to the model
       IEvent event = new MoveShape(shape, x1, y1, x2, y2);
       model.addEvent(shape, event, t1, t2);
-    }
-
-     if (w1 != w2 || h1 != h2) {
+    } else if (w1 != w2 || h1 != h2) {
        // set unrelated attributes
        shape.setDisappear(t2 + 1);
        shape.setColor(r1, g1, b1);
@@ -112,9 +113,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
        shape.setColor(r1, g1, b1);
        IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
        model.addEvent(shape, event, t1, t2);
-     }
-
-      if (r1 != r2 || b1 != b2 || g1 != g2) {
+     } else if (r1 != r2 || b1 != b2 || g1 != g2) {
         // set unrelated attributes
         shape.setDisappear(t2 + 1);
         shape.setWidth(w1);
@@ -129,7 +128,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
       shape.setDisappear(t2 + 1);
       shape.setAppear(t1); // This will likely cause a bug because this should only occur if this is
         // the FIRST animation to appear on the view. Because this would scrap all previous animations.
-        // I'm only alive at the begining of the last animation because t1 is overriden with each animation
+        // I'm only alive at the beginning of the last animation because t1 is overriden with each animation
 
       shape.setLocation(x1, y1);
       shape.setHeight(h1);

@@ -1,11 +1,13 @@
 package cs5004.animator.util;
 
+import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
 
 public class ViewFactory {
+
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
   // the arguments the client gives the ViewFactory will have it return a certain type of view
@@ -14,7 +16,12 @@ public class ViewFactory {
   // This class should have a single static method that takes in a String name for a view
   // and constructs an instance of the appropriate concrete view. --AB
 
-  public IView create(String viewType) {
+  // Question: Is it bad/good design to pass around the model to different constructors?
+
+  public ViewFactory(String viewResult, IAnimationModel model, String outResult, String speedResult) {
+  }
+
+  public IView create(String viewType, IAnimationModel model) {
     // need to understand what parameters are needed for views
     // there is an example of how a factory works at:
     // https://github.ccs.neu.edu/kbagley/cs5004flipped-sp2021/blob/master/Lecture_9_AbstractFactoryPattern/Factory.java
@@ -23,11 +30,11 @@ public class ViewFactory {
     // return new svg view
 
     if (viewType.equals("svg")) {
-      return new SVGView();
+      return new SVGView(model);
     } else if (viewType.equals("text")) {
-      return new TextView();
+      return new TextView(model);
     } else if (viewType.equals("visual")) {
-      return new VisualView();
+      return new VisualView(model);
     } else {
       throw new IllegalArgumentException("View type does not exist.");
     }

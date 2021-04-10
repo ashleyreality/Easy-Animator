@@ -6,8 +6,9 @@ package cs5004.animator.model;
  * interface for the methods that are shared by some shapes.
  */
 public abstract class AbstractShape implements IShape {
+  // possibly set to invalid/null values & check if null, then set to a certain value
   protected Color color = new Color(0,0,0);
-  protected Point2D location = new Point2D(0, 0);
+  protected Point2D location = new Point2D(0, 0); // start at null
   protected double width = 0;
   protected double height = 0;
 
