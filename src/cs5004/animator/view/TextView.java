@@ -11,11 +11,10 @@ import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 
 public class TextView implements IView {
+  private PrintWriter file;
 
-private PrintWriter file;
-
-  public TextView(IAnimationModel model) throws FileNotFoundException {
-    file = new PrintWriter("test.txt");
+  public TextView(IAnimationModel model, String fileName) throws FileNotFoundException {
+    file = new PrintWriter(fileName);
 // New StringBuilder
     StringBuilder sb = new StringBuilder();
 
@@ -40,7 +39,7 @@ private PrintWriter file;
       sb.append(a.toString());
       sb.append("\n");
     }
-    file.println("test");
+
     file.print(sb.toString());
     file.close();
   }

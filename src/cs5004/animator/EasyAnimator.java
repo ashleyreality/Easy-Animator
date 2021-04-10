@@ -10,12 +10,13 @@ import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
+import cs5004.animator.util.ViewFactory;
 
 
 public class EasyAnimator {
   private static IAnimationModel model;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     // This is the entry point for our program. We will pass in command line arguments
     // which are put into a String array (args).
 
@@ -28,8 +29,8 @@ public class EasyAnimator {
 
     // convert array to string
     StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < args.length; i++) {
-      sb.append(args[i]);
+    for (String arg : args) {
+      sb.append(arg);
       sb.append(" ");
     }
 
@@ -73,5 +74,9 @@ public class EasyAnimator {
 
     // If command line arguments aren't valid, this should pop up an error message and then exit.
     // see this link for error message info: https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html#features
+
+    // make a new ViewFactory object
+    ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
+    newView.create(viewResult,model);
   }
 }

@@ -9,7 +9,11 @@ import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
 
 public class ViewFactory {
-
+  // make these fields for now
+  private String viewType;
+  private IAnimationModel model;
+  private String out;
+  private String speed;
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
   // the arguments the client gives the ViewFactory will have it return a certain type of view
@@ -21,6 +25,10 @@ public class ViewFactory {
   // Question: Is it bad/good design to pass around the model to different constructors?
 
   public ViewFactory(String viewType, IAnimationModel model, String out, String speed) {
+    this.viewType = viewType;
+    this.model = model;
+    this.out = out;
+    this.speed = speed;
 
     // passing to the view the things that it needs
     // viewType is the view type --> send it to create so it knows which view
@@ -39,7 +47,7 @@ public class ViewFactory {
     if (viewType.equals("svg")) {
       return new SVGView(model);
     } else if (viewType.equals("text")) {
-      return new TextView(model);
+      return new TextView(model,this.out);
     } else if (viewType.equals("visual")) {
       return new VisualView(model);
     } else {
