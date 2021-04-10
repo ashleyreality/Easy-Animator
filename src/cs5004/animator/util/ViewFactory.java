@@ -44,11 +44,11 @@ public class ViewFactory {
     // if view type == svg
     // return new svg view
 
-    if (viewType.equals("svg")) {
+    if (viewType.equalsIgnoreCase("svg")) {
       return new SVGView(model);
-    } else if (viewType.equals("text")) {
+    } else if (viewType.equalsIgnoreCase("text")) {
       return new TextView(model,this.out);
-    } else if (viewType.equals("visual")) {
+    } else if (viewType.equalsIgnoreCase("visual")) {
       return new VisualView(model);
     } else {
       throw new IllegalArgumentException("View type does not exist.");

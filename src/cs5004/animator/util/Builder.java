@@ -23,7 +23,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
 
   @Override
   public IAnimationModel build() {
-    System.out.println(model.toString());
+    //System.out.println(model.toString());
     return this.model;
   }
 
@@ -110,7 +110,6 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
        shape.setLocation(x1, y1);
 
        // create event and add it to the model
-       shape.setColor(r1, g1, b1);
        IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
        model.addEvent(shape, event, t1, t2);
      } else if (r1 != r2 || b1 != b2 || g1 != g2) {
