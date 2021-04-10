@@ -61,4 +61,11 @@ public class Ellipse extends AbstractShape {
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
   }
+
+  @Override
+  public String createString() {
+    return "Create " + this.color.toString() + " oval " + this.name
+            + " with center at " + this.location.toString() + ", radius " + this.radiusX
+            + " and " + this.radiusY;
+  }
 }

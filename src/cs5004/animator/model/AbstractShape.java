@@ -234,4 +234,10 @@ public abstract class AbstractShape implements IShape {
     return this.getName().compareTo(o.getName());
   }
 
+  @Override
+  public String appearString() {
+    return this.getName() + " appears at time t=" + this.appear
+            + " and disappears at time=" + this.disappear;
+  }
+
 }

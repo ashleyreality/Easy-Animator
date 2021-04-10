@@ -2,8 +2,8 @@ package cs5004.animator.model;
 
 /**
  * __________________________________ CLASS: Rectangle {} _________________________________________.
- * The Rectangle class extends AbstractShape and implements method declarations that are unique
- * to the Rectangle class. It creates and stores information about a Rectangle shape.
+ * The Rectangle class extends AbstractShape and implements method declarations that are unique to
+ * the Rectangle class. It creates and stores information about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
 
@@ -31,7 +31,7 @@ public class Rectangle extends AbstractShape {
    * Creates a shape with the given name. Further attributes are instantiated with the first event
    * called on the shape.
    *
-   * @param name   name of the shape
+   * @param name name of the shape
    * @throws IllegalArgumentException if name is null
    */
   public Rectangle(String name) {
@@ -54,4 +54,13 @@ public class Rectangle extends AbstractShape {
             + "\nAppears at t=" + this.appear
             + "\nDisappears at t=" + this.disappear + "\n";
   }
+
+  @Override
+  public String createString() {
+    return "Create " + this.color.toString() + " rectangle " + this.name
+            + " with corner at " + this.location.toString() + ", width " + this.width
+            + " and height " + this.height;
+  }
+
+
 }

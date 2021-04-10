@@ -127,4 +127,8 @@ public interface IShape extends Comparable<IShape> {
    */
   void setHeight(double height);
 
+  String createString();
+
+  String appearString();
+
 }

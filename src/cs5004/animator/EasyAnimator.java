@@ -77,6 +77,8 @@ public class EasyAnimator {
 
     // make a new ViewFactory object
     ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
-    newView.create(viewResult,model);
+    // this should create the view
+    newView.create(viewResult, model);
+
   }
 }
