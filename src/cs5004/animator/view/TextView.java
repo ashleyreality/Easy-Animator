@@ -30,11 +30,13 @@ public class TextView implements IView {
       // will probably be easier to just change the toString...
       sb.append("\n");
     }
+    sb.append("\n");
     for (IShape l : s) {
       sb.append(l.appearString());
       // Should we just change the toString methods in the Shape classes?
       sb.append("\n");
     }
+    sb.append("\n");
 
     // Sort the events in terms of begin & end time
     Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
