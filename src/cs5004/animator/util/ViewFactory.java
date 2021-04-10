@@ -1,5 +1,7 @@
 package cs5004.animator.util;
 
+import java.io.FileNotFoundException;
+
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.SVGView;
@@ -26,7 +28,7 @@ public class ViewFactory {
     // speed is only used for visual
   }
 
-  public IView create(String viewType, IAnimationModel model) {
+  public IView create(String viewType, IAnimationModel model) throws FileNotFoundException {
     // need to understand what parameters are needed for views
     // there is an example of how a factory works at:
     // https://github.ccs.neu.edu/kbagley/cs5004flipped-sp2021/blob/master/Lecture_9_AbstractFactoryPattern/Factory.java
