@@ -13,7 +13,7 @@ public abstract class AbstractShape implements IShape {
   protected double height = 0;
 
   protected String name;
-  protected int appear;
+  protected int appear = -1;
   protected int disappear = 1000;
   // fixme - set initial disappear to 1000 for now
 

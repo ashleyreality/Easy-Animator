@@ -1,11 +1,13 @@
 package cs5004.animator.util;
 
 import cs5004.animator.model.ChangeColor;
+import cs5004.animator.model.Color;
 import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
+import cs5004.animator.model.Point2D;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
 
@@ -90,12 +92,38 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     // Should be all ifs instead of else ifs because what if the same shape has multiple changes
     // at once
 
+    // set appear time
+    if (shape.getAppear() == -1) {
+      shape.setAppear(t1);
+    }
+
+    // set initial color
+    if (shape.getColor().equals(new Color(0, 0, 0))) {
+      shape.setColor(r1, g1, b1);
+    }
+
+    // set initial location
+    if (shape.getLocation().equals(new Point2D(0, 0))) {
+      shape.setLocation(x1, y1);
+    }
+
+    // set initial width
+    if (shape.getWidth() == 0) {
+      shape.setWidth(w1);
+    }
+
+    // set initial height
+    if (shape.getHeight() == 0) {
+      shape.setHeight(h1);
+    }
+
     // create event
     // fixme -- need to figure out how to set disappear (t2 of final motion)
     // fixme -- figure out radii for ellipses
+
     if (x1 != x2 || y1 != y2) {
       // set unrelated attributes
-      shape.setDisappear(t2 + 1);
+      shape.setDisappear(t2);
       shape.setWidth(w1);
       shape.setHeight(h1);
       shape.setColor(r1, g1, b1);
@@ -105,7 +133,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
       model.addEvent(shape, event, t1, t2);
     } else if (w1 != w2 || h1 != h2) {
        // set unrelated attributes
-       shape.setDisappear(t2 + 1);
+       shape.setDisappear(t2);
        shape.setColor(r1, g1, b1);
        shape.setLocation(x1, y1);
 
@@ -114,7 +142,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
        model.addEvent(shape, event, t1, t2);
      } else if (r1 != r2 || b1 != b2 || g1 != g2) {
         // set unrelated attributes
-        shape.setDisappear(t2 + 1);
+        shape.setDisappear(t2);
         shape.setWidth(w1);
         shape.setHeight(h1);
         shape.setLocation(x1, y1);
@@ -123,16 +151,8 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
         IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
         model.addEvent(shape, event, t1, t2);
       } else {
-      // set unrelated attributes
-      shape.setDisappear(t2 + 1);
-      shape.setAppear(t1); // This will likely cause a bug because this should only occur if this is
-        // the FIRST animation to appear on the view. Because this would scrap all previous animations.
-        // I'm only alive at the beginning of the last animation because t1 is overriden with each animation
-
-      shape.setLocation(x1, y1);
-      shape.setHeight(h1);
-      shape.setWidth(w1);
-      shape.setColor(r1, g1, b1);
+      // just set disappear for now, but I think we need a doNothing event
+      shape.setDisappear(t2);
     }
 
     return this;
