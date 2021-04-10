@@ -53,7 +53,7 @@ public class EasyAnimator {
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");
     String viewResult = view.next(); // result from reading the file using the key word "-view" (in this case for text view)
-    System.out.println(viewResult);
+    //System.out.println(viewResult);
     // something like ViewFactory(viewResult, model, outResult, speedResult)
     // this is the view type we want -- we will need to send it to something that knows what to do with it
     // then ViewFactory will send out what we asked for
