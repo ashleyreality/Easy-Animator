@@ -36,7 +36,7 @@ public class ViewFactory {
     // speed is only used for visual
   }
 
-  public IView create(String viewType, IAnimationModel model) throws FileNotFoundException {
+  public IView create() throws FileNotFoundException {
     // need to understand what parameters are needed for views
     // there is an example of how a factory works at:
     // https://github.ccs.neu.edu/kbagley/cs5004flipped-sp2021/blob/master/Lecture_9_AbstractFactoryPattern/Factory.java
