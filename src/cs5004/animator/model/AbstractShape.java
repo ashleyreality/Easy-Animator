@@ -6,14 +6,15 @@ package cs5004.animator.model;
  * interface for the methods that are shared by some shapes.
  */
 public abstract class AbstractShape implements IShape {
-  protected Color color;
-  protected Point2D location;
-  protected double width;
-  protected double height;
+  protected Color color = new Color(0,0,0);
+  protected Point2D location = new Point2D(0, 0);
+  protected double width = 0;
+  protected double height = 0;
 
   protected String name;
   protected int appear;
-  protected int disappear;
+  protected int disappear = 1000;
+  // fixme - set initial disappear to 1000 for now
 
   /**
    * _____________________________ CONSTRUCTOR: AbstractShape() ___________________________________.
@@ -229,12 +230,7 @@ public abstract class AbstractShape implements IShape {
    */
   @Override
   public int compareTo(IShape o) {
-    if (this.width > o.getWidth()) {
-      return 1;
-    } else if (this.width < o.getWidth()) {
-      return -1;
-    }
-    return 0;
+    return this.getName().compareTo(o.getName());
   }
 
 }

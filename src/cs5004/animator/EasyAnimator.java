@@ -37,7 +37,6 @@ public class EasyAnimator {
     Scanner in = new Scanner(sb.toString());
     in.findInLine("-in");
     String inResult = in.next();
-    System.out.println(inResult);
 
     // open this file and send it to Builder?
     Readable file = null;

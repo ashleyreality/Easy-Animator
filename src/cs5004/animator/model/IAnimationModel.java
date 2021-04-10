@@ -43,10 +43,10 @@ public interface IAnimationModel {
   /**
    * _________________________________ METHOD: getShapeMap() ______________________________________.
    * This is a stub for now. Might be useful later.
-   * @param shape - the shape to which the event list is tied, an IShape
+
    * @return the map of shapes and their associated event lists
    */
-  NavigableMap<IShape, List<IEvent>> getShapeMap(IShape shape);
+  NavigableMap<IShape, List<IEvent>> getShapeMap();
 
   /**
    * ________________________________ METHOD: getEventList() ______________________________________.

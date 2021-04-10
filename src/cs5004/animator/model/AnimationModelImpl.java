@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private final NavigableMap<IShape, List<IEvent>> shapeMap;
+  private NavigableMap<IShape, List<IEvent>> shapeMap;
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -131,10 +131,11 @@ public class AnimationModelImpl implements IAnimationModel {
 
     if (eventBegin < shape.getAppear() || eventBegin > shape.getDisappear()
             || eventEnd < shape.getAppear() || eventEnd > shape.getDisappear()) {
-      throw new IllegalArgumentException("The shape can't be changed before it appears; nor"
-              + " can it change after it disappears. The shape can't stop changing before"
-              + " it appears; nor can the shape stop changing after it has already"
-              + " disappeared. Try to add the event again.");
+      throw new IllegalArgumentException("The event can't begin before the shape appears or"
+              + " after it disappears. The event can't end before the shape appears or after"
+              + " it disappears. Try to add the event again.\n The shape appears at "
+              + shape.getAppear() + " and disappears at " + shape.getDisappear() + "\n The "
+              + " event begins at " + eventBegin + "and ends at " + eventEnd);
     }
 
     // Iterate through the event list
@@ -176,21 +177,25 @@ public class AnimationModelImpl implements IAnimationModel {
           // if the type of the event we passed in is the same type as the event in the list
           if (event.getEventType() == otherEvent.getEventType()
                   // AND this event begins before the other event begins
-                  && (eventBegin <= otherEvent.getEventBegin()
+                  && (eventBegin < otherEvent.getEventBegin()
                   // AND the other event begins before this event ends
-                  && otherEvent.getEventBegin() <= eventEnd
+                  && otherEvent.getEventBegin() < eventEnd
                   // OR the other event begins before this event begins
-                  || otherEvent.getEventBegin() <= eventBegin
+                  || otherEvent.getEventBegin() < eventBegin
                   // AND this event ends before the other event ends
-                  && eventEnd <= otherEvent.getEventEnd()
+                  && eventEnd < otherEvent.getEventEnd()
                   // OR this event begins before the other event ends
-                  || eventBegin <= otherEvent.getEventEnd()
+                  || eventBegin < otherEvent.getEventEnd()
                   // AND the other event ends before this event ens
-                  && otherEvent.getEventEnd() <= eventEnd)) {
+                  && otherEvent.getEventEnd() < eventEnd)) {
             //|| otherEvent.getEventBegin() <= eventBegin
             //&& otherEvent.getEventEnd() <= eventEnd) {
-            throw new IllegalArgumentException("Events of the same type can't happen at the same "
-                    + "time. Try again with a different event time.");
+            throw new IllegalArgumentException("Events of the same type can't happen at the same \n"
+                    + "time. Try again with a different event time. Event type was \n"
+            + event.getEventType() + ", event begin was " + eventBegin + ", and event \n"
+                    + "end was " + eventEnd + ". Other event begin was \n"
+                    + otherEvent.getEventBegin() + " and other event end was " +
+                    otherEvent.getEventEnd());
           }
 
         }
@@ -207,11 +212,11 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * _________________________________ METHOD: getShapeMap() ______________________________________.
    *
-   * @param shape the shape to which the event list is tied, an IShape
+
    * @return the map of shapes and their associated event lists
    */
   @Override
-  public NavigableMap<IShape, List<IEvent>> getShapeMap(IShape shape) {
+  public NavigableMap<IShape, List<IEvent>> getShapeMap() {
     // A list of events for the provided shape
     return this.shapeMap;
   }
@@ -230,9 +235,9 @@ public class AnimationModelImpl implements IAnimationModel {
         n = s;
       }
     }
-    if (n == null) {
-      throw new IllegalArgumentException("Shape name not present in the list of shapes");
-    }
+    //if (n == null) {
+    //  throw new IllegalArgumentException("Shape name not present in the list of shapes");
+    //}
     return n;
   }
 

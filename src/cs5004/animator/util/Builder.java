@@ -35,6 +35,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
 
   @Override
   public AnimationBuilder<IAnimationModel> declareShape(String name, String type) {
+
     // add shapes to model
     if (type.equalsIgnoreCase("ellipse")) {
       IShape shape = new Ellipse(name);
@@ -57,18 +58,44 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     IShape shape = model.getShape(name);
 
     // create event
-    // fixme -- first appearance has no change so doesn't show up yet with this code
+    // fixme -- need to figure out how to set disappear (t2 of final motion)
     if (x1 != x2 || y1 != y2) {
+      // set unrelated attributes
+      shape.setDisappear(t2 + 1);
+      shape.setWidth(w1);
+      shape.setHeight(h1);
+      shape.setColor(r1, g1, b1);
+
+      // create event and add it to the model
       IEvent event = new MoveShape(shape, x1, y1, x2, y2);
       model.addEvent(shape, event, t1, t2);
     } else if (w1 != w2 || h1 != h2) {
+      // set unrelated attributes
+      shape.setDisappear(t2 + 1);
+      shape.setColor(r1, g1, b1);
+      shape.setLocation(x1, y1);
+
+      // create event and add it to the model
+      shape.setColor(r1, g1, b1);
       IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
       model.addEvent(shape, event, t1, t2);
     } else if (r1 != r2 || b1 != b2 || g1 != g2) {
+      // set unrelated attributes
+      shape.setDisappear(t2 + 1);
+      shape.setWidth(w1);
+      shape.setHeight(h1);
+      shape.setLocation(x1, y1);
+
+      // create event and add it to the model
       IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
       model.addEvent(shape, event, t1, t2);
     } else {
-      throw new IllegalArgumentException("No event detected");
+      // set unrelated attributes
+      shape.setDisappear(t2 + 1);
+      shape.setAppear(t1);
+      shape.setHeight(h1);
+      shape.setWidth(w1);
+      shape.setColor(r1, g1, b1);
     }
 
     return this;
