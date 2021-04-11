@@ -84,8 +84,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
   @Override
   public AnimationBuilder<IAnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
                                                      int h1, int r1, int g1, int b1, int t2, int x2,
-                                                     int y2, int w2, int h2, int r2, int g2, int b2)
-  {
+                                                     int y2, int w2, int h2, int r2, int g2, int b2) {
     // get shape from name
     IShape shape = model.getShape(name);
 
@@ -95,12 +94,12 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     }
 
     // set initial color
-    if (shape.getColor().equals(new Color(0, 0, 0))) {
+    if (shape.getColor() == null) {
       shape.setColor(r1, g1, b1);
     }
 
     // set initial location
-    if (shape.getLocation().equals(new Point2D(0, 0))) {
+    if (shape.getLocation() == null) {
       shape.setLocation(x1, y1);
     }
 
@@ -128,25 +127,25 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
       IEvent event = new MoveShape(shape, x1, y1, x2, y2);
       model.addEvent(shape, event, t1, t2);
     } else if (w1 != w2 || h1 != h2) {
-       // set unrelated attributes
-       shape.setDisappear(t2);
-       shape.setColor(r1, g1, b1);
-       shape.setLocation(x1, y1);
+      // set unrelated attributes
+      shape.setDisappear(t2);
+      shape.setColor(r1, g1, b1);
+      shape.setLocation(x1, y1);
 
-       // create event and add it to the model
-       IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
-       model.addEvent(shape, event, t1, t2);
-     } else if (r1 != r2 || b1 != b2 || g1 != g2) {
-        // set unrelated attributes
-        shape.setDisappear(t2);
-        shape.setWidth(w1);
-        shape.setHeight(h1);
-        shape.setLocation(x1, y1);
+      // create event and add it to the model
+      IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
+      model.addEvent(shape, event, t1, t2);
+    } else if (r1 != r2 || b1 != b2 || g1 != g2) {
+      // set unrelated attributes
+      shape.setDisappear(t2);
+      shape.setWidth(w1);
+      shape.setHeight(h1);
+      shape.setLocation(x1, y1);
 
-        // create event and add it to the model
-        IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
-        model.addEvent(shape, event, t1, t2);
-      } else {
+      // create event and add it to the model
+      IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
+      model.addEvent(shape, event, t1, t2);
+    } else {
       // just set disappear for now, but I think we need a doNothing event
       shape.setDisappear(t2);
     }

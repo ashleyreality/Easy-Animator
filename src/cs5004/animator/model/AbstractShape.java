@@ -7,18 +7,13 @@ package cs5004.animator.model;
  */
 public abstract class AbstractShape implements IShape {
   // possibly set to invalid/null values & check if null, then set to a certain value
-  protected Color color = new Color(0,0,0);
-  protected Point2D location = new Point2D(0, 0); // start at null
-  protected double width = 0;
-  protected double height = 0;
-
+  protected Color color;
+  protected Point2D location;
+  protected double width;
+  protected double height;
   protected String name;
-
-  // fixme - set initial disappear to 1000 for now
-  //  protected int appear = -1;
-  //  protected int disappear = 1000;
-  protected int appear = 0;
-  protected int disappear = 0;
+  protected int appear = -1;
+  protected int disappear = -1;
 
 
   /**
