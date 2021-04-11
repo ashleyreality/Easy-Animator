@@ -41,10 +41,11 @@ public class Ellipse extends AbstractShape {
    * called on the shape.
    *
    * @param name name of the shape
+   * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public Ellipse(String name) {
-    super(name);
+  public Ellipse(String name, String type) {
+    super(name, type);
   }
 
   /**

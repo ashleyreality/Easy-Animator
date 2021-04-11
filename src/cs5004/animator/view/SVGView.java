@@ -24,7 +24,7 @@ public class SVGView implements IView {
 
     // add initial xml to sb
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
-            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
+            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
     sb.append(str);
 
     // sort shapes by appear time and create a sorted list of them
@@ -37,9 +37,27 @@ public class SVGView implements IView {
     // will need to sort individual event lists by start time bc events must go inside shape tags
     for (IShape shp : s) {
       // if rect
+      if (shp.getType().equalsIgnoreCase("rectangle")) {
+        // add initial <rect> tag with attributes
+
+        // add events for that shape
+
+
+        // add closing </rect>
+      }
 
       // if ellipse
+      if (shp.getType().equalsIgnoreCase("ellipse")) {
+        // add initial <ellipse> tag with attributes
+
+        // add events for that shape
+
+        // add closing </ellipse>
+      }
     }
+
+    // add closing </svg>
+    sb.append("</svg>");
 
     // print the sb to the file and close the file
     file.print(sb.toString());
