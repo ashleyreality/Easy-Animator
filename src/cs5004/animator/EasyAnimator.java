@@ -68,6 +68,7 @@ public class EasyAnimator {
     System.out.println(outResult);
 
     // Get the speed
+    // fixme - what to do if speed isn't given and also isn't needed, like for text view?
     Scanner speed = new Scanner(sb.toString());
     speed.findInLine("-speed");
     String speedResult = speed.next();
@@ -79,18 +80,12 @@ public class EasyAnimator {
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
     }
 
-
-    // what to do if speed isn't given and also isn't needed, like for text view?
-
-    // If command line arguments aren't valid, this should pop up an error message and then exit.
-    // see this link for error message info: https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html#features
-
     // Make a new ViewFactory object
     ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
     // Create the view
     newView.create();
 
-    // JFrame nonsense I think is required?
+    // JFrame finishing up
     frame.pack();
     frame.setVisible(true);
 
