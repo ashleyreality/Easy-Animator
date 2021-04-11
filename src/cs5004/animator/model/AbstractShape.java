@@ -13,9 +13,13 @@ public abstract class AbstractShape implements IShape {
   protected double height = 0;
 
   protected String name;
-  protected int appear = -1;
-  protected int disappear = 1000;
+
   // fixme - set initial disappear to 1000 for now
+  //  protected int appear = -1;
+  //  protected int disappear = 1000;
+  protected int appear = 0;
+  protected int disappear = 0;
+
 
   /**
    * _____________________________ CONSTRUCTOR: AbstractShape() ___________________________________.
@@ -91,7 +95,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * ___________________________________ METHOD: setWidth() _______________________________________.
-   * This is a setter that sets the width of the shape.
+   * Sets the width of the shape.
    */
   @Override
   public void setWidth(double width) {

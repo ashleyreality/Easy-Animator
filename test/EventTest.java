@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  * This class contains the unit tests for the Events.
  */
 public class EventTest {
-  private IShape oval;
+  private IShape ellipse;
   private IShape rect;
   private IEvent colorEvent;
   private IEvent scaleEvent;
@@ -29,7 +29,7 @@ public class EventTest {
 
     //________________________________________ Oval Objects _______________________________________.
 
-    this.oval = new Ellipse("oval1",
+    this.ellipse = new Ellipse("oval1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
@@ -43,11 +43,11 @@ public class EventTest {
 
     //________________________________________ Oval Events ________________________________________.
 
-    this.colorEvent = new ChangeColor(oval,
+    this.colorEvent = new ChangeColor(ellipse,
             0, 0, 1,
             100, 25, 3);
 
-    this.scaleEvent = new ScaleShape(oval,
+    this.scaleEvent = new ScaleShape(ellipse,
             120.0, 60.0,
             10.1, 30.9);
 
@@ -64,14 +64,14 @@ public class EventTest {
     // test larger numbers and with rectangle
 
     //________________________________________ Oval Events ________________________________________.
-    this.colorEvent = new ChangeColor(oval,
+    this.colorEvent = new ChangeColor(ellipse,
             0, 0, 1,
             100, 25, 3);
 
     assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
             colorEvent.toString());
 
-    this.scaleEvent = new ScaleShape(oval,
+    this.scaleEvent = new ScaleShape(ellipse,
             120.0, 60.0,
             10.1, 30.90123);
 
@@ -79,7 +79,7 @@ public class EventTest {
                     + "Height: 30.9 from t=0 to t=1",
             scaleEvent.toString());
 
-    this.moveEvent = new MoveShape(oval,
+    this.moveEvent = new MoveShape(ellipse,
             500.0, 100.0,
             14.5, 78.432);
 
@@ -141,7 +141,7 @@ public class EventTest {
   // New Oval RGB: -5, 200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeRed() {
-    new ChangeColor(oval,
+    new ChangeColor(ellipse,
             0, 0, 1,
             -5, 200, 200);
   }
@@ -150,7 +150,7 @@ public class EventTest {
   // New Oval RGB: 200, -200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeGreen() {
-    new ChangeColor(oval,
+    new ChangeColor(ellipse,
             0, 0, 1,
             200, -200, 200);
   }
@@ -159,7 +159,7 @@ public class EventTest {
   // New Oval RGB: 200, 200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeBlue() {
-    new ChangeColor(oval,
+    new ChangeColor(ellipse,
             0, 0, 1,
             200, 200, -200);
   }
@@ -228,7 +228,7 @@ public class EventTest {
   // change to the same
   @Test(expected = IllegalArgumentException.class)
   public void noColorChange() {
-    new ChangeColor(oval,
+    new ChangeColor(ellipse,
             0, 0, 1,
             0, 0, 1);
   }

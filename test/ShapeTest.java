@@ -15,13 +15,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class ShapeTest {
   private IShape rect;
-  private IShape oval;
+  private IShape ellipse;
 
   @Before
   public void setUp() {
-    //________________________________________ Oval Objects _______________________________________.
+    //________________________________________ Ellipse Objects _______________________________________.
 
-    this.oval = new Ellipse("oval1",
+    this.ellipse = new Ellipse("ellipse1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
@@ -37,45 +37,45 @@ public class ShapeTest {
   @Test
   public void testValidConstructor() {
 
-    //________________________________________ Oval Objects _______________________________________.
+    //________________________________________ Ellipse Objects _______________________________________.
 
-    this.oval = new Ellipse("oval1",
+    this.ellipse = new Ellipse("ellipse1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
 
-    assertEquals("Name: oval1\n"
-                    + "Type: oval\n"
+    assertEquals("Name: ellipse1\n"
+                    + "Type: ellipse\n"
                     + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
                     + "Appears at t=0\n"
             + "Disappears at t=0\n",
-             oval.toString());
+             ellipse.toString());
 
     // huge numbers
-    IShape oval2 = new Ellipse("oval2",
+    IShape ellipse2 = new Ellipse("ellipse2",
             12000.001, 602828.6,
             240, 120, 221,
             54637.559, 928736.021);
 
-    assertEquals("Name: oval2\n"
-            + "Type: oval\n"
+    assertEquals("Name: ellipse2\n"
+            + "Type: ellipse\n"
             + "Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color:"
             + " (240,120,221)\n"
             + "Appears at t=0\n"
-            + "Disappears at t=0\n", oval2.toString());
+            + "Disappears at t=0\n", ellipse2.toString());
 
     // zeroes
 
-    IShape oval3 = new Ellipse("oval3",
+    IShape ellipse3 = new Ellipse("ellipse3",
             1, 1,
             0, 0, 0,
             0.0, 0.0);
 
-    assertEquals("Name: oval3\n"
-                    + "Type: oval\n"
+    assertEquals("Name: ellipse3\n"
+                    + "Type: ellipse\n"
                     + "Center: (0.0,0.0), X radius: 0.5, Y radius: 0.5, Color: (0,0,0)\n"
                     + "Appears at t=0\n"
-            + "Disappears at t=0\n", oval3.toString());
+            + "Disappears at t=0\n", ellipse3.toString());
 
     //_____________________________________ Rectangle Objects _____________________________________.
 
@@ -117,51 +117,51 @@ public class ShapeTest {
 
   }
 
-  // ____________________________________ EXCEPTIONS: Oval ________________________________________.
+  // _________________________________ EXCEPTIONS: Ellipse ________________________________________.
 
   @Test(expected = IllegalArgumentException.class)
-  public void testZeroWidthOval() {
-    IShape oval3 = new Ellipse("oval3",
+  public void testZeroWidthEllipse() {
+    IShape ellipse3 = new Ellipse("ellipse3",
             0, 1,
             0, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testZeroHeightOval() {
-    IShape oval3 = new Ellipse("oval3",
+  public void testZeroHeightEllipse() {
+    IShape ellipse3 = new Ellipse("ellipse3",
             1, 0,
             0, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNegativeWidthOval() {
-    IShape oval3 = new Ellipse("oval3",
+  public void testNegativeWidthEllipse() {
+    IShape ellipse3 = new Ellipse("ellipse3",
             -1, 1,
             0, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNegativeHeightOval() {
-    IShape oval3 = new Ellipse("oval3",
+  public void testNegativeHeightEllipse() {
+    IShape ellipse3 = new Ellipse("ellipse3",
             1, -1,
             0, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNegativeColorOval() {
-    IShape oval3 = new Ellipse("oval3",
+  public void testNegativeColorEllipse() {
+    IShape ellipse3 = new Ellipse("ellipse3",
             1, 1,
             -10, 0, 0,
             0.0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNullArgOval() {
-    IShape oval3 = new Ellipse(null,
+  public void testNullArgEllipse() {
+    IShape ellipse3 = new Ellipse(null,
             1, 1,
             0, 0, 0,
             0.0, 0.0);
@@ -221,23 +221,23 @@ public class ShapeTest {
   @Test
   public void getName() {
     assertEquals("rect1", rect.getName());
-    assertEquals("oval1", oval.getName());
+    assertEquals("ellipse1", ellipse.getName());
 
   }
 
   @Test
   public void setName() {
-    oval.setName("Gudetama");
+    ellipse.setName("Gudetama");
     rect.setName("Ikura");
     assertEquals("Ikura", rect.getName());
-    assertEquals("Gudetama", oval.getName());
+    assertEquals("Gudetama", ellipse.getName());
   }
 
   @Test
   public void getColor() {
     Color color1 = new Color(0,0,1);
     Color color2 = new Color(1,0,0);
-    assertEquals(color1, oval.getColor());
+    assertEquals(color1, ellipse.getColor());
     assertEquals(color2, rect.getColor());
   }
 
@@ -246,9 +246,9 @@ public class ShapeTest {
     Color color1 = new Color(2,2,2);
     Color color2 = new Color(100,0,100);
     rect.setColor(2, 2,2);
-    oval.setColor(100,0,100);
+    ellipse.setColor(100,0,100);
     assertEquals(color1, rect.getColor());
-    assertEquals(color2, oval.getColor());
+    assertEquals(color2, ellipse.getColor());
   }
 
   @Test
@@ -256,7 +256,7 @@ public class ShapeTest {
     Point2D loc1 = new Point2D(200.0,200.0);
     Point2D loc2 = new Point2D(500.0,100.0);
     assertEquals(loc1, rect.getLocation());
-    assertEquals(loc2, oval.getLocation());
+    assertEquals(loc2, ellipse.getLocation());
   }
 
   @Test
@@ -264,82 +264,82 @@ public class ShapeTest {
     Point2D loc1 = new Point2D(0,0);
     Point2D loc2 = new Point2D(0,0);
     rect.setLocation(0,0);
-    oval.setLocation(0,0);
+    ellipse.setLocation(0,0);
     assertEquals(loc1, rect.getLocation());
-    assertEquals(loc2, oval.getLocation());
+    assertEquals(loc2, ellipse.getLocation());
   }
 
   @Test
   public void getAppear() {
     assertEquals(0, rect.getAppear());
-    assertEquals(0, oval.getAppear());
+    assertEquals(0, ellipse.getAppear());
   }
 
   @Test
   public void setAppear() {
     rect.setAppear(100);
-    oval.setAppear(10000);
+    ellipse.setAppear(10000);
     assertEquals(100, rect.getAppear());
-    assertEquals(10000, oval.getAppear());
+    assertEquals(10000, ellipse.getAppear());
   }
 
   @Test
   public void getDisappear() {
     assertEquals(0, rect.getDisappear());
-    assertEquals(0, oval.getDisappear());
+    assertEquals(0, ellipse.getDisappear());
   }
 
   @Test
   public void setDisappear() {
     rect.setDisappear(100);
-    oval.setDisappear(10000);
+    ellipse.setDisappear(10000);
     assertEquals(100, rect.getDisappear());
-    assertEquals(10000, oval.getDisappear());
+    assertEquals(10000, ellipse.getDisappear());
   }
 
   @Test
   public void getWidth() {
     assertEquals(50.0, rect.getWidth(), 0.1);
-    assertEquals(120.0, oval.getWidth(), 0.1);
+    assertEquals(120.0, ellipse.getWidth(), 0.1);
 
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void setNegativeWidth() {
-    oval.setWidth(-100);
+    ellipse.setWidth(-100);
   }
 
   @Test
   public void setWidth() {
     rect.setWidth(100);
-    oval.setWidth(7362);
+    ellipse.setWidth(7362);
     assertEquals(100, rect.getWidth(), 0.01);
-    assertEquals(7362, oval.getWidth(),0.01);
+    assertEquals(7362, ellipse.getWidth(),0.01);
   }
 
   @Test
   public void getHeight() {
     assertEquals(100.0, rect.getHeight(), 0.01);
-    assertEquals(60.0, oval.getHeight(), 0.01);
+    assertEquals(60.0, ellipse.getHeight(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void setNegativeHeight() {
-    oval.setHeight(-100);
+    ellipse.setHeight(-100);
   }
 
   @Test
   public void setHeight() {
     rect.setHeight(500);
-    oval.setHeight(7654.22);
+    ellipse.setHeight(7654.22);
     assertEquals(500, rect.getHeight(), 0.01);
-    assertEquals(7654.22, oval.getHeight(), 0.01);
+    assertEquals(7654.22, ellipse.getHeight(), 0.01);
   }
 
   @Test
   public void testCompareTo() {
-    assertEquals(-1, rect.compareTo(oval));
-    assertEquals(1, oval.compareTo(rect));
+    assertEquals(-1, rect.compareTo(ellipse));
+    assertEquals(1, ellipse.compareTo(rect));
   }
 
   @Test
@@ -349,10 +349,10 @@ public class ShapeTest {
                     + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
                     + "Appears at t=0\n"
             + "Disappears at t=0\n", rect.toString());
-    assertEquals("Name: oval1\n"
-            + "Type: oval\n"
+    assertEquals("Name: ellipse1\n"
+            + "Type: ellipse\n"
             + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
             + "Appears at t=0\n"
-            + "Disappears at t=0\n", oval.toString());
+            + "Disappears at t=0\n", ellipse.toString());
   }
 }
