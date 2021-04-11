@@ -80,6 +80,9 @@ public class EasyAnimator {
 
     // Get the speed
     // fixme - what to do if speed isn't given and also isn't needed, like for text view?
+    // only throw an error if it's required for the given view. if speed is given and not given,
+    // it's ok to ignore. If you need the speed and don't get it, you can either default to a given
+    // speed or you can throw an error. Defaulting preferred -- be sure to document it!
     Scanner speed = new Scanner(sb.toString());
     speed.findInLine("-speed");
     String speedResult = speed.next();
