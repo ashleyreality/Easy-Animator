@@ -13,9 +13,9 @@ import cs5004.animator.view.VisualView;
  */
 public class ViewFactory {
   // make these fields for now
-  private String viewType;
+  private String outputView;
   private IAnimationModel model;
-  private String out;
+  private String outputName;
   private String speed;
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
@@ -29,19 +29,19 @@ public class ViewFactory {
 
   /**
    * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
-   * @param viewType the type of animation view being requested, a String
+   * @param outputView the type of animation view being requested, a String
    * @param model the model of the animation, a model
-   * @param out the text file output, a String
+   * @param outputName the text file output, a String
    * @param speed the speed
    */
-  public ViewFactory(String viewType, IAnimationModel model, String out, String speed) {
-    this.viewType = viewType;
+  public ViewFactory(String outputView, IAnimationModel model, String outputName, String speed) {
+    this.outputView = outputView;
     this.model = model;
-    this.out = out;
+    this.outputName = outputName;
     this.speed = speed;
 
     // passing to the view the things that it needs
-    // viewType is the view type --> send it to create so it knows which view
+    // outputView is the view type --> send it to create so it knows which view
 
     // speed is only used for visual
   }
@@ -59,11 +59,11 @@ public class ViewFactory {
     // if view type == svg
     // return new svg view
 
-    if (viewType.equalsIgnoreCase("svg")) {
-      return new SVGView(model, this.out);
-    } else if (viewType.equalsIgnoreCase("text")) {
-      return new TextView(model, this.out);
-    } else if (viewType.equalsIgnoreCase("visual")) {
+    if (outputView.equalsIgnoreCase("svg")) {
+      return new SVGView(model, this.outputName);
+    } else if (outputView.equalsIgnoreCase("text")) {
+      return new TextView(model, this.outputName);
+    } else if (outputView.equalsIgnoreCase("visual")) {
       return new VisualView(model);
     } else {
       throw new IllegalArgumentException("View type does not exist.");

@@ -85,15 +85,15 @@ public class AnimatorHelper {
   }
 
   public static String speedScanner(StringBuilder sb) {
-    Scanner speed = new Scanner(sb.toString());
-    speed.findInLine("-speed");
-    return speed.next();
+    Scanner outputSpeed = new Scanner(sb.toString());
+    outputSpeed.findInLine("-speed");
+    return outputSpeed.next();
   }
 
-  public static void speedExceptions(String speedResult, JFrame frame) {
+  public static void speedExceptions(String outputSpeed, JFrame frame) {
     try {
-      int speedInt = Integer.parseInt(speedResult);
-      if (Integer.parseInt(speedResult) < 1) throw new NumberFormatException();
+      int speedInt = Integer.parseInt(outputSpeed);
+      if (Integer.parseInt(outputSpeed) < 1) throw new NumberFormatException();
     } catch (NumberFormatException n) {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
