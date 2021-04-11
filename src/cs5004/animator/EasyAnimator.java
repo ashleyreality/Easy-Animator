@@ -20,6 +20,12 @@ public class EasyAnimator {
   private static IAnimationModel model;
 
   public static void main(String[] args) throws FileNotFoundException {
+
+    // make the appendable here & pass it in to TextView (for example)
+    // and decide here how it will be output (command line, file, or multiple places, etc.)
+    // because the command line
+    // gives the info to the controller
+
     model = new AnimationModelImpl();
     JFrame frame = new JFrame("Frame");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
