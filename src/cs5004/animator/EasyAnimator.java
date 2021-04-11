@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import javax.swing.*;
+
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
@@ -17,58 +19,51 @@ public class EasyAnimator {
   private static IAnimationModel model;
 
   public static void main(String[] args) throws FileNotFoundException {
-    // This is the entry point for our program. We will pass in command line arguments
-    // which are put into a String array (args).
-
-    // the command line argument looks something like this:
-    // -in "name-of-animation-file" -view "type-of-view" -out "where-output-show-go"
-    // -speed "integer-ticks-per-second"
-    // See section 5 of assignment for more info
-
     model = new AnimationModelImpl();
+    JFrame frame = new JFrame("Frame");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    // convert array to string
+    // convert args array to string
     StringBuilder sb = new StringBuilder();
     for (String arg : args) {
       sb.append(arg);
       sb.append(" ");
     }
 
-    // I think we are meant to use a Scanner to parse the String and then do stuff with it.
+    // Get the in file name
     Scanner in = new Scanner(sb.toString());
     in.findInLine("-in");
     String inResult = in.next();
 
-    // open this file and send it to Builder?
+    // Open the in file and send it to Builder
     Readable file = null;
     try {
       file = new FileReader(inResult);
     } catch (FileNotFoundException e) {
+      JOptionPane.showMessageDialog(frame, "Input file not found", "Input file error",
+              JOptionPane.ERROR_MESSAGE);
       System.out.println("The input file was not found.");
       e.printStackTrace();
     }
     AnimationBuilder build = new Builder(model);
     model = (IAnimationModel) AnimationReader.parseFile(file, build);
 
+    // Get the view type
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");
-    String viewResult = view.next(); // result from reading the file using the key word "-view" (in this case for text view)
-    //System.out.println(viewResult);
-    // something like ViewFactory(viewResult, model, outResult, speedResult)
-    // this is the view type we want -- we will need to send it to something that knows what to do with it
-    // then ViewFactory will send out what we asked for
+    String viewResult = view.next();
 
+    // Get the output file name
     Scanner out = new Scanner(sb.toString());
     out.findInLine("-out");
     String outResult = out.next();
     System.out.println(outResult);
-    // this is the output file
 
+    // Get the speed
     Scanner speed = new Scanner(sb.toString());
     speed.findInLine("-speed");
     String speedResult = speed.next();
     System.out.println(speedResult);
-    // this is the speed
 
     // what to do if speed isn't given and also isn't needed, like for text view?
 
@@ -79,6 +74,10 @@ public class EasyAnimator {
     ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
     // this should create the view
     newView.create();
+
+    // JFrame nonsense I think is required?
+    frame.pack();
+    frame.setVisible(true);
 
   }
 }
