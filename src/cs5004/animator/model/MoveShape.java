@@ -22,7 +22,7 @@ public class MoveShape extends AbstractEvent {
   public MoveShape(IShape shape, double xBefore, double yBefore, double xAfter, double yAfter) {
     super(shape);
     if (xBefore == xAfter && yBefore == yAfter) {
-      throw new IllegalArgumentException("The new location can not be the same.");
+      throw new IllegalArgumentException("The new location can't be the same.");
     }
 
     this.from = new Point2D(xBefore, yBefore);
@@ -62,5 +62,13 @@ public class MoveShape extends AbstractEvent {
   @Override
   public String getAfter() {
     return this.to.toString();
+  }
+
+  public Point2D getFrom() {
+    return from;
+  }
+
+  public Point2D getTo() {
+    return to;
   }
 }

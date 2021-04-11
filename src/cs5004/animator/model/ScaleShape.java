@@ -80,11 +80,19 @@ public class ScaleShape extends AbstractEvent {
 
   @Override
   public String getBefore() {
-    return null;
+    return String.valueOf(this.heightBefore);
   }
 
   @Override
   public String getAfter() {
-    return null;
+    return String.valueOf(this.heightAfter);
+  }
+
+  public String getWidthBefore() {
+    return String.valueOf(this.widthBefore);
+  }
+
+  public String getWidthAfter() {
+    return String.valueOf(this.widthAfter);
   }
 }
