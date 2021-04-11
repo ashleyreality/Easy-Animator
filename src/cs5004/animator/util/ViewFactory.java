@@ -60,9 +60,9 @@ public class ViewFactory {
     // return new svg view
 
     if (viewType.equalsIgnoreCase("svg")) {
-      return new SVGView(model);
+      return new SVGView(model, this.out);
     } else if (viewType.equalsIgnoreCase("text")) {
-      return new TextView(model,this.out);
+      return new TextView(model, this.out);
     } else if (viewType.equalsIgnoreCase("visual")) {
       return new VisualView(model);
     } else {

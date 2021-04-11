@@ -3,6 +3,7 @@ package cs5004.animator.util;
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.
+   *
    * @return the newly constructed document
    */
   Doc build();
@@ -10,6 +11,7 @@ public interface AnimationBuilder<Doc> {
 
   /**
    * Specify the bounding box to be used for the animation.
+   *
    * @param x The leftmost x value
    * @param y The topmost y value
    * @param width The width of the bounding box

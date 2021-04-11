@@ -1,13 +1,11 @@
 package cs5004.animator.util;
 
 import cs5004.animator.model.ChangeColor;
-import cs5004.animator.model.Color;
 import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
-import cs5004.animator.model.Point2D;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
 

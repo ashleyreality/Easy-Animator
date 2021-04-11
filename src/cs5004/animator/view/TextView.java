@@ -2,7 +2,6 @@ package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -19,18 +18,20 @@ public class TextView implements IView {
   private PrintWriter file;
 
   /**
+   * Constructs a text view.
    *
-   * @param model
-   * @param fileName
-   * @throws FileNotFoundException
+   * @param model the AnimationModel instance you want to create a view for
+   * @param fileName the name of the file you're using to create the animation
+   * @throws FileNotFoundException if the file is not found
    */
   public TextView(IAnimationModel model, String fileName) throws FileNotFoundException {
     file = new PrintWriter(fileName);
     // New StringBuilder (from AnimationModelImpl)
     StringBuilder sb = new StringBuilder();
 
-    //sort by appear time
+    // sort by appear time
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
+
     // Add the shapes to the StringBuilder, sb
     List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
             .collect(Collectors.toList());
