@@ -64,6 +64,11 @@ public class AnimatorHelper {
     return in.next();
   }
 
+  public static Readable setFile(String inputName) throws FileNotFoundException {
+    Readable file = new FileReader(inputName);
+    return file;
+  }
+
   public static void fileExceptions(Readable file, String inputName, JFrame frame) {
     try {
       file = new FileReader(inputName);

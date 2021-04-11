@@ -52,7 +52,9 @@ public class EasyAnimator {
     // ----------------------------------------------------------------------------------------
     // setup the *input file reader* using an instance of FileReader()
     // the FileReader takes in the input file
-    Readable file = null;
+    //Readable file = null;
+    Readable file = AnimatorHelper.setFile(inputName);
+    //AnimatorHelper.setFile(file, inputName);
     AnimatorHelper.fileExceptions(file, inputName, frame);
 
     // ----------------------------------------------------------------------------------------
