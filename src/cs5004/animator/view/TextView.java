@@ -12,9 +12,18 @@ import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 
+/**
+ *
+ */
 public class TextView implements IView {
   private PrintWriter file;
 
+  /**
+   *
+   * @param model
+   * @param fileName
+   * @throws FileNotFoundException
+   */
   public TextView(IAnimationModel model, String fileName) throws FileNotFoundException {
     file = new PrintWriter(fileName);
     // New StringBuilder (from AnimationModelImpl)

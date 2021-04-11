@@ -8,11 +8,14 @@ import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
 
+/**
+ * __________________________________ CLASS: ViewFactory {} _______________________________________.
+ */
 public class ViewFactory {
   // make these fields for now
   private String viewType;
   private IAnimationModel model;
-  private String out;
+  private String outTextFile;
   private String speed;
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
@@ -24,11 +27,20 @@ public class ViewFactory {
 
   // Question: Is it bad/good design to pass around the model to different constructors?
 
-  public ViewFactory(String viewType, IAnimationModel model, String out, String speed) {
+  /**
+   * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
+   * @param viewType the type of animation view being requested, a String
+   * @param model the model of the animation, a model
+   * @param outTextFile the text file output, a String
+   * @param speed the speed
+   */
+  public ViewFactory(String viewType, IAnimationModel model, String outTextFile, String speed) {
     this.viewType = viewType;
     this.model = model;
-    this.out = out;
+    this.outTextFile = outTextFile;
     this.speed = speed;
+
+    // What is "out" here? The output text file name? If so, maybe we should name it more specifically
 
     // passing to the view the things that it needs
     // viewType is the view type --> send it to create so it knows which view
@@ -36,6 +48,11 @@ public class ViewFactory {
     // speed is only used for visual
   }
 
+  /**
+   * ____________________________________ METHOD: create() ________________________________________.
+   * @return a new object of the view that the caller requested/passed in
+   * @throws FileNotFoundException
+   */
   public IView create() throws FileNotFoundException {
     // need to understand what parameters are needed for views
     // there is an example of how a factory works at:
@@ -47,7 +64,7 @@ public class ViewFactory {
     if (viewType.equalsIgnoreCase("svg")) {
       return new SVGView(model);
     } else if (viewType.equalsIgnoreCase("text")) {
-      return new TextView(model,this.out);
+      return new TextView(model,this.outTextFile);
     } else if (viewType.equalsIgnoreCase("visual")) {
       return new VisualView(model);
     } else {
