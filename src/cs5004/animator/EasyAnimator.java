@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
@@ -40,10 +41,12 @@ public class EasyAnimator {
     try {
       file = new FileReader(inResult);
     } catch (FileNotFoundException e) {
+      frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Input file not found", "Input file error",
               JOptionPane.ERROR_MESSAGE);
       System.out.println("The input file was not found.");
       e.printStackTrace();
+      System.exit(1);
     }
     AnimationBuilder build = new Builder(model);
     model = (IAnimationModel) AnimationReader.parseFile(file, build);
@@ -56,9 +59,11 @@ public class EasyAnimator {
     // if the view type is wrong, pop up an error message
     if (!viewResult.equalsIgnoreCase("text")
             && !viewResult.equalsIgnoreCase("svg")
-    && !viewResult.equalsIgnoreCase("visual")) {
+            && !viewResult.equalsIgnoreCase("visual")) {
+      frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
               "Invalid view", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
     }
 
     // Get the output file name
@@ -73,11 +78,13 @@ public class EasyAnimator {
     speed.findInLine("-speed");
     String speedResult = speed.next();
     try {
-       int speedInt = Integer.parseInt(speedResult);
-       if (Integer.parseInt(speedResult) < 1) throw new NumberFormatException();
+      int speedInt = Integer.parseInt(speedResult);
+      if (Integer.parseInt(speedResult) < 1) throw new NumberFormatException();
     } catch (NumberFormatException n) {
+      frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
     }
 
     // Make a new ViewFactory object
@@ -87,7 +94,6 @@ public class EasyAnimator {
 
     // JFrame finishing up
     frame.pack();
-    frame.setVisible(true);
-
+    System.exit(0);
   }
 }
