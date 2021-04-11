@@ -87,10 +87,7 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
                                                      int y2, int w2, int h2, int r2, int g2, int b2)
   {
     // get shape from name
-    IShape shape = model.getShape(name); // update shape with t1, so the shape gets mutated
-
-    // Should be all ifs instead of else ifs because what if the same shape has multiple changes
-    // at once
+    IShape shape = model.getShape(name);
 
     // set appear time
     if (shape.getAppear() == -1) {
@@ -118,7 +115,6 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     }
 
     // create event
-    // fixme -- need to figure out how to set disappear (t2 of final motion)
     // fixme -- figure out radii for ellipses
 
     if (x1 != x2 || y1 != y2) {
