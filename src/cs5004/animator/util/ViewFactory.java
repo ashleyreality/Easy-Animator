@@ -40,8 +40,6 @@ public class ViewFactory {
     this.out = out;
     this.speed = speed;
 
-    // What is "out" here? The output text file name? If so, maybe we should name it more specifically
-
     // passing to the view the things that it needs
     // viewType is the view type --> send it to create so it knows which view
 

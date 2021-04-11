@@ -136,39 +136,52 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    * @return this instance of the animation model
    */
   @Override
-  public AnimationBuilder<IAnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
-                                                     int h1, int r1, int g1, int b1, int t2, int x2,
-                                                     int y2, int w2, int h2, int r2, int g2, int b2) {
-    // get shape from name
+  public AnimationBuilder<IAnimationModel> addMotion(String name,
+                                                     int t1,
+                                                     int x1, int y1,
+                                                     int w1, int h1,
+                                                     int r1, int g1, int b1,
+                                                     int t2,
+                                                     int x2, int y2,
+                                                     int w2, int h2,
+                                                     int r2, int g2, int b2) {
+
+    // get the desired shape from the model using the shape's name
     IShape shape = model.getShape(name);
 
-    // set appear time
+    // using a default value (-1) that would flag whether the  appear time has not yet been set
+    // set appear time (the start of when the changes to the shape occur)
     if (shape.getAppear() == -1) {
       shape.setAppear(t1);
     }
 
+    // using a default value (null) that would flag whether the shape color has not yet been set
     // set initial color
     if (shape.getColor() == null) {
       shape.setColor(r1, g1, b1);
     }
 
+    // using a default value (null) that would flag whether the shape location has not yet been set
     // set initial location
     if (shape.getLocation() == null) {
       shape.setLocation(x1, y1);
     }
 
+    // using a default value (0) that would flag whether the shape's width has not yet been set
     // set initial width
     if (shape.getWidth() == 0) {
       shape.setWidth(w1);
     }
 
+    // using a default value (0) that would flag whether the shape's height has not yet been set
     // set initial height
     if (shape.getHeight() == 0) {
       shape.setHeight(h1);
     }
 
     // create event
-
+    // if the position of the shape has changed on either the x-axis or y-axis
+    // then set the disappearance time for the change to end
     if (x1 != x2 || y1 != y2) {
       // set unrelated attributes
       shape.setDisappear(t2);
