@@ -68,7 +68,7 @@ public class EasyAnimator {
     // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
-    // and looks for the String "-view" and assigns the String right after it to variable "viewResult"
+    // and looks for the String "-view" and assigns the String right after it to variable "outputView"
     // which represents the view type of the output
     String outputView = AnimatorHelper.viewScanner(sb);
 
@@ -78,24 +78,24 @@ public class EasyAnimator {
     // ----------------------------------------------------------------------------------------
     // setup the *out* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
-    // and looks for the String "-out" and assigns the String right after it to variable "outResult"
+    // and looks for the String "-out" and assigns the String right after it to variable "outputName"
     // which represents the name of the output (any type)
-    String outResult = AnimatorHelper.outScanner(sb);
+    String outputName = AnimatorHelper.outScanner(sb);
 
-    // fixme - what to do if speed isn't given and also isn't needed, like for text view?
-    // only throw an error if it's required for the given view. if speed is req'd and not given,
-    // it's ok to ignore. If you need the speed and don't get it, you can either default to a given
-    // speed or you can throw an error. Defaulting preferred -- be sure to document it!
+    // fixme - what to do if outputSpeed isn't given and also isn't needed, like for text view?
+    // only throw an error if it's required for the given view. if outputSpeed is req'd and not given,
+    // it's ok to ignore. If you need the outputSpeed and don't get it, you can either default to a given
+    // outputSpeed or you can throw an error. Defaulting preferred -- be sure to document it!
 
     // ----------------------------------------------------------------------------------------
-    // setup the *speed* using an instance of Scanner()
+    // setup the *outputSpeed* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
-    // and looks for the String "-speed" and assigns the String right after it to variable "speedResult"
-    // which represents the speed within the output (any type)
-    String speedResult = AnimatorHelper.speedScanner(sb);
+    // and looks for the String "-speed" and assigns the String right after it to variable "outputSpeed"
+    // which represents the outputSpeed within the output (any type)
+    String outputSpeed = AnimatorHelper.speedScanner(sb);
 
-    // if the speed is less than the integer value of 1, pop up an error message
-    AnimatorHelper.speedExceptions(speedResult, frame);
+    // if the outputSpeed is less than the integer value of 1, pop up an error message
+    AnimatorHelper.speedExceptions(outputSpeed, frame);
 
     // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of ViewFactory()
@@ -103,8 +103,8 @@ public class EasyAnimator {
     // 1) the view type of the output,
     // 2) the model,
     // 3) the name of the output,
-    // 4) and the speed of the output
-    ViewFactory newView = new ViewFactory(outputView, model, outResult, speedResult);
+    // 4) and the outputSpeed of the output
+    ViewFactory newView = new ViewFactory(outputView, model, outputName, outputSpeed);
     newView.create();
 
     // ----------------------------------------------------------------------------------------
