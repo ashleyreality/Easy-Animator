@@ -13,8 +13,8 @@ public class Ellipse extends AbstractShape {
 
   /**
    * __________________________________ CONSTRUCTOR: Ellipse() _______________________________________.
-   * The Ellipse() constructor creates an ellipse with the given width, height, color parameters, and
-   * location coordinates.
+   * The Ellipse() constructor creates an ellipse with the given width, height, color parameters,
+   * and location coordinates.
    *
    * @param name   name of the ellipse
    * @param width  width of the ellipse (x)
@@ -41,7 +41,7 @@ public class Ellipse extends AbstractShape {
    * Creates a shape with the given name. Further attributes are instantiated with the first event
    * called on the shape.
    *
-   * @param name   name of the shape
+   * @param name name of the shape
    * @throws IllegalArgumentException if name is null
    */
   public Ellipse(String name) {
@@ -50,8 +50,8 @@ public class Ellipse extends AbstractShape {
 
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
-   * Returns a String with the name, location, horizontal radius, vertical radius, color, and
-   * appear and disappear times of the ellipse.
+   * Returns a String with the name, location, horizontal radius, vertical radius, color, and appear
+   * and disappear times of the ellipse.
    *
    * @return a String displaying the ellipse's attributes
    */
@@ -78,24 +78,24 @@ public class Ellipse extends AbstractShape {
    * ___________________________________ METHOD: setWidth() _______________________________________.
    * This is a setter override from the AbstractShape that sets the width of the Ellipse.
    */
-//  @Override
-//  public void setWidth(double width) {
-//    if (width <= 0) {
-//      throw new IllegalArgumentException("Width must be positive.");
-//    }
-//    this.width = this.radiusX * 2;
-//  }
+  @Override
+  public void setWidth(double width) {
+    if (width <= 0) {
+      throw new IllegalArgumentException("Width must be positive.");
+    }
+    this.radiusX = width / 2;
+  }
 
   /**
    * ___________________________________ METHOD: setHeight() ______________________________________.
    * This is a setter override from the AbstractShape that sets the height of the Ellipse.
    */
-//  @Override
-//  public void setHeight(double height) {
-//    if (height <= 0) {
-//      throw new IllegalArgumentException("Height must be positive.");
-//    }
-//    this.height = this.radiusY * 2;
-//  }
+  @Override
+  public void setHeight(double height) {
+    if (height <= 0) {
+      throw new IllegalArgumentException("Height must be positive.");
+    }
+    this.radiusY = height / 2;
+  }
 
 }
