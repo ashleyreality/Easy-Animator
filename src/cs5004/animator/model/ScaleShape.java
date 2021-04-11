@@ -58,23 +58,20 @@ public class ScaleShape extends AbstractEvent {
             + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();*/
     if (this.widthBefore == this.widthAfter) {
       return this.shape.getName() + " changes height from " + this.heightBefore + " to "
-              + this.heightAfter + " from t=" + this.getEventBegin() + " to t="
+              + this.heightAfter + " from time t=" + this.getEventBegin() + " to t="
               + this.getEventEnd();
     }
     else if (this.heightBefore == this.heightAfter) {
       return this.shape.getName() + " changes width from " + this.widthBefore + " to "
-              + this.widthAfter + " from t=" + this.getEventBegin() + " to t="
+              + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
               + this.getEventEnd();
     }
     else {
       return this.shape.getName() + " changes height from " + this.heightBefore + " to "
               + this.heightAfter + " and changes width from " + this.widthBefore + " to "
-              + this.widthAfter + " from t=" + this.getEventBegin() + " to t="
+              + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
               + this.getEventEnd();
     }
-
-    // removed the word "time" between "from" and "t=" in line before
-    // did this for the testToString() in EventTest
   }
 
   // R changes width from 50 to 25 from time t=51 to t=70

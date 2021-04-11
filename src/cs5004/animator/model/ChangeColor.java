@@ -46,9 +46,7 @@ public class ChangeColor extends AbstractEvent {
     return "Shape " + this.getShape().getName()
             + " changes color from " + this.from.toString()
             + " to " + this.to.toString()
-            + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
-    // removed the word "time" between "from" and "t=" in line before
-    // did this for the testToString() in EventTest
+            + " from time t=" + this.getEventBegin() + " to t=" + this.getEventEnd();
   }
 
   /**

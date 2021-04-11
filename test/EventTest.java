@@ -27,9 +27,9 @@ public class EventTest {
     // make some shapes
     // make some events to test their getters and setters
 
-    //________________________________________ Ellipse Objects _______________________________________.
+    //________________________________________ Oval Objects _______________________________________.
 
-    this.ellipse = new Ellipse("ellipse1",
+    this.ellipse = new Ellipse("oval1",
             120, 60,
             0, 0, 1,
             500.0, 100.0);
@@ -41,7 +41,7 @@ public class EventTest {
             1, 0, 0,
             200.0, 200.0);
 
-    //________________________________________ Ellipse Events ________________________________________.
+    //________________________________________ Oval Events ________________________________________.
 
     this.colorEvent = new ChangeColor(ellipse,
             0, 0, 1,
@@ -63,19 +63,19 @@ public class EventTest {
     // test normal examples
     // test larger numbers and with rectangle
 
-    //________________________________________ Ellipse Events ________________________________________.
+    //________________________________________ Oval Events ________________________________________.
     this.colorEvent = new ChangeColor(ellipse,
             0, 0, 1,
             100, 25, 3);
 
-    assertEquals("Shape ellipse1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
+    assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
             colorEvent.toString());
 
     this.scaleEvent = new ScaleShape(ellipse,
             120.0, 60.0,
             10.1, 30.90123);
 
-    assertEquals("Shape ellipse1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
+    assertEquals("Shape oval1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
                     + "Height: 30.9 from t=0 to t=1",
             scaleEvent.toString());
 
@@ -83,7 +83,7 @@ public class EventTest {
             500.0, 100.0,
             14.5, 78.432);
 
-    assertEquals("Shape ellipse1 moves from (500.0,100.0) to (14.5,78.4) from t=0 to t=1",
+    assertEquals("Shape oval1 moves from (500.0,100.0) to (14.5,78.4) from t=0 to t=1",
             moveEvent.toString());
 
     //_____________________________________ Rectangle Events ______________________________________.
@@ -135,10 +135,10 @@ public class EventTest {
   }
 
 
-  // ____________________________________ EXCEPTIONS: Ellipse ________________________________________.
+  // ____________________________________ EXCEPTIONS: Oval ________________________________________.
 
-  // Original Ellipse RGB: 0, 0, 1
-  // New Ellipse RGB: -5, 200, 200
+  // Original Oval RGB: 0, 0, 1
+  // New Oval RGB: -5, 200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeRed() {
     new ChangeColor(ellipse,
@@ -146,8 +146,8 @@ public class EventTest {
             -5, 200, 200);
   }
 
-  // Original Ellipse RGB: 0, 0, 1
-  // New Ellipse RGB: 200, -200, 200
+  // Original Oval RGB: 0, 0, 1
+  // New Oval RGB: 200, -200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeGreen() {
     new ChangeColor(ellipse,
@@ -155,8 +155,8 @@ public class EventTest {
             200, -200, 200);
   }
 
-  // Original Ellipse RGB: 0, 0, 1
-  // New Ellipse RGB: 200, 200, 200
+  // Original Oval RGB: 0, 0, 1
+  // New Oval RGB: 200, 200, 200
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeBlue() {
     new ChangeColor(ellipse,
@@ -303,11 +303,11 @@ public class EventTest {
 
   @Test
   public void testToString() {
-    assertEquals("Shape ellipse1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
+    assertEquals("Shape oval1 changes color from (0,0,1) to (100,25,3) from t=0 to t=1",
             colorEvent.toString());
     assertEquals("Shape rect1 moves from (200.0,200.0) to (50.0,100.0) from t=0 to t=1",
             moveEvent.toString());
-    assertEquals("Shape ellipse1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
+    assertEquals("Shape oval1 scales from Width: 120.0, Height: 60.0 to Width: 10.1, "
             + "Height: 30.9 from t=0 to t=1", scaleEvent.toString());
   }
 
