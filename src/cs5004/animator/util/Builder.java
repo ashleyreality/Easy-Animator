@@ -15,13 +15,11 @@ import cs5004.animator.model.ScaleShape;
 
 /**
  * ___________________________ IMPLEMENTATION CLASS: Builder {} ___________________________________.
- *
- * @param <T>
+ * The Builder class implements AnimationBuilder<IAnimationModel>. It is used to build the animation
+ * model from a file.
  */
 public class Builder implements AnimationBuilder<IAnimationModel> {
-
-  // We need to implement this class so that it works with IAnimationModel. --AB
-  cs5004.animator.model.IAnimationModel model;
+  IAnimationModel model;
 
   /**
    * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
@@ -38,7 +36,6 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    */
   @Override
   public IAnimationModel build() {
-    //System.out.println(model.toString());
     return this.model;
   }
 
@@ -53,9 +50,8 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    */
   @Override
   public AnimationBuilder<IAnimationModel> setBounds(int x, int y, int width, int height) {
-    // we should hold the bounds in the model
-    // controller can get it from the model and give it to the view
-    System.out.println("Bounds will be set to: " + x + " " + y + " " + width + " " + height);
+
+    model.addBounds(x, y, width, height);
     return this;
   }
 

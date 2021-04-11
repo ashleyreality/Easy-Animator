@@ -72,6 +72,8 @@ public class EasyAnimator {
     String outResult = out.next();
     System.out.println(outResult);
 
+    // can you also type?
+
     // Get the speed
     // fixme - what to do if speed isn't given and also isn't needed, like for text view?
     // only throw an error if it's required for the given view. if speed is given and not given,

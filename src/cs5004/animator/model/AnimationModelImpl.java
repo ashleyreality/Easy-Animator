@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
  */
 public class AnimationModelImpl implements IAnimationModel {
   private NavigableMap<IShape, List<IEvent>> shapeMap;
+  private int boundsX;
+  private int boundsY;
+  private int boundsWidth;
+  private int boundsHeight;
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -242,11 +246,57 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
 
+  /**
+   *  ________________________________ METHOD: addBounds() ______________________________________.
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
+  public void addBounds(int x, int y, int width, int height) {
+    this.boundsX = x;
+    this.boundsY = y;
+    this.boundsWidth = width;
+    this.boundsHeight = height;
+  }
+
+  /**
+   * ________________________________ METHOD: getBoundsX() ______________________________________.
+   * @return
+   */
+  public int getBoundsX() {
+    return boundsX;
+  }
+
+  /**
+   * ________________________________ METHOD: getBoundsY() ______________________________________.
+   * @return
+   */
+  public int getBoundsY() {
+    return boundsY;
+  }
+
+  /**
+   * ________________________________ METHOD: getBoundsWidth() ____________________________________.
+   * @return
+   */
+  public int getBoundsWidth() {
+    return boundsWidth;
+  }
+
+  /**
+   * ________________________________ METHOD: getBoundsHeight() ___________________________________.
+   * @return
+   */
+  public int getBoundsHeight() {
+    return boundsHeight;
+  }
 
   /**
    * ________________________________ METHOD: getEventList() ______________________________________.
    *
-   * @param shape the shape for which the event list is tied to, an IShape
+   * @param shape the shape to which the event list is tied, an IShape
    * @return the list of events
    */
   @Override
