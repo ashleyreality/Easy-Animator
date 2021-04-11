@@ -1,6 +1,5 @@
 package cs5004.animator;
 
-import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -77,8 +76,6 @@ public class EasyAnimator {
     out.findInLine("-out");
     String outResult = out.next();
     System.out.println(outResult);
-
-    // can you also type?
 
     // Get the speed
     // fixme - what to do if speed isn't given and also isn't needed, like for text view?
