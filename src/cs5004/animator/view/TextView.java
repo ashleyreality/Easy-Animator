@@ -20,8 +20,12 @@ public class TextView implements IView {
     // New StringBuilder (from AnimationModelImpl)
     StringBuilder sb = new StringBuilder();
 
+    //sort by appear time
+    Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
     // Add the shapes to the StringBuilder, sb
-    List<IShape> s = new ArrayList<>(model.getShapeMap().keySet());
+    List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
+            .collect(Collectors.toList());
+
     for (IShape l : s) {
       // we need the color toString to output color words (red, blue, green)
       sb.append(l.createString());
