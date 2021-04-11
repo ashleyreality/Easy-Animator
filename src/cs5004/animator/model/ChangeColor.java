@@ -58,4 +58,14 @@ public class ChangeColor extends AbstractEvent {
   public EventType getEventType() {
     return EventType.RECOLOR;
   }
+
+  @Override
+  public String getBefore() {
+    return this.from.toString();
+  }
+
+  @Override
+  public String getAfter() {
+    return this.to.toString();
+  }
 }

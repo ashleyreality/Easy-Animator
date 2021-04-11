@@ -48,14 +48,7 @@ public class ScaleShape extends AbstractEvent {
    */
   @Override
   public String toString() {
-    // "Shape R scales from Width: 50.0,
-    // Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-    /*return "Shape " + this.getShape().getName()
-            + " scales from Width: " + String.format("%.1f", this.widthBefore)
-            + ", Height: " + String.format("%.1f", this.heightBefore)
-            + " to Width: " + String.format("%.1f", this.widthAfter) + ", Height: "
-            + String.format("%.1f", this.heightAfter)
-            + " from t=" + this.getEventBegin() + " to t=" + this.getEventEnd();*/
+
     if (this.widthBefore == this.widthAfter) {
       return this.shape.getName() + " changes height from " + this.heightBefore + " to "
               + this.heightAfter + " from time t=" + this.getEventBegin() + " to t="
@@ -74,8 +67,6 @@ public class ScaleShape extends AbstractEvent {
     }
   }
 
-  // R changes width from 50 to 25 from time t=51 to t=70
-  //specifies when only width or only height changes
 
   /**
    * _________________________________ METHOD: getEventType() _____________________________________.
@@ -85,5 +76,15 @@ public class ScaleShape extends AbstractEvent {
    */
   public EventType getEventType() {
     return EventType.SCALE;
+  }
+
+  @Override
+  public String getBefore() {
+    return null;
+  }
+
+  @Override
+  public String getAfter() {
+    return null;
   }
 }

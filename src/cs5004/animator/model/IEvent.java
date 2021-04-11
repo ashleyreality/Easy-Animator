@@ -48,6 +48,10 @@ public interface IEvent {
    */
   EventType getEventType();
 
+  String getBefore();
+
+  String getAfter();
+
   //  /**
   //   * The change method creates a changed shape event.
   //   *

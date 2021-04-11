@@ -53,4 +53,14 @@ public class MoveShape extends AbstractEvent {
   public EventType getEventType() {
     return EventType.MOVE;
   }
+
+  @Override
+  public String getBefore() {
+    return this.from.toString();
+  }
+
+  @Override
+  public String getAfter() {
+    return this.to.toString();
+  }
 }
