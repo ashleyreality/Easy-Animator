@@ -1,9 +1,32 @@
 package cs5004.animator;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
 import javax.swing.*;
 
-class AnimatorHelper {
+import cs5004.animator.model.AnimationModelImpl;
+import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationReader;
+import cs5004.animator.util.Builder;
 
+public class AnimatorHelper {
+  private IAnimationModel model;
+  //  private Readable in;
+  //  private Appendable out;
+
+  /**
+   * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
+   */
+  public AnimatorHelper(IAnimationModel model) {
+  }
+
+  /**
+   * _____________________________ HELPER METHOD: jframeStart() ___________________________________.
+   * @return
+   */
   public static JFrame jframeStart() {
     JFrame frame = new JFrame("Frame");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,4 +42,64 @@ class AnimatorHelper {
     return sb;
   }
 
-}
+  public static String nameScanner(StringBuilder sb) {
+    Scanner in = new Scanner(sb.toString());
+    in.findInLine("-in");
+    return in.next();
+  }
+
+  public static void fileExceptions(Readable file, String inputName, JFrame frame) {
+    try {
+      file = new FileReader(inputName);
+    } catch (FileNotFoundException e) {
+      frame.setVisible(true);
+      JOptionPane.showMessageDialog(frame, "Input file not found", "Input file error",
+              JOptionPane.ERROR_MESSAGE);
+      System.out.println("The input file was not found.");
+      e.printStackTrace();
+      System.exit(1);
+    }
+  }
+
+  public static String viewScanner(StringBuilder sb) {
+    Scanner view = new Scanner(sb.toString());
+    view.findInLine("-view");
+    return view.next();
+  }
+
+  public static void viewExceptions(String outputView, JFrame frame) {
+    if (!outputView.equalsIgnoreCase("text")
+            && !outputView.equalsIgnoreCase("svg")
+            && !outputView.equalsIgnoreCase("visual")) {
+      frame.setVisible(true);
+      JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
+              "Invalid view", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+    }
+  }
+
+  public static String outScanner(StringBuilder sb) {
+    Scanner out = new Scanner(sb.toString());
+    out.findInLine("-out");
+    return out.next();
+  }
+
+  public static String speedScanner(StringBuilder sb) {
+    Scanner speed = new Scanner(sb.toString());
+    speed.findInLine("-speed");
+    return speed.next();
+  }
+
+  public static void speedExceptions(String speedResult, JFrame frame) {
+    try {
+      int speedInt = Integer.parseInt(speedResult);
+      if (Integer.parseInt(speedResult) < 1) throw new NumberFormatException();
+    } catch (NumberFormatException n) {
+      frame.setVisible(true);
+      JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
+              "Invalid speed", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+    }
+  }
+
+  }

@@ -16,9 +16,7 @@ import cs5004.animator.util.ViewFactory;
 
 
 public class EasyAnimator {
-  private static IAnimationModel model;
-  private Readable in;
-  private Appendable out;
+
 
   public static void main(String[] args) throws FileNotFoundException {
 
@@ -32,7 +30,9 @@ public class EasyAnimator {
 
     // ----------------------------------------------------------------------------------------
     // setup the *model* using an instance of AnimationModelImpl()
-    model = new AnimationModelImpl();
+    //    AnimatorHelper model = new AnimatorHelper();
+    IAnimationModel model = new AnimationModelImpl();
+    AnimatorHelper helper = new AnimatorHelper(model);
 
     // ----------------------------------------------------------------------------------------
     // setup the *frame* using an instance of JFrame()
@@ -49,29 +49,18 @@ public class EasyAnimator {
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-in" and assigns the String right after it to variable "inResult"
     // which represents the name of the .txt input file
-    Scanner in = new Scanner(sb.toString());
-    in.findInLine("-in");
-    String inResult = in.next();
+    String inputName = AnimatorHelper.nameScanner(sb);
 
     // ----------------------------------------------------------------------------------------
     // setup the *input file reader* using an instance of FileReader()
     // the FileReader takes in the input file
     Readable file = null;
-    try {
-      file = new FileReader(inResult);
-    } catch (FileNotFoundException e) {
-      frame.setVisible(true);
-      JOptionPane.showMessageDialog(frame, "Input file not found", "Input file error",
-              JOptionPane.ERROR_MESSAGE);
-      System.out.println("The input file was not found.");
-      e.printStackTrace();
-      System.exit(1);
-    }
+    AnimatorHelper.fileExceptions(file, inputName, frame);
 
     // ----------------------------------------------------------------------------------------
     // setup the *build* using an instance of AnimationBuilder()
     // the AnimationBuilder takes in the model
-    // which is then cast from an IAnimationModel type to a AnimationReader type
+    // which is then cast from an AnimationReader type to an IAnimationModel type
     // and is then parsed using the input file using the instance of AnimationBuilder()
     AnimationBuilder build = new Builder(model);
     model = (IAnimationModel) AnimationReader.parseFile(file, build);
@@ -81,29 +70,17 @@ public class EasyAnimator {
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-view" and assigns the String right after it to variable "viewResult"
     // which represents the view type of the output
-    Scanner view = new Scanner(sb.toString());
-    view.findInLine("-view");
-    String viewResult = view.next();
+    String outputView = AnimatorHelper.viewScanner(sb);
 
     // if the view type is wrong, pop up an error message
-    if (!viewResult.equalsIgnoreCase("text")
-            && !viewResult.equalsIgnoreCase("svg")
-            && !viewResult.equalsIgnoreCase("visual")) {
-      frame.setVisible(true);
-      JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
-              "Invalid view", JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
-    }
+    AnimatorHelper.viewExceptions(outputView, frame);
 
     // ----------------------------------------------------------------------------------------
     // setup the *out* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-out" and assigns the String right after it to variable "outResult"
     // which represents the name of the output (any type)
-    Scanner out = new Scanner(sb.toString());
-    out.findInLine("-out");
-    String outResult = out.next();
-    System.out.println(outResult);
+    String outResult = AnimatorHelper.outScanner(sb);
 
     // fixme - what to do if speed isn't given and also isn't needed, like for text view?
     // only throw an error if it's required for the given view. if speed is req'd and not given,
@@ -115,20 +92,10 @@ public class EasyAnimator {
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-speed" and assigns the String right after it to variable "speedResult"
     // which represents the speed within the output (any type)
-    Scanner speed = new Scanner(sb.toString());
-    speed.findInLine("-speed");
-    String speedResult = speed.next();
+    String speedResult = AnimatorHelper.speedScanner(sb);
 
     // if the speed is less than the integer value of 1, pop up an error message
-    try {
-      int speedInt = Integer.parseInt(speedResult);
-      if (Integer.parseInt(speedResult) < 1) throw new NumberFormatException();
-    } catch (NumberFormatException n) {
-      frame.setVisible(true);
-      JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
-              "Invalid speed", JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
-    }
+    AnimatorHelper.speedExceptions(speedResult, frame);
 
     // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of ViewFactory()
@@ -137,7 +104,7 @@ public class EasyAnimator {
     // 2) the model,
     // 3) the name of the output,
     // 4) and the speed of the output
-    ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
+    ViewFactory newView = new ViewFactory(outputView, model, outResult, speedResult);
     newView.create();
 
     // ----------------------------------------------------------------------------------------
