@@ -22,29 +22,31 @@ public class EasyAnimator {
 
   public static void main(String[] args) throws FileNotFoundException {
 
-    // The controller/main uses a Readable object to
-    // read one "token" at a time (where each token is a String separated by a space)
-    // from the input (like a text file input)
-    // and it decides how/what will be output for the view's use
+    // The controller uses a Readable object to read one "token" at a time from the input (like a text file input)
+    //	The view uses an Appendable object to transmit all outputs (like a text file output)
 
-    // Return the Appendable object for the View to use
-    // The View (such as TextView) uses an Appendable object to transmit all outputs (like a text file output)
 
-    // ----------------------------------------------------------------------------------------
+    // make the appendable here & pass it in to TextView (for example)
+    // and decide here how it will be output (command line, file, or multiple places, etc.)
+    // because the command line
+    // gives the info to the controller
+
     // setup the *model* using an instance of AnimationModelImpl()
     model = new AnimationModelImpl();
 
-    // ----------------------------------------------------------------------------------------
     // setup the *frame* using an instance of JFrame()
-    JFrame frame = AnimatorHelper.jframeStart();
+    JFrame frame = new JFrame("Frame");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    // ----------------------------------------------------------------------------------------
     // setup the *string builder* using an instance of StringBuilder()
     // convert the input to main "args" from an array of Strings to tokens of Strings
     // with a space in between each token
-    StringBuilder sb = AnimatorHelper.stringBuilder(args);
+    StringBuilder sb = new StringBuilder();
+    for (String arg : args) {
+      sb.append(arg);
+      sb.append(" ");
+    }
 
-    // ----------------------------------------------------------------------------------------
     // setup the *input* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-in" and assigns the String right after it to variable "inResult"
@@ -53,7 +55,6 @@ public class EasyAnimator {
     in.findInLine("-in");
     String inResult = in.next();
 
-    // ----------------------------------------------------------------------------------------
     // setup the *input file reader* using an instance of FileReader()
     // the FileReader takes in the input file
     Readable file = null;
@@ -68,7 +69,6 @@ public class EasyAnimator {
       System.exit(1);
     }
 
-    // ----------------------------------------------------------------------------------------
     // setup the *build* using an instance of AnimationBuilder()
     // the AnimationBuilder takes in the model
     // which is then cast from an IAnimationModel type to a AnimationReader type
@@ -76,7 +76,6 @@ public class EasyAnimator {
     AnimationBuilder build = new Builder(model);
     model = (IAnimationModel) AnimationReader.parseFile(file, build);
 
-    // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-view" and assigns the String right after it to variable "viewResult"
@@ -95,7 +94,6 @@ public class EasyAnimator {
       System.exit(1);
     }
 
-    // ----------------------------------------------------------------------------------------
     // setup the *out* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-out" and assigns the String right after it to variable "outResult"
@@ -110,7 +108,6 @@ public class EasyAnimator {
     // it's ok to ignore. If you need the speed and don't get it, you can either default to a given
     // speed or you can throw an error. Defaulting preferred -- be sure to document it!
 
-    // ----------------------------------------------------------------------------------------
     // setup the *speed* using an instance of Scanner()
     // the Scanner reads through the Strings of tokens in the string builder
     // and looks for the String "-speed" and assigns the String right after it to variable "speedResult"
@@ -130,7 +127,6 @@ public class EasyAnimator {
       System.exit(1);
     }
 
-    // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of ViewFactory()
     // the ViewFactory takes in:
     // 1) the view type of the output,
@@ -140,11 +136,17 @@ public class EasyAnimator {
     ViewFactory newView = new ViewFactory(viewResult, model, outResult, speedResult);
     newView.create();
 
-    // ----------------------------------------------------------------------------------------
     // JFrame finishing up
     frame.pack();
     System.exit(0);
   }
 
+  private StringBuilder appendableHelper(String[] args) {
+    StringBuilder sb = new StringBuilder();
+    for (String arg : args) {
+      sb.append(arg);
+      sb.append(" ");
+    }
+  }
 
 }

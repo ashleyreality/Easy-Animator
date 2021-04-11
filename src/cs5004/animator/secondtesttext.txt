@@ -1,0 +1,110 @@
+Create (127,185,246) rectangle disk1 with corner at (190.0,168.0), width 20.0 and height 18.0
+Create (102,162,48) rectangle disk2 with corner at (178.0,186.0), width 42.0 and height 18.0
+Create (157,206,118) rectangle disk3 with corner at (167.0,204.0), width 65.0 and height 18.0
+Create (250,125,210) rectangle disk4 with corner at (156.0,222.0), width 87.0 and height 18.0
+Create (56,214,194) rectangle disk5 with corner at (145.0,240.0), width 110.0 and height 18.0
+
+disk1 appears at time t=1 and disappears at time t=1166
+disk2 appears at time t=1 and disappears at time t=1166
+disk3 appears at time t=1 and disappears at time t=1166
+disk4 appears at time t=1 and disappears at time t=1166
+disk5 appears at time t=1 and disappears at time t=1166
+
+disk1 moves from (190.0,168.0) to (190.0,50.0) from time t=25 to t=35
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=36 to t=46
+disk1 moves from (490.0,50.0) to (490.0,240.0) from time t=47 to t=57
+disk2 moves from (178.0,186.0) to (178.0,50.0) from time t=57 to t=67
+disk2 moves from (178.0,50.0) to (328.0,50.0) from time t=68 to t=78
+disk2 moves from (328.0,50.0) to (328.0,240.0) from time t=79 to t=89
+disk1 moves from (490.0,240.0) to (490.0,50.0) from time t=89 to t=99
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=100 to t=110
+disk1 moves from (340.0,50.0) to (340.0,222.0) from time t=111 to t=121
+disk3 moves from (167.0,204.0) to (167.0,50.0) from time t=121 to t=131
+disk3 moves from (167.0,50.0) to (467.0,50.0) from time t=132 to t=142
+disk3 moves from (467.0,50.0) to (467.0,240.0) from time t=143 to t=153
+disk1 moves from (340.0,222.0) to (340.0,50.0) from time t=153 to t=163
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=164 to t=174
+disk1 moves from (190.0,50.0) to (190.0,204.0) from time t=175 to t=185
+disk2 moves from (328.0,240.0) to (328.0,50.0) from time t=185 to t=195
+disk2 moves from (328.0,50.0) to (478.0,50.0) from time t=196 to t=206
+disk2 moves from (478.0,50.0) to (478.0,222.0) from time t=207 to t=217
+disk1 moves from (190.0,204.0) to (190.0,50.0) from time t=217 to t=227
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=228 to t=238
+disk1 moves from (490.0,50.0) to (490.0,204.0) from time t=239 to t=249
+disk4 moves from (156.0,222.0) to (156.0,50.0) from time t=249 to t=259
+disk4 moves from (156.0,50.0) to (306.0,50.0) from time t=260 to t=270
+disk4 moves from (306.0,50.0) to (306.0,240.0) from time t=271 to t=281
+disk1 moves from (490.0,204.0) to (490.0,50.0) from time t=281 to t=291
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=292 to t=302
+disk1 moves from (340.0,50.0) to (340.0,222.0) from time t=303 to t=313
+disk2 moves from (478.0,222.0) to (478.0,50.0) from time t=313 to t=323
+disk2 moves from (478.0,50.0) to (178.0,50.0) from time t=324 to t=334
+disk2 moves from (178.0,50.0) to (178.0,222.0) from time t=335 to t=345
+disk1 moves from (340.0,222.0) to (340.0,50.0) from time t=345 to t=355
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=356 to t=366
+disk1 moves from (190.0,50.0) to (190.0,204.0) from time t=367 to t=377
+disk3 moves from (467.0,240.0) to (467.0,50.0) from time t=377 to t=387
+disk3 moves from (467.0,50.0) to (317.0,50.0) from time t=388 to t=398
+disk3 moves from (317.0,50.0) to (317.0,222.0) from time t=399 to t=409
+disk1 moves from (190.0,204.0) to (190.0,50.0) from time t=409 to t=419
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=420 to t=430
+disk1 moves from (490.0,50.0) to (490.0,240.0) from time t=431 to t=441
+disk2 moves from (178.0,222.0) to (178.0,50.0) from time t=441 to t=451
+disk2 moves from (178.0,50.0) to (328.0,50.0) from time t=452 to t=462
+disk2 moves from (328.0,50.0) to (328.0,204.0) from time t=463 to t=473
+disk1 moves from (490.0,240.0) to (490.0,50.0) from time t=473 to t=483
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=484 to t=494
+disk1 moves from (340.0,50.0) to (340.0,186.0) from time t=495 to t=505
+disk5 moves from (145.0,240.0) to (145.0,50.0) from time t=505 to t=515
+disk5 moves from (145.0,50.0) to (445.0,50.0) from time t=516 to t=526
+disk5 moves from (445.0,50.0) to (445.0,240.0) from time t=527 to t=537
+disk1 moves from (340.0,186.0) to (340.0,50.0) from time t=537 to t=547
+disk5 changes color from (56,214,194) to (0,255,0) from time t=537 to t=545
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=548 to t=558
+disk1 moves from (190.0,50.0) to (190.0,240.0) from time t=559 to t=569
+disk2 moves from (328.0,204.0) to (328.0,50.0) from time t=569 to t=579
+disk2 moves from (328.0,50.0) to (478.0,50.0) from time t=580 to t=590
+disk2 moves from (478.0,50.0) to (478.0,222.0) from time t=591 to t=601
+disk1 moves from (190.0,240.0) to (190.0,50.0) from time t=601 to t=611
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=612 to t=622
+disk1 moves from (490.0,50.0) to (490.0,204.0) from time t=623 to t=633
+disk3 moves from (317.0,222.0) to (317.0,50.0) from time t=633 to t=643
+disk3 moves from (317.0,50.0) to (167.0,50.0) from time t=644 to t=654
+disk3 moves from (167.0,50.0) to (167.0,240.0) from time t=655 to t=665
+disk1 moves from (490.0,204.0) to (490.0,50.0) from time t=665 to t=675
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=676 to t=686
+disk1 moves from (340.0,50.0) to (340.0,222.0) from time t=687 to t=697
+disk2 moves from (478.0,222.0) to (478.0,50.0) from time t=697 to t=707
+disk2 moves from (478.0,50.0) to (178.0,50.0) from time t=708 to t=718
+disk2 moves from (178.0,50.0) to (178.0,222.0) from time t=719 to t=729
+disk1 moves from (340.0,222.0) to (340.0,50.0) from time t=729 to t=739
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=740 to t=750
+disk1 moves from (190.0,50.0) to (190.0,204.0) from time t=751 to t=761
+disk4 moves from (306.0,240.0) to (306.0,50.0) from time t=761 to t=771
+disk4 moves from (306.0,50.0) to (456.0,50.0) from time t=772 to t=782
+disk4 moves from (456.0,50.0) to (456.0,222.0) from time t=783 to t=793
+disk1 moves from (190.0,204.0) to (190.0,50.0) from time t=793 to t=803
+disk4 changes color from (250,125,210) to (0,255,0) from time t=793 to t=801
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=804 to t=814
+disk1 moves from (490.0,50.0) to (490.0,204.0) from time t=815 to t=825
+disk2 moves from (178.0,222.0) to (178.0,50.0) from time t=825 to t=835
+disk2 moves from (178.0,50.0) to (328.0,50.0) from time t=836 to t=846
+disk2 moves from (328.0,50.0) to (328.0,240.0) from time t=847 to t=857
+disk1 moves from (490.0,204.0) to (490.0,50.0) from time t=857 to t=867
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=868 to t=878
+disk1 moves from (340.0,50.0) to (340.0,222.0) from time t=879 to t=889
+disk3 moves from (167.0,240.0) to (167.0,50.0) from time t=889 to t=899
+disk3 moves from (167.0,50.0) to (467.0,50.0) from time t=900 to t=910
+disk3 moves from (467.0,50.0) to (467.0,204.0) from time t=911 to t=921
+disk1 moves from (340.0,222.0) to (340.0,50.0) from time t=921 to t=931
+disk3 changes color from (157,206,118) to (0,255,0) from time t=921 to t=929
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=932 to t=942
+disk1 moves from (190.0,50.0) to (190.0,240.0) from time t=943 to t=953
+disk2 moves from (328.0,240.0) to (328.0,50.0) from time t=953 to t=963
+disk2 moves from (328.0,50.0) to (478.0,50.0) from time t=964 to t=974
+disk2 moves from (478.0,50.0) to (478.0,186.0) from time t=975 to t=985
+disk1 moves from (190.0,240.0) to (190.0,50.0) from time t=985 to t=995
+disk2 changes color from (102,162,48) to (0,255,0) from time t=985 to t=993
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=996 to t=1006
+disk1 moves from (490.0,50.0) to (490.0,168.0) from time t=1007 to t=1017
+disk1 changes color from (127,185,246) to (0,255,0) from time t=1017 to t=1025

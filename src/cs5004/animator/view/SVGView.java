@@ -39,6 +39,12 @@ public class SVGView implements IView {
       // if rect
       if (shp.getType().equalsIgnoreCase("rectangle")) {
         // add initial <rect> tag with attributes
+        String shapeStr = "<rect id=\"" + shp.getName() + "x=\"" + shp.getLocation().getX() +"\" y=\""
+        + shp.getLocation().getY() +"\" width=\"" + shp.getWidth() + "\" height=\""
+                + shp.getHeight() + "\" fill=rgb(\"" + shp.getColor() + ")\" visibility=\""
+        + "\"visible\" >";
+        sb.append(shapeStr);
+        // sort events by begin time
 
         // add events for that shape
 
@@ -49,6 +55,12 @@ public class SVGView implements IView {
       // if ellipse
       if (shp.getType().equalsIgnoreCase("ellipse")) {
         // add initial <ellipse> tag with attributes
+        String shapeStr = "<ellipse id=\"" + shp.getName() + "cx=\"" + shp.getLocation().getX() +"\" cy=\""
+                + shp.getLocation().getY() +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
+                + shp.getHeight()/2 + "\" fill=rgb(\"" + shp.getColor() + ")\" visibility=\""
+                + "\"visible\" >";
+        sb.append(shapeStr);
+        // sort events by begin time
 
         // add events for that shape
 
