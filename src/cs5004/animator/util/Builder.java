@@ -114,14 +114,13 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     }
 
     // create event
-    // fixme -- figure out radii for ellipses
 
     if (x1 != x2 || y1 != y2) {
       // set unrelated attributes
       shape.setDisappear(t2);
-      shape.setWidth(w1);
-      shape.setHeight(h1);
-      shape.setColor(r1, g1, b1);
+      //shape.setWidth(w1);
+      //shape.setHeight(h1);
+      //shape.setColor(r1, g1, b1);
 
       // create event and add it to the model
       IEvent event = new MoveShape(shape, x1, y1, x2, y2);
@@ -129,8 +128,8 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     } else if (w1 != w2 || h1 != h2) {
       // set unrelated attributes
       shape.setDisappear(t2);
-      shape.setColor(r1, g1, b1);
-      shape.setLocation(x1, y1);
+      //shape.setColor(r1, g1, b1);
+      //shape.setLocation(x1, y1);
 
       // create event and add it to the model
       IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
@@ -138,9 +137,9 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
     } else if (r1 != r2 || b1 != b2 || g1 != g2) {
       // set unrelated attributes
       shape.setDisappear(t2);
-      shape.setWidth(w1);
-      shape.setHeight(h1);
-      shape.setLocation(x1, y1);
+      //shape.setWidth(w1);
+      //shape.setHeight(h1);
+      //shape.setLocation(x1, y1);
 
       // create event and add it to the model
       IEvent event = new ChangeColor(shape, r1, g1, b1, r2, g2, b2);
