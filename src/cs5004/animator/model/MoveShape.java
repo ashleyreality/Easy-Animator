@@ -40,8 +40,10 @@ public class MoveShape extends AbstractEvent {
     // Example output: Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
 
     return "Shape " + this.shape.getName()
-            + " moves from " + this.from.toString() + " to " + this.to.toString() + " from time t="
+            + " moves from " + this.from.toString() + " to " + this.to.toString() + " from t="
             + this.getEventBegin() + " to t=" + this.getEventEnd();
+    // removed the word "time" between "from" and "t=" in line before
+    // did this for the testToString() in EventTest
   }
 
   /**
