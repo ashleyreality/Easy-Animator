@@ -71,4 +71,14 @@ public interface IAnimationModel {
    * @return the shape, an IShape
    */
   IShape getShape(String name);
+
+  void addBounds(int x, int y, int width, int height);
+
+  int getBoundsX();
+
+  int getBoundsY();
+
+  int getBoundsHeight();
+
+  int getBoundsWidth();
 }
