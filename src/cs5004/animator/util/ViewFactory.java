@@ -15,7 +15,7 @@ public class ViewFactory {
   // make these fields for now
   private String viewType;
   private IAnimationModel model;
-  private String outTextFile;
+  private String out;
   private String speed;
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
@@ -31,13 +31,13 @@ public class ViewFactory {
    * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
    * @param viewType the type of animation view being requested, a String
    * @param model the model of the animation, a model
-   * @param outTextFile the text file output, a String
+   * @param out the text file output, a String
    * @param speed the speed
    */
-  public ViewFactory(String viewType, IAnimationModel model, String outTextFile, String speed) {
+  public ViewFactory(String viewType, IAnimationModel model, String out, String speed) {
     this.viewType = viewType;
     this.model = model;
-    this.outTextFile = outTextFile;
+    this.out = out;
     this.speed = speed;
 
     // What is "out" here? The output text file name? If so, maybe we should name it more specifically
@@ -64,7 +64,7 @@ public class ViewFactory {
     if (viewType.equalsIgnoreCase("svg")) {
       return new SVGView(model);
     } else if (viewType.equalsIgnoreCase("text")) {
-      return new TextView(model,this.outTextFile);
+      return new TextView(model,this.out);
     } else if (viewType.equalsIgnoreCase("visual")) {
       return new VisualView(model);
     } else {
