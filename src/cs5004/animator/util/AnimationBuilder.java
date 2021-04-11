@@ -9,6 +9,7 @@ public interface AnimationBuilder<Doc> {
 
 
   /**
+   * _____________________________ INTERFACE: AnimationBuilder {} _________________________________.
    * Specify the bounding box to be used for the animation.
    * @param x The leftmost x value
    * @param y The topmost y value

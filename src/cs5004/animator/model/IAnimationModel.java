@@ -58,11 +58,17 @@ public interface IAnimationModel {
 
   /**
    * _______________________________ METHOD: getShapesAtTick() ____________________________________.
-   * This is a stub for now. Might be useful later.
+   *
    * @param tick the frame
    * @return TBD
    */
   String getShapesAtTick(int tick);
 
+  /**
+   * ___________________________________ METHOD: getShape() _______________________________________.
+   *
+   * @param name the name of the shape, a String
+   * @return the shape, an IShape
+   */
   IShape getShape(String name);
 }

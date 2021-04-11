@@ -127,8 +127,19 @@ public interface IShape extends Comparable<IShape> {
    */
   void setHeight(double height);
 
+  /**
+   * _________________________________ METHOD: createString() _____________________________________.
+   * Returns a String with the name of the color of the shape, the name of the shape, the
+   * center location of the shape on the canvas, the horizontal radius and the vertical radius.
+   * @return the string for the text output, a String
+   */
   String createString();
 
+  /**
+   * _________________________________ METHOD: appearString() _____________________________________.
+   * This returns the text output.
+   * @return the text output found in the out file, a String
+   */
   String appearString();
 
 }

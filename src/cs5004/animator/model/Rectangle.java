@@ -8,9 +8,8 @@ package cs5004.animator.model;
 public class Rectangle extends AbstractShape {
 
   /**
-   * _____________________________ CONSTRUCTOR: Rectangle() _______________________________________.
-   * Constructs a rectangle with the given width and height, color parameters, and location
-   * coordinates.
+   * _____________________________ FIRST CONSTRUCTOR: Rectangle() _________________________________.
+   * Creates a rectangle with the given width, height, color parameters, and location coordinates.
    *
    * @param name   name of the rectangle
    * @param width  width of the rectangle (x)
@@ -21,13 +20,15 @@ public class Rectangle extends AbstractShape {
    * @param x      x coordinate of rectangle
    * @param y      y coordinate of rectangle
    */
-  public Rectangle(String name, double width, double height,
-                   int red, int green, int blue, double x, double y) {
+  public Rectangle(String name,
+                   double width, double height,
+                   int red, int green, int blue,
+                   double x, double y) {
     super(name, width, height, red, green, blue, x, y);
   }
 
   /**
-   * _________________________SECOND CONSTRUCTOR: Rectangle() _________________________________.
+   * _____________________________ SECOND CONSTRUCTOR: Rectangle() ________________________________.
    * Creates a shape with the given name. Further attributes are instantiated with the first event
    * called on the shape.
    *
@@ -55,12 +56,17 @@ public class Rectangle extends AbstractShape {
             + "\nDisappears at t=" + this.disappear + "\n";
   }
 
+  /**
+   * _________________________________ METHOD: createString() _____________________________________.
+   * Returns a String with the name of the color of the rectangle, the name of the rectangle, the
+   * top-left corner location of the rectangle on the canvas, the width and the height.
+   * @return the string for the text output, a String
+   */
   @Override
   public String createString() {
     return "Create " + this.color.toString() + " rectangle " + this.name
             + " with corner at " + this.location.toString() + ", width " + this.width
             + " and height " + this.height;
   }
-
 
 }
