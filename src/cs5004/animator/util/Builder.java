@@ -18,7 +18,7 @@ import cs5004.animator.model.ScaleShape;
  *
  * @param <T>
  */
-public class Builder<T> implements AnimationBuilder<IAnimationModel> {
+public class Builder implements AnimationBuilder<IAnimationModel> {
 
   // We need to implement this class so that it works with IAnimationModel. --AB
   cs5004.animator.model.IAnimationModel model;
@@ -53,8 +53,8 @@ public class Builder<T> implements AnimationBuilder<IAnimationModel> {
    */
   @Override
   public AnimationBuilder<IAnimationModel> setBounds(int x, int y, int width, int height) {
-    // send bounds to view? seems impossible
-    // should we hold the bounds in the model?
+    // we should hold the bounds in the model
+    // controller can get it from the model and give it to the view
     System.out.println("Bounds will be set to: " + x + " " + y + " " + width + " " + height);
     return this;
   }
