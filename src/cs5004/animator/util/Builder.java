@@ -11,8 +11,6 @@ import cs5004.animator.model.Point2D;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
 
-// fixme -- intelliJ will not accept the right identifier??
-
 /**
  * ___________________________ IMPLEMENTATION CLASS: Builder {} ___________________________________.
  * The Builder class implements AnimationBuilder<IAnimationModel>. It is used to build the animation
