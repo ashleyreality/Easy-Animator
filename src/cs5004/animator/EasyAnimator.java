@@ -1,11 +1,8 @@
 package cs5004.animator;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
@@ -30,9 +27,10 @@ public class EasyAnimator {
 
     // ----------------------------------------------------------------------------------------
     // setup the *model* using an instance of AnimationModelImpl()
-    //    AnimatorHelper model = new AnimatorHelper();
-    IAnimationModel model = new AnimationModelImpl();
-    AnimatorHelper helper = new AnimatorHelper(model);
+    //AnimatorHelper model = new AnimatorHelper();
+    IAnimationModel model = AnimatorHelper.modelSetup();
+    //IAnimationModel model = new AnimationModelImpl();
+    //AnimatorHelper helper = new AnimatorHelper(model);
 
     // ----------------------------------------------------------------------------------------
     // setup the *frame* using an instance of JFrame()
@@ -62,8 +60,10 @@ public class EasyAnimator {
     // the AnimationBuilder takes in the model
     // which is then cast from an AnimationReader type to an IAnimationModel type
     // and is then parsed using the input file using the instance of AnimationBuilder()
-    AnimationBuilder build = new Builder(model);
-    model = (IAnimationModel) AnimationReader.parseFile(file, build);
+    AnimationBuilder build = AnimatorHelper.buildSetup();
+    //AnimationBuilder build = new Builder(model);
+    AnimatorHelper.buildToModel(file, build);
+    //model = (IAnimationModel) AnimationReader.parseFile(file, build);
 
     // ----------------------------------------------------------------------------------------
     // setup the *view* using an instance of Scanner()

@@ -13,14 +13,30 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
 
 public class AnimatorHelper {
-  private IAnimationModel model;
+  private static IAnimationModel model;
   //  private Readable in;
   //  private Appendable out;
 
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
    */
-  public AnimatorHelper(IAnimationModel model) {
+//  public AnimatorHelper(IAnimationModel model) {
+//    AnimatorHelper.model = model;
+//  }
+
+  public static IAnimationModel modelSetup() {
+    model = new AnimationModelImpl();
+    return model;
+  }
+
+  public static AnimationBuilder buildSetup() {
+    AnimationBuilder build = new Builder(model);
+    return build;
+  }
+
+  public static IAnimationModel buildToModel(Readable file, AnimationBuilder build) {
+    model = (IAnimationModel) AnimationReader.parseFile(file, build);
+    return model;
   }
 
   /**
