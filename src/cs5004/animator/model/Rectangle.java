@@ -59,7 +59,7 @@ public class Rectangle extends AbstractShape {
   /**
    * _________________________________ METHOD: createString() _____________________________________.
    * Returns a String with the name of the color of the rectangle, the name of the rectangle, the
-   * center location of the rectangle on the canvas, the horizontal radius and the vertical radius.
+   * top-left corner location of the rectangle on the canvas, the width and the height.
    * @return the string for the text output, a String
    */
   @Override

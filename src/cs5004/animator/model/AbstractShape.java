@@ -235,7 +235,7 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * _________________________________ METHOD: appearString() _____________________________________.
-   * This returns the text output String.
+   * This returns the text output.
    * @return the text output found in the out file, a String
    */
   @Override
