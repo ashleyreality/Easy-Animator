@@ -23,6 +23,7 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
 
   /**
    * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
+   * Constructs a Builder instance.
    *
    * @param model the model of the animation, an IAnimationModel
    */
@@ -31,8 +32,10 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
   }
 
   /**
-ç   *
-   * @return the model of the animation, an IAnimationModel
+   * ___________________________________ METHOD: Build() ______________________________________.
+   * Builds the final animation model.
+   *
+   * @return this instance of the animation model
    */
   @Override
   public IAnimationModel build() {
@@ -41,6 +44,7 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
 
   /**
    * ___________________________________ METHOD: setBounds() ______________________________________.
+   * Sets the boundaries of the animation.
    *
    * @param x      The leftmost x value
    * @param y      The topmost y value
@@ -57,11 +61,12 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
 
   /**
    * _________________________________ METHOD: declareShape() _____________________________________.
+   * Adds a shape to this animation model.
    *
    * @param name The unique name of the shape to be added. No shape with this name should already
    *             exist.
    * @param type The type of shape (e.g. "ellipse", "rectangle") to be added. The set of supported
-   *             shapes is unspecified, but should include "ellipse" and "rectangle" as a minimum.
+   *             shapes is unspecified, but should include "ellipse" and "rectangle" at a minimum.
    * @return
    */
   @Override
@@ -128,7 +133,7 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    * @param r2   The final red color-value of the shape
    * @param g2   The final green color-value of the shape
    * @param b2   The final blue color-value of the shape
-   * @return
+   * @return this instance of the animation model
    */
   @Override
   public AnimationBuilder<IAnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
