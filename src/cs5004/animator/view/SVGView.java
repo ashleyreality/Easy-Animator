@@ -41,26 +41,39 @@ public class SVGView implements IView {
         // add initial <rect> tag with attributes
         String shapeStr = "<rect id=\"" + shp.getName() + "x=\"" + shp.getLocation().getX() +"\" y=\""
         + shp.getLocation().getY() +"\" width=\"" + shp.getWidth() + "\" height=\""
-                + shp.getHeight() + "\" fill=rgb(\"" + shp.getColor() + ")\" visibility=\""
-        + "\"visible\" >";
+                + shp.getHeight() + "\" fill=rgb\"" + shp.getColor() + "\" visibility=\""
+        + "\"visible\" >\n";
         sb.append(shapeStr);
-        // sort events by begin time
+
+        // put the shape's events in a list, sorted by event time
+        Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
+
+        List<IEvent> t = model.getShapeMap().get(shp).stream().sorted(sortByEventBegin)
+                .collect(Collectors.toList());
 
         // add events for that shape
-
+        for (IEvent e : t) {
+          int duration = e.getEventEnd() - e.getEventBegin();
+          String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() +"\" "
+                  + "\"dur=" + duration + "\" attributeName=\"" + shp.getType() + "\" from="
+                  + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />";
+        }
 
         // add closing </rect>
+        sb.append("</rect>\n");
       }
 
       // if ellipse
       if (shp.getType().equalsIgnoreCase("ellipse")) {
         // add initial <ellipse> tag with attributes
-        String shapeStr = "<ellipse id=\"" + shp.getName() + "cx=\"" + shp.getLocation().getX() +"\" cy=\""
-                + shp.getLocation().getY() +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
-                + shp.getHeight()/2 + "\" fill=rgb(\"" + shp.getColor() + ")\" visibility=\""
+        String shapeStr = "<ellipse id=\"" + shp.getName() + "cx=\"" + shp.getLocation().getX()
+                +"\" cy=\"" + shp.getLocation().getY() +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
+                + shp.getHeight()/2 + "\" fill=rgb\"" + shp.getColor() + "\" visibility=\""
                 + "\"visible\" >";
         sb.append(shapeStr);
-        // sort events by begin time
+
+        // put the shape's events in a list, sorted by event time
+        Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
 
         // add events for that shape
 
