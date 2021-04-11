@@ -1,7 +1,7 @@
 package cs5004.animator.model;
 
 /**
- * _____________________________________ CLASS: Ellipse {} ___________________________________________.
+ * _____________________________________ CLASS: Ellipse {} ________________________________________.
  * The Ellipse class extends AbstractShape and implements the method declarations that are unique to
  * the Ellipse class. It creates and stores information about an Ellipse shape.
  */
@@ -12,9 +12,8 @@ public class Ellipse extends AbstractShape {
   private double radiusY = 0;
 
   /**
-   * __________________________________ CONSTRUCTOR: Ellipse() _______________________________________.
-   * The Ellipse() constructor creates an ellipse with the given width, height, color parameters,
-   * and location coordinates.
+   * _____________________________ FIRST CONSTRUCTOR: Ellipse() ___________________________________.
+   * Creates an ellipse with the given width, height, color parameters, and location coordinates.
    *
    * @param name   name of the ellipse
    * @param width  width of the ellipse (x)
@@ -37,7 +36,7 @@ public class Ellipse extends AbstractShape {
   }
 
   /**
-   * _________________________SECOND CONSTRUCTOR: Ellipse() _________________________________.
+   * _____________________________ SECOND CONSTRUCTOR: Ellipse() __________________________________.
    * Creates a shape with the given name. Further attributes are instantiated with the first event
    * called on the shape.
    *
@@ -66,13 +65,18 @@ public class Ellipse extends AbstractShape {
             + "\nDisappears at t=" + this.disappear + "\n";
   }
 
+  /**
+   * _________________________________ METHOD: createString() _____________________________________.
+   * Returns a String with the name of the color of the ellipse, the name of the ellipse, the center
+   * location of the ellipse on the canvas, the horizontal radius and the vertical radius.
+   * @return the string for the text output, a String
+   */
   @Override
   public String createString() {
     return "Create " + this.color.toString() + " ellipse " + this.name
             + " with center at " + this.location.toString() + ", radius " + this.radiusX
             + " and " + this.radiusY;
   }
-
 
   /**
    * ___________________________________ METHOD: setWidth() _______________________________________.

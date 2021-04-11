@@ -233,10 +233,15 @@ public abstract class AbstractShape implements IShape {
     return this.getName().compareTo(o.getName());
   }
 
+  /**
+   * _________________________________ METHOD: appearString() _____________________________________.
+   * This returns the text output String.
+   * @return the text output found in the out file, a String
+   */
   @Override
   public String appearString() {
     return this.getName() + " appears at time t=" + this.appear
-            + " and disappears at time=" + this.disappear;
+            + " and disappears at time t=" + this.disappear;
   }
 
 }
