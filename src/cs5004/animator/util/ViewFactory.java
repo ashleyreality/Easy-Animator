@@ -63,7 +63,8 @@ public class ViewFactory {
 
 
     if (outputView.equalsIgnoreCase("svg")) {
-      return new SVGView(model, this.outputName);
+      // pass in the print writer here to be consistent with the text view, i guess?
+      return new SVGView(model, new PrintWriter(this.outputName));
     } else if (outputView.equalsIgnoreCase("text")) {
       // for the text view, we will use appendable to just print it out in the console
       // depending on the appendable we pass in, we could do a text file or other appendable types
