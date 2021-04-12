@@ -12,6 +12,7 @@ import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
+import cs5004.animator.model.ScaleShape;
 
 public class SVGView implements IView {
   private PrintWriter file;
@@ -53,7 +54,7 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </rect>
-        sb.append("</rect>\n");
+        sb.append("</rect>\n\n");
       }
 
       // if ellipse
@@ -70,7 +71,7 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </ellipse>
-        sb.append("</ellipse>\n");
+        sb.append("</ellipse>\n\n");
       }
     }
 
@@ -85,10 +86,10 @@ public class SVGView implements IView {
 
   private void addEvents(IShape shp, IEvent e) {
     if (e.getEventType().equals(EventType.MOVE)) {
-      sb.append(addMove(shp, e));
+      sb.append(addMove(shp, (MoveShape) e));
     }
     if (e.getEventType().equals(EventType.SCALE)) {
-      sb.append(addScale(shp, e));
+      sb.append(addScale(shp, (ScaleShape) e));
     }
     if (e.getEventType().equals(EventType.RECOLOR)) {
       sb.append(addColorChange(shp, e));
@@ -96,57 +97,75 @@ public class SVGView implements IView {
   }
 
   private String addRectangle(IShape shp) {
-    String shapeStr = "<rect id=\"" + shp.getName() + "x=\"" + shp.getLocation().getX() +"\" y=\""
-            + shp.getLocation().getY() +"\" width=\"" + shp.getWidth() + "\" height=\""
-            + shp.getHeight() + "\" fill=rgb\"" + shp.getColor() + "\" visibility=\""
+    int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
+    int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
+    String shapeStr = "<rect id=\"" + shp.getName() + "\" x=\"" + xLocation +"\" y=\""
+            + yLocation +"\" width=\"" + shp.getWidth() + "\" height=\""
+            + shp.getHeight() + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
             + "\"visible\" >\n";
     return shapeStr;
   }
 
   private String addEllipse(IShape shp) {
-    String shapeStr = "<ellipse id=\"" + shp.getName() + "cx=\"" + shp.getLocation().getX()
-            +"\" cy=\"" + shp.getLocation().getY() +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
-            + shp.getHeight()/2 + "\" fill=rgb\"" + shp.getColor() + "\" visibility=\""
+    int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
+    int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
+    String shapeStr = "<ellipse id=\"" + shp.getName() + "\" cx=\"" + xLocation
+            +"\" cy=\"" + yLocation +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
+            + shp.getHeight()/2 + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
             + "\"visible\" >";
     return shapeStr;
   }
 
   private String addMove(IShape shp, MoveShape e) {
     int duration = e.getEventEnd() - e.getEventBegin();
+    int xFromLocation = (int) e.getFrom().getX() - model.getBoundsX();
+    int xToLocation = (int) e.getTo().getX() - model.getBoundsX();
+    int yFromLocation = (int) e.getFrom().getY() - model.getBoundsY();
+    int yToLocation = (int) e.getTo().getY() - model.getBoundsY();
+
     if (shp.getType().equalsIgnoreCase("rectangle")) {
-      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() +"\" "
-              + "\"dur=" + duration + "\" attributeName=\"x\" from="
-              + e.getFrom().getX() + "\" to=\"" + e.getTo().getX() + "\" fill=\"freeze\" />\n";
+      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\""
+              + " dur=\"" + duration * 100 + "ms\" attributeName=\"x\" from=\""
+              + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n";
       return eventStr;
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
-      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() +"\" "
-              + "\"dur=" + duration + "\" attributeName=\"y\" from="
-              + e.getFrom().getY() + "\" to=\"" + e.getTo().getY() + "\" fill=\"freeze\" />\n";
+      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"y\" from=\""
+              + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
       return eventStr;
     }
     return "";
   }
 
-  private String addScale(IShape shp, IEvent e) {
+  private String addScale(IShape shp, ScaleShape e) {
     int duration = e.getEventEnd() - e.getEventBegin();
     if (shp.getType().equalsIgnoreCase("rectangle")) {
-      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() +"\" "
-              + "\"dur=" + duration + "\" attributeName=\"height\" from="
-              + e.getBefore() + "\" to=\"" + e.getTo().getX() + "\" fill=\"freeze\" />\n";
+      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
+              + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
+              + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
       return eventStr;
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
-      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() +"\" "
-              + "\"dur=" + duration + "\" attributeName=\"height\" from="
-              + e.getFrom().getY() + "\" to=\"" + e.getTo().getY() + "\" fill=\"freeze\" />\n";
+      String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur\"=" + duration * 100 + "ms\" attributeName=\"height\" from=\""
+              + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
+              + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
       return eventStr;
     }
     return "";
   }
 
   private String addColorChange(IShape shp, IEvent e) {
-    String eventStr = "";
+    int duration = e.getEventEnd() - e.getEventBegin();
+    String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+            + "dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
+            + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";;
     return eventStr;
   }
 }

@@ -6,11 +6,8 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
-import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
-import cs5004.animator.util.AnimationBuilder;
-import cs5004.animator.util.AnimationReader;
-import cs5004.animator.util.Builder;
+
 
 public class AnimatorHelper {
   private IAnimationModel model;
