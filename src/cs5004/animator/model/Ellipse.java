@@ -85,10 +85,7 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public void setWidth(double width) {
-    if (width <= 0) {
-      throw new IllegalArgumentException("Width must be positive.");
-    }
-    this.width = width;
+    super.setWidth(width);
     this.radiusX = width / 2;
   }
 
@@ -98,10 +95,7 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public void setHeight(double height) {
-    if (height <= 0) {
-      throw new IllegalArgumentException("Height must be positive.");
-    }
-    this.height = height;
+    super.setHeight(height);
     this.radiusY = height / 2;
   }
 
