@@ -102,7 +102,7 @@ public class SVGView implements IView {
     String shapeStr = "<rect id=\"" + shp.getName() + "\" x=\"" + xLocation +"\" y=\""
             + yLocation +"\" width=\"" + shp.getWidth() + "\" height=\""
             + shp.getHeight() + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
-            + "\"visible\" >\n";
+            + "\"visible\" >\n\n";
     return shapeStr;
   }
 
@@ -110,9 +110,9 @@ public class SVGView implements IView {
     int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
     int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
     String shapeStr = "<ellipse id=\"" + shp.getName() + "\" cx=\"" + xLocation
-            +"\" cy=\"" + yLocation +"\" rx=\"" + shp.getWidth() + "\" ry=\""
-            + shp.getHeight() + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
-            + "\"visible\" >";
+            +"\" cy=\"" + yLocation +"\" rx=\"" + shp.getWidth() / 2 + "\" ry=\""
+            + shp.getHeight() / 2 + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
+            + "\"visible\" >\n\n";
     return shapeStr;
   }
 
@@ -126,12 +126,19 @@ public class SVGView implements IView {
     if (shp.getType().equalsIgnoreCase("rectangle")) {
       String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\""
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"x\" from=\""
-              + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n";
+              + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\""
+              + " dur=\"" + duration * 100 + "ms\" attributeName=\"y\" from=\""
+              + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
+
       return eventStr;
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
       String eventStr = "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
-              + "dur=\"" + duration * 100 + "ms\" attributeName=\"y\" from=\""
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"cx\" from=\""
+              + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 +"ms\" "
+              + "dur=\"" + duration * 100 + "ms\" attributeName=\"cy\" from=\""
               + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
       return eventStr;
     }
