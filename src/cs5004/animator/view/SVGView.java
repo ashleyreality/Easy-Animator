@@ -110,8 +110,8 @@ public class SVGView implements IView {
     int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
     int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
     String shapeStr = "<ellipse id=\"" + shp.getName() + "\" cx=\"" + xLocation
-            +"\" cy=\"" + yLocation +"\" rx=\"" + shp.getWidth()/2 + "\" ry=\""
-            + shp.getHeight()/2 + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
+            +"\" cy=\"" + yLocation +"\" rx=\"" + shp.getWidth() + "\" ry=\""
+            + shp.getHeight() + "\" fill=\"rgb" + shp.getColor() + "\" visibility="
             + "\"visible\" >";
     return shapeStr;
   }
