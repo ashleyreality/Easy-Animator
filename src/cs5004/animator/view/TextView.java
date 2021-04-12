@@ -1,7 +1,7 @@
 package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -12,59 +12,47 @@ import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 
 /**
- *
+ * This class represents a text view. The text view outputs a text description of the animation
+ * to an appendable.
  */
 public class TextView implements IView {
-  private PrintWriter file;
 
   /**
    * Constructs a text view.
    *
    * @param model the AnimationModel instance you want to create a view for
-   * @param fileName the name of the file you're using to create the animation
-   * @throws FileNotFoundException if the file is not found
+   * @param out   out where the text view is being written to
+   * @throws FileNotFoundException if the out is not found
    */
-  public TextView(IAnimationModel model, String fileName) throws FileNotFoundException {
-    file = new PrintWriter(fileName);
-    // New StringBuilder (from AnimationModelImpl)
-    StringBuilder sb = new StringBuilder();
-
+  public TextView(IAnimationModel model, Appendable out) throws IOException {
     // sort by appear time
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
-
     // Add the shapes to the StringBuilder, sb
     List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
             .collect(Collectors.toList());
-
+    // for each shape add it's create string to out
     for (IShape l : s) {
       // we need the color toString to output color words (red, blue, green)
-      sb.append(l.createString());
-
-      // Should we just change the toString methods in the Shape classes?
-      // will probably be easier to just change the toString...
-      sb.append("\n");
+      out.append(l.createString());
+      out.append("\n");
     }
-    sb.append("\n");
+    out.append("\n");
+    // for each shape add it's appear/disappear string to out
     for (IShape l : s) {
-      sb.append(l.appearString());
-      // Should we just change the toString methods in the Shape classes?
-      sb.append("\n");
+      out.append(l.appearString());
+      out.append("\n");
     }
-    sb.append("\n");
-
+    out.append("\n");
     // Sort the events in terms of begin & end time
     Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
     // Create a list of sorted events
     List<IEvent> t = model.getShapeMap().values().stream().flatMap(Collection::stream)
             .sorted(sortByEventBegin).collect(Collectors.toList());
-
-    // Add the changes/events to sb
+    // Add the changes/events strings to out
     for (IEvent a : t) {
-      sb.append(a.toString());
-      sb.append("\n");
+      out.append(a.toString());
+      out.append("\n");
     }
-
-    file.print(sb.toString());
-    file.close();
+    // it should come out in the console rather than be written to a file now.
   }
 }

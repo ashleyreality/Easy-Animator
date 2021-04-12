@@ -2,6 +2,7 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -18,7 +19,7 @@ import cs5004.animator.util.ViewFactory;
 public class EasyAnimator {
 
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws IOException {
 
     // The controller/main uses a Readable object to
     // read one "token" at a time (where each token is a String separated by a space)
