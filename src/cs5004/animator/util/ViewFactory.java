@@ -70,7 +70,7 @@ public class ViewFactory {
       // depending on the appendable we pass in, we could do a text file or other appendable types
       return new TextView(model, System.out);
     } else if (outputView.equalsIgnoreCase("visual")) {
-      return new VisualView(model);
+      return new VisualView(model, speed);
     } else {
       throw new IllegalArgumentException("View type does not exist.");
     }
