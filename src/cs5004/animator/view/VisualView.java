@@ -1,16 +1,21 @@
 package cs5004.animator.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import cs5004.animator.model.IAnimationModel;
 
-public class VisualView extends JFrame implements IView {
+public class VisualView extends JFrame implements IView, ActionListener {
   private AnimationPanel animationPanel;
+  private IAnimationModel model;
 
   public VisualView(IAnimationModel model, String speed) {
     super();
+    Integer intSpeed = Integer.parseInt(speed);
+    this.model = model;
 
     this.setLayout(new BorderLayout());
     animationPanel = new AnimationPanel();
@@ -19,8 +24,11 @@ public class VisualView extends JFrame implements IView {
     this.add(animationPanel, BorderLayout.CENTER);
 
     // specify the speed
+    // create a timer & specify the action listener to be used
+    // actionPerformed in the listener is getShapesAtTick, then draw shapes
 
-
+    Timer timer = new Timer(intSpeed * 100, this);
+    timer.start();
 
     // create shapes
     // https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Rectangle2D.Double.html
@@ -41,4 +49,11 @@ public class VisualView extends JFrame implements IView {
     JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    // getShapesAtTick, then draw shapes
+    List shapesAtTick = model.getShapesAtTick();
+    drawShapes(shapesAtTick);
+    refresh();
+  }
 }
