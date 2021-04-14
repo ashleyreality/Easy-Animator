@@ -1,6 +1,8 @@
 package cs5004.animator;
 
 import java.awt.*;
+import java.beans.XMLDecoder;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -129,6 +131,15 @@ public class EasyAnimator {
         // Create the visual video "visual"
         JFrame window = AnimatorHelper.jframeStart();
 
+        XMLDecoder xmlDecoder = null;
+        try {
+          xmlDecoder = new XMLDecoder(new FileInputStream("simple-example.svg"));
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
+        Object frame = xmlDecoder.readObject();
+        xmlDecoder.close();
+
         //JFrame window = new JFrame();
 //        ViewFactory newView = new VisualView(anotherModel, outputSpeed);
 //        newView.create();
@@ -140,23 +151,23 @@ public class EasyAnimator {
         JScrollPane scrollPane = new JScrollPane(window);
 
         // Add scrollpane to jframe's content pane placing it in center of border layout
-        JFrame frame = new JFrame("Test");
-        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        JFrame newFrame = new JFrame("Test");
+        newFrame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // make it easy to close the application
         // this sets up the program/application so that a user can press the "close" button on the
         // window they see and the program will end
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // set the frame size (call frame.pack())
-        frame.pack();
+        newFrame.pack();
         //frame.setSize(new Dimension(500, 500));
 
         // center the frame
-        frame.setLocationRelativeTo(null);
+        newFrame.setLocationRelativeTo(null);
 
         // make it visible to the user
-        frame.setVisible(true);
+        newFrame.setVisible(true);
 
 
       }

@@ -8,6 +8,10 @@ import javax.swing.*;
 
 import cs5004.animator.model.IAnimationModel;
 
+/**
+ * This class represents a visual view. The visual view outputs a visual display to the end-user of
+ * the animation.
+ */
 public class VisualView extends JFrame implements IView, ActionListener {
   private AnimationPanel animationPanel;
   private IAnimationModel model;
