@@ -52,10 +52,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     // getShapesAtTick, then draw shapes
-    // List shapesAtTick = model.getShapesAtTick();
-    // draw all the shapes in shapesAtTick
-
-    // repaint the screen
+    //List shapesAtTick = model.getShapesAtTick;
+    //drawShapes(shapesAtTick);
     refresh();
   }
 }
