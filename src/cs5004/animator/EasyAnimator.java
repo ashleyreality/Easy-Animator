@@ -1,12 +1,12 @@
 package cs5004.animator;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
@@ -14,6 +14,7 @@ import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
 import cs5004.animator.util.ViewFactory;
+import cs5004.animator.view.VisualView;
 
 
 public class EasyAnimator {
@@ -111,6 +112,49 @@ public class EasyAnimator {
     // JFrame finishing up
     frame.pack();
     System.exit(0);
+
+    // Visual View ScrollPane Confusion - aya
+    // Visual view
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+
+        IAnimationModel anotherModel = new AnimationModelImpl();
+
+        // Create the visual video "visual"
+        JFrame window = AnimatorHelper.jframeStart();
+
+        //JFrame window = new JFrame();
+//        ViewFactory newView = new VisualView(anotherModel, outputSpeed);
+//        newView.create();
+
+        // Add some visuals to it
+        // FixMe
+
+        // Create a scrollpane
+        JScrollPane scrollPane = new JScrollPane(window);
+
+        // Add scrollpane to jframe's content pane placing it in center of border layout
+        JFrame frame = new JFrame("JScrollPane Test");
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        // make it easy to close the application
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // set the frame size (call frame.pack())
+        frame.pack();
+        //frame.setSize(new Dimension(500, 500));
+
+        // center the frame
+        frame.setLocationRelativeTo(null);
+
+        // make it visible to the user
+        frame.setVisible(true);
+
+
+      }
+    });
+  }
   }
 
 
