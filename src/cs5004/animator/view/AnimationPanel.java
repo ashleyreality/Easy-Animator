@@ -1,5 +1,7 @@
 package cs5004.animator.view;
 
+import java.awt.*;
+
 import javax.swing.*;
 
 public class AnimationPanel extends JPanel {
@@ -10,5 +12,14 @@ public class AnimationPanel extends JPanel {
 
   // create scroll panes so everything in the animation can be seen
   // https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html
+  public AnimationPanel() {
+    super();
+  }
 
+  @Override
+  protected void paintComponent(Graphics g) {
+    // idk if we need this but it seems like it could be important
+    super.paintComponent(g);
+    Graphics2D g2d = (Graphics2D) g;
+  }
 }
