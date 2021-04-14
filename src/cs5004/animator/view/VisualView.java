@@ -1,9 +1,22 @@
 package cs5004.animator.view;
 
+import java.awt.*;
+
+import javax.swing.*;
+
 import cs5004.animator.model.IAnimationModel;
 
-public class VisualView implements IView {
+public class VisualView extends JFrame implements IView {
+  private AnimationPanel animationPanel;
+
   public VisualView(IAnimationModel model, String speed) {
+    super();
+
+    this.setLayout(new BorderLayout());
+    animationPanel = new AnimationPanel();
+    animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
+            model.getBoundsHeight()));
+    this.add(animationPanel, BorderLayout.CENTER);
 
     // specify the speed
 
@@ -17,5 +30,15 @@ public class VisualView implements IView {
 
 
     // add components to the panel
+
+    // finish up JFrame
+    this.pack();
   }
+
+  public void refresh() { this.repaint(); }
+
+  public void showErrorMessage(String error) {
+    JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+  }
+
 }
