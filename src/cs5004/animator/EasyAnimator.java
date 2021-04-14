@@ -114,8 +114,13 @@ public class EasyAnimator {
     System.exit(0);
 
     // Visual View ScrollPane Confusion - aya
+
     // Visual view
+    // invokeLater is used as a wrapper around the JFrame code to ensure that
+    // Swing code is executed on the Event Dispatch Thread
+    // Why? Because there is a JSwing rule: "only modify Swing (GUI) elements from the EDT "
     SwingUtilities.invokeLater(new Runnable() {
+
       @Override
       public void run() {
 
@@ -135,10 +140,12 @@ public class EasyAnimator {
         JScrollPane scrollPane = new JScrollPane(window);
 
         // Add scrollpane to jframe's content pane placing it in center of border layout
-        JFrame frame = new JFrame("JScrollPane Test");
+        JFrame frame = new JFrame("Test");
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // make it easy to close the application
+        // this sets up the program/application so that a user can press the "close" button on the
+        // window they see and the program will end
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // set the frame size (call frame.pack())
@@ -155,7 +162,4 @@ public class EasyAnimator {
       }
     });
   }
-  }
-
-
 }
