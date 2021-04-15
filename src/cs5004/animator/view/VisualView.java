@@ -19,14 +19,21 @@ import cs5004.animator.model.IAnimationModel;
 public class VisualView extends JFrame implements IView, ActionListener {
   private AnimationPanel animationPanel;
   private IAnimationModel model;
+  private int someTick;
 
   public VisualView(IAnimationModel model, int speed) {
     super();
     this.model = model;
 
+    // Get the ticks in the file by the file's created AnimationModel which has its own shapeMap
+    // IEvent has getEventBegin()
+    // IShape has getAppear()
+
     // create the layout and animation panel; set the size; make it visible
     this.setLayout(new BorderLayout());
-    animationPanel = new AnimationPanel();
+    // I could create a for loop or for each that updates the "someTick" argument for AnimationPanel--
+    // I want the Visual to get each tick somehow
+    animationPanel = new AnimationPanel(0); // FixMe to make the tick change
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
             model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

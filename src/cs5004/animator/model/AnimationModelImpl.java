@@ -359,7 +359,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   * _________________________________ STUB: getShapesAtTick() ____________________________________.
+   * _________________________________ METHOD: getShapesAtTick() ____________________________________.
    * This method getShapesAtTick() is a stub. It does not get implemented in this model. This method
    * will be implemented in the controller, instead. "The return type will be some form of a
    * collection of shapes, as hinted by your description that it "gets all the shapes." -

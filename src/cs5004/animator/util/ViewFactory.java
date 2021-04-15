@@ -30,7 +30,7 @@ public class ViewFactory {
   // Question: Is it bad/good design to pass around the model to different constructors?
 
   /**
-   * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
+   * _________________________________ CONSTRUCTOR: ViewFactory() _____________________________________.
    * @param outputView the type of animation view being requested, a String
    * @param model the model of the animation, a model
    * @param outputName the text file output, a String
