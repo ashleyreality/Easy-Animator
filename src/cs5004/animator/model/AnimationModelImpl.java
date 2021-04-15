@@ -67,7 +67,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * ____________________________________ METHOD: addShape() ______________________________________.
    * The addShape() method adds a new "Shape" and its given parameters to the animation.
    *
-   * @param shape     - the shape (has a name, color, location, appear, disappear), an IShape
+   * @param shape - the shape (has a name, color, location, appear, disappear), an IShape
    * @throws IllegalArgumentException if the shape is null
    * @throws IllegalArgumentException if a duplicate of the Shape name already exists in the list
    */
@@ -196,7 +196,7 @@ public class AnimationModelImpl implements IAnimationModel {
             //&& otherEvent.getEventEnd() <= eventEnd) {
             throw new IllegalArgumentException("Events of the same type can't happen at the same \n"
                     + "time. Try again with a different event time. Event type was \n"
-            + event.getEventType() + ", event begin was " + eventBegin + ", and event \n"
+                    + event.getEventType() + ", event begin was " + eventBegin + ", and event \n"
                     + "end was " + eventEnd + ". Other event begin was \n"
                     + otherEvent.getEventBegin() + " and other event end was " +
                     otherEvent.getEventEnd());
@@ -216,7 +216,6 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * _________________________________ METHOD: getShapeMap() ______________________________________.
    *
-
    * @return the map of shapes and their associated event lists
    */
   @Override
@@ -247,7 +246,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   *  ________________________________ METHOD: addBounds() ______________________________________.
+   * ________________________________ METHOD: addBounds() ______________________________________.
    *
    * @param x
    * @param y
@@ -263,6 +262,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsX() ______________________________________.
+   *
    * @return
    */
   public int getBoundsX() {
@@ -271,6 +271,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsY() ______________________________________.
+   *
    * @return
    */
   public int getBoundsY() {
@@ -279,6 +280,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsWidth() ____________________________________.
+   *
    * @return
    */
   public int getBoundsWidth() {
@@ -287,6 +289,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsHeight() ___________________________________.
+   *
    * @return
    */
   public int getBoundsHeight() {
@@ -362,29 +365,24 @@ public class AnimationModelImpl implements IAnimationModel {
    * collection of shapes, as hinted by your description that it "gets all the shapes." -
    * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
    * map class in java implements the navigable map
+   *
+   * @return
    */
-  public String getShapesAtTick(int tick) {
-    return null; // this is a stub & will be impl later.
-    /*
-        List<String> tickShapes = shapes.stream()
-                .filter(n -> n.getAppear() < tick && tick < n.getDisappear())
-                .map(Object::toString)
-                .collect(Collectors.toList());
-
-        // create new list (shapesAtTick)
-        // iterate through the list of shapes
-        // for each shape, check if appear < tick < disappear
-        // this is a filter
-        // if true, add shape to new list
-        changes.stream().filter(n -> n.getChangeBegin() < tick && tick < n.getChangeEnd())
-                .forEach(ChangeShape::change);
-        // iterate through the list of changes
-        // for each shape, check if startChange < tick < endChange
-        // if true, apply change to shape
-        // return list
-        // Jen
-        return tickShapes.toString();
+  public List<IShape> getShapesAtTick(int tick) {
+    List<IShape> shapesAtTick = new ArrayList<>();
+    for (IShape shape : shapeMap.keySet()) {
+      if (shape.getAppear() <= tick && shape.getDisappear() >= tick) {
+        IShape newShape = shape.copy();
+        shapesAtTick.add(newShape);
+        for (IEvent event : this.getEventList(shape)) {
+          if (event.getEventBegin() <= tick && event.getEventEnd() >= tick) {
+            event.applyEvent(newShape, tick);
+          }
+        }
       }
-     */
+    }
+    return shapesAtTick;
   }
+
 }
+
