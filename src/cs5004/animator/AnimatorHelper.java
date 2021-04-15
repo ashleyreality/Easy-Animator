@@ -17,7 +17,7 @@ public class AnimatorHelper {
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
    */
-  public AnimatorHelper(IAnimationModel model) {
+  public AnimatorHelper() { // removed param: IAnimationModel model
   }
 
   /**
