@@ -39,7 +39,7 @@ public class EasyAnimator {
     // setup the *model* using an instance of AnimationModelImpl()
     //    AnimatorHelper model = new AnimatorHelper();
     IAnimationModel model = new AnimationModelImpl();
-    AnimatorHelper helper = new AnimatorHelper(model);
+    //AnimatorHelper helper = new AnimatorHelper();
 
     // ----------------------------------------------------------------------------------------
     // setup the *frame* using an instance of JFrame()
