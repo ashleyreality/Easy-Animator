@@ -33,13 +33,20 @@ public class VisualView extends JFrame implements IView, ActionListener {
     this.setLayout(new BorderLayout());
     // I could create a for loop or for each that updates the "someTick" argument for AnimationPanel--
     // I want the Visual to get each tick somehow
-    animationPanel = new AnimationPanel(model, 0); // FixMe to make the tick change
-    animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
-            model.getBoundsHeight()));
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.add(animationPanel, BorderLayout.CENTER);
-    this.pack();
-    this.setVisible(true);
+
+    // get the disappear time of the last shape in the sorted treemap
+    int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
+
+    // run through each tick from 0 through lastShapeTime
+    for (int t = 0; t < lastShapeTime; t++) {
+      animationPanel = new AnimationPanel(model, t); // FixMe to make the tick change
+      animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
+              model.getBoundsHeight()));
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.add(animationPanel, BorderLayout.CENTER);
+      this.pack();
+      this.setVisible(true);
+    }
 
     // Create a scrollpane
     JTextArea textArea = new JTextArea(5, 30);

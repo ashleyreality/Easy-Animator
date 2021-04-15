@@ -45,15 +45,15 @@ public class AnimationPanel extends JPanel { // FixMe removed for now: implement
       if (eachShapeAtTick.getType().equalsIgnoreCase("Rectangle")) { // FixMe to reliably check the shape type
         int currentXLocation = (int) eachShapeAtTick.getLocation().getX();
         int currentYLocation = (int) eachShapeAtTick.getLocation().getY();
-        int curentWidth = (int) eachShapeAtTick.getWidth();
+        int currentWidth = (int) eachShapeAtTick.getWidth();
         int currentHeight = (int) eachShapeAtTick.getHeight();
         int currentR = eachShapeAtTick.getColor().getRed();
         int currentG = eachShapeAtTick.getColor().getGreen();
         int currentB = eachShapeAtTick.getColor().getBlue();
         // Draw the shape
-        g.drawRect(currentXLocation, currentYLocation, curentWidth, currentHeight);
-        g.setColor(new Color(currentR, currentG, currentB));
-        g.fillRect(currentXLocation, currentYLocation, curentWidth, currentHeight);
+        g2d.drawRect(currentXLocation, currentYLocation, currentWidth, currentHeight);
+        g2d.setColor(new Color(currentR, currentG, currentB));
+        g2d.fillRect(currentXLocation, currentYLocation, currentWidth, currentHeight);
       }
     }
   }
