@@ -24,6 +24,9 @@ public class EasyAnimator {
 
   public static void main(String[] args) throws IOException {
 
+    // FixMe - If the output set is not specified and the view needs it, the default should be
+    //  System.out. If the speed is not specified and the view needs it, the default is 1 tick per second.
+
     // The controller/main uses a Readable object to
     // read one "token" at a time (where each token is a String separated by a space)
     // from the input (like a text file input)
@@ -113,7 +116,7 @@ public class EasyAnimator {
     // ----------------------------------------------------------------------------------------
     // JFrame finishing up
     frame.pack();
-    System.exit(0);
+    //System.exit(0);
 
     // Visual View ScrollPane Confusion - aya
 
@@ -121,9 +124,9 @@ public class EasyAnimator {
     // invokeLater is used as a wrapper around the JFrame code to ensure that
     // Swing code is executed on the Event Dispatch Thread (EDT)
     // Why? Because there is a JSwing rule: "only modify Swing (GUI) elements from the EDT "
-    SwingUtilities.invokeLater(new Runnable() {
+    //SwingUtilities.invokeLater(new Runnable() {
 
-      @Override
+     /* @Override
       public void run() {
 
         IAnimationModel anotherModel = new AnimationModelImpl();
@@ -171,9 +174,9 @@ public class EasyAnimator {
 
         // make it visible to the user
         newFrame.setVisible(true);
+*/
 
-
-      }
-    });
+    //  }
+   // });
   }
 }

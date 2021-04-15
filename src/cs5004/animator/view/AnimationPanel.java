@@ -23,8 +23,8 @@ public class AnimationPanel extends JPanel {
     Graphics2D g2d = (Graphics2D) g;
 
     // draw something
-    g.drawRect(230,80,10,10);
+    g.drawRect(230,80,10000,10000);
     g.setColor(Color.RED);
-    g.fillRect(230,80,10,10);
+    g.fillRect(230,80,10000,10000);
   }
 }
