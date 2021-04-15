@@ -14,14 +14,20 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
   public VisualView(IAnimationModel model, String speed) {
     super();
-    Integer intSpeed = Integer.parseInt(speed);
+    int intSpeed = Integer.parseInt(speed);
     this.model = model;
 
+    // create the layout and animation panel; set the size; make it visible
     this.setLayout(new BorderLayout());
     animationPanel = new AnimationPanel();
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
             model.getBoundsHeight()));
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel, BorderLayout.CENTER);
+    this.pack();
+    this.setVisible(true);
+
+
 
     // specify the speed
     // create a timer & specify the action listener to be used
@@ -40,7 +46,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
     // add components to the panel
 
     // finish up JFrame
-    this.pack();
+
+
   }
 
   public void refresh() { this.repaint(); }
@@ -52,7 +59,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     // getShapesAtTick, then draw shapes
-    //List shapesAtTick = model.getShapesAtTick;
+    // List shapesAtTick = model.getShapesAtTick;
     //drawShapes(shapesAtTick);
     refresh();
   }

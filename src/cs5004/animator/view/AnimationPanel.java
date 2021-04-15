@@ -21,5 +21,10 @@ public class AnimationPanel extends JPanel {
     // idk if we need this but it seems like it could be important
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
+
+    // draw something
+    g.drawRect(230,80,10,10);
+    g.setColor(Color.RED);
+    g.fillRect(230,80,10,10);
   }
 }
