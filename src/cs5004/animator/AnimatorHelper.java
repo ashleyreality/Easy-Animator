@@ -24,7 +24,7 @@ public class AnimatorHelper {
    * _____________________________ HELPER METHOD: jframeStart() ___________________________________.
    * @return
    */
-  public static JFrame jframeStart() {
+  public static JFrame jFrameStart() {
     JFrame frame = new JFrame("Frame");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     return frame;

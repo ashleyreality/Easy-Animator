@@ -43,7 +43,7 @@ public class EasyAnimator {
 
     // ----------------------------------------------------------------------------------------
     // setup the *frame* using an instance of JFrame()
-    JFrame frame = AnimatorHelper.jframeStart();
+    JFrame frame = AnimatorHelper.jFrameStart();
 
     // ----------------------------------------------------------------------------------------
     // setup the *string builder* using an instance of StringBuilder()
@@ -116,7 +116,7 @@ public class EasyAnimator {
     // ----------------------------------------------------------------------------------------
     // JFrame finishing up
     frame.pack();
-    //System.exit(0);
+    System.exit(0);
 
     // Visual View ScrollPane Confusion - aya
 

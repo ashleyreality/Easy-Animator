@@ -48,6 +48,17 @@ public class ViewFactory {
     // speed is only used for visual
   }
 
+  public ViewFactory(String outputView, IAnimationModel model, String outputName) {
+    this.outputView = outputView;
+    this.model = model;
+    this.outputName = outputName;
+
+    // passing to the view the things that it needs
+    // outputView is the view type --> send it to create so it knows which view
+
+    // speed is only used for visual
+  }
+
   /**
    * ____________________________________ METHOD: create() ________________________________________.
    * @return a new object of the view that the caller requested/passed in
@@ -68,7 +79,7 @@ public class ViewFactory {
     } else if (outputView.equalsIgnoreCase("text")) {
       // for the text view, we will use appendable to just print it out in the console
       // depending on the appendable we pass in, we could do a text file or other appendable types
-      return new TextView(model, System.out);
+      return new TextView(model, this.outputName);
     } else if (outputView.equalsIgnoreCase("visual")) {
       return new VisualView(model, speed);
     } else {

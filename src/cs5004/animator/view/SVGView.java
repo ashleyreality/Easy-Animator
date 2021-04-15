@@ -1,9 +1,7 @@
 package cs5004.animator.view;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,19 +19,19 @@ import cs5004.animator.model.ScaleShape;
  * the animation.
  */
 public class SVGView implements IView {
-  private PrintWriter file;
+  private PrintWriter out;
   private IAnimationModel model;
   private int speed;
 
-  public SVGView(IAnimationModel model, PrintWriter file, int speed) throws IOException {
-    this.file = file;
+  public SVGView(IAnimationModel model, PrintWriter out, int speed) throws IOException {
+    this.out = out;
     this.model = model;
     this.speed = speed;
 
     // add initial xml to file
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
             + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
-    this.file.append(str);
+    this.out.append(str);
 
     // sort shapes by appear time and create a sorted list of them
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
@@ -46,7 +44,7 @@ public class SVGView implements IView {
       // if rect
       if (shp.getType().equalsIgnoreCase("rectangle")) {
         // add initial <rect> tag with attributes
-        this.file.append(addRectangle(shp));
+        this.out.append(addRectangle(shp));
 
         // put the shape's events in a list, sorted by event time
         Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
@@ -58,13 +56,13 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </rect>
-        this.file.append("</rect>\n\n");
+        this.out.append("</rect>\n\n");
       }
 
       // if ellipse
       if (shp.getType().equalsIgnoreCase("ellipse")) {
         // add initial <ellipse> tag with attributes
-        this.file.append(addEllipse(shp));
+        this.out.append(addEllipse(shp));
 
         // put the shape's events in a list, sorted by event time
         Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
@@ -75,27 +73,27 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </ellipse>
-        this.file.append("</ellipse>\n\n");
+        this.out.append("</ellipse>\n\n");
       }
     }
 
     // add closing </svg>
-    this.file.append("</svg>");
+    this.out.append("</svg>");
 
     // close the file
-    this.file.close();
+    this.out.close();
 
   }
 
   private void addEvents(IShape shp, IEvent e) {
     if (e.getEventType().equals(EventType.MOVE)) {
-      file.append(addMove(shp, (MoveShape) e));
+      out.append(addMove(shp, (MoveShape) e));
     }
     if (e.getEventType().equals(EventType.SCALE)) {
-      file.append(addScale(shp, (ScaleShape) e));
+      out.append(addScale(shp, (ScaleShape) e));
     }
     if (e.getEventType().equals(EventType.RECOLOR)) {
-      file.append(addColorChange(shp, e));
+      out.append(addColorChange(shp, e));
     }
   }
 
