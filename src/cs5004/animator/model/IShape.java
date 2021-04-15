@@ -143,4 +143,6 @@ public interface IShape extends Comparable<IShape> {
   String appearString();
 
   String getType();
+
+  IShape copy();
 }

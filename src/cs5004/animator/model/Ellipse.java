@@ -29,10 +29,18 @@ public class Ellipse extends AbstractShape {
     super(name, width, height, red, green, blue, x, y);
 
     this.radiusX = width / 2;
-    this.width = this.radiusX * 2;
+    this.width = width;
 
     this.radiusY = height / 2;
-    this.height = this.radiusY * 2;
+    this.height = height;
+  }
+
+  // for copy
+  public Ellipse(String name, double width, double height,
+                 Color color, Point2D location, int appear, int disappear, String type) {
+    super(name, width, height, color, location, appear, disappear, type);
+    this.radiusX = width / 2;
+    this.radiusY = height / 2;
   }
 
   /**
@@ -70,6 +78,7 @@ public class Ellipse extends AbstractShape {
    * _________________________________ METHOD: createString() _____________________________________.
    * Returns a String with the name of the color of the ellipse, the name of the ellipse, the center
    * location of the ellipse on the canvas, the horizontal radius and the vertical radius.
+   *
    * @return the string for the text output, a String
    */
   @Override
@@ -97,6 +106,12 @@ public class Ellipse extends AbstractShape {
   public void setHeight(double height) {
     super.setHeight(height);
     this.radiusY = height / 2;
+  }
+
+  @Override
+  public IShape copy() {
+    return new Ellipse(this.name, this.width, this.height, this.color,
+            this.location, this.appear, this.disappear, this.type);
   }
 
 }

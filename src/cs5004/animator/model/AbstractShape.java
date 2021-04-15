@@ -63,6 +63,20 @@ public abstract class AbstractShape implements IShape {
     this.type = type;
   }
 
+  // for copy
+  public AbstractShape(String name, double width, double height,
+                       Color color, Point2D location, int appear, int disappear, String type) {
+    this.name = name;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+    this.location = location;
+    // do we need to copy these?
+    this.appear = appear;
+    this.disappear = disappear;
+    this.type = type;
+  }
+
   /*
    * _____________________________ CONSTRUCTOR: AbstractShape() ___________________________________.
    * Creates a clone of the shape.

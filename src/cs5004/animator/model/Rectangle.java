@@ -40,6 +40,12 @@ public class Rectangle extends AbstractShape {
     super(name, type);
   }
 
+  // for copy
+  public Rectangle(String name, double width, double height,
+                   Color color, Point2D location,  int appear, int disappear, String type) {
+    super(name, width, height, color, location,appear,disappear,type);
+  }
+
   /**
    * ___________________________________ METHOD: toString() _______________________________________.
    * Returns a String with the name, location, width, height, color, and appear and disappear times
@@ -68,6 +74,12 @@ public class Rectangle extends AbstractShape {
     return "Create " + this.color.toString() + " rectangle " + this.name
             + " with corner at " + this.location.toString() + ", width " + this.width
             + " and height " + this.height;
+  }
+
+  @Override
+  public IShape copy() {
+    return new Rectangle(this.name, this.width, this.height, this.color,
+            this.location, this.appear, this.disappear, this.type);
   }
 
 }
