@@ -24,7 +24,7 @@ public class SVGView implements IView {
   private PrintWriter file;
   private IAnimationModel model;
 
-  public SVGView(IAnimationModel model, PrintWriter file) throws IOException {
+  public SVGView(IAnimationModel model, PrintWriter file, int speed) throws IOException {
     this.file = file;
     this.model = model;
 
