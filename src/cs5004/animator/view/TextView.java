@@ -93,7 +93,7 @@ public class TextView implements IView {
   /**
    * @return
    */
-  public String getState() {
+  public String getViewState() {
     return sb.toString();
   }
 }

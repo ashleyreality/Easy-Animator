@@ -114,4 +114,9 @@ public class VisualView extends JFrame implements IView, ActionListener {
     //drawShapes(shapesAtTick);
     refresh();
   }
+
+  @Override
+  public String getViewState() {
+    return null;
+  }
 }

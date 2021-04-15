@@ -168,4 +168,9 @@ public class SVGView implements IView {
             + "dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
             + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";
   }
+
+  @Override
+  public String getViewState() {
+    return null;
+  }
 }
