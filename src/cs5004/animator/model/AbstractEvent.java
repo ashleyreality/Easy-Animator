@@ -95,6 +95,7 @@ public abstract class AbstractEvent implements IEvent {
   }
 
 
+  // linear interp
   protected double tweening(int tick, double fromValue, double toValue) {
     //From value ((end - tick) / (end - begin))
     //+ to value ((tick - begin) / (end- begin))

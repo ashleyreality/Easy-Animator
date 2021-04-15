@@ -37,17 +37,37 @@ public class VisualView extends JFrame implements IView, ActionListener {
     // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
 
+
+    animationPanel = new AnimationPanel(model, 0); // FixMe to make the tick change
+    animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
+            model.getBoundsHeight()));
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.add(animationPanel, BorderLayout.CENTER);
+    this.pack();
+    this.setVisible(true);
+
     // run through each tick from 0 through lastShapeTime
     for (int t = 0; t < lastShapeTime; t++) {
       System.out.println(t);
-      animationPanel = new AnimationPanel(model, t); // FixMe to make the tick change
-      animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
-              model.getBoundsHeight()));
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      this.add(animationPanel, BorderLayout.CENTER);
-      this.pack();
-      this.setVisible(true);
+      animationPanel.setTick(t);
+      animationPanel.repaint();
+
+      // FixMe use the speed provided by the user to update the timer (instead of 100)
+      // FixMe the ellipse hasn't shown up
+      // FixMe the width is negative at some point -- why?
+
+      try {
+        Thread.sleep(100);
+      }
+      catch(InterruptedException e)
+      {
+        // DO nothing
+      }
+
     }
+
+
+
 
     // Create a scrollpane
     JTextArea textArea = new JTextArea(5, 30);
@@ -62,7 +82,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
     // create a timer & specify the action listener to be used
     // actionPerformed in the listener is getShapesAtTick, then draw shapes
 
-    Timer timer = new Timer(speed * 100, this);
+    Timer timer = new Timer(speed * 1000, this);
     timer.start();
 
     // create shapes
@@ -78,6 +98,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
 
   }
+
+
 
   public void refresh() { this.repaint(); }
 

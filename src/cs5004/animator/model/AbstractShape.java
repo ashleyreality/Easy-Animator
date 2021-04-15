@@ -120,9 +120,10 @@ public abstract class AbstractShape implements IShape {
    */
   @Override
   public void setWidth(double width) {
-    if (width <= 0) {
-      throw new IllegalArgumentException("Width must be positive.");
-    }
+    // FixMe Uncomment this
+    //if (width <= 0) {
+      //throw new IllegalArgumentException("Width must be positive.");
+    //}
     this.width = width;
   }
 

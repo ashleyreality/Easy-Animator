@@ -60,4 +60,14 @@ public class AnimationPanel extends JPanel { // FixMe removed for now: implement
       }
     }
   }
+
+
+  public void setModel(IAnimationModel model) {
+    this.model = model;
+  }
+
+  public void setTick(int someTick) {
+    this.someTick = someTick;
+  }
+
 }

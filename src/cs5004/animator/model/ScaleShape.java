@@ -94,10 +94,13 @@ public class ScaleShape extends AbstractEvent {
     return String.valueOf(this.widthAfter);
   }
 
+  // Interpolation
   public void applyEvent(IShape shape, int tick) {
-    if (this.widthBefore == this.widthAfter) {
+    // if the height before is not the same, set the height
+    if (this.heightBefore != this.heightAfter) {
       shape.setHeight(tweening(tick, this.heightBefore, this.heightAfter));
-    } else if (this.heightBefore == this.heightAfter) {
+      // if the width is not the same, set the width
+    } else if (this.widthBefore != this.widthAfter) {
       shape.setWidth(tweening(tick, this.widthBefore, this.widthAfter));
     } else {
       shape.setWidth(tweening(tick, this.widthBefore, this.widthAfter));
