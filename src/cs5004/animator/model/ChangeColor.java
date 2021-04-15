@@ -68,4 +68,10 @@ public class ChangeColor extends AbstractEvent {
   public String getAfter() {
     return this.to.toString();
   }
+
+  public void applyEvent(IShape shape, int tick) {
+    shape.setColor((int)tweening(tick,this.from.getRed(),this.to.getRed()),
+            (int)tweening(tick,this.from.getGreen(),this.to.getGreen()),
+            (int)tweening(tick,this.from.getBlue(),this.to.getBlue()));
+  }
 }

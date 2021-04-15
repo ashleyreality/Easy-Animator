@@ -52,6 +52,8 @@ public interface IEvent {
 
   String getAfter();
 
+  void applyEvent(IShape shape, int tick);
+
 
   //  /**
   //   * The change method creates a changed shape event.

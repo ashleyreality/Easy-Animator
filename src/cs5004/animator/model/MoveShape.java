@@ -71,4 +71,9 @@ public class MoveShape extends AbstractEvent {
   public Point2D getTo() {
     return to;
   }
+
+  public void applyEvent(IShape shape, int tick) {
+    shape.setLocation(tweening(tick, this.from.getX(), this.to.getX()),
+            tweening(tick, this.from.getY(), this.to.getY()));
+  }
 }

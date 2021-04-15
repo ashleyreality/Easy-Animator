@@ -93,4 +93,12 @@ public abstract class AbstractEvent implements IEvent {
   public void change(IShape shape) throws IllegalArgumentException {
     // this method is a stub for now, until we have more information about how changes will work
   }
+
+
+  protected double tweening(int tick, double fromValue, double toValue) {
+    //From value ((end - tick) / (end - begin))
+    //+ to value ((tick - begin) / (end- begin))
+    return fromValue * (double) ((this.eventEnd - tick) / (this.eventEnd - this.eventBegin))
+            + toValue * (double) ((tick - this.eventBegin) / (this.eventEnd - this.eventBegin));
+  }
 }

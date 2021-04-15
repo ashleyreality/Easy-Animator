@@ -15,11 +15,11 @@ public class ScaleShape extends AbstractEvent {
    * _______________________________ CONSTRUCTOR: ScaleShape() ____________________________________.
    * Generates a scaled shape event.
    *
-   * @param shape         - the shape to be scaled
-   * @param widthBefore   - the previous width of the shape
-   * @param heightBefore  - the previous height of the shape
-   * @param widthAfter    - the new width of the shape
-   * @param heightAfter   - the new height of the shape
+   * @param shape        - the shape to be scaled
+   * @param widthBefore  - the previous width of the shape
+   * @param heightBefore - the previous height of the shape
+   * @param widthAfter   - the new width of the shape
+   * @param heightAfter  - the new height of the shape
    */
   public ScaleShape(IShape shape,
                     double widthBefore, double heightBefore,
@@ -53,13 +53,11 @@ public class ScaleShape extends AbstractEvent {
       return this.shape.getName() + " changes height from " + this.heightBefore + " to "
               + this.heightAfter + " from time t=" + this.getEventBegin() + " to t="
               + this.getEventEnd();
-    }
-    else if (this.heightBefore == this.heightAfter) {
+    } else if (this.heightBefore == this.heightAfter) {
       return this.shape.getName() + " changes width from " + this.widthBefore + " to "
               + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
               + this.getEventEnd();
-    }
-    else {
+    } else {
       return this.shape.getName() + " changes height from " + this.heightBefore + " to "
               + this.heightAfter + " and changes width from " + this.widthBefore + " to "
               + this.widthAfter + " from time t=" + this.getEventBegin() + " to t="
@@ -94,5 +92,16 @@ public class ScaleShape extends AbstractEvent {
 
   public String getWidthAfter() {
     return String.valueOf(this.widthAfter);
+  }
+
+  public void applyEvent(IShape shape, int tick) {
+    if (this.widthBefore == this.widthAfter) {
+      shape.setHeight(tweening(tick, this.heightBefore, this.heightAfter));
+    } else if (this.heightBefore == this.heightAfter) {
+      shape.setWidth(tweening(tick, this.widthBefore, this.widthAfter));
+    } else {
+      shape.setWidth(tweening(tick, this.widthBefore, this.widthAfter));
+      shape.setHeight(tweening(tick, this.heightBefore, this.heightAfter));
+    }
   }
 }
