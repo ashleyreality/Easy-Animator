@@ -16,6 +16,11 @@ import cs5004.animator.model.IShape;
  * to an appendable.
  */
 public class TextView implements IView {
+  // include more methods here
+  // we may need to have a get state method
+  // we may need to have an output method that handles different types of outputs - need to handle
+  // BOTH System.out and .txt output
+  // if nothing on -out, automatically should be System.out
 
   /**
    * Constructs a text view.

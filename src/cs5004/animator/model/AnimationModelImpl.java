@@ -369,6 +369,8 @@ public class AnimationModelImpl implements IAnimationModel {
    * @return
    */
   public List<IShape> getShapesAtTick(int tick) {
+
+    // note from TA: consider doing this in order of transformations possibly, rather than order of shapes
     List<IShape> shapesAtTick = new ArrayList<>();
     for (IShape shape : shapeMap.keySet()) {
       if (shape.getAppear() <= tick && shape.getDisappear() >= tick) {
