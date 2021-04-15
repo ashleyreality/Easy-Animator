@@ -23,10 +23,12 @@ import cs5004.animator.model.ScaleShape;
 public class SVGView implements IView {
   private PrintWriter file;
   private IAnimationModel model;
+  private int speed;
 
   public SVGView(IAnimationModel model, PrintWriter file, int speed) throws IOException {
     this.file = file;
     this.model = model;
+    this.speed = speed;
 
     // add initial xml to file
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
@@ -116,26 +118,25 @@ public class SVGView implements IView {
   }
 
   private String addMove(IShape shp, MoveShape e) {
-    int duration = e.getEventEnd() - e.getEventBegin();
+    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
     int xFromLocation = (int) e.getFrom().getX() - model.getBoundsX();
     int xToLocation = (int) e.getTo().getX() - model.getBoundsX();
     int yFromLocation = (int) e.getFrom().getY() - model.getBoundsY();
     int yToLocation = (int) e.getTo().getY() - model.getBoundsY();
 
     if (shp.getType().equalsIgnoreCase("rectangle")) {
-
-      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\""
+      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"x\" from=\""
               + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\""
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"y\" from=\""
               + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
-      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"cx\" from=\""
               + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"cy\" from=\""
               + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
     }
@@ -143,20 +144,20 @@ public class SVGView implements IView {
   }
 
   private String addScale(IShape shp, ScaleShape e) {
-    int duration = e.getEventEnd() - e.getEventBegin();
+    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
     if (shp.getType().equalsIgnoreCase("rectangle")) {
-      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
               + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
-      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+      return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur\"=" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
               + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
     }
@@ -164,8 +165,8 @@ public class SVGView implements IView {
   }
 
   private String addColorChange(IShape shp, IEvent e) {
-    int duration = e.getEventEnd() - e.getEventBegin();
-    return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 + "ms\" "
+    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
+    return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
             + "dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
             + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";
   }
