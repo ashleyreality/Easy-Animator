@@ -15,6 +15,11 @@ import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
 import cs5004.animator.model.ScaleShape;
 
+
+/**
+ * This class represents an svg view. The svg view outputs an svg display to the end-user of
+ * the animation.
+ */
 public class SVGView implements IView {
   private PrintWriter file;
   private IAnimationModel model;

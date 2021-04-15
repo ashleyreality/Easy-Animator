@@ -119,7 +119,7 @@ public class EasyAnimator {
 
     // Visual view
     // invokeLater is used as a wrapper around the JFrame code to ensure that
-    // Swing code is executed on the Event Dispatch Thread
+    // Swing code is executed on the Event Dispatch Thread (EDT)
     // Why? Because there is a JSwing rule: "only modify Swing (GUI) elements from the EDT "
     SwingUtilities.invokeLater(new Runnable() {
 
@@ -131,6 +131,9 @@ public class EasyAnimator {
         // Create the visual video "visual"
         JFrame window = AnimatorHelper.jframeStart();
 
+        // Access the xml/svg file & parse the XML
+        // The XML creates a JFrame object by using java.beans.XMLEncoder?
+        // The file extension ".svg" is an XML namespace
         XMLDecoder xmlDecoder = null;
         try {
           xmlDecoder = new XMLDecoder(new FileInputStream("simple-example.svg"));

@@ -8,6 +8,11 @@ import javax.swing.*;
 
 import cs5004.animator.model.IAnimationModel;
 
+
+// FixMe - Make sure to test different output types for the visual view
+// FixMe - If the output set is not specified and the view needs it, the default should be
+//  System.out. If the speed is not specified and the view needs it, the default is 1 tick per second.
+
 /**
  * This class represents a visual view. The visual view outputs a visual display to the end-user of
  * the animation.
