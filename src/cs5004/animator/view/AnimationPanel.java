@@ -29,6 +29,7 @@ public class AnimationPanel extends JPanel { // FixMe removed for now: implement
   public AnimationPanel(IAnimationModel model, int someTick) {
     super();
     this.model = model;
+    this.someTick = someTick;
   }
 
   @Override
@@ -41,6 +42,8 @@ public class AnimationPanel extends JPanel { // FixMe removed for now: implement
     List<IShape> listOfShapesAtSomeTick = model.getShapesAtTick(someTick);
     // Iterate through the list of shapes at the given tick
     for (IShape eachShapeAtTick : listOfShapesAtSomeTick) {
+      System.out.println("\n\n\nLIST OF SHAPES AT " + someTick);
+      System.out.println(eachShapeAtTick);
       // Check if it's a rectangle
       if (eachShapeAtTick.getType().equalsIgnoreCase("Rectangle")) { // FixMe to reliably check the shape type
         int currentXLocation = (int) eachShapeAtTick.getLocation().getX();

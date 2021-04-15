@@ -39,6 +39,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
     // run through each tick from 0 through lastShapeTime
     for (int t = 0; t < lastShapeTime; t++) {
+      System.out.println(t);
       animationPanel = new AnimationPanel(model, t); // FixMe to make the tick change
       animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
               model.getBoundsHeight()));
