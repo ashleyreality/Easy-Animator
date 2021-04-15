@@ -33,7 +33,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
     this.setLayout(new BorderLayout());
     // I could create a for loop or for each that updates the "someTick" argument for AnimationPanel--
     // I want the Visual to get each tick somehow
-    animationPanel = new AnimationPanel(0); // FixMe to make the tick change
+    animationPanel = new AnimationPanel(model, 0); // FixMe to make the tick change
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
             model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
