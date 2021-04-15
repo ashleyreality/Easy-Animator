@@ -10,8 +10,7 @@ import cs5004.animator.model.IAnimationModel;
 
 
 // FixMe - Make sure to test different output types for the visual view
-// FixMe - If the output set is not specified and the view needs it, the default should be
-//  System.out. If the speed is not specified and the view needs it, the default is 1 tick per second.
+
 
 /**
  * This class represents a visual view. The visual view outputs a visual display to the end-user of
@@ -35,6 +34,13 @@ public class VisualView extends JFrame implements IView, ActionListener {
     this.add(animationPanel, BorderLayout.CENTER);
     this.pack();
     this.setVisible(true);
+
+    // Create a scrollpane
+    JTextArea textArea = new JTextArea(5, 30);
+    JScrollPane scrollPane = new JScrollPane(textArea);
+
+    // Add scrollpane to jframe's content pane placing it in center of border layout
+    this.add(scrollPane, BorderLayout.CENTER);
 
 
 
