@@ -18,7 +18,7 @@ public class ViewFactory {
   private String outputView;
   private IAnimationModel model;
   private String outputName;
-  private String speed;
+  private int speed;
   // This creates a new view
   // a factory function gives you an option, and it returns to you the right type of object
   // the arguments the client gives the ViewFactory will have it return a certain type of view
@@ -40,7 +40,7 @@ public class ViewFactory {
     this.outputView = outputView;
     this.model = model;
     this.outputName = outputName;
-    this.speed = speed;
+    this.speed = Integer.parseInt(speed);
 
     // passing to the view the things that it needs
     // outputView is the view type --> send it to create so it knows which view
@@ -64,7 +64,7 @@ public class ViewFactory {
 
     if (outputView.equalsIgnoreCase("svg")) {
       // pass in the print writer here to be consistent with the text view, i guess?
-      return new SVGView(model, new PrintWriter(this.outputName));
+      return new SVGView(model, new PrintWriter(this.outputName), speed);
     } else if (outputView.equalsIgnoreCase("text")) {
       // for the text view, we will use appendable to just print it out in the console
       // depending on the appendable we pass in, we could do a text file or other appendable types

@@ -20,9 +20,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   private AnimationPanel animationPanel;
   private IAnimationModel model;
 
-  public VisualView(IAnimationModel model, String speed) {
+  public VisualView(IAnimationModel model, int speed) {
     super();
-    int intSpeed = Integer.parseInt(speed);
     this.model = model;
 
     // create the layout and animation panel; set the size; make it visible
@@ -48,7 +47,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
     // create a timer & specify the action listener to be used
     // actionPerformed in the listener is getShapesAtTick, then draw shapes
 
-    Timer timer = new Timer(intSpeed * 100, this);
+    Timer timer = new Timer(speed * 100, this);
     timer.start();
 
     // create shapes
