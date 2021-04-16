@@ -185,10 +185,8 @@ public class TextViewTest {
   }
 
 
-  @Test//(expected = FileNotFoundException.class)
+  @Test
   public void testNoInFile() throws FileNotFoundException {
-    // fixme -- this test isn't passing even though it's throwing the expected exception. Y???
-    // we check that this.file is null instead
     String inputName = "";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
