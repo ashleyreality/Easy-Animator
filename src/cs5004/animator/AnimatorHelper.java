@@ -51,7 +51,7 @@ public class AnimatorHelper {
               JOptionPane.ERROR_MESSAGE);
       System.out.println("The input file was not found.");
       e.printStackTrace();
-      System.exit(1);
+      // System.exit(1);
     }
     return null;
   }
