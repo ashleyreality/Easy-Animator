@@ -6,13 +6,10 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
-import cs5004.animator.model.IAnimationModel;
-
-
+/**
+ *
+ */
 public class AnimatorHelper {
-  private IAnimationModel model;
-  //  private Readable in;
-  //  private Appendable out;
 
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
