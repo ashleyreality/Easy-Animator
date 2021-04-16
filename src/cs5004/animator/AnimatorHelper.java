@@ -51,7 +51,7 @@ public class AnimatorHelper {
               JOptionPane.ERROR_MESSAGE);
       System.out.println("The input file was not found.");
       e.printStackTrace();
-      // System.exit(1);
+       //System.exit(1);
     }
     return null;
   }
@@ -69,7 +69,7 @@ public class AnimatorHelper {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
               "Invalid view", JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
+      //System.exit(1);
     }
   }
 
@@ -93,7 +93,7 @@ public class AnimatorHelper {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
+      //System.exit(1);
     }
   }
 
