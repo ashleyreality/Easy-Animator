@@ -66,7 +66,7 @@ public class Ellipse extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name
-            + "\nType: ellipse"
+            + "\nType: " + this.type.toString()
             + "\nCenter: " + this.location.toString()
             + ", X radius: " + this.radiusX + ", Y radius: "
             + this.radiusY + ", Color: " + this.color.toString()
@@ -83,7 +83,7 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public String createString() {
-    return "Create " + this.color.toString() + " ellipse " + this.name
+    return "Create " + this.color.toString() + " " + this.type.toString() + " " + this.name
             + " with center at " + this.location.toString() + ", radius " + this.radiusX
             + " and " + this.radiusY;
   }

@@ -42,8 +42,8 @@ public class Rectangle extends AbstractShape {
 
   // for copy
   public Rectangle(String name, double width, double height,
-                   Color color, Point2D location,  int appear, int disappear, ShapeType type) {
-    super(name, width, height, color, location,appear,disappear,type);
+                   Color color, Point2D location, int appear, int disappear, ShapeType type) {
+    super(name, width, height, color, location, appear, disappear, type);
   }
 
   /**
@@ -56,7 +56,7 @@ public class Rectangle extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name
-            + "\nType: rectangle"
+            + "\nType: " + this.type.toString()
             + "\nMin corner: " + this.location.toString() + ", Width: " + this.width + ", Height: "
             + this.height + ", Color: " + this.color.toString()
             + "\nAppears at t=" + this.appear
@@ -67,11 +67,12 @@ public class Rectangle extends AbstractShape {
    * _________________________________ METHOD: createString() _____________________________________.
    * Returns a String with the name of the color of the rectangle, the name of the rectangle, the
    * top-left corner location of the rectangle on the canvas, the width and the height.
+   *
    * @return the string for the text output, a String
    */
   @Override
   public String createString() {
-    return "Create " + this.color.toString() + " rectangle " + this.name
+    return "Create " + this.color.toString() + " " + this.type.toString() + " " + this.name
             + " with corner at " + this.location.toString() + ", width " + this.width
             + " and height " + this.height;
   }
