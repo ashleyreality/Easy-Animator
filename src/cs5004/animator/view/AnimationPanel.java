@@ -42,7 +42,7 @@ public class AnimationPanel extends JPanel {
     // Iterate through the list of shapes at the given tick
     for (IShape eachShapeAtTick : listOfRectanglesAtSomeTick) {
       // Check if it's a rectangle
-      if (eachShapeAtTick.getType() == ShapeType.RECTANGLE) { // FixMe to reliably check the shape type
+      if (eachShapeAtTick.getType() == ShapeType.RECTANGLE) {
         // Draw the rectangle(s)
         drawRectangle(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);

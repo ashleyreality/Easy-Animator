@@ -42,6 +42,14 @@ public class VisualView extends JFrame implements IView {
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel, BorderLayout.CENTER);
+
+    // Create a Scroll Pane
+    JScrollPane scrollPane = new JScrollPane(animationPanel);
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    this.add(scrollPane, BorderLayout.CENTER);
+
+
     this.pack();
     this.setVisible(true);
 
@@ -92,12 +100,6 @@ public class VisualView extends JFrame implements IView {
       // FixMe the width is negative at some point -- why?
     }
 
-    // Create a Scroll Pane
-    JTextArea textArea = new JTextArea(5, 30);
-    JScrollPane scrollPane = new JScrollPane(textArea);
-
-    // Add the Scroll Pane to to the frame's content pane, placing it in center of border layout
-    this.add(scrollPane, BorderLayout.CENTER);
   }
 
   public void refresh() { this.repaint(); }
