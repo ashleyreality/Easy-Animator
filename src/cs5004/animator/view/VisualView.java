@@ -49,7 +49,6 @@ public class VisualView extends JFrame implements IView {
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     this.add(scrollPane, BorderLayout.CENTER);
 
-
     this.pack();
     this.setVisible(true);
 
@@ -94,28 +93,23 @@ public class VisualView extends JFrame implements IView {
       {
         // Do nothing
       }
-
-      // FixMe use the speed provided by the user to update the timer (instead of 100) - DONE
-      // FixMe the ellipse hasn't shown up
-      // FixMe the width is negative at some point -- why?
     }
-
   }
-
-  public void refresh() { this.repaint(); }
 
   public void showErrorMessage(String error) {
-    JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this, error, "Error",
+            JOptionPane.ERROR_MESSAGE);
   }
 
-
+  /**
+   *
+   * @return
+   */
   @Override
   public String getViewState() {
     return null;
   }
 }
-
-
 
 // specify the speed
 // create a timer & specify the action listener to be used
@@ -123,14 +117,3 @@ public class VisualView extends JFrame implements IView {
 
 // Timer timer = new Timer(speed * 1000, this);
 // timer.start();
-
-// create shapes
-// https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Rectangle2D.Double.html
-// https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Ellipse2D.Double.html
-// https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html#fill-java.awt.Shape-
-// or: fill(new Rectangle(x, y, w, h);
-
-
-// add components to the panel
-
-// finish up JFrame

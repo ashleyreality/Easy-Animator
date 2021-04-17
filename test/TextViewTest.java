@@ -28,6 +28,7 @@ public class TextViewTest {
 
   // make sure we're testing to make sure the file is created correctly
   // test for all exceptions
+  // test for empty animation
 
   @Before
   public void setUp() throws Exception {
