@@ -99,7 +99,25 @@ public abstract class AbstractEvent implements IEvent {
   protected double tweening(int tick, double fromValue, double toValue) {
     //From value ((end - tick) / (end - begin))
     //+ to value ((tick - begin) / (end- begin))
-    return fromValue * (double) ((this.eventEnd - tick) / (this.eventEnd - this.eventBegin))
-            + toValue * (double) ((tick - this.eventBegin) / (this.eventEnd - this.eventBegin));
+    System.out.println("eventEnd: " + this.eventEnd);
+    System.out.println("eventBegin: " + this.eventBegin);
+    System.out.println("tick: " + tick);
+    System.out.println("fromValue: " + fromValue);
+    System.out.println("toValue: " + toValue);
+
+    double valueDelta = toValue - fromValue;
+    double timeDelta  = this.eventEnd - this.eventBegin;
+
+    double interp = (tick - this.eventBegin) / timeDelta; // Number between 0 and 1: 1 means finished, 0 means begin, 0.5 means halfway, etc.
+    // Clamp between 0 and 1, in case tick is outside bounds of the event
+    interp = Math.max(Math.min(interp, 1), 0);
+
+    double result = (interp * valueDelta) + fromValue;
+    //double result = fromValue * (double) ((this.eventEnd - tick) / (this.eventEnd - this.eventBegin))
+    //        + toValue * (double) ((tick - this.eventBegin) / (this.eventEnd - this.eventBegin));
+
+    System.out.println("result: " + result);
+    System.out.println("-------------------");
+    return result;
   }
 }

@@ -113,6 +113,17 @@ public class EasyAnimator {
     ViewFactory newView = new ViewFactory(outputView, model, outputName, outputSpeed);
     newView.create();
 
+    // Better OOD so that constructor only does one thing:
+    //
+    // ViewFactory factory = new ViewFactory(outputView, model, outputName, outputSpeed);
+    // IView view = factory.create(); // This should RETURN an IView.
+    // The IView has been instantiated, but hasn't done anything yet (i.e, remove the animation,
+    // generation of text files, etc., from constructors. Constructors are not places where you want to put
+    // such logic.
+    // Constructopr creates an instance and returns something
+
+    // view.run(); // This does whatever the view is supposed
+
     // ----------------------------------------------------------------------------------------
     // JFrame finishing up
     frame.pack();

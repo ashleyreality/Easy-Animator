@@ -73,7 +73,13 @@ public class MoveShape extends AbstractEvent {
   }
 
   public void applyEvent(IShape shape, int tick) {
-    shape.setLocation(tweening(tick, this.from.getX(), this.to.getX()),
-            tweening(tick, this.from.getY(), this.to.getY()));
+
+//    System.out.println("Applying move event");
+//    System.out.println(this.toString());
+    double tweened_x = tweening(tick, this.from.getX(), this.to.getX());
+    double tweened_y = tweening(tick, this.from.getY(), this.to.getY());
+    shape.setLocation(tweened_x, tweened_y);
+//    System.out.println("Tweened x: " + tweened_x);
+//    System.out.println("Tweened y: " + tweened_y);
   }
 }

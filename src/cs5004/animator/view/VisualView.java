@@ -31,15 +31,9 @@ public class VisualView extends JFrame implements IView {
     // IEvent has getEventBegin()
     // IShape has getAppear()
 
-    // create the layout and animation panel; set the size; make it visible
+    // Set the layout of the JPanel container to BorderLayout which helps layout the components
+    // and animation panel; set the size; make it visible
     this.setLayout(new BorderLayout());
-
-    // I could create a for loop or for each that updates the "someTick" argument for AnimationPanel--
-    // I want the Visual to get each tick somehow
-
-    // get the disappear time of the last shape in the sorted treemap
-    int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
-
 
     // Instantiate AnimationPanel with the tick at 0 to be updated later
     animationPanel = new AnimationPanel(model, 0);
@@ -49,7 +43,11 @@ public class VisualView extends JFrame implements IView {
     this.pack();
     this.setVisible(true);
 
-    // run through each tick from 0 through lastShapeTime
+    // get the disappear time of the last shape in the sorted treemap
+    int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
+
+    // For the duration of the animation where the end of the animation is calculated via
+    // lastShapeTime, run through each tick from 0 through lastShapeTime
     for (int tick = 0; tick < lastShapeTime; tick++) {
       //System.out.println(tick);
 
@@ -70,10 +68,13 @@ public class VisualView extends JFrame implements IView {
       double duration = endTime - startTime;
 
       // Calculate the desired time relative to the speed provided by the user on the command line
+      // The user provides "speed" which is the ticks/sec, or in other words, frames/sec, which is
+      // the framerate
       int desiredTime = 1000 / speed;
 
       // Calculate the remaining sleep time
       double remainingSleepTime = desiredTime - duration;
+      // System.out.println(remainingSleepTime);
 
       // Set the sleep time using the remaining sleep time
       try {
@@ -87,7 +88,6 @@ public class VisualView extends JFrame implements IView {
       // FixMe use the speed provided by the user to update the timer (instead of 100) - DONE
       // FixMe the ellipse hasn't shown up
       // FixMe the width is negative at some point -- why?
-
     }
 
     // Create a Scroll Pane
