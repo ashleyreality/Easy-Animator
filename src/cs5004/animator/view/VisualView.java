@@ -10,18 +10,20 @@ import javax.swing.*;
 import cs5004.animator.model.IAnimationModel;
 
 
-// FixMe - Make sure to test different output types for the visual view
-
-
 /**
  * This class represents a visual view. The visual view outputs a visual display to the end-user of
- * the animation.
+ * the animation. It extends JFrame JFC/Swing component architecture.
+ *
  */
-public class VisualView extends JFrame implements IView, ActionListener {
+public class VisualView extends JFrame implements IView {
   private AnimationPanel animationPanel;
   private IAnimationModel model;
-  private int someTick;
 
+  /**
+   * The VisualView constructor takes in a model and the specified speed.
+   * @param model the model that the view follows for the animation, an IAnimation
+   * @param speed the speed of the animation, an int
+   */
   public VisualView(IAnimationModel model, int speed) {
     super();
     this.model = model;
@@ -32,6 +34,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
     // create the layout and animation panel; set the size; make it visible
     this.setLayout(new BorderLayout());
+
     // I could create a for loop or for each that updates the "someTick" argument for AnimationPanel--
     // I want the Visual to get each tick somehow
 
@@ -39,64 +42,61 @@ public class VisualView extends JFrame implements IView, ActionListener {
     int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
 
 
-    animationPanel = new AnimationPanel(model, 0); // FixMe to make the tick change
-    animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(),
-            model.getBoundsHeight()));
+    // Instantiate AnimationPanel with the tick at 0 to be updated later
+    animationPanel = new AnimationPanel(model, 0);
+    animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel, BorderLayout.CENTER);
     this.pack();
     this.setVisible(true);
 
     // run through each tick from 0 through lastShapeTime
-    for (int t = 0; t < lastShapeTime; t++) {
-      System.out.println(t);
-      animationPanel.setTick(t);
+    for (int tick = 0; tick < lastShapeTime; tick++) {
+      //System.out.println(tick);
+
+      // Get the current epoch timestamp in milliseconds precision
+      long startTime = System.currentTimeMillis();
+
+      // Update the tick being passed into AnimationPanel
+      animationPanel.setTick(tick);
+
+      // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
+      // is overridden in animationPanel
       animationPanel.repaint();
 
-      // FixMe use the speed provided by the user to update the timer (instead of 100)
-      // FixMe the ellipse hasn't shown up
-      // FixMe the width is negative at some point -- why?
+      // Get the current epoch timestamp in milliseconds precision
+      double endTime = System.currentTimeMillis();
 
+      // Calculate the duration between epoch times
+      double duration = endTime - startTime;
+
+      // Calculate the desired time relative to the speed provided by the user on the command line
+      int desiredTime = 1000 / speed;
+
+      // Calculate the remaining sleep time
+      double remainingSleepTime = desiredTime - duration;
+
+      // Set the sleep time using the remaining sleep time
       try {
-        Thread.sleep(100);
+        Thread.sleep((long) remainingSleepTime);
       }
       catch(InterruptedException e)
       {
-        // DO nothing
+        // Do nothing
       }
+
+      // FixMe use the speed provided by the user to update the timer (instead of 100) - DONE
+      // FixMe the ellipse hasn't shown up
+      // FixMe the width is negative at some point -- why?
 
     }
 
-
-
-
-    // Create a scrollpane
+    // Create a Scroll Pane
     JTextArea textArea = new JTextArea(5, 30);
     JScrollPane scrollPane = new JScrollPane(textArea);
 
-    // Add scrollpane to jframe's content pane placing it in center of border layout
+    // Add the Scroll Pane to to the frame's content pane, placing it in center of border layout
     this.add(scrollPane, BorderLayout.CENTER);
-
-
-
-    // specify the speed
-    // create a timer & specify the action listener to be used
-    // actionPerformed in the listener is getShapesAtTick, then draw shapes
-
-    Timer timer = new Timer(speed * 1000, this);
-    timer.start();
-
-    // create shapes
-    // https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Rectangle2D.Double.html
-    // https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Ellipse2D.Double.html
-    // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html#fill-java.awt.Shape-
-    // or: fill(new Rectangle(x, y, w, h);
-
-
-    // add components to the panel
-
-    // finish up JFrame
-
 
   }
 
@@ -108,16 +108,29 @@ public class VisualView extends JFrame implements IView, ActionListener {
     JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    // getShapesAtTick, then draw shapes
-    // List shapesAtTick = model.getShapesAtTick;
-    //drawShapes(shapesAtTick);
-    refresh();
-  }
 
   @Override
   public String getViewState() {
     return null;
   }
 }
+
+
+
+// specify the speed
+// create a timer & specify the action listener to be used
+// actionPerformed in the listener is getShapesAtTick, then draw shapes
+
+// Timer timer = new Timer(speed * 1000, this);
+// timer.start();
+
+// create shapes
+// https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Rectangle2D.Double.html
+// https://docs.oracle.com/javase/8/docs/api/java/awt/geom/Ellipse2D.Double.html
+// https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html#fill-java.awt.Shape-
+// or: fill(new Rectangle(x, y, w, h);
+
+
+// add components to the panel
+
+// finish up JFrame

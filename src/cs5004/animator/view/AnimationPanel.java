@@ -34,7 +34,6 @@ public class AnimationPanel extends JPanel { // FixMe removed for now: implement
 
   @Override
   protected void paintComponent(Graphics g) {
-    // idk if we need this but it seems like it could be important
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
 
