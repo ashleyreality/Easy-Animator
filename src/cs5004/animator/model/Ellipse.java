@@ -38,7 +38,7 @@ public class Ellipse extends AbstractShape {
 
   // for copy
   public Ellipse(String name, double width, double height,
-                 Color color, Point2D location, int appear, int disappear, ShapeType type) {
+                 Color color, Point2D location, int appear, int disappear, String type) {
     super(name, width, height, color, location, appear, disappear, type);
     this.radiusX = width / 2;
     this.radiusY = height / 2;
@@ -53,7 +53,7 @@ public class Ellipse extends AbstractShape {
    * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public Ellipse(String name, ShapeType type) {
+  public Ellipse(String name, String type) {
     super(name, type);
   }
 
@@ -67,7 +67,7 @@ public class Ellipse extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name
-            + "\nType: " + this.type.toString()
+            + "\nType: ellipse"
             + "\nCenter: " + this.location.toString()
             + ", X radius: " + this.radiusX + ", Y radius: "
             + this.radiusY + ", Color: " + this.color.toString()
@@ -84,7 +84,7 @@ public class Ellipse extends AbstractShape {
    */
   @Override
   public String createString() {
-    return "Create " + this.color.toString() + " " + this.type.toString() + " " + this.name
+    return "Create " + this.color.toString() + " ellipse " + this.name
             + " with center at " + this.location.toString() + ", radius " + this.radiusX
             + " and " + this.radiusY;
   }

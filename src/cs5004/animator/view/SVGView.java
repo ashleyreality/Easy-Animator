@@ -12,7 +12,6 @@ import cs5004.animator.model.IEvent;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
 import cs5004.animator.model.ScaleShape;
-import cs5004.animator.model.ShapeType;
 
 
 /**
@@ -28,9 +27,9 @@ public class SVGView implements IView {
   /**
    * Constructs an SVG view.
    *
-   * @param model     - the model holding the animation data
+   * @param model - the model holding the animation data
    * @param outString - a string describing the out file. Defaults to System.out if invalid
-   * @param speed     - speed in ticks
+   * @param speed - speed in ticks
    * @throws IOException if file is not found
    */
   public SVGView(IAnimationModel model, String outString, int speed) throws IOException {
@@ -51,7 +50,7 @@ public class SVGView implements IView {
   /**
    * Constructs an SVG view.
    *
-   * @param model - the model holding the animation data
+   * @param model  - the model holding the animation data
    * @param speed - speed in ticks
    */
   public SVGView(IAnimationModel model, int speed) {
@@ -84,7 +83,7 @@ public class SVGView implements IView {
     // sort individual event lists by start time bc events must go inside shape tags
     for (IShape shp : s) {
       // if rect
-      if (shp.getType() == ShapeType.RECTANGLE) {
+      if (shp.getType().equalsIgnoreCase("rectangle")) {
         // add initial <rect> tag with attributes
         sb.append(addRectangle(shp));
 
@@ -101,7 +100,7 @@ public class SVGView implements IView {
       }
 
       // if ellipse
-      if (shp.getType() == ShapeType.ELLIPSE) {
+      if (shp.getType().equalsIgnoreCase("ellipse")) {
         // add initial <ellipse> tag with attributes
         sb.append(addEllipse(shp));
 
@@ -129,7 +128,7 @@ public class SVGView implements IView {
    * Adds a shape's events to the StringBuilder.
    *
    * @param shp - the shape
-   * @param e   - the associated event
+   * @param e - the associated event
    */
   private void addEvents(IShape shp, IEvent e) {
     if (e.getEventType().equals(EventType.MOVE)) {
@@ -177,7 +176,7 @@ public class SVGView implements IView {
    * Returns an SVG formatted string describing a move event.
    *
    * @param shp - the shape that will move
-   * @param e   - the move event
+   * @param e - the move event
    * @return the SVG formatted string
    */
   private String addMove(IShape shp, MoveShape e) {
@@ -187,7 +186,7 @@ public class SVGView implements IView {
     int yFromLocation = (int) e.getFrom().getY() - model.getBoundsY();
     int yToLocation = (int) e.getTo().getY() - model.getBoundsY();
 
-    if (shp.getType() == ShapeType.RECTANGLE) {
+    if (shp.getType().equalsIgnoreCase("rectangle")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"x\" from=\""
               + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
@@ -195,7 +194,7 @@ public class SVGView implements IView {
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"y\" from=\""
               + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
     }
-    if (shp.getType() == ShapeType.ELLIPSE) {
+    if (shp.getType().equalsIgnoreCase("ellipse")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"cx\" from=\""
               + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
@@ -210,12 +209,12 @@ public class SVGView implements IView {
    * Returns an SVG formatted string describing a scale shape event.
    *
    * @param shp - the shape that will scale
-   * @param e   - the scale event describing the change
+   * @param e - the scale event describing the change
    * @return the SVG formatted string
    */
   private String addScale(IShape shp, ScaleShape e) {
     int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
-    if (shp.getType() == ShapeType.RECTANGLE) {
+    if (shp.getType().equalsIgnoreCase("rectangle")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
@@ -223,7 +222,7 @@ public class SVGView implements IView {
               + " dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
               + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
     }
-    if (shp.getType() == ShapeType.ELLIPSE) {
+    if (shp.getType().equalsIgnoreCase("ellipse")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur\"=" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
@@ -238,7 +237,7 @@ public class SVGView implements IView {
    * Returns an SVG formatted  string describing a color change event.
    *
    * @param shp - the shape that will change color
-   * @param e   - the color event describing the change
+   * @param e - the color event describing the change
    * @return the SVG formatted string
    */
   private String addColorChange(IShape shp, IEvent e) {
