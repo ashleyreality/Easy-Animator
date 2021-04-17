@@ -6,6 +6,7 @@ package cs5004.animator.model;
  * the Ellipse class. It creates and stores information about an Ellipse shape.
  */
 public class Ellipse extends AbstractShape {
+  private ShapeType type = ShapeType.ELLIPSE;
   // radiusX, from the center point to the outer edge of the circle along the X-axis/width
   private double radiusX = 0;
   // radiusY, from the center point to the outer edge of the circle along the Y-axis/height
