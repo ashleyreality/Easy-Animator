@@ -36,13 +36,13 @@ public class Rectangle extends AbstractShape {
    * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public Rectangle(String name, String type) {
+  public Rectangle(String name, ShapeType type) {
     super(name, type);
   }
 
   // for copy
   public Rectangle(String name, double width, double height,
-                   Color color, Point2D location,  int appear, int disappear, String type) {
+                   Color color, Point2D location,  int appear, int disappear, ShapeType type) {
     super(name, width, height, color, location,appear,disappear,type);
   }
 
