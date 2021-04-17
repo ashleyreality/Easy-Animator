@@ -8,6 +8,7 @@ import cs5004.animator.model.IShape;
 import cs5004.animator.model.MoveShape;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.ScaleShape;
+import cs5004.animator.model.ShapeType;
 
 /**
  * ___________________________ IMPLEMENTATION CLASS: Builder {} ___________________________________.
@@ -69,11 +70,11 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
   public AnimationBuilder<IAnimationModel> declareShape(String name, String type) {
 
     // add shapes to model
-    if (type.equalsIgnoreCase("ellipse")) {
-      IShape shape = new Ellipse(name, type);
+    if (type.equalsIgnoreCase(ShapeType.ELLIPSE.toString())) {
+      IShape shape = new Ellipse(name, ShapeType.ELLIPSE);
       model.addShape(shape);
-    } else if (type.equalsIgnoreCase("rectangle")) {
-      IShape shape = new Rectangle(name, type);
+    } else if (type.equalsIgnoreCase(ShapeType.RECTANGLE.toString())) {
+      IShape shape = new Rectangle(name, ShapeType.RECTANGLE);
       model.addShape(shape);
     } else {
       throw new IllegalArgumentException("Invalid shape type!");

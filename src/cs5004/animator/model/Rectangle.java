@@ -6,7 +6,7 @@ package cs5004.animator.model;
  * the Rectangle class. It creates and stores information about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
-  //private ShapeType type = ShapeType.RECTANGLE;
+  private ShapeType type = ShapeType.RECTANGLE;
 
   /**
    * _____________________________ FIRST CONSTRUCTOR: Rectangle() _________________________________.
@@ -43,8 +43,8 @@ public class Rectangle extends AbstractShape {
 
   // for copy
   public Rectangle(String name, double width, double height,
-                   Color color, Point2D location,  int appear, int disappear, ShapeType type) {
-    super(name, width, height, color, location,appear,disappear,type);
+                   Color color, Point2D location, int appear, int disappear, ShapeType type) {
+    super(name, width, height, color, location, appear, disappear, type);
   }
 
   /**
@@ -68,6 +68,7 @@ public class Rectangle extends AbstractShape {
    * _________________________________ METHOD: createString() _____________________________________.
    * Returns a String with the name of the color of the rectangle, the name of the rectangle, the
    * top-left corner location of the rectangle on the canvas, the width and the height.
+   *
    * @return the string for the text output, a String
    */
   @Override
