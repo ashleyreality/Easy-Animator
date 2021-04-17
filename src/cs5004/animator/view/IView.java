@@ -1,7 +1,14 @@
 package cs5004.animator.view;
 
-import java.io.PrintWriter;
-
+/**
+ * The IView interface describes methods common to all views.
+ */
 public interface IView {
+
+  /**
+   * Gets a string representation of the current state of the view.
+   *
+   * @return a string representing the view state
+   */
   String getViewState();
 }

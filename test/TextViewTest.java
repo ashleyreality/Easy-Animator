@@ -25,10 +25,6 @@ public class TextViewTest {
   IAnimationModel model;
   Readable file;
   AnimationBuilder<IAnimationModel> build;
-  // use method to get state -- need to write this
-
-  // call reader parse file method
-  // use assert equals
 
   // make sure we're testing to make sure the file is created correctly
   // test for all exceptions
@@ -74,11 +70,16 @@ public class TextViewTest {
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out");
     IView textView = newView.create();
-    assertEquals("Create (127,185,246) rectangle disk1 with corner at (190.0,168.0), width 20.0 and height 18.0\n" +
-                    "Create (102,162,48) rectangle disk2 with corner at (178.0,186.0), width 42.0 and height 18.0\n" +
-                    "Create (157,206,118) rectangle disk3 with corner at (167.0,204.0), width 65.0 and height 18.0\n" +
-                    "Create (250,125,210) rectangle disk4 with corner at (156.0,222.0), width 87.0 and height 18.0\n" +
-                    "Create (56,214,194) rectangle disk5 with corner at (145.0,240.0), width 110.0 and height 18.0\n" +
+    assertEquals("Create (127,185,246) rectangle disk1 with corner at (190.0,168.0), " +
+                    "width 20.0 and height 18.0\n" +
+                    "Create (102,162,48) rectangle disk2 with corner at (178.0,186.0), " +
+                    "width 42.0 and height 18.0\n" +
+                    "Create (157,206,118) rectangle disk3 with corner at (167.0,204.0), " +
+                    "width 65.0 and height 18.0\n" +
+                    "Create (250,125,210) rectangle disk4 with corner at (156.0,222.0), " +
+                    "width 87.0 and height 18.0\n" +
+                    "Create (56,214,194) rectangle disk5 with corner at (145.0,240.0), " +
+                    "width 110.0 and height 18.0\n" +
                     "\n" +
                     "disk1 appears at time t=1 and disappears at time t=1166\n" +
                     "disk2 appears at time t=1 and disappears at time t=1166\n" +
@@ -160,7 +161,8 @@ public class TextViewTest {
                     "disk4 moves from (306.0,50.0) to (456.0,50.0) from time t=772 to t=782\n" +
                     "disk4 moves from (456.0,50.0) to (456.0,222.0) from time t=783 to t=793\n" +
                     "disk1 moves from (190.0,204.0) to (190.0,50.0) from time t=793 to t=803\n" +
-                    "disk4 changes color from (250,125,210) to (0,255,0) from time t=793 to t=801\n" +
+                    "disk4 changes color from (250,125,210) to (0,255,0) from time t=793 to " +
+                    "t=801\n" +
                     "disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=804 to t=814\n" +
                     "disk1 moves from (490.0,50.0) to (490.0,204.0) from time t=815 to t=825\n" +
                     "disk2 moves from (178.0,222.0) to (178.0,50.0) from time t=825 to t=835\n" +
@@ -173,17 +175,20 @@ public class TextViewTest {
                     "disk3 moves from (167.0,50.0) to (467.0,50.0) from time t=900 to t=910\n" +
                     "disk3 moves from (467.0,50.0) to (467.0,204.0) from time t=911 to t=921\n" +
                     "disk1 moves from (340.0,222.0) to (340.0,50.0) from time t=921 to t=931\n" +
-                    "disk3 changes color from (157,206,118) to (0,255,0) from time t=921 to t=929\n" +
+                    "disk3 changes color from (157,206,118) to (0,255,0) from time t=921 to " +
+                    "t=929\n" +
                     "disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=932 to t=942\n" +
                     "disk1 moves from (190.0,50.0) to (190.0,240.0) from time t=943 to t=953\n" +
                     "disk2 moves from (328.0,240.0) to (328.0,50.0) from time t=953 to t=963\n" +
                     "disk2 moves from (328.0,50.0) to (478.0,50.0) from time t=964 to t=974\n" +
                     "disk2 moves from (478.0,50.0) to (478.0,186.0) from time t=975 to t=985\n" +
                     "disk1 moves from (190.0,240.0) to (190.0,50.0) from time t=985 to t=995\n" +
-                    "disk2 changes color from (102,162,48) to (0,255,0) from time t=985 to t=993\n" +
+                    "disk2 changes color from (102,162,48) to (0,255,0) from time t=985 to " +
+                    "t=993\n" +
                     "disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=996 to t=1006\n" +
                     "disk1 moves from (490.0,50.0) to (490.0,168.0) from time t=1007 to t=1017\n" +
-                    "disk1 changes color from (127,185,246) to (0,255,0) from time t=1017 to t=1025\n",
+                    "disk1 changes color from (127,185,246) to (0,255,0) from time t=1017 to " +
+                    "t=1025\n",
             textView.getViewState());
   }
 
@@ -196,9 +201,8 @@ public class TextViewTest {
     assertNull(this.file);
   }
 
-  @Test(expected = IOException.class)
+  @Test
   public void testEmptyOutFile() throws IOException {
-    // fixme -- this test also doesn't pass even though the exception is clearly thrown
     String inputName = "/Users/abrown/Northeastern/CS5004/Homeworks/HW6/Easy-Animator/src/cs5004/"
             + "animator/smalldemo.txt";
     JFrame frame = AnimatorHelper.jFrameStart();

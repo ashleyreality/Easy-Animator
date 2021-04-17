@@ -2,7 +2,6 @@ package cs5004.animator.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
@@ -12,6 +11,7 @@ import cs5004.animator.view.VisualView;
 
 /**
  * __________________________________ CLASS: ViewFactory {} _______________________________________.
+ * ViewFactory takes data from the user and sends it to the correct view.
  */
 public class ViewFactory {
   private String outputView;
@@ -21,10 +21,12 @@ public class ViewFactory {
 
   /**
    * _____________________________ CONSTRUCTOR: ViewFactory() _____________________________________.
+   * Constructs a ViewFactory.
+   *
    * @param outputView the type of animation view being requested, a String
-   * @param model the model of the animation, a model
+   * @param model the model containing the animation data
    * @param outputName the text file output, a String
-   * @param speed the speed
+   * @param speed the speed in ticks
    */
   public ViewFactory(String outputView, IAnimationModel model, String outputName, String speed) {
     this.outputView = outputView;
@@ -34,9 +36,12 @@ public class ViewFactory {
   }
 
   /**
-   * @param outputView
-   * @param model
-   * @param outputName
+   * _____________________________ CONSTRUCTOR: ViewFactory() _____________________________________.
+   * Constructs a ViewFactory with a default speed.
+   *
+   * @param outputView the type of animation view being requested, a String
+   * @param model the model containing the animation data
+   * @param outputName the text file output, a String
    */
   public ViewFactory(String outputView, IAnimationModel model, String outputName) {
     this.outputView = outputView;
@@ -47,16 +52,13 @@ public class ViewFactory {
 
   /**
    * ____________________________________ METHOD: create() ________________________________________.
-   * @return a new object of the view that the caller requested/passed in
-   * @throws FileNotFoundException
+   * Creates the requested view.
+   *
+   * @return a view object
+   * @throws FileNotFoundException if the file is not found
+   * @throws IllegalArgumentException if the view type is incorrect
    */
   public IView create() throws IOException {
-    // need to understand what parameters are needed for views
-    // there is an example of how a factory works at:
-    // https://github.ccs.neu.edu/kbagley/cs5004flipped-sp2021/blob/master/Lecture_9_AbstractFactoryPattern/Factory.java
-
-    // if view type == svg
-    // return new svg view
 
 
     if (outputView.equalsIgnoreCase("svg")) {
