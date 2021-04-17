@@ -47,8 +47,9 @@ public class ShapeTest {
     assertEquals("Name: ellipse1\n"
                     + "Type: ellipse\n"
                     + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
-                    + "Appears at t=0\n"
-            + "Disappears at t=0\n",
+            // -1 shows that the appear and disappear times have not been updated for the builder
+                    + "Appears at t=-1\n"
+            + "Disappears at t=-1\n",
              ellipse.toString());
 
     // huge numbers
@@ -61,8 +62,8 @@ public class ShapeTest {
             + "Type: ellipse\n"
             + "Center: (54637.6,928736.0), X radius: 6000.0005, Y radius: 301414.3, Color:"
             + " (240,120,221)\n"
-            + "Appears at t=0\n"
-            + "Disappears at t=0\n", ellipse2.toString());
+            + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", ellipse2.toString());
 
     // zeroes
 
@@ -74,8 +75,8 @@ public class ShapeTest {
     assertEquals("Name: ellipse3\n"
                     + "Type: ellipse\n"
                     + "Center: (0.0,0.0), X radius: 0.5, Y radius: 0.5, Color: (0,0,0)\n"
-                    + "Appears at t=0\n"
-            + "Disappears at t=0\n", ellipse3.toString());
+                    + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", ellipse3.toString());
 
     //_____________________________________ Rectangle Objects _____________________________________.
 
@@ -87,8 +88,8 @@ public class ShapeTest {
     assertEquals("Name: rect1\n"
             + "Type: rectangle\n"
                     + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
-                    + "Appears at t=0\n"
-            + "Disappears at t=0\n", rect.toString());
+                    + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", rect.toString());
 
     // huge numbers
     IShape rect2 = new Rectangle("rect2",
@@ -99,8 +100,8 @@ public class ShapeTest {
     assertEquals("Name: rect2\n"
                     + "Type: rectangle\n"
                     + "Min corner: (54637.6,928736.0), Width: 12000.001, Height: 602828.6, Color: "
-            + "(240,120,221)\nAppears at t=0\n"
-            + "Disappears at t=0\n", rect2.toString());
+            + "(240,120,221)\nAppears at t=-1\n"
+            + "Disappears at t=-1\n", rect2.toString());
 
     // zeroes
 
@@ -112,8 +113,8 @@ public class ShapeTest {
     assertEquals("Name: rect3\n"
             + "Type: rectangle\n"
                     + "Min corner: (0.0,0.0), Width: 1.0, Height: 1.0, Color: (0,0,0)\n"
-                    + "Appears at t=0\n"
-            + "Disappears at t=0\n", rect3.toString());
+                    + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", rect3.toString());
 
   }
 
@@ -271,8 +272,8 @@ public class ShapeTest {
 
   @Test
   public void getAppear() {
-    assertEquals(0, rect.getAppear());
-    assertEquals(0, ellipse.getAppear());
+    assertEquals(-1, rect.getAppear());
+    assertEquals(-1, ellipse.getAppear());
   }
 
   @Test
@@ -285,8 +286,8 @@ public class ShapeTest {
 
   @Test
   public void getDisappear() {
-    assertEquals(0, rect.getDisappear());
-    assertEquals(0, ellipse.getDisappear());
+    assertEquals(-1, rect.getDisappear());
+    assertEquals(-1, ellipse.getDisappear());
   }
 
   @Test
@@ -336,10 +337,11 @@ public class ShapeTest {
     assertEquals(7654.22, ellipse.getHeight(), 0.01);
   }
 
+  // this test is useless now
   @Test
   public void testCompareTo() {
-    assertEquals(-1, rect.compareTo(ellipse));
-    assertEquals(1, ellipse.compareTo(rect));
+    assertEquals(13, rect.compareTo(ellipse));
+    assertEquals(-13, ellipse.compareTo(rect));
   }
 
   @Test
@@ -347,12 +349,12 @@ public class ShapeTest {
     assertEquals("Name: rect1\n"
             + "Type: rectangle\n"
                     + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n"
-                    + "Appears at t=0\n"
-            + "Disappears at t=0\n", rect.toString());
+                    + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", rect.toString());
     assertEquals("Name: ellipse1\n"
             + "Type: ellipse\n"
             + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
-            + "Appears at t=0\n"
-            + "Disappears at t=0\n", ellipse.toString());
+            + "Appears at t=-1\n"
+            + "Disappears at t=-1\n", ellipse.toString());
   }
 }
