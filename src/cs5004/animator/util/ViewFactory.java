@@ -28,11 +28,11 @@ public class ViewFactory {
    * @param outputName the text file output, a String
    * @param speed the speed in ticks
    */
-  public ViewFactory(String outputView, IAnimationModel model, String outputName, String speed) {
+  public ViewFactory(String outputView, IAnimationModel model, String outputName, int speed) {
     this.outputView = outputView;
     this.model = model;
     this.outputName = outputName;
-    this.speed = Integer.parseInt(speed);
+    this.speed = speed;
   }
 
   /**

@@ -2,6 +2,7 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Objects;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -51,7 +52,7 @@ public class AnimatorHelper {
    * @param sb the StringBuilder to be scanned
    * @return the name of the in file
    */
-  public static String nameScanner(StringBuilder sb) {
+  public static String inScanner(StringBuilder sb) {
     Scanner in = new Scanner(sb.toString());
     in.findInLine("-in");
     return in.next();
@@ -60,9 +61,9 @@ public class AnimatorHelper {
   /**
    * Checks for problems with files and throws exceptions if problems exist.
    *
-   * @param inputName the name of the out file
+   * @param inputName the name of the in file
    * @param frame the JFrame used for exception-throwing
-   * @return a filereader object with the out file specified
+   * @return a FileReader object with the in file specified
    */
   public static Readable fileExceptions(String inputName, JFrame frame) {
     try {
@@ -103,7 +104,6 @@ public class AnimatorHelper {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
               "Invalid view", JOptionPane.ERROR_MESSAGE);
-      //System.exit(1);
     }
   }
 
@@ -116,7 +116,8 @@ public class AnimatorHelper {
   public static String outScanner(StringBuilder sb) {
     Scanner out = new Scanner(sb.toString());
     out.findInLine("-out");
-    return out.next();
+    String outFile = out.next();
+    return Objects.requireNonNullElse(outFile, "System.out");
   }
 
   /**
@@ -125,10 +126,14 @@ public class AnimatorHelper {
    * @param sb sb the StringBuilder to be scanned
    * @return the speed as a String
    */
-  public static String speedScanner(StringBuilder sb) {
+  public static int speedScanner(StringBuilder sb) {
     Scanner outputSpeed = new Scanner(sb.toString());
-    outputSpeed.findInLine("-speed");
-    return outputSpeed.next();
+    String stringSpeed = outputSpeed.findInLine("-speed");
+    if (stringSpeed == null) {
+      return 1;
+    } else {
+      return Integer.parseInt(outputSpeed.next());
+    }
   }
 
   /**
@@ -137,16 +142,13 @@ public class AnimatorHelper {
    * @param outputSpeed the speed, as a string
    * @param frame the frame used to throw exceptions
    */
-  public static void speedExceptions(String outputSpeed, JFrame frame) {
+  public static void speedExceptions(int outputSpeed, JFrame frame) {
     try {
-      int speedInt = Integer.parseInt(outputSpeed);
-      if (speedInt < 1) throw new NumberFormatException();
+      if (outputSpeed < 1) throw new NumberFormatException();
     } catch (NumberFormatException n) {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
-      //System.exit(1);
+      }
     }
-  }
-
   }
