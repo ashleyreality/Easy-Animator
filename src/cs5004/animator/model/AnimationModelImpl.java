@@ -247,11 +247,12 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: addBounds() ______________________________________.
+   * Add the bounds of the animation's canvas.
    *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * @param x the x location
+   * @param y the y location
+   * @param width the width of the canvas
+   * @param height the height of the canvas
    */
   public void addBounds(int x, int y, int width, int height) {
     this.boundsX = x;
@@ -262,8 +263,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsX() ______________________________________.
+   * Gets the boundsX location.
    *
-   * @return
+   * @return the boundsX location
    */
   public int getBoundsX() {
     return boundsX;
@@ -271,8 +273,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsY() ______________________________________.
+   * Get the boundsY location.
    *
-   * @return
+   * @return the boundsY location
    */
   public int getBoundsY() {
     return boundsY;
@@ -280,8 +283,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsWidth() ____________________________________.
+   * Get the width of the canvas.
    *
-   * @return
+   * @return the width of the canvas
    */
   public int getBoundsWidth() {
     return boundsWidth;
@@ -289,8 +293,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getBoundsHeight() ___________________________________.
+   * Get the height of the canvas.
    *
-   * @return
+   * @return the height of the canvas
    */
   public int getBoundsHeight() {
     return boundsHeight;
@@ -298,8 +303,9 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ________________________________ METHOD: getEventList() ______________________________________.
+   * Get the event list.
    *
-   * @param shape the shape for which the event list is tied to, an IShape
+   * @param shape the shape to which the event list is tied, an IShape
    * @return the list of events
    */
   @Override
@@ -311,6 +317,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
   /**
    * ______________________________ METHOD: shapeNullException() __________________________________.
+   * Throws a null exception.
    *
    * @param shape the shape being checked
    * @throws IllegalArgumentException if the shape is null
@@ -323,7 +330,8 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   * ____________________________________ METHOD: toString() ______________________________________.
+   * ___________________________________ METHOD: toString() ______________________________________.
+   * Returns a string representation of the model.
    *
    * @return the String form of the lists declared and instantiated within this class.
    */
@@ -359,20 +367,17 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   * _________________________________ METHOD: getShapesAtTick() ____________________________________.
-   * This method getShapesAtTick() is a stub. It does not get implemented in this model. This method
-   * will be implemented in the controller, instead. "The return type will be some form of a
-   * collection of shapes, as hinted by your description that it "gets all the shapes." -
-   * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
-   * map class in java implements the navigable map
+   * ______________________________ METHOD: getShapesAtTick() ____________________________________.
+   * Returns a list of shapes and their states at a given tick in the animation.
    *
-   * @return
+   * @return a list of shapes at a given tick
    */
   public List<IShape> getShapesAtTick(int tick) {
     if (tick < 0) {
       throw new IllegalArgumentException("No negative ticks.");
     }
-    // note from TA: consider doing this in order of transformations possibly, rather than order of shapes
+    // note from TA: consider doing this in order of transformations possibly,
+    // rather than order of shapes
     List<IShape> shapesAtTick = new ArrayList<>();
     for (IShape shape : shapeMap.keySet()) {
       if (shape.getAppear() <= tick && shape.getDisappear() >= tick) {

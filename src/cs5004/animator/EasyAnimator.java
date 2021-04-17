@@ -1,7 +1,7 @@
 package cs5004.animator;
 
 import java.io.IOException;
-import javax.swing.*;
+import javax.swing.JFrame;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
@@ -20,7 +20,7 @@ public class EasyAnimator {
    *
    * @param args command line or other arguments for in file, out file, speed, and view type. If
    *             speed is not given, default is 1. If out file is not given, default is System.out.
-   * @throws IOException
+   * @throws IOException if there is an input/output issue
    */
   public static void main(String[] args) throws IOException {
 
@@ -136,7 +136,8 @@ public class EasyAnimator {
 // and it decides how/what will be output for the view's use
 
 // Return the Appendable object for the View to use
-// The View (such as TextView) uses an Appendable object to transmit all outputs (like a text file output)
+// The View (such as TextView) uses an Appendable object to transmit all outputs
+// (like a text file output)
 
 // ----------------------------------------------------------------------------------------
 // setup the *model* using an instance of AnimationModelImpl()
@@ -192,7 +193,8 @@ public class EasyAnimator {
 //String outputName = AnimatorHelper.outScanner(sb);
 
 // only throw an error if it's required for the given view. if outputSpeed is req'd and not given,
-// it's ok to ignore. If you need the outputSpeed and don't get it, you can either default to a given
+// it's ok to ignore. If you need the outputSpeed and don't get it, you can either default to
+// a given
 // outputSpeed or you can throw an error. Defaulting preferred -- be sure to document it!
 
 // ----------------------------------------------------------------------------------------
@@ -220,6 +222,7 @@ public class EasyAnimator {
 // ViewFactory factory = new ViewFactory(outputView, model, outputName, outputSpeed);
 // IView view = factory.create(); // This should RETURN an IView.
 // The IView has been instantiated, but hasn't done anything yet (i.e, remove the animation,
-// generation of text files, etc., from constructors. Constructors are not places where you want to put
+// generation of text files, etc., from constructors. Constructors are not places
+// where you want to put
 // such logic.
 // Constructopr creates an instance and returns something
