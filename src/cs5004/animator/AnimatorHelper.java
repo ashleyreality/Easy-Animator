@@ -115,9 +115,12 @@ public class AnimatorHelper {
    */
   public static String outScanner(StringBuilder sb) {
     Scanner out = new Scanner(sb.toString());
-    out.findInLine("-out");
-    String outFile = out.next();
-    return Objects.requireNonNullElse(outFile, "System.out");
+    String outFile = out.findInLine("-out");
+    if (outFile == null) {
+      return "System.out";
+    } else {
+      return out.next();
+    }
   }
 
   /**

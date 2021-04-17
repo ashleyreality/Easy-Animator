@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Comparator;
@@ -18,7 +19,7 @@ import cs5004.animator.model.IShape;
  */
 public class TextView implements IView {
   private IAnimationModel model;
-  private PrintWriter out;
+  private PrintStream out;
   private StringBuilder sb;
 
   /**
@@ -32,9 +33,9 @@ public class TextView implements IView {
     this.model = model;
 
     if (outString.equals("System.out")) {
-      this.out = new PrintWriter(System.out);
+      this.out = new PrintStream(System.out);
     } else {
-      this.out = new PrintWriter(outString);
+      this.out = new PrintStream(outString);
     }
   }
 

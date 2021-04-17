@@ -1,7 +1,7 @@
 package cs5004.animator.view;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ import cs5004.animator.model.ShapeType;
  * the animation.
  */
 public class SVGView implements IView {
-  private PrintWriter out;
+  private PrintStream out;
   private IAnimationModel model;
   private int speed;
   private StringBuilder sb;
@@ -39,9 +39,9 @@ public class SVGView implements IView {
     this.sb = new StringBuilder();
 
     if (outString.equals("System.out")) {
-      this.out = new PrintWriter(System.out);
+      this.out = new PrintStream(System.out);
     } else {
-      this.out = new PrintWriter(outString);
+      this.out = new PrintStream(outString);
     }
   }
 
