@@ -8,6 +8,7 @@ import java.util.List;
 
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IShape;
+import cs5004.animator.model.ShapeType;
 
 /**
  * This is the AnimationPanel class. It extends the JPanel which is a container that can store a
@@ -41,15 +42,14 @@ public class AnimationPanel extends JPanel {
     // Iterate through the list of shapes at the given tick
     for (IShape eachShapeAtTick : listOfRectanglesAtSomeTick) {
       // Check if it's a rectangle
-      if (eachShapeAtTick.getType().equalsIgnoreCase("Rectangle")) { // FixMe to reliably check the shape type
+      if (eachShapeAtTick.getType() == ShapeType.RECTANGLE) { // FixMe to reliably check the shape type
         // Draw the rectangle(s)
         drawRectangle(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);
         fillRectangleWithColor(eachShapeAtTick, g2d);
       }
       // Check if it's an oval/ellipse
-      if (eachShapeAtTick.getType().equalsIgnoreCase("Ellipse")
-              || eachShapeAtTick.getType().equalsIgnoreCase("Oval")) {
+      if (eachShapeAtTick.getType()  == ShapeType.ELLIPSE) {
         // Draw the oval(s)
         drawEllipse(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);

@@ -388,18 +388,6 @@ public class AnimationModelImpl implements IAnimationModel {
         }
       }
     }
-    /*
-    // Update the model with the new shapes
-    TreeMap<IShape, List<IEvent>> newMap = new TreeMap<IShape, List<IEvent>>();
-    for(IShape shape : shapesAtTick)
-    {
-       List<IEvent> events = shapeMap.get(shape);
-       newMap.put(shape, events);
-    }
-
-    this.shapeMap.clear();
-    this.shapeMap.putAll(newMap);
-*/
     return shapesAtTick;
   }
 
