@@ -31,31 +31,17 @@ public class TextView implements IView {
   public TextView(IAnimationModel model, String outString) throws IOException {
     this.model = model;
 
-    try {
+    if (outString.equals("System.out")) {
+      this.out = new PrintWriter(System.out);
+    } else {
       this.out = new PrintWriter(outString);
-    } catch (IOException e) {
-      System.out.println("File was not found. Defaulting to System.out");
-      this.out = new PrintWriter(System.out);
     }
-    createView();
-  }
-
-  /**
-   * Constructs a text view, given a model. Out defaults to System.out.
-   *
-   * @param model the AnimationModel instance you want to create a view for
-   * @throws IOException if there is a problem with the out
-   */
-  public TextView(IAnimationModel model) throws IOException {
-      this.model = model;
-      this.out = new PrintWriter(System.out);
-      createView();
   }
 
   /**
    * Creates a text view.
    */
-  private void createView() {
+  public void createView() {
     sb = new StringBuilder();
     // sort by appear time
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);

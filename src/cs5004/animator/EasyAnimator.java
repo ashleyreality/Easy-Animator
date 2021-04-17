@@ -63,8 +63,7 @@ public class EasyAnimator {
     // Send command line arguments to ViewFactory
     ViewFactory factory = new ViewFactory(outputView, model, outputName, outputSpeed);
     IView view = factory.create();
-
-    // view.run(); // This does whatever the view is supposed to do
+    view.createView();
 
     // JFrame finishing up
     frame.pack();

@@ -1,14 +1,8 @@
 package cs5004.animator.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.PrintWriter;
-
 import javax.swing.*;
-
 import cs5004.animator.model.IAnimationModel;
-
 
 /**
  * This class represents a visual view. The visual view outputs a visual display to the end-user of
@@ -18,6 +12,7 @@ import cs5004.animator.model.IAnimationModel;
 public class VisualView extends JFrame implements IView {
   private AnimationPanel animationPanel;
   private IAnimationModel model;
+  private int speed;
 
   /**
    * The VisualView constructor takes in a model and the specified speed.
@@ -27,7 +22,13 @@ public class VisualView extends JFrame implements IView {
   public VisualView(IAnimationModel model, int speed) {
     super();
     this.model = model;
+    this.speed = speed;
+  }
 
+  /**
+   *
+   */
+  public void createView() {
     // Get the ticks in the file by the file's created AnimationModel which has its own shapeMap
     // IEvent has getEventBegin()
     // IShape has getAppear()
@@ -97,10 +98,7 @@ public class VisualView extends JFrame implements IView {
 
     // Add the Scroll Pane to to the frame's content pane, placing it in center of border layout
     this.add(scrollPane, BorderLayout.CENTER);
-
   }
-
-
 
   public void refresh() { this.repaint(); }
 

@@ -5,6 +5,8 @@ package cs5004.animator.view;
  */
 public interface IView {
 
+  void createView();
+
   /**
    * Gets a string representation of the current state of the view.
    *

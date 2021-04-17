@@ -29,7 +29,7 @@ public class SVGView implements IView {
    * Constructs an SVG view.
    *
    * @param model     - the model holding the animation data
-   * @param outString - a string describing the out file. Defaults to System.out if invalid
+   * @param outString - a string describing the out file. Defaults to System.out
    * @param speed     - speed in ticks
    * @throws IOException if file is not found
    */
@@ -38,35 +38,17 @@ public class SVGView implements IView {
     this.speed = speed;
     this.sb = new StringBuilder();
 
-    try {
-      this.out = new PrintWriter(outString);
-    } catch (IOException e) {
-      System.out.println("File was not found. Defaulting to System.out");
+    if (outString.equals("System.out")) {
       this.out = new PrintWriter(System.out);
+    } else {
+      this.out = new PrintWriter(outString);
     }
-
-    createView();
-  }
-
-  /**
-   * Constructs an SVG view.
-   *
-   * @param model - the model holding the animation data
-   * @param speed - speed in ticks
-   */
-  public SVGView(IAnimationModel model, int speed) {
-    this.model = model;
-    this.speed = speed;
-    this.sb = new StringBuilder();
-    this.out = new PrintWriter(System.out);
-
-    createView();
   }
 
   /**
    * Creates an SVG view.
    */
-  private void createView() {
+  public void createView() {
     // add initial xml to file
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
             + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
