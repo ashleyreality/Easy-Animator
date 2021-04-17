@@ -40,7 +40,7 @@ public class SVGViewTest {
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("svg", model, "System.out");
+    ViewFactory newView = new ViewFactory("svg", model, "System.out", 1);
     IView svgView = newView.create();
     assertEquals("<svg width=\"360\" height=\"360\" version=\"1.1\" " +
                     "xmlns=\"http://www.w3.org/2000/svg\">\n" +

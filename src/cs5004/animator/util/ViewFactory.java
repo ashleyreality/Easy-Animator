@@ -36,21 +36,6 @@ public class ViewFactory {
   }
 
   /**
-   * _____________________________ CONSTRUCTOR: ViewFactory() _____________________________________.
-   * Constructs a ViewFactory with a default speed.
-   *
-   * @param outputView the type of animation view being requested, a String
-   * @param model the model containing the animation data
-   * @param outputName the text file output, a String
-   */
-  public ViewFactory(String outputView, IAnimationModel model, String outputName) {
-    this.outputView = outputView;
-    this.model = model;
-    this.outputName = outputName;
-    this.speed = 1;
-  }
-
-  /**
    * ____________________________________ METHOD: create() ________________________________________.
    * Creates the requested view.
    *
@@ -60,20 +45,22 @@ public class ViewFactory {
    */
   public IView create() throws IOException {
 
-
     if (outputView.equalsIgnoreCase("svg")) {
-      // pass in the print writer here to be consistent with the text view, i guess?
       return new SVGView(model, this.outputName, speed);
     } else if (outputView.equalsIgnoreCase("text")) {
-      // for the text view, we will use appendable to just print it out in the console
-      // depending on the appendable we pass in, we could do a text file or other appendable types
       return new TextView(model, this.outputName);
     } else if (outputView.equalsIgnoreCase("visual")) {
       return new VisualView(model, speed);
     } else {
       throw new IllegalArgumentException("View type does not exist.");
     }
-
   }
 
+  public String getOutputName() {
+    return outputName;
+  }
+
+  public int getSpeed() {
+    return speed;
+  }
 }

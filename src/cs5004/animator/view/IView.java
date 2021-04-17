@@ -6,7 +6,7 @@ package cs5004.animator.view;
 public interface IView {
 
   /**
-   *
+   * Creates a view of the specified type.
    */
   void createView();
 

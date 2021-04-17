@@ -43,7 +43,7 @@ public class TextViewTest {
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out");
+    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
     assertEquals("Create (255,0,0) rectangle R with corner at (200.0,200.0), width 50.0 and "
             + "height 100.0\n"
@@ -69,7 +69,7 @@ public class TextViewTest {
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out");
+    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
     assertEquals("Create (127,185,246) rectangle disk1 with corner at (190.0,168.0), " +
                     "width 20.0 and height 18.0\n" +
@@ -203,15 +203,15 @@ public class TextViewTest {
   }
 
   @Test
-  public void testEmptyOutFile() throws IOException {
+  public void testEmptyOutFile() {
     String inputName = "/Users/abrown/Northeastern/CS5004/Homeworks/HW6/Easy-Animator/src/cs5004/"
             + "animator/smalldemo.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "");
-    IView textView = newView.create();
+    ViewFactory newView = new ViewFactory("text", model, "", 1);
+    assertEquals(System.out, newView.getOutputName());
   }
 
 

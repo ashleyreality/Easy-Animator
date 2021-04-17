@@ -116,7 +116,7 @@ public class AnimatorHelper {
   public static String outScanner(StringBuilder sb) {
     Scanner out = new Scanner(sb.toString());
     String outFile = out.findInLine("-out");
-    if (outFile == null) {
+    if (outFile == null || outFile.equals("")) {
       return "System.out";
     } else {
       return out.next();

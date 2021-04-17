@@ -72,7 +72,7 @@ public class EasyAnimator {
 }
 
 
-// Visual View ScrollPane Confusion - aya
+
 
 // Visual view
 // invokeLater is used as a wrapper around the JFrame code to ensure that

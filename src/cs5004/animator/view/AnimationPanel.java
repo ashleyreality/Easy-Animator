@@ -11,21 +11,19 @@ import cs5004.animator.model.IShape;
 import cs5004.animator.model.ShapeType;
 
 /**
- * This is the AnimationPanel class. It extends the JPanel which is a container that can store a
- * and organize group of components and provides access to override its paintComponent() method,
- * which takes Graphics objects as parameters, and draws something on the JPanel using the super
- * declaration.
+ * The AnimationPanel class extends JPanel. It is a container that can store an organized group of
+ * components.
  */
 public class AnimationPanel extends JPanel {
   private int someTick;
   private IAnimationModel model;
 
-  // create a JPanel -- the window in which the animation happens
-  // https://docs.oracle.com/javase/tutorial/uiswing/components/panel.html
-
-  // create scroll panes so everything in the animation can be seen
-  // https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html
-
+  /**
+   * Constructs an animation panel.
+   *
+   * @param model the animation model being viewed
+   * @param someTick the tick at which shapes are being drawn
+   */
   public AnimationPanel(IAnimationModel model, int someTick) {
     super();
     this.model = model;
@@ -58,6 +56,12 @@ public class AnimationPanel extends JPanel {
     }
   }
 
+  /**
+   * Sets a shape's color.
+   *
+   * @param eachShapeAtTick the shape to be changed
+   * @param g2d the graphics2d object drawing the shape
+   */
   private void setColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int currentR = eachShapeAtTick.getColor().getRed();
     int currentG = eachShapeAtTick.getColor().getGreen();
@@ -65,6 +69,12 @@ public class AnimationPanel extends JPanel {
     g2d.setColor(new Color(currentR, currentG, currentB));
   }
 
+  /**
+   * Fills a rectangle with color.
+   *
+   * @param eachShapeAtTick the shape to be changed
+   * @param g2d the graphics2d object drawing the shape
+   */
   private void fillRectangleWithColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
     int y = currentYLocation(eachShapeAtTick);
@@ -73,6 +83,12 @@ public class AnimationPanel extends JPanel {
     g2d.fillRect(x, y, w, h);
   }
 
+  /**
+   * Fills an oval with color.
+   *
+   * @param eachShapeAtTick the shape to be changed
+   * @param g2d the graphics2d object drawing the shape
+   */
   private void fillOvalWithColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
     int y = currentYLocation(eachShapeAtTick);
@@ -81,6 +97,12 @@ public class AnimationPanel extends JPanel {
     g2d.fillOval(x, y, w, h);
   }
 
+  /**
+   * Draws a rectangle.
+   *
+   * @param eachShapeAtTick the shape to be drawn
+   * @param g2d the graphics2d object drawing the shape
+   */
   private void drawRectangle(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
     int y = currentYLocation(eachShapeAtTick);
@@ -89,6 +111,12 @@ public class AnimationPanel extends JPanel {
     g2d.drawRect(x, y, w, h);
   }
 
+  /**
+   * Draws an ellipse.
+   *
+   * @param eachShapeAtTick the shape to be drawn
+   * @param g2d the graphics2d object drawing the shape
+   */
   private void drawEllipse(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
     int y = currentYLocation(eachShapeAtTick);
@@ -97,26 +125,60 @@ public class AnimationPanel extends JPanel {
     g2d.drawOval(x, y, w, h);
   }
 
+  /**
+   * Gets a shape's X location.
+   *
+   * @param eachShapeAtTick the shape to be located
+   * @return the shape's location at X
+   */
   private int currentXLocation(IShape eachShapeAtTick) {
     return (int) eachShapeAtTick.getLocation().getX();
   }
 
+  /**
+   * Gets a shape's Y location.
+   *
+   * @param eachShapeAtTick the shape to be located
+   * @return the shape's location at Y
+   */
   private int currentYLocation(IShape eachShapeAtTick) {
     return (int) eachShapeAtTick.getLocation().getY();
   }
 
+  /**
+   * Gets a shape's width.
+   *
+   * @param eachShapeAtTick the shape you want data about
+   * @return the shape's width
+   */
   private int currentWidth(IShape eachShapeAtTick) {
     return (int) eachShapeAtTick.getWidth();
   }
 
+  /**
+   * Gets a shape's height.
+   *
+   * @param eachShapeAtTick the shape you want data about
+   * @return the shape's height
+   */
   private int currentHeight(IShape eachShapeAtTick) {
     return (int) eachShapeAtTick.getHeight();
   }
 
+  /**
+   * Sets the animation model.
+   *
+   * @param model the model you want to set this.model to
+   */
   public void setModel(IAnimationModel model) {
     this.model = model;
   }
 
+  /**
+   * Set the current tick.
+   *
+   * @param someTick the tick you'd like to set the current tick to
+   */
   public void setTick(int someTick) {
     this.someTick = someTick;
   }

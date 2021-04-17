@@ -26,15 +26,14 @@ public class VisualView extends JFrame implements IView {
   }
 
   /**
-   *
+   * Creates a visual view.
    */
   public void createView() {
     // Get the ticks in the file by the file's created AnimationModel which has its own shapeMap
     // IEvent has getEventBegin()
     // IShape has getAppear()
 
-    // Set the layout of the JPanel container to BorderLayout which helps layout the components
-    // and animation panel; set the size; make it visible
+    // Set the layout of the JPanel container to a BorderLayout
     this.setLayout(new BorderLayout());
 
     // Instantiate AnimationPanel with the tick at 0 to be updated later
@@ -55,7 +54,7 @@ public class VisualView extends JFrame implements IView {
     // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getShapeMap().lastKey().getDisappear();
 
-    // For the duration of the animation where the end of the animation is calculated via
+    // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
     for (int tick = 0; tick < lastShapeTime; tick++) {
       //System.out.println(tick);
@@ -96,14 +95,19 @@ public class VisualView extends JFrame implements IView {
     }
   }
 
+  /**
+   * @param error
+   */
+  // fixme - do we use this anywhere? we can delete if not?
   public void showErrorMessage(String error) {
     JOptionPane.showMessageDialog(this, error, "Error",
             JOptionPane.ERROR_MESSAGE);
   }
 
   /**
+   * Gets a text representation of the view state. Does not apply to visual view.
    *
-   * @return
+   * @return null
    */
   @Override
   public String getViewState() {
@@ -111,9 +115,4 @@ public class VisualView extends JFrame implements IView {
   }
 }
 
-// specify the speed
-// create a timer & specify the action listener to be used
-// actionPerformed in the listener is getShapesAtTick, then draw shapes
 
-// Timer timer = new Timer(speed * 1000, this);
-// timer.start();
