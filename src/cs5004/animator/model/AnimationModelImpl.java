@@ -369,7 +369,9 @@ public class AnimationModelImpl implements IAnimationModel {
    * @return
    */
   public List<IShape> getShapesAtTick(int tick) {
-
+    if (tick < 0) {
+      throw new IllegalArgumentException("No negative ticks.");
+    }
     // note from TA: consider doing this in order of transformations possibly, rather than order of shapes
     List<IShape> shapesAtTick = new ArrayList<>();
     for (IShape shape : shapeMap.keySet()) {

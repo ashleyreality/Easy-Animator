@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.stream.Collectors;
+
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.IAnimationModel;
@@ -375,5 +377,79 @@ public class AnimationModelTest {
                     + " from t=51 to t=70\nShape R moves from (300.0,300.0) to (200.0,200.0) from"
                     + " t=70 to t=100\n",
              testAnimation.toString());
+  }
+
+  @Test
+  public void testGetShapesAtTick() {
+    // empty
+    assertEquals("[]",testAnimation.getShapesAtTick(1).toString());
+    testAnimation.addShape(r, 1, 100);
+    testAnimation.addShape(c, 6, 100);
+
+    move1 = new MoveShape(r, 200.0, 200.0, 300.0, 300.0);
+    move2 = new MoveShape(c, 500.0, 100.0, 500.0, 400.0);
+    move3 = new MoveShape(r, 300.0, 300.0, 200.0, 200.0);
+
+    size1 = new ScaleShape(r, 50.0, 100.0, 25.0, 100.0);
+
+    colorChange1 = new ChangeColor(c, 0, 0, 1, 0, 1, 0);
+
+    testAnimation.addEvent(r, move1, 10, 50);
+    testAnimation.addEvent(c, move2, 20, 70);
+    testAnimation.addEvent(c, colorChange1, 50, 80);
+    testAnimation.addEvent(r, size1, 51, 70);
+    testAnimation.addEvent(r, move3, 70, 100);
+
+    // one shape
+    assertEquals("[Name: R\n" +
+            "Type: rectangle\n" +
+            "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1,0,0)\n" +
+            "Appears at t=1\n" +
+            "Disappears at t=100\n" +
+            "]", testAnimation.getShapesAtTick(1).toString());
+
+    // move
+    assertEquals("[Name: C\n" +
+            "Type: ellipse\n" +
+            "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n" +
+            "Appears at t=6\n" +
+            "Disappears at t=100\n" +
+            ", Name: R\n" +
+            "Type: rectangle\n" +
+            "Min corner: (202.5,202.5), Width: 50.0, Height: 100.0, Color: (1,0,0)\n" +
+            "Appears at t=1\n" +
+            "Disappears at t=100\n" +
+            "]",testAnimation.getShapesAtTick(11).toString());
+
+    // scale change
+    assertEquals("[Name: C\n" +
+            "Type: ellipse\n" +
+            "Center: (500.0,370.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,0)\n" +
+            "Appears at t=6\n" +
+            "Disappears at t=100\n" +
+            ", Name: R\n" +
+            "Type: rectangle\n" +
+            "Min corner: (300.0,300.0), Width: 31.578947368421055, Height: 100.0, Color: (1,0,0)\n" +
+            "Appears at t=1\n" +
+            "Disappears at t=100\n" +
+            "]", testAnimation.getShapesAtTick(65).toString());
+
+    //color change
+    assertEquals("[Name: C\n" +
+            "Type: ellipse\n" +
+            "Center: (500.0,316.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,0)\n" +
+            "Appears at t=6\n" +
+            "Disappears at t=100\n" +
+            ", Name: R\n" +
+            "Type: rectangle\n" +
+            "Min corner: (300.0,300.0), Width: 43.421052631578945, Height: 100.0, Color: (1,0,0)\n" +
+            "Appears at t=1\n" +
+            "Disappears at t=100\n" +
+            "]",testAnimation.getShapesAtTick(56).toString());
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testBadTicks() {
+    testAnimation.getShapesAtTick(-1);
   }
 }
