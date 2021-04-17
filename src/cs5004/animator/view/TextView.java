@@ -46,7 +46,7 @@ public class TextView implements IView {
    */
   public TextView(IAnimationModel model) throws IOException {
       this.model = model;
-      this.out = new PrintWriter(System.out);;
+      this.out = new PrintWriter(System.out);
       createView();
   }
 
