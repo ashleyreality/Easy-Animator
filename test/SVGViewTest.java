@@ -13,7 +13,6 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
 import cs5004.animator.util.ViewFactory;
 import cs5004.animator.view.IView;
-import cs5004.animator.view.SVGView;
 
 import static org.junit.Assert.*;
 
@@ -24,6 +23,9 @@ public class SVGViewTest {
   private IAnimationModel model;
   Readable file;
   AnimationBuilder<IAnimationModel> build;
+
+  // make sure we're testing to make sure the file is created correctly
+  // test for all exceptions
 
   @Before
   public void setUp() throws Exception {

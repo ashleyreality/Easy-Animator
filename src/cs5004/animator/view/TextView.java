@@ -20,6 +20,7 @@ public class TextView implements IView {
   private IAnimationModel model;
   private PrintWriter out;
   private StringBuilder sb;
+
   /**
    * Constructs a text view, given a model and a string representing the file to be written to.
    *
@@ -32,7 +33,6 @@ public class TextView implements IView {
 
     try {
       this.out = new PrintWriter(outString);
-
     } catch (IOException e) {
       System.out.println("File was not found. Defaulting to System.out");
       this.out = new PrintWriter(System.out);
@@ -41,8 +41,10 @@ public class TextView implements IView {
   }
 
   /**
-   * @param model
-   * @throws IOException
+   * Constructs a text view, given a model. Out defaults to System.out.
+   *
+   * @param model the AnimationModel instance you want to create a view for
+   * @throws IOException if there is a problem with the out
    */
   public TextView(IAnimationModel model) throws IOException {
       this.model = model;
@@ -51,9 +53,9 @@ public class TextView implements IView {
   }
 
   /**
-   * @throws IOException
+   * Creates a text view.
    */
-  private void createView() throws IOException {
+  private void createView() {
     sb = new StringBuilder();
     // sort by appear time
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
@@ -91,7 +93,9 @@ public class TextView implements IView {
   }
 
   /**
-   * @return
+   * Gets the state of the view.
+   *
+   * @return a string representation of the current state of the view
    */
   public String getViewState() {
     return sb.toString();
