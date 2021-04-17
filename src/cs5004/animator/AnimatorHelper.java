@@ -2,10 +2,11 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Objects;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 /**
  * The AnimatorHelper class helps construct an animation.
@@ -17,6 +18,8 @@ public class AnimatorHelper {
    * Constructs an AnimatorHelper instance. No parameters.
    */
   public AnimatorHelper() {
+    // fixme - This constructor is empty -- maybe we don't need this to be a separate class?
+    // maybe it can all be in the controller? the style grader is taking points off
   }
 
   /**
