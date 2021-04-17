@@ -18,6 +18,9 @@ import cs5004.animator.view.IView;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+/**
+ * The TextViewTest class tests the text view of the Easy Animator.
+ */
 public class TextViewTest {
   IAnimationModel model;
   Readable file;

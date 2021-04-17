@@ -15,39 +15,79 @@ import cs5004.animator.model.ScaleShape;
 
 
 /**
- * This class represents an svg view. The svg view outputs an svg display to the end-user of
+ * This class represents an SVG view. The SVG view outputs an svg display to the end-user of
  * the animation.
  */
 public class SVGView implements IView {
   private PrintWriter out;
   private IAnimationModel model;
   private int speed;
+  private StringBuilder sb;
 
-  public SVGView(IAnimationModel model, PrintWriter out, int speed) throws IOException {
-    this.out = out;
+  /**
+   * Constructs an SVG view.
+   *
+   * @param model - the model holding the animation data
+   * @param outString - a string describing the out file. Defaults to System.out if invalid
+   * @param speed - speed in ticks
+   * @throws IOException if file is not found
+   */
+  public SVGView(IAnimationModel model, String outString, int speed) throws IOException {
     this.model = model;
     this.speed = speed;
+    this.sb = new StringBuilder();
 
+    try {
+      this.out = new PrintWriter(outString);
+    } catch (IOException e) {
+      System.out.println("File was not found. Defaulting to System.out");
+      this.out = new PrintWriter(System.out);
+    }
+
+    createView();
+  }
+
+  /**
+   * Constructs an SVG view.
+   *
+   * @param model  - the model holding the animation data
+   * @param speed - speed in ticks
+   */
+  public SVGView(IAnimationModel model, int speed) {
+    this.model = model;
+    this.speed = speed;
+    this.sb = new StringBuilder();
+    this.out = new PrintWriter(System.out);
+
+    createView();
+  }
+
+  /**
+   * Creates an SVG view.
+   */
+  private void createView() {
     // add initial xml to file
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
             + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
-    this.out.append(str);
+    sb.append(str);
 
     // sort shapes by appear time and create a sorted list of them
     Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
     List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
             .collect(Collectors.toList());
 
+    // create a comparator to sort events by time of event begin
+    Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
+
     // add shape xml to file along with its list of events
-    // will need to sort individual event lists by start time bc events must go inside shape tags
+    // sort individual event lists by start time bc events must go inside shape tags
     for (IShape shp : s) {
       // if rect
       if (shp.getType().equalsIgnoreCase("rectangle")) {
         // add initial <rect> tag with attributes
-        this.out.append(addRectangle(shp));
+        sb.append(addRectangle(shp));
 
         // put the shape's events in a list, sorted by event time
-        Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
         List<IEvent> t = model.getShapeMap().get(shp).stream().sorted(sortByEventBegin)
                 .collect(Collectors.toList());
 
@@ -56,16 +96,15 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </rect>
-        this.out.append("</rect>\n\n");
+        sb.append("</rect>\n\n");
       }
 
       // if ellipse
       if (shp.getType().equalsIgnoreCase("ellipse")) {
         // add initial <ellipse> tag with attributes
-        this.out.append(addEllipse(shp));
+        sb.append(addEllipse(shp));
 
         // put the shape's events in a list, sorted by event time
-        Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
         List<IEvent> t = model.getShapeMap().get(shp).stream().sorted(sortByEventBegin)
                 .collect(Collectors.toList());
         // add events for that shape
@@ -73,30 +112,42 @@ public class SVGView implements IView {
           addEvents(shp, e);
         }
         // add closing </ellipse>
-        this.out.append("</ellipse>\n\n");
+        sb.append("</ellipse>\n\n");
       }
     }
 
     // add closing </svg>
-    this.out.append("</svg>");
+    sb.append("</svg>");
 
     // close the file
-    this.out.close();
-
+    out.print(sb.toString());
+    out.close();
   }
 
+  /**
+   * Adds a shape's events to the StringBuilder.
+   *
+   * @param shp - the shape
+   * @param e - the associated event
+   */
   private void addEvents(IShape shp, IEvent e) {
     if (e.getEventType().equals(EventType.MOVE)) {
-      out.append(addMove(shp, (MoveShape) e));
+      sb.append(addMove(shp, (MoveShape) e));
     }
     if (e.getEventType().equals(EventType.SCALE)) {
-      out.append(addScale(shp, (ScaleShape) e));
+      sb.append(addScale(shp, (ScaleShape) e));
     }
     if (e.getEventType().equals(EventType.RECOLOR)) {
-      out.append(addColorChange(shp, e));
+      sb.append(addColorChange(shp, e));
     }
   }
 
+  /**
+   * Returns an SVG format string describing an IShape rectangle.
+   *
+   * @param shp - the shape
+   * @return the SVG formatted string
+   */
   private String addRectangle(IShape shp) {
     int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
     int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
@@ -106,6 +157,12 @@ public class SVGView implements IView {
             + "\"visible\" >\n\n";
   }
 
+  /**
+   * Returns an SVG format string describing an IShape ellipse.
+   *
+   * @param shp - the shape
+   * @return the SVG formatted string
+   */
   private String addEllipse(IShape shp) {
     int xLocation = (int) (shp.getLocation().getX() - model.getBoundsX());
     int yLocation = (int) (shp.getLocation().getY() - model.getBoundsY());
@@ -115,6 +172,13 @@ public class SVGView implements IView {
             + "\"visible\" >\n\n";
   }
 
+  /**
+   * Returns an SVG formatted string describing a move event.
+   *
+   * @param shp - the shape that will move
+   * @param e - the move event
+   * @return the SVG formatted string
+   */
   private String addMove(IShape shp, MoveShape e) {
     int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
     int xFromLocation = (int) e.getFrom().getX() - model.getBoundsX();
@@ -134,43 +198,62 @@ public class SVGView implements IView {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"cx\" from=\""
               + xFromLocation + "\" to=\"" + xToLocation + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
-              + "dur=\"" + duration * 100 + "ms\" attributeName=\"cy\" from=\""
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
+              + " dur=\"" + duration * 100 + "ms\" attributeName=\"cy\" from=\""
               + yFromLocation + "\" to=\"" + yToLocation + "\" fill=\"freeze\" />\n";
     }
     return "";
   }
 
+  /**
+   * Returns an SVG formatted string describing a scale shape event.
+   *
+   * @param shp - the shape that will scale
+   * @param e - the scale event describing the change
+   * @return the SVG formatted string
+   */
   private String addScale(IShape shp, ScaleShape e) {
     int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
     if (shp.getType().equalsIgnoreCase("rectangle")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
-              + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
+              + " dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
               + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
     }
     if (shp.getType().equalsIgnoreCase("ellipse")) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur\"=" + duration * 100 + "ms\" attributeName=\"height\" from=\""
               + e.getBefore() + "\" to=\"" + e.getAfter() + "\" fill=\"freeze\" />\n"
-              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
-              + "dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
+              + "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
+              + " dur=\"" + duration * 100 + "ms\" attributeName=\"width\" from=\""
               + e.getWidthBefore() + "\" to=\"" + e.getWidthAfter() + "\" fill=\"freeze\" />\n";
     }
     return "";
   }
 
+  /**
+   * Returns an SVG formatted  string describing a color change event.
+   *
+   * @param shp - the shape that will change color
+   * @param e - the color event describing the change
+   * @return the SVG formatted string
+   */
   private String addColorChange(IShape shp, IEvent e) {
     int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
-    return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
-            + "dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
+    return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
+            + " dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
             + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";
   }
 
+  /**
+   * Get the state of the current SVG view.
+   *
+   * @return a string describing the current SVG view
+   */
   @Override
   public String getViewState() {
-    return null;
+    return sb.toString();
   }
 }
