@@ -86,15 +86,30 @@ public class ScaleShape extends AbstractEvent {
     return String.valueOf(this.heightAfter);
   }
 
+  /**
+   * Get the prior width.
+   *
+   * @return the prior width
+   */
   public String getWidthBefore() {
     return String.valueOf(this.widthBefore);
   }
 
+  /**
+   * Get the width after the change.
+   *
+   * @return the width after the change
+   */
   public String getWidthAfter() {
     return String.valueOf(this.widthAfter);
   }
 
-  // Interpolation
+  /**
+   * Apply this event to the current shape at the given tick.
+   *
+   * @param shape the shape to apply this event to
+   * @param tick the tick at which the event should be applied
+   */
   public void applyEvent(IShape shape, int tick) {
     // if the height before is not the same, set the height
     if (this.heightBefore != this.heightAfter) {

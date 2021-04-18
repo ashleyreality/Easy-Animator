@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import cs5004.animator.AnimatorHelper;
 import cs5004.animator.model.AnimationModelImpl;
@@ -14,7 +14,7 @@ import cs5004.animator.util.Builder;
 import cs5004.animator.util.ViewFactory;
 import cs5004.animator.view.IView;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * The SVGViewTest class tests the EasyAnimator SVG View.

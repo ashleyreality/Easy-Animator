@@ -12,7 +12,7 @@ import cs5004.animator.model.ShapeType;
 
 /**
  * ___________________________ IMPLEMENTATION CLASS: Builder {} ___________________________________.
- * The Builder class implements AnimationBuilder<IAnimationModel>. It is used to build the animation
+ * The Builder class implements AnimationBuilder. It is used to build the animation
  * model from a file.
  */
 public class Builder implements AnimationBuilder<IAnimationModel> {
@@ -81,34 +81,6 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
     }
     return this;
   }
-
-  // It's bad design to have a function that takes in so many parameters
-  // This does move from point A to point B with each call
-  // What we want is to have the shape move multiple locations for the moving logic
-  // It's not enough to just make one move at a time
-
-  // Instead, create a keypoint, which says this is the state of my shape at time t
-  // We pass in time, x, y, h, w, r, g, b
-  // Each object needs a life span (when is it born & when does it die)
-  // We interpolate between KeyPoints, which defines a path of motion
-  // We want to interpolate for each type of change/property
-  // Each shape is going to have its own animation defined by 3 sets of keypoints
-  // the color --> here's how the color is changing
-  // the scale/size
-  // the move
-  // We need to store the keypoint to some variable in order to access them to interpolate
-  // them
-
-  // These could be helpers for addMotion
-
-//  void addColorKeyPoint(String shapeName, int time, int r, int g, int b) {}
-//
-//  void addScaleKeyPoint(String shapeName, int time, int h, int w) {}
-//
-//  void addMoveKeyPoint(String shapeName, int time, int x, int y) {}
-
-  // Question: should we account for more than one change per row that would be passed into addMotion?
-  // Question: For testing, should we create txt files for specific cases?
 
   /**
    * ___________________________________ METHOD: addMotion() ______________________________________.

@@ -106,7 +106,8 @@ public abstract class AbstractEvent implements IEvent {
     double valueDelta = toValue - fromValue;
     double timeDelta  = this.eventEnd - this.eventBegin;
 
-    double interp = (tick - this.eventBegin) / timeDelta; // Number between 0 and 1: 1 means finished, 0 means begin, 0.5 means halfway, etc.
+    double interp = (tick - this.eventBegin) / timeDelta;
+    // Number between 0 and 1: 1 means finished, 0 means begin, 0.5 means halfway, etc.
     // Clamp between 0 and 1, in case tick is outside bounds of the event
     interp = Math.max(Math.min(interp, 1), 0);
     //    System.out.println("result: " + result);

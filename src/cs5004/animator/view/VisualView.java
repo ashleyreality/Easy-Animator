@@ -1,7 +1,11 @@
 package cs5004.animator.view;
 
-import java.awt.*;
-import javax.swing.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
 import cs5004.animator.model.IAnimationModel;
 
 /**
@@ -10,7 +14,6 @@ import cs5004.animator.model.IAnimationModel;
  *
  */
 public class VisualView extends JFrame implements IView {
-  private AnimationPanel animationPanel;
   private IAnimationModel model;
   private int speed;
 
@@ -29,15 +32,11 @@ public class VisualView extends JFrame implements IView {
    * Creates a visual view.
    */
   public void createView() {
-    // Get the ticks in the file by the file's created AnimationModel which has its own shapeMap
-    // IEvent has getEventBegin()
-    // IShape has getAppear()
-
     // Set the layout of the JPanel container to a BorderLayout
     this.setLayout(new BorderLayout());
 
     // Instantiate AnimationPanel with the tick at 0 to be updated later
-    animationPanel = new AnimationPanel(model, 0);
+    AnimationPanel animationPanel = new AnimationPanel(model, 0);
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel, BorderLayout.CENTER);
@@ -87,16 +86,16 @@ public class VisualView extends JFrame implements IView {
       // Set the sleep time using the remaining sleep time
       try {
         Thread.sleep((long) remainingSleepTime);
-      }
-      catch(InterruptedException e)
-      {
+      } catch (InterruptedException e) {
         // Do nothing
       }
     }
   }
 
   /**
-   * @param error
+   * Show an error message.
+   *
+   * @param error the text of the error message
    */
   // fixme - do we use this anywhere? we can delete if not?
   public void showErrorMessage(String error) {

@@ -77,7 +77,6 @@ public class AnimatorHelper {
               JOptionPane.ERROR_MESSAGE);
       System.out.println("The input file was not found.");
       e.printStackTrace();
-       //System.exit(1);
     }
     return null;
   }
@@ -150,11 +149,13 @@ public class AnimatorHelper {
    */
   public static void speedExceptions(int outputSpeed, JFrame frame) {
     try {
-      if (outputSpeed < 1) throw new NumberFormatException();
+      if (outputSpeed < 1) {
+        throw new NumberFormatException();
+      }
     } catch (NumberFormatException n) {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
-      }
     }
   }
+}

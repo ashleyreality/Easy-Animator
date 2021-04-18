@@ -64,22 +64,33 @@ public class MoveShape extends AbstractEvent {
     return this.to.toString();
   }
 
+  /**
+   * Get the from location.
+   *
+   * @return the from location
+   */
   public Point2D getFrom() {
     return from;
   }
 
+  /**
+   * Get the to location.
+   *
+   * @return the to location
+   */
   public Point2D getTo() {
     return to;
   }
 
+  /**
+   * Apply this event to the current shape at the current tick.
+   *
+   * @param shape the shape to apply this event to
+   * @param tick the tick when this shape should appear
+   */
   public void applyEvent(IShape shape, int tick) {
-
-//    System.out.println("Applying move event");
-//    System.out.println(this.toString());
     double tweened_x = tweening(tick, this.from.getX(), this.to.getX());
     double tweened_y = tweening(tick, this.from.getY(), this.to.getY());
     shape.setLocation(tweened_x, tweened_y);
-//    System.out.println("Tweened x: " + tweened_x);
-//    System.out.println("Tweened y: " + tweened_y);
   }
 }
