@@ -14,7 +14,6 @@ public abstract class AbstractShape implements IShape {
   protected String name;
   protected int appear = -1;
   protected int disappear = -1;
-  protected ShapeType type;
 
 
   /**
@@ -52,15 +51,13 @@ public abstract class AbstractShape implements IShape {
    * called on the shape.
    *
    * @param name   name of the shape
-   * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public AbstractShape(String name, ShapeType type) {
+  public AbstractShape(String name) {
     if (name == null) {
       throw new IllegalArgumentException("Name can't be null");
     }
     this.name = name;
-    this.type = type;
   }
 
 
@@ -77,7 +74,7 @@ public abstract class AbstractShape implements IShape {
    * @param type the type of the shape
    */
   public AbstractShape(String name, double width, double height,
-                       Color color, Point2D location, int appear, int disappear, ShapeType type) {
+                       Color color, Point2D location, int appear, int disappear) {
     this.name = name;
     this.width = width;
     this.height = height;
@@ -86,16 +83,6 @@ public abstract class AbstractShape implements IShape {
     // do we need to copy these?
     this.appear = appear;
     this.disappear = disappear;
-    this.type = type;
-  }
-
-  /**
-   * ___________________________________ METHOD: getType() _______________________________________.
-   * This is a getter that gets the type of the shape.
-   * @return the type of the shape, a String
-   */
-  public ShapeType getType() {
-    return type;
   }
 
   /**

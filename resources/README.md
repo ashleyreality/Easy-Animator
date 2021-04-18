@@ -29,7 +29,8 @@ The IShape interface describes methods you must use if you implement IShape. ISh
 designed to represent shapes.  We created this interface so that any helper methods stay private 
 and don't need to be exposed to the client, and there's no need for the client to look at the 
 implementation itself. The interface could be extended with additional shape types later. It allows
-a shape to be instantiated without specifying the type of shape.
+a shape to be instantiated without specifying the type of shape. We added methods to get the 
+ShapeType so that the different views would be able to identify the shape type.
 
 #### AbstractShape 
 The AbstractShape class implements IShape. We removed the comparator in our AbstractShape because we
@@ -41,16 +42,23 @@ to all shapes.
 #### Rectangle
 The Rectangle class extends AbstractShape. It allows you to construct a rectangle shape. We created
 this concrete class to enable the client to generate a rectangle shape. The constructor takes
-in a unique name, an initial location, R, G, and B values for color, and width/height values.
+in a unique name, an initial location, R, G, and B values for color, and width/height values. A new 
+constructor takes in just a unique name, based off how the text files declare shapes. We added a 
+ShapeType RECTANGLE field to identify what type of shape it is for some view types.
 
 `IShape example = new Rectangle("name", 1.0, 1.0, 255, 255, 255, 20.0, 25.0);`
+`IShape example = new Rectangle("name");`
 
-#### Oval
-The Oval class extends AbstractShape. It allows you to construct an oval shape. We created this 
-concrete class to enable the client to generate an oval shape. The constructor takes
-in a unique name, an initial location, R, G, and B values for color, and width/height values.
+#### Ellipse
+The Ellipse class extends AbstractShape. Its name was changed from Oval. It allows you to construct 
+an ellipse shape. We created this concrete class to enable the client to generate an ellipse shape. 
+The constructor takes in a unique name, an initial location, R, G, and B values for color, and 
+width/height values. A new constructor takes in just a unique name, based off how the text files 
+declare shapes. We added a ShapeType ELLIPSE field to identify what type of shape it is for some 
+view types.
 
-`IShape example = new Oval("name", 1.0, 1.0, 255, 255, 255, 20.0, 25.0);`
+`IShape example = new Ellipse("name", 1.0, 1.0, 255, 255, 255, 20.0, 25.0);`
+`IShape shape = new Ellipse("name")`
 
 ### IEvent
 The IEvent interface describes methods you must use if you implement IEvent. IEvent objects are

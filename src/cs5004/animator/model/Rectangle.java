@@ -34,17 +34,16 @@ public class Rectangle extends AbstractShape {
    * called on the shape.
    *
    * @param name name of the shape
-   * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public Rectangle(String name, ShapeType type) {
-    super(name, type);
+  public Rectangle(String name) {
+    super(name);
   }
 
   // for copy
   public Rectangle(String name, double width, double height,
-                   Color color, Point2D location, int appear, int disappear, ShapeType type) {
-    super(name, width, height, color, location, appear, disappear, type);
+                   Color color, Point2D location, int appear, int disappear) {
+    super(name, width, height, color, location, appear, disappear);
   }
 
   /**
@@ -78,10 +77,19 @@ public class Rectangle extends AbstractShape {
             + " and height " + this.height;
   }
 
+  /**
+   * ___________________________________ METHOD: getType() _______________________________________.
+   * This is a getter that gets the type of the shape.
+   * @return the type of the shape, a String
+   */
+  public ShapeType getType() {
+    return type;
+  }
+
   @Override
   public IShape copy() {
     return new Rectangle(this.name, this.width, this.height, this.color,
-            this.location, this.appear, this.disappear, this.type);
+            this.location, this.appear, this.disappear);
   }
 
 }

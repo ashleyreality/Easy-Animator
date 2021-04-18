@@ -71,10 +71,10 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
 
     // add shapes to model
     if (type.equalsIgnoreCase(ShapeType.ELLIPSE.toString())) {
-      IShape shape = new Ellipse(name, ShapeType.ELLIPSE);
+      IShape shape = new Ellipse(name);
       model.addShape(shape);
     } else if (type.equalsIgnoreCase(ShapeType.RECTANGLE.toString())) {
-      IShape shape = new Rectangle(name, ShapeType.RECTANGLE);
+      IShape shape = new Rectangle(name);
       model.addShape(shape);
     } else {
       throw new IllegalArgumentException("Invalid shape type!");

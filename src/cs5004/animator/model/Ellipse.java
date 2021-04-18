@@ -47,11 +47,10 @@ public class Ellipse extends AbstractShape {
    * @param location the location of the ellipse
    * @param appear the time of appear
    * @param disappear the time of disappear
-   * @param type the type of the shape
    */
   public Ellipse(String name, double width, double height,
-                 Color color, Point2D location, int appear, int disappear, ShapeType type) {
-    super(name, width, height, color, location, appear, disappear, type);
+                 Color color, Point2D location, int appear, int disappear) {
+    super(name, width, height, color, location, appear, disappear);
     this.radiusX = width / 2;
     this.radiusY = height / 2;
   }
@@ -62,11 +61,10 @@ public class Ellipse extends AbstractShape {
    * called on the shape.
    *
    * @param name name of the shape
-   * @param type the type of shape
    * @throws IllegalArgumentException if name is null
    */
-  public Ellipse(String name, ShapeType type) {
-    super(name, type);
+  public Ellipse(String name) {
+    super(name);
   }
 
   /**
@@ -121,10 +119,19 @@ public class Ellipse extends AbstractShape {
     this.radiusY = height / 2;
   }
 
+  /**
+   * ___________________________________ METHOD: getType() _______________________________________.
+   * This is a getter that gets the type of the shape.
+   * @return the type of the shape, a String
+   */
+  public ShapeType getType() {
+    return type;
+  }
+
   @Override
   public IShape copy() {
     return new Ellipse(this.name, this.width, this.height, this.color,
-            this.location, this.appear, this.disappear, this.type);
+            this.location, this.appear, this.disappear);
   }
 
 }
