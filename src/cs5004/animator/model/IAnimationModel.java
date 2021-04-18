@@ -83,7 +83,17 @@ public interface IAnimationModel {
 
   int getBoundsWidth();
 
+  /**
+   * Gets the last tick in the model.
+   *
+   * @return the ending tick for the animation
+   */
   int getEndTick();
 
+  /**
+   * Sets the last tick in the model.
+   *
+   * @param endTick the latest tick in the animation
+   */
   void setEndTick(int endTick);
 }
