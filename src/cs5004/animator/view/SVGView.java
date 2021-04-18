@@ -82,12 +82,12 @@ public class SVGView implements IView {
         for (IEvent event : eventList) {
           addEvents(shape, event);
         }
-        // add closing </ellipse>
+        // Add closing </ellipse>
         sb.append("</ellipse>\n\n");
       }
     }
 
-    // add closing </svg>
+    // Add closing </svg>
     sb.append("</svg>");
 
   }
