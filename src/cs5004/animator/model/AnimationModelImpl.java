@@ -6,9 +6,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
@@ -163,17 +161,6 @@ public class AnimationModelImpl implements IAnimationModel {
       throw new IllegalArgumentException("The shape is not in the list.");
     }
 
-    // I dont think event names need to be unique -  discuss today
-    /*for (IEvent otherEvent : eventList) {
-      if (event.equals(otherEvent)) {
-        throw new IllegalArgumentException("Each event name must be unique.");
-      }
-    }*/
-
-    // Need to add a check for:
-    // If event TYPE is the same
-    // B/c if event type is the same then it falls under this exception
-
     // for each shape that's already in the shape list
     for (IShape otherShape : shapeList) {
       // if the shape we passed in has the same name as the shape in the list
@@ -240,9 +227,6 @@ public class AnimationModelImpl implements IAnimationModel {
         n = s;
       }
     }
-    //if (n == null) {
-    //  throw new IllegalArgumentException("Shape name not present in the list of shapes");
-    //}
     return n;
   }
 
