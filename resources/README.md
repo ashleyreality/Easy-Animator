@@ -11,13 +11,18 @@ only the public methods in the animation model for ease of use by the client.
 #### AnimationModelImpl
 AnimationModelImpl implements the AnimationModel interface. It generates an animation model. 
 Animations consist of two types of objects: IShapes, and IEvents that act on those shapes. 
-Each shape must have a unique name so that one or more IEvents can be associated with it. 
-This implementation includes private helper methods that don't need to be exposed to the client. 
+Each shape must have a unique name so that one or more IEvents can be associated with it. The 
+IShapes and IEvents are stored in a LinkedHashMap to keep the IShapes in the order they are 
+declared. Originally they were stored in a TreeMap, to sort by the time the shapes appear, but this
+was not helpful due to how the shapes overlap. The AnimationModel also has been updated to include
+the bounds of the animation, and the end tick of the animation. These changes were based on the text
+file inputs for creating animations. This implementation includes private helper methods that don't 
+need to be exposed to the client.
 ###### Useful methods
 * `addShape(IShape shape, int appear, int disappear)` - add an IShape to your animation
 * `addEvent(IShape shape, IEvent event, int appear, int disappear)` - add an IEvent to your IShape
 * `getEventList(IShape shape)` - returns a list of all events associated with a shape
-* `getShapesAtTick(int tick)` - get all shapes and their states at a given tick. Currently a stub. 
+* `getShapesAtTick(int tick)` - get all shapes at the states they are in at a given tick.
 
 ### IShape 
 The IShape interface describes methods you must use if you implement IShape. IShape objects are 
@@ -27,10 +32,11 @@ implementation itself. The interface could be extended with additional shape typ
 a shape to be instantiated without specifying the type of shape.
 
 #### AbstractShape 
-The AbstractShape class implements IShape. It includes a comparator that enables comparison by shape 
-width. AbstractShape includes setters and getters for all shape attributes so that the 
-AnimationModel and IEvent can easily access and change them. We created this abstract class to reuse
-code that's common to all shapes. 
+The AbstractShape class implements IShape. We removed the comparator in our AbstractShape because we
+are no longer using a TreeMap in our model because the shapes do not need to be sorted. 
+AbstractShape includes setters and getters for all shape attributes so that the AnimationModel and 
+IEvent can easily access and change them. We created this abstract class to reuse code that's common 
+to all shapes. 
 
 #### Rectangle
 The Rectangle class extends AbstractShape. It allows you to construct a rectangle shape. We created
@@ -94,3 +100,8 @@ EventType is an enum used to store the types of possible events. Currently, it a
 set as **move**, **scale**, or **recolor**. We created this enum so that AnimationModel can easily 
 identify an event's type, which helps make sure that the same type of event doesn't overlap for
 a given shape. 
+
+#### ShapeType
+ShapeType is an enum different types of shapes. It currently has **rectangle** and **ellipse** 
+shapes. We created this enum so that EasyAnimator can easily identify a shape's type because the 
+shapes behave differently in the views.
