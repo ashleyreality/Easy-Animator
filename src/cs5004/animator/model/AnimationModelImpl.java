@@ -112,6 +112,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * The addEvent() method adds a new "Event"/change to the ArrayList of type "Event", changes, with
    * the given parameters. An "Event" has a:
    *
+   * @param shape      - The shape that the given event is associated with
    * @param event      - the change made to the shape (has a "Shape", eventBegin, eventEnd), an
    *                   IEvent
    * @param eventBegin - the time in ticks when the event begins, an int
@@ -155,7 +156,7 @@ public class AnimationModelImpl implements IAnimationModel {
 
     // A list of shapes in the shapeMap
     Set<IShape> shapeSet = shapeMap.keySet();
-    List<IShape> shapeList = new ArrayList<>(shapeSet);
+    // List<IShape> shapeList = new ArrayList<>(shapeSet);
 
     // A list of events for the provided shape
     List<IEvent> eventList = shapeMap.get(shape);
@@ -175,7 +176,7 @@ public class AnimationModelImpl implements IAnimationModel {
     // B/c if event type is the same then it falls under this exception
 
     // for each shape that's already in the shape list
-    for (IShape otherShape : shapeList) {
+    for (IShape otherShape : shapeSet) {
       // if the shape we passed in has the same name as the shape in the list
       if (shape.getName().equals(otherShape.getName())) {
         // for each event that's in the list of events
@@ -200,8 +201,8 @@ public class AnimationModelImpl implements IAnimationModel {
                     + "time. Try again with a different event time. Event type was \n"
                     + event.getEventType() + ", event begin was " + eventBegin + ", and event \n"
                     + "end was " + eventEnd + ". Other event begin was \n"
-                    + otherEvent.getEventBegin() + " and other event end was " +
-                    otherEvent.getEventEnd());
+                    + otherEvent.getEventBegin() + " and other event end was "
+                    + otherEvent.getEventEnd());
           }
 
         }

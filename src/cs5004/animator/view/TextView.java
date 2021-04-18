@@ -44,8 +44,8 @@ public class TextView implements IView {
   public void createView() {
     sb = new StringBuilder();
     // sort by appear time
-    Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
-    List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
+    //Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
+    List<IShape> s = model.getShapeMap().keySet().stream()//.sorted(sortByAppear)
             .collect(Collectors.toList());
 
     // for each shape, add its create string to out
@@ -63,11 +63,12 @@ public class TextView implements IView {
     sb.append("\n");
 
     // Sort the events in terms of begin & end time
-    Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
+    //Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
 
     // Create a list of sorted events
     List<IEvent> t = model.getShapeMap().values().stream().flatMap(Collection::stream)
-            .sorted(sortByEventBegin).collect(Collectors.toList());
+            //.sorted(sortByEventBegin)
+            .collect(Collectors.toList());
 
     // Add the changes/events strings to out
     for (IEvent a : t) {
