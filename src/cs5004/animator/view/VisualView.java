@@ -109,7 +109,7 @@ public class VisualView extends JFrame implements IView {
    */
   @Override
   public String getViewState() {
-    return null;
+    throw new UnsupportedOperationException("No view state for visual");
   }
 }
 
