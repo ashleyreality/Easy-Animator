@@ -42,14 +42,14 @@ public class AnimationPanel extends JPanel {
       // Check if it's a rectangle
       if (eachShapeAtTick.getType() == ShapeType.RECTANGLE) {
         // Draw the rectangle(s)
-        drawRectangle(eachShapeAtTick, g2d);
+        //drawRectangle(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);
         fillRectangleWithColor(eachShapeAtTick, g2d);
       }
       // Check if it's an oval/ellipse
       if (eachShapeAtTick.getType()  == ShapeType.ELLIPSE) {
         // Draw the oval(s)
-        drawEllipse(eachShapeAtTick, g2d);
+        //drawEllipse(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);
         fillOvalWithColor(eachShapeAtTick, g2d);
       }
@@ -97,6 +97,7 @@ public class AnimationPanel extends JPanel {
     g2d.fillOval(x, y, w, h);
   }
 
+  //I dont think we need these draw methods
   /**
    * Draws a rectangle.
    *
