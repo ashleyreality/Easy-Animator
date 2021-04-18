@@ -1,0 +1,32 @@
+Create (0,49,90) rectangle disk1 with corner at (190.0,180.0), width 20.0 and height 30.0
+Create (6,247,41) rectangle disk2 with corner at (167.0,210.0), width 65.0 and height 30.0
+Create (11,45,175) rectangle disk3 with corner at (145.0,240.0), width 110.0 and height 30.0
+
+disk1 appears at time t=1 and disappears at time t=302
+disk2 appears at time t=1 and disappears at time t=302
+disk3 appears at time t=1 and disappears at time t=302
+
+disk1 moves from (190.0,180.0) to (190.0,50.0) from time t=25 to t=35
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=36 to t=46
+disk1 moves from (490.0,50.0) to (490.0,240.0) from time t=47 to t=57
+disk1 moves from (490.0,240.0) to (490.0,50.0) from time t=89 to t=99
+disk1 moves from (490.0,50.0) to (340.0,50.0) from time t=100 to t=110
+disk1 moves from (340.0,50.0) to (340.0,210.0) from time t=111 to t=121
+disk1 moves from (340.0,210.0) to (340.0,50.0) from time t=153 to t=163
+disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=164 to t=174
+disk1 moves from (190.0,50.0) to (190.0,240.0) from time t=175 to t=185
+disk1 moves from (190.0,240.0) to (190.0,50.0) from time t=217 to t=227
+disk1 moves from (190.0,50.0) to (490.0,50.0) from time t=228 to t=238
+disk1 moves from (490.0,50.0) to (490.0,180.0) from time t=239 to t=249
+disk1 changes color from (0,49,90) to (0,255,0) from time t=249 to t=257
+disk2 moves from (167.0,210.0) to (167.0,50.0) from time t=57 to t=67
+disk2 moves from (167.0,50.0) to (317.0,50.0) from time t=68 to t=78
+disk2 moves from (317.0,50.0) to (317.0,240.0) from time t=79 to t=89
+disk2 moves from (317.0,240.0) to (317.0,50.0) from time t=185 to t=195
+disk2 moves from (317.0,50.0) to (467.0,50.0) from time t=196 to t=206
+disk2 moves from (467.0,50.0) to (467.0,210.0) from time t=207 to t=217
+disk2 changes color from (6,247,41) to (0,255,0) from time t=217 to t=225
+disk3 moves from (145.0,240.0) to (145.0,50.0) from time t=121 to t=131
+disk3 moves from (145.0,50.0) to (445.0,50.0) from time t=132 to t=142
+disk3 moves from (445.0,50.0) to (445.0,240.0) from time t=143 to t=153
+disk3 changes color from (11,45,175) to (0,255,0) from time t=153 to t=161
