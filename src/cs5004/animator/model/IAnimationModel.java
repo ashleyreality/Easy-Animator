@@ -82,4 +82,8 @@ public interface IAnimationModel {
   int getBoundsHeight();
 
   int getBoundsWidth();
+
+  int getEndTick();
+
+  void setEndTick(int endTick);
 }

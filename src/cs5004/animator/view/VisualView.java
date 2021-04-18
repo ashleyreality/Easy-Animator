@@ -51,8 +51,7 @@ public class VisualView extends JFrame implements IView {
     this.setVisible(true);
 
     // get the disappear time of the last shape in the sorted treemap
-    int lastShapeTime = 500;//model.getShapeMap().lastKey().getDisappear();
-    // fixme lastkey is not a thing for this hash map so need to change =_=
+    int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
     for (int tick = 0; tick < lastShapeTime; tick++) {

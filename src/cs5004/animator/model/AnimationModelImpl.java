@@ -20,6 +20,7 @@ public class AnimationModelImpl implements IAnimationModel {
   private int boundsY;
   private int boundsWidth;
   private int boundsHeight;
+  int endTick;
 
   /**
    * ___________________________ CONSTRUCTOR: AnimationModelImpl() ________________________________.
@@ -377,6 +378,14 @@ public class AnimationModelImpl implements IAnimationModel {
       }
     }
     return shapesAtTick;
+  }
+
+  public int getEndTick() {
+    return endTick;
+  }
+
+  public void setEndTick(int endTick) {
+    this.endTick = endTick;
   }
 
 }

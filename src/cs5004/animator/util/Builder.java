@@ -124,6 +124,9 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
     // get the desired shape from the model using the shape's name
     IShape shape = model.getShape(name);
 
+    if (t2 > model.getEndTick()) {
+      model.setEndTick(t2);
+    }
     // using a default value (-1) that would flag whether the  appear time has not yet been set
     // set appear time (the start of when the changes to the shape occur)
     if (shape.getAppear() == -1) {
@@ -169,7 +172,8 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
       // create event and add it to the model
       IEvent event = new MoveShape(shape, x1, y1, x2, y2);
       model.addEvent(shape, event, t1, t2);
-    } if (w1 != w2 || h1 != h2) {
+    }
+    if (w1 != w2 || h1 != h2) {
       // set unrelated attributes
       nothingHappened = false;
       shape.setDisappear(t2);
@@ -179,7 +183,8 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
       // create event and add it to the model
       IEvent event = new ScaleShape(shape, w1, h1, w2, h2);
       model.addEvent(shape, event, t1, t2);
-    } if (r1 != r2 || b1 != b2 || g1 != g2) {
+    }
+    if (r1 != r2 || b1 != b2 || g1 != g2) {
       // set unrelated attributes
       nothingHappened = false;
       shape.setDisappear(t2);
