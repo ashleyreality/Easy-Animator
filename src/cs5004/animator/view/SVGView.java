@@ -163,7 +163,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addMove(IShape shp, MoveShape e) {
-    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
+    float duration = (e.getEventEnd() - e.getEventBegin()) / (float)speed;
     int xFromLocation = (int) e.getFrom().getX() - model.getBoundsX();
     int xToLocation = (int) e.getTo().getX() - model.getBoundsX();
     int yFromLocation = (int) e.getFrom().getY() - model.getBoundsY();
@@ -196,7 +196,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addScale(IShape shp, ScaleShape e) {
-    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
+    float duration = (e.getEventEnd() - e.getEventBegin()) / (float)speed;
     if (shp.getType() == ShapeType.RECTANGLE) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
@@ -224,7 +224,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addColorChange(IShape shp, IEvent e) {
-    int duration = (e.getEventEnd() - e.getEventBegin()) / speed;
+    float duration = ((e.getEventEnd() - e.getEventBegin()) / (float)speed);
     return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
             + " dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
             + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";
