@@ -227,9 +227,10 @@ public class AnimationModelImpl implements IAnimationModel {
     for (IShape s : shapeMap.keySet()) {
       if (s.getName().equals(name)) {
         n = s;
+        return n;
       }
     }
-    return n;
+    throw new IllegalArgumentException("Shape does not exist.");
   }
 
 

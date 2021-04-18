@@ -1,0 +1,3 @@
+# initializes the canvas, with top-left corner (200,70) and
+# dimensions 360x360
+canvas 200 70 -360 360
