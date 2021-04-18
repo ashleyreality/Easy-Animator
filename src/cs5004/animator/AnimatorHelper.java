@@ -2,28 +2,294 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import cs5004.animator.model.AnimationModelImpl;
+import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationReader;
+import cs5004.animator.util.Builder;
+import cs5004.animator.util.ViewFactory;
+import cs5004.animator.view.IView;
+
 
 /**
- * The AnimatorHelper class helps construct an animation.
+ * The AnimatorHelper class helps construct an animation as a controller. The controller/main uses a
+ * Readable object to read one "token" at a time (where each token is a String separated by a space)
+ * from the input (like a text file input) and it decides how/what will be output for the view's
+ * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
+ * outputs (like a text file output).
  */
 public class AnimatorHelper {
+  //private String[] args;
 
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
-   * Constructs an AnimatorHelper instance. No parameters.
+   * Constructs an AnimatorHelper instance, which contains the controller functionalities.
    */
-  public AnimatorHelper() {
-    // fixme - This constructor is empty -- maybe we don't need this to be a separate class?
-    // maybe it can all be in the controller? the style grader is taking points off
+  public AnimatorHelper(String[] args) {
+    //this.args = args;
+    controller(args);
   }
 
   /**
-   * _____________________________ HELPER METHOD: jframeStart() ___________________________________.
+   * _______________________________ PRIMARY CONTROLLER METHOD ____________________________________.
+   * @param args the arguments from the command line being parsed, an array of Strings
+   */
+  public static void controller(String[] args) {
+    // Step 1) Create the model
+    IAnimationModel model = newAnimation();
+
+    // Step 2) Create the frame
+    JFrame frame = newFrame();
+
+    // Step 3) Parse the command-line arguments
+    StringBuilder parsedString = parsedCommandLine(args);
+
+    // Step 4) Find the input file
+    String inputName = inputFile(parsedString);
+
+    // Step 5) Check input file for exceptions
+    Readable file = checkInputFile(inputName, frame);
+
+    // Step 6) Create a new build
+    AnimationBuilder build = newBuild(model);
+
+    // Step 7) Fill the model
+    fillTheModel(file, build);
+
+    // Step 8) Find the view tyupe
+    String outputView = findViewType(parsedString);
+
+    // Step 9) Check the view type for exceptions
+    checkViewType(outputView, frame);
+
+    // Step 10) Find the output file's name
+    String outputName = findOutputFileName(parsedString);
+
+    // Step 11) Find the output file's speed
+    int outputSpeed = findOutputSpeed(parsedString);
+
+    // Step 12) Check the speed for exceptions
+    checkSpeed(outputSpeed, frame);
+
+    // Step 13) Send commandline arguments to the ViewFactory
+    ViewFactory factory = newViewFactory(outputView, model, outputName, outputSpeed);
+
+    // Step 14) Construct the view
+    IView view = newView(factory);
+
+    // Step 15) Create the view
+    createTheView(view);
+
+    // Step 16) Pack the frame and then exit once animation has completed running
+    packFrameAndExit(frame);
+  }
+
+
+  /**
+   * ___________________________ CONTROLLER STEP 1: newAnimation() ________________________________.
+   * Create an empty model.
+   *
+   * @return the model animation, an IAnimationModel
+   */
+  public static IAnimationModel newAnimation() {
+    return new AnimationModelImpl();
+  }
+
+
+  /**
+   * _____________________________ CONTROLLER STEP 2: newFrame() __________________________________.
+   * Create the frame used for error messages.
+   *
+   * @return the frame of the animation, a JFrame
+   */
+  public static JFrame newFrame() {
+    return jFrameStart();
+  }
+
+
+  /**
+   * _________________________ CONTROLLER STEP 3: parsedCommandLine() _____________________________.
+   * Create a StringBuilder which will be used to parse the command-line arguments.
+   *
+   * @param args the passed in arguments being parsed
+   * @return the string after parsing, a StringBuilder
+   */
+  public static StringBuilder parsedCommandLine(String[] args) {
+    return stringBuilder(args);
+  }
+
+
+  /**
+   * ______________________________ CONTROLLER STEP 4: inputFile() ________________________________.
+   * Find the input file.
+   *
+   * @param sb the parsed command line, the StringBuilder
+   * @return the name of the input file, a String
+   */
+  public static String inputFile(StringBuilder sb) {
+    return inScanner(sb);
+  }
+
+  /**
+   * ___________________________ CONTROLLER STEP 5: checkInputFile() ______________________________.
+   * Set up the input file as a Readable object and check it for exceptions.
+   *
+   * @param inputName the name of the final being considered, a String
+   * @param frame     the frame of the animation, a JFrame
+   * @return the file, a Readable
+   */
+  public static Readable checkInputFile(String inputName, JFrame frame) {
+    return fileExceptions(inputName, frame);
+  }
+
+
+  /**
+   * ______________________________ CONTROLLER STEP 6: newBuild() _________________________________.
+   * Send the model to the Builder.
+   *
+   * @param model the model being used for the animation, an IAnimationModel
+   * @return the build of the model, an AnimationBuilder
+   */
+  public static AnimationBuilder newBuild(IAnimationModel model) {
+    return new Builder(model);
+  }
+
+  /**
+   * ____________________________ CONTROLLER STEP 7: fillTheModel() _______________________________.
+   * Parse the file so the model is filled, and set the model variable to the filled model.
+   *
+   * @param file  the file being input, a Readable
+   * @param build the build of the model, an AnimationBuilder
+   */
+  public static void fillTheModel(Readable file, AnimationBuilder build) {
+    AnimationReader.parseFile(file, build);
+  }
+
+
+  /**
+   * ____________________________ CONTROLLER STEP 8: findViewType() _______________________________.
+   * Find the view type.
+   *
+   * @param sb the String being reviewed, a StringBuilder
+   * @return the view type to be output, a String
+   */
+  public static String findViewType(StringBuilder sb) {
+    return viewScanner(sb);
+  }
+
+
+  /**
+   * ____________________________ CONTROLLER STEP 9: checkViewType() ______________________________.
+   * Check the view type for exceptions.
+   *
+   * @param outputView the view to be output, a String
+   * @param frame      the frame of the animation, a JFrame
+   */
+  public static void checkViewType(String outputView, JFrame frame) {
+    viewExceptions(outputView, frame);
+  }
+
+
+  /**
+   * ________________________ CONTROLLER STEP 10: findOutputFileName() ____________________________.
+   * Find the output file name.
+   *
+   * @param sb the String being reviewed, a StringBuilder
+   * @return the output name of the file, a String
+   */
+  public static String findOutputFileName(StringBuilder sb) {
+    return outScanner(sb);
+  }
+
+
+  /**
+   * __________________________ CONTROLLER STEP 11: findOutputSpeed() _____________________________.
+   * Find the requested speed.
+   *
+   * @param sb the String being reviewed, a StringBuilder
+   * @return the output speed of teh file, an int
+   */
+  public static int findOutputSpeed(StringBuilder sb) {
+    return speedScanner(sb);
+  }
+
+
+  /**
+   * _____________________________ CONTROLLER STEP 12: checkSpeed() _______________________________.
+   * Check the speed for exceptions.
+   *
+   * @param outputSpeed the speed being output, an int
+   * @param frame       the frame of the animation, a JFrame
+   */
+  public static void checkSpeed(int outputSpeed, JFrame frame) {
+    speedExceptions(outputSpeed, frame);
+  }
+
+
+  /**
+   * ____________________________ CONTROLLER STEP 13: newViewFactory() ____________________________.
+   * Send command line arguments to ViewFactory.
+   *
+   * @param outputView  the view type to be output, a String
+   * @param model       the model being used for the animation, an IAnimationModel
+   * @param outputName  the name of the output file, a String
+   * @param outputSpeed the speed of the output animation, an int
+   * @return the factory construction of what a view will contain, a ViewFactory
+   */
+  public static ViewFactory newViewFactory(String outputView, IAnimationModel model, String outputName,
+                                           int outputSpeed) {
+    return new ViewFactory(outputView, model, outputName, outputSpeed);
+  }
+
+
+  /**
+   * _______________________________ CONTROLLER STEP 14: newView() ________________________________.
+   * Construct the view using the factory.
+   *
+   * @param factory the factory construction of what a view will contain, a ViewFactory
+   * @return the view that has been requested per the command line, an IView
+   */
+  public static IView newView(ViewFactory factory) {
+    IView view = null;
+    try {
+      view = factory.create(); ///////////
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return view;
+  }
+
+  /**
+   * ___________________________ CONTROLLER STEP 15: createTheView() ______________________________.
+   * Creae the view.
+   *
+   * @param view the view that has been requested per the command line, an IView
+   */
+  public static void createTheView(IView view) {
+    view.createView();
+  }
+
+
+  /**
+   * __________________________ CONTROLLER STEP 16: packFrameAndExit() ____________________________.
+   * JFrame finishing up
+   *
+   * @param frame the frame of the animation, a JFrame
+   */
+  public static void packFrameAndExit(JFrame frame) {
+    frame.pack();
+    System.exit(0);
+  }
+
+
+  /**
+   * _____________________________ HELPER METHOD: jFrameStart() ___________________________________.
    * Starts a JFrame.
    *
    * @return a JFrame object
@@ -35,7 +301,9 @@ public class AnimatorHelper {
   }
 
   /**
-   * Generates a StringBuilder with arguments from the command line.
+   * _____________________________ HELPER METHOD: stringBuilder() _________________________________.
+   * Generates a StringBuilder with arguments from the command line, where it converts the input as
+   * an array of Strings to tokens of Strings with a space in between each token.
    *
    * @param args arguments passed in from the command line
    * @return a StringBuilder
@@ -50,7 +318,10 @@ public class AnimatorHelper {
   }
 
   /**
-   * Scans arguments for an in file.
+   * _______________________________ HELPER METHOD: inScanner() ___________________________________.
+   * Scans arguments for an in-file. The Scanner reads through the Strings of tokens in the
+   * StringBuilder and looks for the String "-in" and get the String right after it, which
+   * represents the name of the file being read.
    *
    * @param sb the StringBuilder to be scanned
    * @return the name of the in file
@@ -62,10 +333,11 @@ public class AnimatorHelper {
   }
 
   /**
-   * Checks for problems with files and throws exceptions if problems exist.
+   * _____________________________ HELPER METHOD: fileExceptions() ________________________________.
+   * Checks for problems with input files and throws exceptions if problems exist.
    *
    * @param inputName the name of the in file
-   * @param frame the JFrame used for exception-throwing
+   * @param frame     the JFrame used for exception-throwing
    * @return a FileReader object with the in file specified
    */
   public static Readable fileExceptions(String inputName, JFrame frame) {
@@ -82,7 +354,10 @@ public class AnimatorHelper {
   }
 
   /**
-   * Scans command-line arguments for the view type.
+   * _______________________________ HELPER METHOD: viewScanner() _________________________________.
+   * Scans command-line arguments for the view type. The Scanner reads through the Strings of tokens
+   * in the StringBuilder and looks for the String "-view" and get the String right after it, which
+   * represents the view type to be used.
    *
    * @param sb the StringBuilder to scan
    * @return the view type as a string
@@ -94,10 +369,11 @@ public class AnimatorHelper {
   }
 
   /**
+   * ______________________________ HELPER METHOD: viewExceptions() _______________________________.
    * Checks for problems with the view type and throws exceptions if problems exist.
    *
    * @param outputView the view type, a String
-   * @param frame the frame used to throw exceptions
+   * @param frame      the frame used to throw exceptions
    */
   public static void viewExceptions(String outputView, JFrame frame) {
     if (!outputView.equalsIgnoreCase("text")
@@ -110,7 +386,10 @@ public class AnimatorHelper {
   }
 
   /**
-   * Scans command-line arguments for the out file.
+   * ________________________________ HELPER METHOD: outScanner() _________________________________.
+   * Scans command-line arguments for the out file. The Scanner reads through the Strings of tokens
+   * in the StringBuilder and looks for the String "-out" and get the String right after it, which
+   * represents the name to be used for the output.
    *
    * @param sb the StringBuilder to be scanned
    * @return the name of the out file as a string
@@ -126,7 +405,10 @@ public class AnimatorHelper {
   }
 
   /**
-   * Scans command-line arguments for the requested speed.
+   * ______________________________ HELPER METHOD: speedScanner() _________________________________.
+   * Scans command-line arguments for the requested speed. The Scanner reads through the Strings of
+   * tokens in the StringBuilder and looks for the String "-speed" and get the String right after
+   * it, which represents the speed to be used.
    *
    * @param sb sb the StringBuilder to be scanned
    * @return the speed as a String
@@ -142,10 +424,11 @@ public class AnimatorHelper {
   }
 
   /**
+   * ______________________________ HELPER METHOD: speedExceptions() ______________________________.
    * Checks for problems with the speed and throws exceptions if problems exist.
    *
    * @param outputSpeed the speed, as a string
-   * @param frame the frame used to throw exceptions
+   * @param frame       the frame used to throw exceptions
    */
   public static void speedExceptions(int outputSpeed, JFrame frame) {
     try {
