@@ -244,25 +244,6 @@ public abstract class AbstractShape implements IShape {
   }
 
   /**
-   * ___________________________________ METHOD: compareTo() ______________________________________.
-   * This is an override of the compareTo() method of the Comparable interface. It sorts the shape
-   * objects by width.
-   */
-  @Override
-  public int compareTo(IShape o) {
-    return this.getName().compareTo(o.getName());
-  }
-  /* TODO (or try if we have time)
-  goal is to sort by appear time
-  store the shape in the treemap temporarily with the -1 appear time
-  after the appear time is updated in the if statement if appear = -1
-  and updates the appear time, remove the shape from the list and add it back in*
-
-  or maybe store the shape in a different list in the builder
-  once the appear is updated, either copy or add the shape in the list in the builder to the model
-   */
-
-  /**
    * _________________________________ METHOD: appearString() _____________________________________.
    * This returns the text output.
    * @return the text output found in the out file, a String

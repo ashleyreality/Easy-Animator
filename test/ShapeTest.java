@@ -338,13 +338,6 @@ public class ShapeTest {
     assertEquals(7654.22, ellipse.getHeight(), 0.01);
   }
 
-  // this test is useless now
-  @Test
-  public void testCompareTo() {
-    assertEquals(13, rect.compareTo(ellipse));
-    assertEquals(-13, ellipse.compareTo(rect));
-  }
-
   @Test
   public void testToString() {
     assertEquals("Name: rect1\n"

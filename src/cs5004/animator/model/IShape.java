@@ -4,7 +4,7 @@ package cs5004.animator.model;
  * ___________________________________ INTERFACE: IShape {} _______________________________________.
  * The Shape interface declares the methods all types of shapes should support.
  */
-public interface IShape extends Comparable<IShape> {
+public interface IShape {
 
   /**
    * ____________________________________ METHOD: getName() _______________________________________.
