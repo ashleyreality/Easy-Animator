@@ -3,7 +3,9 @@ package cs5004.animator.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Set;
 import java.util.TreeMap;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
  * interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private NavigableMap<IShape, List<IEvent>> shapeMap;
+  private Map<IShape, List<IEvent>> shapeMap;
   private int boundsX;
   private int boundsY;
   private int boundsWidth;
@@ -27,7 +29,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * Shape and its associated value, a list of Events.
    */
   public AnimationModelImpl() {
-    shapeMap = new TreeMap<>();
+    shapeMap = new LinkedHashMap<>();
   }
 
   /**
@@ -219,7 +221,7 @@ public class AnimationModelImpl implements IAnimationModel {
    * @return the map of shapes and their associated event lists
    */
   @Override
-  public NavigableMap<IShape, List<IEvent>> getShapeMap() {
+  public Map<IShape, List<IEvent>> getShapeMap() {
     // A list of events for the provided shape
     return this.shapeMap;
   }
@@ -372,6 +374,7 @@ public class AnimationModelImpl implements IAnimationModel {
     if (tick < 0) {
       throw new IllegalArgumentException("No negative ticks.");
     }
+
     // note from TA: consider doing this in order of transformations possibly, rather than order of shapes
     List<IShape> shapesAtTick = new ArrayList<>();
     for (IShape shape : shapeMap.keySet()) {

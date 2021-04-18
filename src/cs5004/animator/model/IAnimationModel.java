@@ -1,6 +1,7 @@
 package cs5004.animator.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NavigableMap;
 
 /**
@@ -46,7 +47,7 @@ public interface IAnimationModel {
 
    * @return the map of shapes and their associated event lists
    */
-  NavigableMap<IShape, List<IEvent>> getShapeMap();
+  Map<IShape, List<IEvent>> getShapeMap();
 
   /**
    * ________________________________ METHOD: getEventList() ______________________________________.
