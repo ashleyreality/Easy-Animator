@@ -17,7 +17,7 @@ declared. Originally they were stored in a TreeMap, to sort by the time the shap
 was not helpful due to how the shapes overlap. The AnimationModel also has been updated to include
 the bounds of the animation, and the end tick of the animation. These changes were based on the text
 file inputs for creating animations. This implementation includes private helper methods that don't 
-need to be exposed to the client.
+need to be exposed to the client. 
 ###### Useful methods
 * `addShape(IShape shape, int appear, int disappear)` - add an IShape to your animation
 * `addEvent(IShape shape, IEvent event, int appear, int disappear)` - add an IEvent to your IShape
@@ -44,7 +44,7 @@ The Rectangle class extends AbstractShape. It allows you to construct a rectangl
 this concrete class to enable the client to generate a rectangle shape. The constructor takes
 in a unique name, an initial location, R, G, and B values for color, and width/height values. A new 
 constructor takes in just a unique name, based off how the text files declare shapes. We added a 
-ShapeType RECTANGLE field to identify what type of shape it is for some view types.
+ShapeType RECTANGLE field to identify what type of shape it is for the views.
 
 `IShape example = new Rectangle("name", 1.0, 1.0, 255, 255, 255, 20.0, 25.0);`
 `IShape example = new Rectangle("name");`
@@ -54,8 +54,8 @@ The Ellipse class extends AbstractShape. Its name was changed from Oval. It allo
 an ellipse shape. We created this concrete class to enable the client to generate an ellipse shape. 
 The constructor takes in a unique name, an initial location, R, G, and B values for color, and 
 width/height values. A new constructor takes in just a unique name, based off how the text files 
-declare shapes. We added a ShapeType ELLIPSE field to identify what type of shape it is for some 
-view types.
+declare shapes. We added a ShapeType ELLIPSE field to identify what type of shape it is for the 
+views.
 
 `IShape example = new Ellipse("name", 1.0, 1.0, 255, 255, 255, 20.0, 25.0);`
 `IShape shape = new Ellipse("name")`
@@ -68,28 +68,34 @@ the implementation itself. The interface could be extended with additional event
 an event to be instantiated without specifying the type of the event. 
 
 #### AbstractEvent
-The AbstractEvent class implements IEvent. It includes a change() stub that will be implemented once 
-we have more information about how changes will work with a controller. We created this abstract 
-class in order to reuse code common to all events. 
+The AbstractEvent class implements IEvent. It is updated to include a tweening method that works
+helps the model get the state of shapes at specific frames in the animation. We created this 
+abstract class in order to reuse code common to all events. 
 
 #### MoveShape
 The MoveShape class extends AbstractEvent. Use the MoveShape class to create a move event on an
 IShape. We created this concrete class so that the client can generate a move event. The constructor 
-takes in a shape, an initial location, and a new location.
+takes in a shape, an initial location, and a new location. This class is updated to include an
+applyEvent method that takes in a copy of a shape and a tick, and mutates the shape location based 
+on where it is at the given tick.
 
 `IEvent example = new MoveShape(example, 1.0, 1.0, 2.0, 2.0);`
 
 #### ChangeColor
 The MoveShape class extends AbstractEvent. Use the ChangeColor class to create a color change event
-on an IShape. We created this concrete class so that the client can generate a color
-change event. The constructor takes in a shape, an initial color, and a new color.
+on an IShape. We created this concrete class so that the client can generate a color change event. 
+The constructor takes in a shape, an initial color, and a new color.This class is updated to include
+an applyEvent method that takes in a copy of a shape and a tick, and mutates the shape color based
+on its color at the given tick.
 
 `IEvent example = new ChangeColor(example, 0, 0, 0, 255, 255, 255);`
 
 #### ScaleShape
 The MoveShape class extends AbstractEvent. Use the ScaleShape class to create a scale shape event
 on an IShape. We created this concrete class so that the client can generate a scale shape event.
-The constructor takes in a shape, an initial size, and a new size.
+The constructor takes in a shape, an initial size, and a new size. This class is updated to include 
+an applyEvent method that takes in a copy of a shape and a tick, and mutates the shape width or
+height based on how it looks at the given tick.
 
 `IEvent example = new ScaleShape(example, 1.0, 1.0, 2.0, 2.0);`
 
