@@ -2,9 +2,8 @@ package cs5004.animator.view;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import cs5004.animator.model.EventType;
 import cs5004.animator.model.IAnimationModel;
@@ -46,53 +45,42 @@ public class SVGView implements IView {
   }
 
   /**
-   * Creates an SVG view.
+   * _______________________________ METHOD: buildTheSVGString() __________________________________.
+   * Build the SVGView String.
+   * @return
    */
-  public void createView() {
-    // add initial xml to file
+  public void buildTheSVGString() {
+    // Add the initial XML String to the StringBuilder
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
             + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
     sb.append(str);
 
-    // sort shapes by appear time and create a sorted list of them
-    //Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
-    //List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
-           // .collect(Collectors.toList());
+    // Add the shape XML to StringBuilder along with its list of events
+    for (IShape shape : model.getShapeMap().keySet()) {
 
-    // create a comparator to sort events by time of event begin
-    //Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
-
-    // add shape xml to file along with its list of events
-    // sort individual event lists by start time bc events must go inside shape tags
-    for (IShape shp : model.getShapeMap().keySet()) {
-      // if rect
-      if (shp.getType() == ShapeType.RECTANGLE) {
-        // add initial <rect> tag with attributes
-        sb.append(addRectangle(shp));
-
-        // put the shape's events in a list, sorted by event time
-        List<IEvent> t = model.getShapeMap().get(shp).stream()//.sorted(sortByEventBegin)
-                .collect(Collectors.toList());
-
-        // add events for that shape
-        for (IEvent e : t) {
-          addEvents(shp, e);
+      // If the shape is a rectangle
+      if (shape.getType() == ShapeType.RECTANGLE) {
+        // Add initial <rect> tag with attributes
+        sb.append(addRectangle(shape));
+        // Put the shape's events in a list
+        List<IEvent> eventList = new ArrayList<>(model.getShapeMap().get(shape));
+        // Add events for that shape
+        for (IEvent event : eventList) {
+          addEvents(shape, event);
         }
-        // add closing </rect>
+        // Add closing </rect>
         sb.append("</rect>\n\n");
       }
 
-      // if ellipse
-      if (shp.getType() == ShapeType.ELLIPSE) {
-        // add initial <ellipse> tag with attributes
-        sb.append(addEllipse(shp));
-
-        // put the shape's events in a list, sorted by event time
-        List<IEvent> t = model.getShapeMap().get(shp).stream()//.sorted(sortByEventBegin)
-                .collect(Collectors.toList());
-        // add events for that shape
-        for (IEvent e : t) {
-          addEvents(shp, e);
+      // If the shape is an ellipse
+      if (shape.getType() == ShapeType.ELLIPSE) {
+        // Add initial <ellipse> tag with attributes
+        sb.append(addEllipse(shape));
+        // Put the shape's events in a list
+        List<IEvent> eventList = new ArrayList<>(model.getShapeMap().get(shape));
+        // Add events for that shape
+        for (IEvent event : eventList) {
+          addEvents(shape, event);
         }
         // add closing </ellipse>
         sb.append("</ellipse>\n\n");
@@ -102,9 +90,72 @@ public class SVGView implements IView {
     // add closing </svg>
     sb.append("</svg>");
 
-    // close the file
+  }
+
+
+  /**
+   * Creates an SVG view.
+   */
+  public void createView() {
+
+    buildTheSVGString();
     out.print(sb.toString());
     out.close();
+
+//    // add initial xml to file
+//    String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
+//            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
+//    sb.append(str);
+//
+//    // sort shapes by appear time and create a sorted list of them
+//    //Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
+//    //List<IShape> s = model.getShapeMap().keySet().stream().sorted(sortByAppear)
+//           // .collect(Collectors.toList());
+//
+//    // create a comparator to sort events by time of event begin
+//    //Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
+//
+//    // add shape xml to file along with its list of events
+//    // sort individual event lists by start time bc events must go inside shape tags
+//    for (IShape shp : model.getShapeMap().keySet()) {
+//      // if rect
+//      if (shp.getType() == ShapeType.RECTANGLE) {
+//        // add initial <rect> tag with attributes
+//        sb.append(addRectangle(shp));
+//
+//        // put the shape's events in a list, sorted by event time
+//        List<IEvent> t = model.getShapeMap().get(shp).stream()//.sorted(sortByEventBegin)
+//                .collect(Collectors.toList());
+//
+//        // add events for that shape
+//        for (IEvent e : t) {
+//          addEvents(shp, e);
+//        }
+//        // add closing </rect>
+//        sb.append("</rect>\n\n");
+//      }
+//
+//      // if ellipse
+//      if (shp.getType() == ShapeType.ELLIPSE) {
+//        // add initial <ellipse> tag with attributes
+//        sb.append(addEllipse(shp));
+//
+//        // put the shape's events in a list, sorted by event time
+//        List<IEvent> t = model.getShapeMap().get(shp).stream()//.sorted(sortByEventBegin)
+//                .collect(Collectors.toList());
+//        // add events for that shape
+//        for (IEvent e : t) {
+//          addEvents(shp, e);
+//        }
+//        // add closing </ellipse>
+//        sb.append("</ellipse>\n\n");
+//      }
+//    }
+//
+//    // add closing </svg>
+//    sb.append("</svg>");
+
+
   }
 
   /**

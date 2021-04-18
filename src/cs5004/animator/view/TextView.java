@@ -3,8 +3,8 @@ package cs5004.animator.view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +30,7 @@ public class TextView implements IView {
    */
   public TextView(IAnimationModel model, String outString) throws IOException {
     this.model = model;
+    this.sb = new StringBuilder();
 
     if (outString.equals("System.out")) {
       this.out = new PrintStream(System.out);
@@ -38,45 +39,82 @@ public class TextView implements IView {
     }
   }
 
+
+  /**
+   * _______________________________ METHOD: buildTheTextString() _________________________________.
+   * Build the TextView String.
+   * @return
+   */
+  public void buildTheTextString() {
+    List<IShape> shapeList = new ArrayList<>(model.getShapeMap().keySet());
+
+    // For each shape, add its IShape createString() to the shapeList ArrayList
+    for (IShape shape : shapeList) {
+      sb.append(shape.createString());
+      sb.append("\n");
+    }
+    sb.append("\n");
+
+    // For each shape, add its appear/disappear string the shapeList ArrayList
+    for (IShape shape : shapeList) {
+      sb.append(shape.appearString());
+      sb.append("\n");
+    }
+    sb.append("\n");
+
+    // Create a list of events
+    List<IEvent> eventList = model.getShapeMap().values().stream().flatMap(Collection::stream)
+            .collect(Collectors.toList());
+
+    // Add the changes/events strings to out
+    for (IEvent event : eventList) {
+      sb.append(event.toString());
+      sb.append("\n");
+    }
+  }
+
   /**
    * Creates a text view.
    */
   public void createView() {
-    sb = new StringBuilder();
-    // sort by appear time
-    //Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
-    List<IShape> s = model.getShapeMap().keySet().stream()//.sorted(sortByAppear)
-            .collect(Collectors.toList());
 
-    // for each shape, add its create string to out
-    for (IShape l : s) {
-      sb.append(l.createString());
-      sb.append("\n");
-    }
-    sb.append("\n");
-
-    // for each shape, add its appear/disappear string to out
-    for (IShape l : s) {
-      sb.append(l.appearString());
-      sb.append("\n");
-    }
-    sb.append("\n");
-
-    // Sort the events in terms of begin & end time
-    //Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
-
-    // Create a list of sorted events
-    List<IEvent> t = model.getShapeMap().values().stream().flatMap(Collection::stream)
-            //.sorted(sortByEventBegin)
-            .collect(Collectors.toList());
-
-    // Add the changes/events strings to out
-    for (IEvent a : t) {
-      sb.append(a.toString());
-      sb.append("\n");
-    }
+    buildTheTextString();
     out.print(sb.toString());
     out.close();
+
+//    sb = new StringBuilder();
+//    // sort by appear time
+//    //Comparator<IShape> sortByAppear = Comparator.comparingInt(IShape::getAppear);
+//    List<IShape> s = model.getShapeMap().keySet().stream()//.sorted(sortByAppear)
+//            .collect(Collectors.toList());
+//
+//    // for each shape, add its create string to out
+//    for (IShape l : s) {
+//      sb.append(l.createString());
+//      sb.append("\n");
+//    }
+//    sb.append("\n");
+//
+//    // for each shape, add its appear/disappear string to out
+//    for (IShape l : s) {
+//      sb.append(l.appearString());
+//      sb.append("\n");
+//    }
+//    sb.append("\n");
+//
+//    // Sort the events in terms of begin & end time
+//    //Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
+//
+//    // Create a list of sorted events
+//    List<IEvent> t = model.getShapeMap().values().stream().flatMap(Collection::stream)
+//            //.sorted(sortByEventBegin)
+//            .collect(Collectors.toList());
+//
+//    // Add the changes/events strings to out
+//    for (IEvent a : t) {
+//      sb.append(a.toString());
+//      sb.append("\n");
+//    }
   }
 
   /**
