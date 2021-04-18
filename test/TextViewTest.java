@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import cs5004.animator.AnimatorHelper;
 import cs5004.animator.model.AnimationModelImpl;

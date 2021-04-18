@@ -19,7 +19,7 @@ public class ShapeTest {
 
   @Before
   public void setUp() {
-    //________________________________________ Ellipse Objects _______________________________________.
+    //_____________________________________ Ellipse Objects _______________________________________.
 
     this.ellipse = new Ellipse("ellipse1",
             120, 60,
@@ -37,7 +37,7 @@ public class ShapeTest {
   @Test
   public void testValidConstructor() {
 
-    //________________________________________ Ellipse Objects _______________________________________.
+    //_____________________________________ Ellipse Objects _______________________________________.
 
     this.ellipse = new Ellipse("ellipse1",
             120, 60,
@@ -47,7 +47,8 @@ public class ShapeTest {
     assertEquals("Name: ellipse1\n"
                     + "Type: ellipse\n"
                     + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0,0,1)\n"
-            // -1 shows that the appear and disappear times have not been updated for the builder
+                    // -1 shows that the appear and disappear times have
+                    // not been updated for the builder
                     + "Appears at t=-1\n"
             + "Disappears at t=-1\n",
              ellipse.toString());

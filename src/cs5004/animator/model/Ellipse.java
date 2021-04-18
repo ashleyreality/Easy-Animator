@@ -36,7 +36,19 @@ public class Ellipse extends AbstractShape {
     this.height = height;
   }
 
-  // for copy
+
+  /**
+   * Makes a copy of this ellipse.
+   *
+   * @param name   name of the ellipse
+   * @param width  width of the ellipse (x)
+   * @param height height of the ellipse (y)
+   * @param color the color of the ellipse
+   * @param location the location of the ellipse
+   * @param appear the time of appear
+   * @param disappear the time of disappear
+   * @param type the type of the shape
+   */
   public Ellipse(String name, double width, double height,
                  Color color, Point2D location, int appear, int disappear, ShapeType type) {
     super(name, width, height, color, location, appear, disappear, type);

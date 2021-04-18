@@ -1,5 +1,10 @@
 package cs5004.animator.util;
 
+/**
+ * This interface describes the methods necessary to implement a Builder object.
+ *
+ * @param <Doc> the type of class you'll build with
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.

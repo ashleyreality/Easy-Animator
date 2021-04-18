@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.stream.Collectors;
-
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.IAnimationModel;
@@ -251,7 +249,8 @@ public class AnimationModelTest {
                     + "\n"
                     + "C moves from (500.0,100.0) to (300.0,300.0) from time t=20 to t=45\n"
                     + "C changes height from 60.0 to 10.67 and changes width from 120.0 to 85.0"
-                    + " from time t=28 to t=88\nC changes color from (0,0,1) to (0,1,0) from time t=36 "
+                    + " from time t=28 to t=88\nC changes color from (0,0,1) to (0,1,0) from " +
+                    "time t=36 "
                     + "to t=95\n",
             testAnimation.toString());
   }
@@ -429,7 +428,8 @@ public class AnimationModelTest {
             + "Disappears at t=100\n"
             + ", Name: R\n"
             + "Type: rectangle\n"
-            + "Min corner: (300.0,300.0), Width: 31.578947368421055, Height: 100.0, Color: (1,0,0)\n"
+            + "Min corner: (300.0,300.0), Width: 31.578947368421055, " +
+            "Height: 100.0, Color: (1,0,0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=100\n"
             + "]", testAnimation.getShapesAtTick(65).toString());
@@ -442,7 +442,8 @@ public class AnimationModelTest {
             + "Disappears at t=100\n"
             + ", Name: R\n"
             + "Type: rectangle\n"
-            + "Min corner: (300.0,300.0), Width: 43.421052631578945, Height: 100.0, Color: (1,0,0)\n"
+            + "Min corner: (300.0,300.0), Width: 43.421052631578945, Height: 100.0, " +
+            "Color: (1,0,0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=100\n"
             + "]", testAnimation.getShapesAtTick(56).toString());

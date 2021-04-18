@@ -69,6 +69,12 @@ public class ChangeColor extends AbstractEvent {
     return this.to.toString();
   }
 
+  /**
+   * Apply this event to a shape.
+   *
+   * @param shape the shape to apply this event to
+   * @param tick the time when the event needs to be applied
+   */
   public void applyEvent(IShape shape, int tick) {
     shape.setColor((int)tweening(tick,this.from.getRed(),this.to.getRed()),
             (int)tweening(tick,this.from.getGreen(),this.to.getGreen()),
