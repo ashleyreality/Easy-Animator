@@ -1,9 +1,20 @@
 # Easy-Animator
 
-The EasyAnimator model accepts IShape objects and IEvent objects. You can add these objects to the model to create text output describing a simple animation.
+The EasyAnimator model accepts IShape objects and IEvent objects. You can add these objects to the 
+model to create text output describing a simple animation.
+
+### EasyAnimator
+The EastAnimator class is where the animations are run. It takes in arguments from a formatted test
+file to create animations with the AnimatorHelper class.
+
+### AnimatorHelper
+The AnimatorHelper class constructs and animation. It takes in a readable object and decides the 
+output for the view. It calls other objects parse the readable and to build the model for a view.
 
 ### IAnimationModel
-The IAnimationModel interface describes methods you must use if you implement IAnimationModel. IAnimationModel objects are designed to represent an animation. We created this interface to expose only the public methods in the animation model for ease of use by the client.
+The IAnimationModel interface describes methods you must use if you implement IAnimationModel. 
+IAnimationModel objects are designed to represent an animation. We created this interface to expose 
+only the public methods in the animation model for ease of use by the client.
 
 #### AnimationModelImpl
 AnimationModelImpl implements the AnimationModel interface. It generates an animation model. 
@@ -20,68 +31,101 @@ need to be exposed to the client.
 * `addEvent(IShape shape, IEvent event, int appear, int disappear)` - add an IEvent to your IShape
 * ‘getShapeMap()’ - gets the Linked Hashmap. This was added for the View’s use of the animation model.
 * ‘getShape’ - gets the keys of the Linked Hashmap, being the IShape objects.
-* ‘addBounds’ - sets the bounds of an animation model’s view. This was added for the View’s use in the Builder class, which builds the animation model from an input file.
+* ‘addBounds’ - sets the bounds of an animation model’s view. This was added for the View’s use in 
+  the Builder class, which builds the animation model from an input file.
 * `getEventList(IShape shape)` - returns a list of all events associated with a shape
-* `getShapesAtTick(int tick)` - get all shapes and their states at a given tick. This was implemented for the View’s use in the AnimationPanel class to access the shape types at a given tick, where the frame rate (ticks/second)is user-specified for speed of the animation.
+* `getShapesAtTick(int tick)` - get all shapes and their states at a given tick. This was 
+  implemented for the View’s use in the AnimationPanel class to access the shape types at a given 
+  tick, where the frame rate (ticks/second)is user-specified for speed of the animation.
 
 ### AnimationBuilder
-The AnimationBuilder interface describes the methods that are used to build the frame of the animation model. It was provided to be added and exists for the View’s use.
+The AnimationBuilder interface describes the methods that are used to build the frame of the 
+animation model. It was provided to be added and exists for the View’s use.
 ###### Useful methods
-* `setBounds(int x, int y, int width, int height)’` - specifies the bounding box to be used for the animation.
+* `setBounds(int x, int y, int width, int height)’` - specifies the bounding box to be used for the 
+  animation.
 * ‘declareShape(String name, String type)’ - adds a new shape to the growing Builder.
-* ‘addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2)’ - adds a transformation to any of the Shape’s attributes and events.
+* ‘addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, 
+  int x2, int y2, int w2, int h2, int r2, int g2, int b2)’ - adds a transformation to any of the 
+  Shape’s attributes and events.
 
 ### Builder
-The Builder class implements the methods from the AnimationBuilder interface. The Builder constructs a Builder instance using the passed in model of type IAnimationModel. It builds the animation model and sets the boundaries of the animation model. We added it for the View’s use.
+The Builder class implements the methods from the AnimationBuilder interface. The Builder constructs
+a Builder instance using the passed in model of type IAnimationModel. It builds the animation model 
+and sets the boundaries of the animation model. We added it for the View’s use.
 ###### Useful methods
 * `build()’` - returns the animation model.
 
 ### AnimationReader
-The AnimationReader class is a convenience class that read animation data and constructs an animation from it. It was provided to be added for the View’s use.
+The AnimationReader class is a convenience class that read animation data and constructs an 
+animation from it. It was provided to be added for the View’s use.
 
 ### ViewFactory
-The ViewFactory class takes data from the user and sends it to the correct view type. It was added for the View’s use and considers the viewtype being requested, the model containing the animation data, the output file’s name, and the speed at which the animation should animate.
+The ViewFactory class takes data from the user and sends it to the correct view type. It was added 
+for the View’s use and considers the viewtype being requested, the model containing the animation 
+data, the output file’s name, and the speed at which the animation should animate.
 ###### Useful methods
-* `create()’` - reads the command line for the view type being requested, whether that be a Text type, a SVG type, or a Visual type, and then constructs an instance of that view using the model, the output file’s name, and the desired speed of the animation.
+* `create()’` - reads the command line for the view type being requested, whether that be a Text 
+  type, a SVG type, or a Visual type, and then constructs an instance of that view using the model, 
+  the output file’s name, and the desired speed of the animation.
 
 ### IView
-The IView describes the methods common to all view types. This was added to the project for the View’s use.
+The IView describes the methods common to all view types. This was added to the project for the 
+View’s use.
 ###### Useful methods
 * `createView()’` - creates a view of the specified type.
 * ‘getViewState()’ - gets the String representation of the current state of the view.
 
 ### TextView
-The TextView outputs a text description of the animation to an appendable. This was added for the View’s use.
+The TextView outputs a text description of the animation to an appendable. This was added for the 
+View’s use.
 ###### Useful methods
-* `buildTheTextString()’` - adds the shapes and their appearance times and their associated events as Strings to the constructor’s declared StringBuilder. This method helps create the Text View file output.
+* `buildTheTextString()’` - adds the shapes and their appearance times and their associated events 
+  as Strings to the constructor’s declared StringBuilder. This method helps create the Text View 
+  file output.
 * ‘createView()’ - creates the text view using the built StringBuilder.
 * ‘getViewState()’ - gets the state of the view using the built StringBuilder.
 
 ### SVGView
-The SVGView outputs an SVG file description of the animation to an appendable. This was added for the View’s use. The SVG is written in XML and is used to display the animation.
+The SVGView outputs an SVG file description of the animation to an appendable. This was added for 
+the View’s use. The SVG is written in XML and is used to display the animation.
 ###### Useful methods
-* `buildTheSVGString()’` - considers XML formatting to add the shapes and their associated events as Strings to the constructor’s declared StringBuilder. This method helps create the SVG View file output.
+* `buildTheSVGString()’` - considers XML formatting to add the shapes and their associated events as 
+  Strings to the constructor’s declared StringBuilder. This method helps create the SVG View file 
+  output.
 * ‘createView()’ - creates the SVG view using the built StringBuilder.
 * ‘getViewState()’ - gets the state of the view using the built StringBuilder.
 * ‘addEvents()’ - adds the shape’s events to the StringBuilder.
 * ‘addRectangle(IShape shp)’ - returns an SVG format string describing an IShape rectangle.
 * ‘addEllipse(IShape shp)’ - returns an SVG format string describing an IShape ellipse.
 * ‘addMove(IShape shp, MoveShape e)’ - returns an SVG formatted string describing a move event.
-* ‘addScale(IShape shp, ScaleShape e)’ - returns an SVG formatted string describing a scale shape event.
-* ‘addColorChange(IShape shp, IEvent e)’ - returns an SVG formatted  string describing a color change event.
+* ‘addScale(IShape shp, ScaleShape e)’ - returns an SVG formatted string describing a scale shape 
+  event.
+* ‘addColorChange(IShape shp, IEvent e)’ - returns an SVG formatted  string describing a color 
+  change event.
 
 ### VisualView
-The VisualView outputs a Visual display of the animation using the JFrame JFC/Swing component architecture. It reads the text files and transforms them into an animation. This was added for the View’s use.
+The VisualView outputs a Visual display of the animation using the JFrame JFC/Swing component 
+architecture. It reads the text files and transforms them into an animation. This was added for the 
+View’s use.
 ###### Useful methods
-* `createView()’` - creates the visual view using methods extended from the JFrame library and considers the speed being requested at the command line to calculate the speed that the animation will play.
+* `createView()’` - creates the visual view using methods extended from the JFrame library and c
+  onsiders the speed being requested at the command line to calculate the speed that the animation 
+  will play.
 
 ### AnimationPanel
-The AnimationPanel extends JPanel and is a container that can store an organized group of components. This was added for the View’s use and assists the VisualView class.
+The AnimationPanel extends JPanel and is a container that can store an organized group of 
+components. This was added for the View’s use and assists the VisualView class.
 ###### Useful methods
-* `paintComponent(Graphics g)’`- this is an override of a method from the JPanel library so that each rectangle and ellipse shape can be drawn at the appropriate tick.
+* `paintComponent(Graphics g)’`- this is an override of a method from the JPanel library so that 
+  each rectangle and ellipse shape can be drawn at the appropriate tick.
 
 ### IShape
-The IShape interface describes methods you must use if you implement IShape. IShape objects are designed to represent shapes.  We created this interface so that any helper methods stay private and don't need to be exposed to the client, and there's no need for the client to look at the implementation itself. The interface could be extended with additional shape types later. It allows a shape to be instantiated without specifying the type of shape.
+The IShape interface describes methods you must use if you implement IShape. IShape objects are 
+designed to represent shapes.  We created this interface so that any helper methods stay private and
+don't need to be exposed to the client, and there's no need for the client to look at the 
+implementation itself. The interface could be extended with additional shape types later. 
+It allows a shape to be instantiated without specifying the type of shape.
 
 #### AbstractShape 
 The AbstractShape class implements IShape. We removed the comparator in our AbstractShape because we
