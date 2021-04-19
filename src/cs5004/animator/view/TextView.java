@@ -18,9 +18,9 @@ import cs5004.animator.model.IShape;
  * an appendable.
  */
 public class TextView implements IView {
-  private IAnimationModel model;
-  private PrintStream out;
-  private StringBuilder sb;
+  private final IAnimationModel model;
+  private final PrintStream out;
+  private final StringBuilder sb;
 
   /**
    * Constructs a text view, given a model and a string representing the file to be written to.

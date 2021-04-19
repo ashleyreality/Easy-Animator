@@ -18,29 +18,29 @@ import cs5004.animator.view.IView;
 
 
 /**
- * The AnimatorHelper class helps construct an animation as a controller. The controller/main uses a
+ * The AnimatorHelper class helps construct an animation as a go. The go/main uses a
  * Readable object to read one "token" at a time (where each token is a String separated by a space)
  * from the input (like a text file input) and it decides how/what will be output for the view's
  * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
  * outputs (like a text file output).
  */
 public class AnimatorHelper {
-  //private String[] args;
+  private String[] args;
 
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
-   * Constructs an AnimatorHelper instance, which contains the controller functionalities.
+   * Constructs an AnimatorHelper instance, which contains the go functionalities.
+   * @param args the arguments from the command line being parsed, an array of Strings
    */
   public AnimatorHelper(String[] args) {
-    //this.args = args;
-    controller(args);
+    this.args = args;
   }
 
   /**
    * _______________________________ PRIMARY CONTROLLER METHOD ____________________________________.
-   * @param args the arguments from the command line being parsed, an array of Strings
+
    */
-  public static void controller(String[] args) {
+  public void go() {
     // Step 1) Create the model
     IAnimationModel model = newAnimation();
 
@@ -62,7 +62,7 @@ public class AnimatorHelper {
     // Step 7) Fill the model
     fillTheModel(file, build);
 
-    // Step 8) Find the view tyupe
+    // Step 8) Find the view type
     String outputView = findViewType(parsedString);
 
     // Step 9) Check the view type for exceptions

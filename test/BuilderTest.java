@@ -21,12 +21,12 @@ public class BuilderTest {
   AnimationBuilder<IAnimationModel> build;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     this.model = new AnimationModelImpl();
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void canvasNegativeDimensions() throws IOException {
+  public void canvasNegativeDimensions() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\canvasNeg.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -36,7 +36,7 @@ public class BuilderTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void negativeHeight() throws IOException {
+  public void negativeHeight() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\negativeHeight.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -46,7 +46,7 @@ public class BuilderTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void invalidColor() throws IOException {
+  public void invalidColor() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\invalidColor.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -56,7 +56,7 @@ public class BuilderTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void motionWithoutShape() throws IOException {
+  public void motionWithoutShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\motionWithoutShape.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -65,7 +65,7 @@ public class BuilderTest {
     model = AnimationReader.parseFile(file, build);
   }
   @Test(expected = IllegalArgumentException.class)
-  public void sameNameShape() throws IOException {
+  public void sameNameShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\sameNameShape.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -75,7 +75,7 @@ public class BuilderTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void invalidShape() throws IOException {
+  public void invalidShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\hexagon.txt";
     JFrame frame = AnimatorHelper.jFrameStart();

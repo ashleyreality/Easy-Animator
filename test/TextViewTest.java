@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.annotation.processing.FilerException;
 import javax.swing.JFrame;
 
 import cs5004.animator.AnimatorHelper;
@@ -28,7 +27,7 @@ public class TextViewTest {
   AnimationBuilder<IAnimationModel> build;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     this.model = new AnimationModelImpl();
   }
 
@@ -62,8 +61,8 @@ public class TextViewTest {
 
   @Test
   public void testState2() throws IOException {
-    String inputName = "/Users/abrown/Northeastern/CS5004/Homeworks/HW6/Easy-Animator/src/cs5004/"
-            + "animator/toh-5.txt";
+    String inputName = "/Users/abrown/Northeastern/CS5004/Homeworks/HW6/Easy-Animator/"
+            + "Infiles/toh-5.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
@@ -194,7 +193,7 @@ public class TextViewTest {
 
 
   @Test
-  public void testNoInFile() throws FileNotFoundException {
+  public void testNoInFile() {
     String inputName = "";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);

@@ -5,11 +5,11 @@ package cs5004.animator.model;
  * The ScaleShape class extends ChangeShape. Use it to scale a shape from one size to another size.
  */
 public class ScaleShape extends AbstractEvent {
-  private double widthBefore;
-  private double widthAfter;
-  private double heightBefore;
-  private double heightAfter;
-  private IShape shape;
+  private final double widthBefore;
+  private final double widthAfter;
+  private final double heightBefore;
+  private final double heightAfter;
+  private final IShape shape;
 
   /**
    * _______________________________ CONSTRUCTOR: ScaleShape() ____________________________________.

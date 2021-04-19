@@ -71,7 +71,6 @@ public abstract class AbstractShape implements IShape {
    * @param location the shape's location
    * @param appear the time the shape appears
    * @param disappear the time the shape disappears
-   * @param type the type of the shape
    */
   public AbstractShape(String name, double width, double height,
                        Color color, Point2D location, int appear, int disappear) {

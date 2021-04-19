@@ -25,7 +25,7 @@ public class SVGViewTest {
   AnimationBuilder<IAnimationModel> build;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     this.model = new AnimationModelImpl();
   }
 

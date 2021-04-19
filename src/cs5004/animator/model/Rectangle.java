@@ -6,7 +6,7 @@ package cs5004.animator.model;
  * the Rectangle class. It creates and stores information about a Rectangle shape.
  */
 public class Rectangle extends AbstractShape {
-  private ShapeType type = ShapeType.RECTANGLE;
+  private final ShapeType type = ShapeType.RECTANGLE;
 
   /**
    * _____________________________ FIRST CONSTRUCTOR: Rectangle() _________________________________.

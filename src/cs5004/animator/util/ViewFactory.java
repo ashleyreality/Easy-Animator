@@ -14,10 +14,10 @@ import cs5004.animator.view.VisualView;
  * ViewFactory takes data from the user and sends it to the correct view.
  */
 public class ViewFactory {
-  private String outputView;
-  private IAnimationModel model;
-  private String outputName;
-  private int speed;
+  private final String outputView;
+  private final IAnimationModel model;
+  private final String outputName;
+  private final int speed;
 
   /**
    * _____________________________ CONSTRUCTOR: ViewFactory() _____________________________________.

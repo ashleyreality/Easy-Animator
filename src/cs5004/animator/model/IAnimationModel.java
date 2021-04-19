@@ -2,7 +2,6 @@ package cs5004.animator.model;
 
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
 
 /**
  * _______________________________ INTERFACE: AnimationModel {} ___________________________________.

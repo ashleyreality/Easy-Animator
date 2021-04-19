@@ -97,11 +97,6 @@ public abstract class AbstractEvent implements IEvent {
 
   // linear interp
   protected double tweening(int tick, double fromValue, double toValue) {
-    //    System.out.println("eventEnd: " + this.eventEnd);
-    //    System.out.println("eventBegin: " + this.eventBegin);
-    //    System.out.println("tick: " + tick);
-    //    System.out.println("fromValue: " + fromValue);
-    //    System.out.println("toValue: " + toValue);
 
     double valueDelta = toValue - fromValue;
     double timeDelta  = this.eventEnd - this.eventBegin;
@@ -110,8 +105,6 @@ public abstract class AbstractEvent implements IEvent {
     // Number between 0 and 1: 1 means finished, 0 means begin, 0.5 means halfway, etc.
     // Clamp between 0 and 1, in case tick is outside bounds of the event
     interp = Math.max(Math.min(interp, 1), 0);
-    //    System.out.println("result: " + result);
-    //    System.out.println("-------------------");
     return (interp * valueDelta) + fromValue;
   }
 }

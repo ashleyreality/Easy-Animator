@@ -16,7 +16,7 @@ import cs5004.animator.model.ShapeType;
  * model from a file.
  */
 public class Builder implements AnimationBuilder<IAnimationModel> {
-  IAnimationModel model;
+  final IAnimationModel model;
 
   /**
    * _________________________________ CONSTRUCTOR: Builder() _____________________________________.
@@ -47,15 +47,13 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    * @param y      The topmost y value
    * @param width  The width of the bounding box
    * @param height The height of the bounding box
-   * @return
    */
   @Override
-  public AnimationBuilder<IAnimationModel> setBounds(int x, int y, int width, int height) {
+  public void setBounds(int x, int y, int width, int height) {
     if (width <=0 || height <= 0) {
       throw new IllegalArgumentException("Width and height must be greater than 0.");
     }
     model.addBounds(x, y, width, height);
-    return this;
   }
 
   /**
@@ -66,10 +64,9 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    *             exist.
    * @param type The type of shape (e.g. "ellipse", "rectangle") to be added. The set of supported
    *             shapes is unspecified, but should include "ellipse" and "rectangle" at a minimum.
-   * @return the builder
    */
   @Override
-  public AnimationBuilder<IAnimationModel> declareShape(String name, String type) {
+  public void declareShape(String name, String type) {
 
     // add shapes to model
     if (type.equalsIgnoreCase(ShapeType.ELLIPSE.toString())) {
@@ -81,7 +78,6 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
     } else {
       throw new IllegalArgumentException("Invalid shape type!");
     }
-    return this;
   }
 
   /**
@@ -104,18 +100,17 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    * @param r2   The final red color-value of the shape
    * @param g2   The final green color-value of the shape
    * @param b2   The final blue color-value of the shape
-   * @return this instance of the animation model
    */
   @Override
-  public AnimationBuilder<IAnimationModel> addMotion(String name,
-                                                     int t1,
-                                                     int x1, int y1,
-                                                     int w1, int h1,
-                                                     int r1, int g1, int b1,
-                                                     int t2,
-                                                     int x2, int y2,
-                                                     int w2, int h2,
-                                                     int r2, int g2, int b2) {
+  public void addMotion(String name,
+                        int t1,
+                        int x1, int y1,
+                        int w1, int h1,
+                        int r1, int g1, int b1,
+                        int t2,
+                        int x2, int y2,
+                        int w2, int h2,
+                        int r2, int g2, int b2) {
 
     // get the desired shape from the model using the shape's name
     IShape shape = model.getShape(name);
@@ -188,6 +183,5 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
       shape.setDisappear(t2);
     }
 
-    return this;
   }
 }

@@ -14,8 +14,8 @@ import cs5004.animator.model.IAnimationModel;
  *
  */
 public class VisualView extends JFrame implements IView {
-  private IAnimationModel model;
-  private int speed;
+  private final IAnimationModel model;
+  private final int speed;
 
   /**
    * The VisualView constructor takes in a model and the specified speed.

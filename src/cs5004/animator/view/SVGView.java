@@ -19,10 +19,10 @@ import cs5004.animator.model.ShapeType;
  * the animation.
  */
 public class SVGView implements IView {
-  private PrintStream out;
-  private IAnimationModel model;
-  private int speed;
-  private StringBuilder sb;
+  private final PrintStream out;
+  private final IAnimationModel model;
+  private final int speed;
+  private final StringBuilder sb;
 
   /**
    * Constructs an SVG view.
@@ -48,7 +48,6 @@ public class SVGView implements IView {
    * _______________________________ METHOD: buildTheSVGString() __________________________________.
    * Build the SVGView String.
    *
-   * @return
    */
   private void buildTheSVGString() {
     // Add the initial XML String to the StringBuilder
