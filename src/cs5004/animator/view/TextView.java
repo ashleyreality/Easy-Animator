@@ -45,7 +45,7 @@ public class TextView implements IView {
    * Build the TextView String.
    * @return
    */
-  public void buildTheTextString() {
+  private void buildTheTextString() {
     List<IShape> shapeList = new ArrayList<>(model.getShapeMap().keySet());
 
     // For each shape, add its IShape createString() to the shapeList ArrayList
@@ -123,6 +123,7 @@ public class TextView implements IView {
    * @return a string representation of the current state of the view
    */
   public String getViewState() {
+    buildTheTextString();
     return sb.toString();
   }
 }

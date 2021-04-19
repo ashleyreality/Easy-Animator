@@ -49,7 +49,7 @@ public class SVGView implements IView {
    * Build the SVGView String.
    * @return
    */
-  public void buildTheSVGString() {
+  private void buildTheSVGString() {
     // Add the initial XML String to the StringBuilder
     String str = "<svg width=\"" + model.getBoundsWidth() + "\" height=\"" + model.getBoundsHeight()
             + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
@@ -288,6 +288,7 @@ public class SVGView implements IView {
    */
   @Override
   public String getViewState() {
+    buildTheSVGString();
     return sb.toString();
   }
 }

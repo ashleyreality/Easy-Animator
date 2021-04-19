@@ -45,20 +45,20 @@ public class TextViewTest {
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
-    textView.createView();
     assertEquals("Create (255,0,0) rectangle R with corner at (200.0,200.0), width 50.0 and "
-            + "height 100.0\n"
-            + "Create (0,0,255) ellipse C with center at (440.0,70.0), radius 60.0 and 30.0\n"
-            + "\n"
-            + "R appears at time t=1 and disappears at time t=100\n"
-            + "C appears at time t=6 and disappears at time t=100\n"
-            + "\n"
-            + "R moves from (200.0,200.0) to (300.0,300.0) from time t=10 to t=50\n"
-            + "C moves from (440.0,70.0) to (440.0,250.0) from time t=20 to t=50\n"
-            + "C moves from (440.0,250.0) to (440.0,370.0) from time t=50 to t=70\n"
-            + "R changes width from 50.0 to 25.0 from time t=51 to t=70\n"
-            + "C changes color from (0,170,85) to (0,255,0) from time t=70 to t=80\n"
-            + "R moves from (300.0,300.0) to (200.0,200.0) from time t=70 to t=100\n",
+                    + "height 100.0\n"
+                    + "Create (0,0,255) ellipse C with center at (440.0,70.0), radius 60.0 and 30.0\n"
+                    + "\n"
+                    + "R appears at time t=1 and disappears at time t=100\n"
+                    + "C appears at time t=6 and disappears at time t=100\n"
+                    + "\n"
+                    + "R moves from (200.0,200.0) to (300.0,300.0) from time t=10 to t=50\n"
+                    + "R changes width from 50.0 to 25.0 from time t=51 to t=70\n"
+                    + "R moves from (300.0,300.0) to (200.0,200.0) from time t=70 to t=100\n"
+                    + "C moves from (440.0,70.0) to (440.0,250.0) from time t=20 to t=50\n"
+                    + "C moves from (440.0,250.0) to (440.0,370.0) from time t=50 to t=70\n"
+                    + "C changes color from (0,0,255) to (0,170,85) from time t=50 to t=70\n"
+                    + "C changes color from (0,170,85) to (0,255,0) from time t=70 to t=80\n",
             textView.getViewState());
   }
 
@@ -215,8 +215,8 @@ public class TextViewTest {
     assertEquals(System.out, newView.getOutputName());
   }
 
-  // it returns an empty string for now, but we should probably throw some kind of error?
-  @Test (expected = IllegalArgumentException.class)
+  // fixme it returns an empty string for now, but we should probably throw some kind of error?
+  @Test(expected = IllegalArgumentException.class)
   public void empty() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\empty.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -224,7 +224,7 @@ public class TextViewTest {
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
+    newView.create();
   }
 
   @Test
@@ -236,12 +236,12 @@ public class TextViewTest {
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
-    assertEquals("",
+    assertEquals("\n\n",
             textView.getViewState());
   }
 
-  // should also be throwing an error if we put in a negative parameter for canvas dimensions
-  @Test (expected = IllegalArgumentException.class)
+  // fixme should also be throwing an error if we put in a negative parameter for canvas dimensions
+  @Test(expected = IllegalArgumentException.class)
   public void canvasNegativeDimensions() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\canvasNeg.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -252,7 +252,7 @@ public class TextViewTest {
     IView textView = newView.create();
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void negativeHeight() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\negativeHeight.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -260,20 +260,22 @@ public class TextViewTest {
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
+    newView.create();
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void invalidColor() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\invalidColor.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
+    //ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
+    //newView.create();
   }
 
+  //fixme this doesn't work because everything in the shapes are null, so the toString can't be called
+  // is that fine?
   @Test
   public void shapeWithoutMotion() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
@@ -287,7 +289,7 @@ public class TextViewTest {
             textView.getViewState());
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void motionWithoutShape() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\motionWithoutShape.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -298,7 +300,7 @@ public class TextViewTest {
     IView textView = newView.create();
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void sameNameShape() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\sameNameShape.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
