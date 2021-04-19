@@ -4,12 +4,12 @@ The EasyAnimator model accepts IShape objects and IEvent objects. You can add th
 model to create text output describing a simple animation.
 
 ### EasyAnimator
-The EastAnimator class is where the animations are run. It takes in arguments from a formatted test
-file to create animations with the AnimatorHelper class.
+The EasyAnimator class holds main, where animations are run. It takes in arguments from a formatted test
+file to create animations using the AnimatorHelper and Builder classes.
 
 ### AnimatorHelper
-The AnimatorHelper class constructs and animation. It takes in a readable object and decides the 
-output for the view. It calls other objects parse the readable and to build the model for a view.
+The AnimatorHelper class constructs an animation. It takes in a readable object and decides the 
+view output. It calls other objects, parses the readable, and builds the model for a view.
 
 ### IAnimationModel
 The IAnimationModel interface describes methods you must use if you implement IAnimationModel. 
@@ -29,24 +29,24 @@ need to be exposed to the client.
 ###### Useful methods
 * `addShape(IShape shape, int appear, int disappear)` - add an IShape to your animation
 * `addEvent(IShape shape, IEvent event, int appear, int disappear)` - add an IEvent to your IShape
-* ‘getShapeMap()’ - gets the Linked Hashmap. This was added for the View’s use of the animation model.
-* ‘getShape’ - gets the keys of the Linked Hashmap, being the IShape objects.
-* ‘addBounds’ - sets the bounds of an animation model’s view. This was added for the View’s use in 
-  the Builder class, which builds the animation model from an input file.
+* `getShapeMap()` - gets the Linked Hashmap. This method is used by the animation model.
+* `getShape()` - gets the keys of the Linked Hashmap, the IShape objects
+* `addBounds()` - sets the bounds of an animation model’s view. This method is used by 
+  the Builder class, which builds the animation model from an input file
 * `getEventList(IShape shape)` - returns a list of all events associated with a shape
 * `getShapesAtTick(int tick)` - get all shapes and their states at a given tick. This was 
   implemented for the View’s use in the AnimationPanel class to access the shape types at a given 
-  tick, where the frame rate (ticks/second)is user-specified for speed of the animation.
+  tick, where the frame rate (ticks/second) is user-specified for speed of the animation.
 
 ### AnimationBuilder
 The AnimationBuilder interface describes the methods that are used to build the frame of the 
 animation model. It was provided to be added and exists for the View’s use.
 ###### Useful methods
-* `setBounds(int x, int y, int width, int height)’` - specifies the bounding box to be used for the 
+* `setBounds(int x, int y, int width, int height)` - specifies the bounding box to be used for the 
   animation.
-* ‘declareShape(String name, String type)’ - adds a new shape to the growing Builder.
-* ‘addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, 
-  int x2, int y2, int w2, int h2, int r2, int g2, int b2)’ - adds a transformation to any of the 
+* `declareShape(String name, String type)` - adds a new shape to the growing Builder.
+* `addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, 
+  int x2, int y2, int w2, int h2, int r2, int g2, int b2)` - adds a transformation to any of the 
   Shape’s attributes and events.
 
 ### Builder
