@@ -1,6 +1,7 @@
 package cs5004.animator.view;
 
 import javax.swing.JPanel;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
@@ -21,7 +22,7 @@ public class AnimationPanel extends JPanel {
   /**
    * Constructs an animation panel.
    *
-   * @param model the animation model being viewed
+   * @param model    the animation model being viewed
    * @param someTick the tick at which shapes are being drawn
    */
   public AnimationPanel(IAnimationModel model, int someTick) {
@@ -30,6 +31,9 @@ public class AnimationPanel extends JPanel {
     this.someTick = someTick;
   }
 
+  /**
+   * @param g the graphics2d object drawing the shape
+   */
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -47,7 +51,7 @@ public class AnimationPanel extends JPanel {
         fillRectangleWithColor(eachShapeAtTick, g2d);
       }
       // Check if it's an oval/ellipse
-      if (eachShapeAtTick.getType()  == ShapeType.ELLIPSE) {
+      if (eachShapeAtTick.getType() == ShapeType.ELLIPSE) {
         // Draw the oval(s)
         //drawEllipse(eachShapeAtTick, g2d);
         setColor(eachShapeAtTick, g2d);
@@ -60,7 +64,7 @@ public class AnimationPanel extends JPanel {
    * Sets a shape's color.
    *
    * @param eachShapeAtTick the shape to be changed
-   * @param g2d the graphics2d object drawing the shape
+   * @param g2d             the graphics2d object drawing the shape
    */
   private void setColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int currentR = eachShapeAtTick.getColor().getRed();
@@ -73,7 +77,7 @@ public class AnimationPanel extends JPanel {
    * Fills a rectangle with color.
    *
    * @param eachShapeAtTick the shape to be changed
-   * @param g2d the graphics2d object drawing the shape
+   * @param g2d             the graphics2d object drawing the shape
    */
   private void fillRectangleWithColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
@@ -87,7 +91,7 @@ public class AnimationPanel extends JPanel {
    * Fills an oval with color.
    *
    * @param eachShapeAtTick the shape to be changed
-   * @param g2d the graphics2d object drawing the shape
+   * @param g2d             the graphics2d object drawing the shape
    */
   private void fillOvalWithColor(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
@@ -97,12 +101,11 @@ public class AnimationPanel extends JPanel {
     g2d.fillOval(x, y, w, h);
   }
 
-  //I dont think we need these draw methods
   /**
    * Draws a rectangle.
    *
    * @param eachShapeAtTick the shape to be drawn
-   * @param g2d the graphics2d object drawing the shape
+   * @param g2d             the graphics2d object drawing the shape
    */
   private void drawRectangle(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
@@ -116,7 +119,7 @@ public class AnimationPanel extends JPanel {
    * Draws an ellipse.
    *
    * @param eachShapeAtTick the shape to be drawn
-   * @param g2d the graphics2d object drawing the shape
+   * @param g2d             the graphics2d object drawing the shape
    */
   private void drawEllipse(IShape eachShapeAtTick, Graphics2D g2d) {
     int x = currentXLocation(eachShapeAtTick);
