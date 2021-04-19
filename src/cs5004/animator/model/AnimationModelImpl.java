@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * _______________________ INTERFACE IMPLEMENTATION: AnimationModelImpl ___________________________.
- * The AnimationModelImpl class implements the method declarations of the AnimationModel
- * interface.
+ * The AnimationModelImpl class implements the method declarations of the AnimationModel interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
   private Map<IShape, List<IEvent>> shapeMap;
@@ -144,14 +143,6 @@ public class AnimationModelImpl implements IAnimationModel {
               + " event begins at " + eventBegin + "and ends at " + eventEnd);
     }
 
-    // Iterate through the event list
-    // Check for matches that exist in the list for the type of change being passed into addEvent()
-    // If there is a match...
-    // Check that the other change of the same type is not between this change's event times
-    // If it is...
-    // Throw an exception
-    // If it is not...
-    // Add this change to the event list
 
     // A list of shapes in the shapeMap
     Set<IShape> shapeSet = shapeMap.keySet();
@@ -216,14 +207,14 @@ public class AnimationModelImpl implements IAnimationModel {
   }
 
   /**
-   * _________________________________ METHOD: getShape() ______________________________________.
+   * ____________________________________ METHOD: getShape() ______________________________________.
    *
    * @param name - the name of the shape you want to get
    * @return the IShape associated with that name
    */
 
   public IShape getShape(String name) {
-    IShape n = null;
+    IShape n;
     for (IShape s : shapeMap.keySet()) {
       if (s.getName().equals(name)) {
         n = s;
@@ -237,10 +228,11 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * ________________________________ METHOD: addBounds() ______________________________________.
    *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * @param x      the leftmost value on the x-axis of the Animation's frame to be displayed, an
+   *               int
+   * @param y      the topmost value on the y-axis of the Animation's frame to be displayed, an int
+   * @param width  the width of the bounding box of the view, an int
+   * @param height the height of the bound box of the view, an int
    */
   public void addBounds(int x, int y, int width, int height) {
     this.boundsX = x;
@@ -252,7 +244,7 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * ________________________________ METHOD: getBoundsX() ______________________________________.
    *
-   * @return
+   * @return the leftmost value on the x-axis of the Animation's frame to be displayed, an int
    */
   public int getBoundsX() {
     return boundsX;
@@ -261,7 +253,7 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * ________________________________ METHOD: getBoundsY() ______________________________________.
    *
-   * @return
+   * @return the topmost value on the y-axis of the Animation's frame to be displayed, an int
    */
   public int getBoundsY() {
     return boundsY;
@@ -270,7 +262,7 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * ________________________________ METHOD: getBoundsWidth() ____________________________________.
    *
-   * @return
+   * @return the width of the bounding box of the view, an int
    */
   public int getBoundsWidth() {
     return boundsWidth;
@@ -279,7 +271,7 @@ public class AnimationModelImpl implements IAnimationModel {
   /**
    * ________________________________ METHOD: getBoundsHeight() ___________________________________.
    *
-   * @return
+   * @return the height of the bound box of the view, an int
    */
   public int getBoundsHeight() {
     return boundsHeight;
@@ -348,21 +340,15 @@ public class AnimationModelImpl implements IAnimationModel {
 
 
   /**
-   * _________________________________ METHOD: getShapesAtTick() ____________________________________.
-   * This method getShapesAtTick() is a stub. It does not get implemented in this model. This method
-   * will be implemented in the controller, instead. "The return type will be some form of a
-   * collection of shapes, as hinted by your description that it "gets all the shapes." -
-   * Look ups by ticks in real time. Consider a map instead... a navigable map, the tree
-   * map class in java implements the navigable map
+   * _________________________________ METHOD: getShapesAtTick() __________________________________.
    *
-   * @return
+   * @return the shapes at a given tick, frames/second, a List of IShape objects
    */
   public List<IShape> getShapesAtTick(int tick) {
     if (tick < 0) {
       throw new IllegalArgumentException("No negative ticks.");
     }
 
-    // note from TA: consider doing this in order of transformations possibly, rather than order of shapes
     List<IShape> shapesAtTick = new ArrayList<>();
     for (IShape shape : shapeMap.keySet()) {
       if (shape.getAppear() <= tick && shape.getDisappear() >= tick) {
@@ -381,10 +367,22 @@ public class AnimationModelImpl implements IAnimationModel {
     return shapesAtTick;
   }
 
+
+  /**
+   * ___________________________________ METHOD: getEndTick() _____________________________________.
+   *
+   * @return endTick get the last tick in the animation, an int
+   */
   public int getEndTick() {
     return endTick;
   }
 
+
+  /**
+   * ___________________________________ METHOD: setEndTick() _____________________________________.
+   *
+   * @param endTick set the last tick in the animation, an int
+   */
   public void setEndTick(int endTick) {
     this.endTick = endTick;
   }
