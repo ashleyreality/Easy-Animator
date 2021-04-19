@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,10 +65,12 @@ public class TextView implements IView {
       sb.append("\n");
     }
     sb.append("\n");
+    // Sort the events in terms of begin time
+    Comparator<IEvent> sortByEventBegin = Comparator.comparingInt(IEvent::getEventBegin);
 
-    // Create a list of events
+    // Create a list of sorted events
     List<IEvent> eventList = model.getShapeMap().values().stream().flatMap(Collection::stream)
-            .collect(Collectors.toList());
+            .sorted(sortByEventBegin).collect(Collectors.toList());
 
     // Add the changes/events strings to out
     for (IEvent event : eventList) {
