@@ -24,9 +24,6 @@ public class SVGViewTest {
   Readable file;
   AnimationBuilder<IAnimationModel> build;
 
-  // make sure we're testing to make sure the file is created correctly
-  // test for all exceptions
-
   @Before
   public void setUp() throws Exception {
     this.model = new AnimationModelImpl();
@@ -97,7 +94,8 @@ public class SVGViewTest {
 
   @Test
   public void canvasOnly() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\canvasOnly.txt";
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
+            "\\canvasOnly.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
@@ -111,7 +109,8 @@ public class SVGViewTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void shapeWithoutMotion() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
+            "\\shapeWithoutMotion.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);

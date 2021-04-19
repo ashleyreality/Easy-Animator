@@ -27,10 +27,6 @@ public class TextViewTest {
   Readable file;
   AnimationBuilder<IAnimationModel> build;
 
-  // make sure we're testing to make sure the file is created correctly
-  // test for all exceptions
-  // test for empty animation
-
   @Before
   public void setUp() throws Exception {
     this.model = new AnimationModelImpl();
@@ -38,7 +34,8 @@ public class TextViewTest {
 
   @Test
   public void testState() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\smalldemo.txt";
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
+            "\\smalldemo.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
@@ -47,7 +44,8 @@ public class TextViewTest {
     IView textView = newView.create();
     assertEquals("Create (255,0,0) rectangle R with corner at (200.0,200.0), width 50.0 and "
                     + "height 100.0\n"
-                    + "Create (0,0,255) ellipse C with center at (440.0,70.0), radius 60.0 and 30.0\n"
+                    + "Create (0,0,255) ellipse C with center at (440.0,70.0), " +
+                    "radius 60.0 and 30.0\n"
                     + "\n"
                     + "R appears at time t=1 and disappears at time t=100\n"
                     + "C appears at time t=6 and disappears at time t=100\n"
@@ -251,20 +249,5 @@ public class TextViewTest {
     IView textView = newView.create();
     textView.getViewState();
   }
-
-//ideas to test
-  /*
-  multiple changes in one motion line
-
-
-  empty file
-  just canvas dimensions
-  bad numbers, ex. negative height, width, color out of range
-  shape without motion
-  motion without shape
-  negative dimensions for canvas
-  multiple shapes with same name
-   */
-
 
 }
