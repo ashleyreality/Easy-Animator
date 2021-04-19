@@ -81,4 +81,43 @@ public class SVGViewTest {
                     "</svg>",
             svgView.getViewState());
   }
+
+  @Test
+  public void empty() throws IOException {
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\empty.txt";
+    JFrame frame = AnimatorHelper.jFrameStart();
+    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    this.build = new Builder(model);
+    model = AnimationReader.parseFile(file, build);
+    ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);
+    IView textView = newView.create();
+    assertEquals("<svg width=\"0\" height=\"0\" version=\"1.1\" xmlns=\""
+            + "http://www.w3.org/2000/svg\">\n\n</svg>", textView.getViewState());
+  }
+
+  @Test
+  public void canvasOnly() throws IOException {
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\canvasOnly.txt";
+    JFrame frame = AnimatorHelper.jFrameStart();
+    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    this.build = new Builder(model);
+    model = AnimationReader.parseFile(file, build);
+    ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);
+    IView textView = newView.create();
+    assertEquals("<svg width=\"360\" height=\"360\" version=\"1.1\" xmlns=\""
+                    + "http://www.w3.org/2000/svg\">\n\n</svg>",
+            textView.getViewState());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shapeWithoutMotion() throws IOException {
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
+    JFrame frame = AnimatorHelper.jFrameStart();
+    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    this.build = new Builder(model);
+    model = AnimationReader.parseFile(file, build);
+    ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);
+    IView textView = newView.create();
+    textView.getViewState();
+  }
 }

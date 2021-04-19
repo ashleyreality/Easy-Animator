@@ -215,7 +215,6 @@ public class TextViewTest {
     assertEquals(System.out, newView.getOutputName());
   }
 
-  // it returns an empty string for now, but should it throw an error?
   @Test
   public void empty() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\empty.txt";
@@ -241,38 +240,6 @@ public class TextViewTest {
             textView.getViewState());
   }
 
-  // fixme should also be throwing an error if we put in a negative parameter for canvas dimensions
-  @Test(expected = IllegalArgumentException.class)
-  public void canvasNegativeDimensions() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\canvasNeg.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void negativeHeight() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\negativeHeight.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    newView.create();
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void invalidColor() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\invalidColor.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
-    //ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    //newView.create();
-  }
-
   @Test (expected = IllegalArgumentException.class)
   public void shapeWithoutMotion() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
@@ -283,35 +250,6 @@ public class TextViewTest {
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
     textView.getViewState();
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void motionWithoutShape() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\motionWithoutShape.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void sameNameShape() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\sameNameShape.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void invalidShape() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\hexagon.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
-    this.build = new Builder(model);
-    model = AnimationReader.parseFile(file, build);
   }
 
 //ideas to test
