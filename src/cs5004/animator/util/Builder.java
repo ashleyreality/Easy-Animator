@@ -51,7 +51,9 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    */
   @Override
   public AnimationBuilder<IAnimationModel> setBounds(int x, int y, int width, int height) {
-
+    if (width <=0 || height <= 0) {
+      throw new IllegalArgumentException("Width and height must be greater than 0.");
+    }
     model.addBounds(x, y, width, height);
     return this;
   }
@@ -64,7 +66,7 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    *             exist.
    * @param type The type of shape (e.g. "ellipse", "rectangle") to be added. The set of supported
    *             shapes is unspecified, but should include "ellipse" and "rectangle" at a minimum.
-   * @return
+   * @return the builder
    */
   @Override
   public AnimationBuilder<IAnimationModel> declareShape(String name, String type) {

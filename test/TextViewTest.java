@@ -215,8 +215,8 @@ public class TextViewTest {
     assertEquals(System.out, newView.getOutputName());
   }
 
-  // fixme it returns an empty string for now, but we should probably throw some kind of error?
-  @Test(expected = IllegalArgumentException.class)
+  // it returns an empty string for now, but should it throw an error?
+  @Test
   public void empty() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\empty.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -224,7 +224,8 @@ public class TextViewTest {
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    newView.create();
+    IView textView = newView.create();
+    assertEquals("\n\n", textView.getViewState());
   }
 
   @Test
@@ -248,8 +249,6 @@ public class TextViewTest {
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
   }
 
   @Test(expected = IllegalArgumentException.class)
