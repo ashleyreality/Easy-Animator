@@ -24,7 +24,7 @@ public class TextView implements IView {
   /**
    * Constructs a text view, given a model and a string representing the file to be written to.
    *
-   * @param model the AnimationModel instance you want to create a view for
+   * @param model     the AnimationModel instance you want to create a view for
    * @param outString name of the file to write to
    * @throws FileNotFoundException if the out is not found
    */
@@ -43,6 +43,7 @@ public class TextView implements IView {
   /**
    * _______________________________ METHOD: buildTheTextString() _________________________________.
    * Build the TextView String.
+   *
    * @return
    */
   private void buildTheTextString() {
@@ -50,6 +51,10 @@ public class TextView implements IView {
 
     // For each shape, add its IShape createString() to the shapeList ArrayList
     for (IShape shape : shapeList) {
+      if (shape.getColor() == null || shape.getLocation() == null || shape.getHeight() == 0
+              || shape.getWidth() == 0) {
+        throw new IllegalArgumentException("Shape parameters not set.");
+      }
       sb.append(shape.createString());
       sb.append("\n");
     }

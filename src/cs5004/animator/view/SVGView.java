@@ -47,6 +47,7 @@ public class SVGView implements IView {
   /**
    * _______________________________ METHOD: buildTheSVGString() __________________________________.
    * Build the SVGView String.
+   *
    * @return
    */
   private void buildTheSVGString() {
@@ -57,7 +58,10 @@ public class SVGView implements IView {
 
     // Add the shape XML to StringBuilder along with its list of events
     for (IShape shape : model.getShapeMap().keySet()) {
-
+      if (shape.getColor() == null || shape.getLocation() == null || shape.getHeight() == 0
+              || shape.getWidth() == 0) {
+        throw new IllegalArgumentException("Shape parameters not set.");
+      }
       // If the shape is a rectangle
       if (shape.getType() == ShapeType.RECTANGLE) {
         // Add initial <rect> tag with attributes
@@ -214,7 +218,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addMove(IShape shp, MoveShape e) {
-    float duration = (e.getEventEnd() - e.getEventBegin()) / (float)speed;
+    float duration = (e.getEventEnd() - e.getEventBegin()) / (float) speed;
     int xFromLocation = (int) e.getFrom().getX() - model.getBoundsX();
     int xToLocation = (int) e.getTo().getX() - model.getBoundsX();
     int yFromLocation = (int) e.getFrom().getY() - model.getBoundsY();
@@ -247,7 +251,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addScale(IShape shp, ScaleShape e) {
-    float duration = (e.getEventEnd() - e.getEventBegin()) / (float)speed;
+    float duration = (e.getEventEnd() - e.getEventBegin()) / (float) speed;
     if (shp.getType() == ShapeType.RECTANGLE) {
       return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\" "
               + "dur=\"" + duration * 100 + "ms\" attributeName=\"height\" from=\""
@@ -275,7 +279,7 @@ public class SVGView implements IView {
    * @return the SVG formatted string
    */
   private String addColorChange(IShape shp, IEvent e) {
-    float duration = ((e.getEventEnd() - e.getEventBegin()) / (float)speed);
+    float duration = ((e.getEventEnd() - e.getEventBegin()) / (float) speed);
     return "<animate attributeType=\"xml\" begin=\"" + e.getEventBegin() * 100 / speed + "ms\""
             + " dur=\"" + duration * 100 + "ms\" attributeName=\"fill\" from=\"rgb"
             + e.getBefore() + "\" to=\"rgb" + e.getAfter() + "\" fill=\"freeze\" />\n";

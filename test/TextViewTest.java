@@ -273,9 +273,7 @@ public class TextViewTest {
     //newView.create();
   }
 
-  //fixme this doesn't work because everything in the shapes are null, so the toString can't be called
-  // is that fine?
-  @Test
+  @Test (expected = IllegalArgumentException.class)
   public void shapeWithoutMotion() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
@@ -284,8 +282,7 @@ public class TextViewTest {
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
     IView textView = newView.create();
-    assertEquals("should just be the declared shapes here and maybe with some bad appear and disappear info",
-            textView.getViewState());
+    textView.getViewState();
   }
 
   @Test(expected = IllegalArgumentException.class)
