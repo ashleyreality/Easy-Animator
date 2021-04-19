@@ -75,7 +75,7 @@ public class VisualView extends JFrame implements IView {
 
       // Calculate the desired time relative to the speed provided by the user on the command line
       // The user provides "speed" which is the ticks/sec, or in other words, frames/sec, which is
-      // the framerate
+      // the frame rate
       int desiredTime = 1000 / speed;
 
       // Calculate the remaining sleep time
