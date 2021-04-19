@@ -32,6 +32,8 @@ public class AnimationPanel extends JPanel {
   }
 
   /**
+   * Paint a component in the Animation Panel.
+   *
    * @param g the graphics2d object drawing the shape
    */
   @Override

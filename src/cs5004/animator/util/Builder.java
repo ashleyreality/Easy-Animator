@@ -50,7 +50,7 @@ public class Builder implements AnimationBuilder<IAnimationModel> {
    */
   @Override
   public void setBounds(int x, int y, int width, int height) {
-    if (width <=0 || height <= 0) {
+    if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Width and height must be greater than 0.");
     }
     model.addBounds(x, y, width, height);

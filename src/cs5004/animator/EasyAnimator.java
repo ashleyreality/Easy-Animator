@@ -14,6 +14,6 @@ public class EasyAnimator {
    */
   public static void main(String[] args) {
     AnimatorHelper controller = new AnimatorHelper(args);
-    controller.go();
+    controller.start();
   }
 }

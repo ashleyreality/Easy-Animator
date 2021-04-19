@@ -1,9 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import cs5004.animator.AnimatorHelper;
 import cs5004.animator.model.AnimationModelImpl;
@@ -64,6 +62,7 @@ public class BuilderTest {
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
+
   @Test(expected = IllegalArgumentException.class)
   public void sameNameShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +

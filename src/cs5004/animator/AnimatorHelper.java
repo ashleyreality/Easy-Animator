@@ -18,7 +18,7 @@ import cs5004.animator.view.IView;
 
 
 /**
- * The AnimatorHelper class helps construct an animation as a go. The go/main uses a
+ * The AnimatorHelper class helps construct an animation as a start. The start/main uses a
  * Readable object to read one "token" at a time (where each token is a String separated by a space)
  * from the input (like a text file input) and it decides how/what will be output for the view's
  * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
@@ -29,7 +29,7 @@ public class AnimatorHelper {
 
   /**
    * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
-   * Constructs an AnimatorHelper instance, which contains the go functionalities.
+   * Constructs an AnimatorHelper instance, which contains the start functionalities.
    * @param args the arguments from the command line being parsed, an array of Strings
    */
   public AnimatorHelper(String[] args) {
@@ -40,7 +40,7 @@ public class AnimatorHelper {
    * _______________________________ PRIMARY CONTROLLER METHOD ____________________________________.
 
    */
-  public void go() {
+  public void start() {
     // Step 1) Create the model
     IAnimationModel model = newAnimation();
 
@@ -242,8 +242,8 @@ public class AnimatorHelper {
    * @param outputSpeed the speed of the output animation, an int
    * @return the factory construction of what a view will contain, a ViewFactory
    */
-  public static ViewFactory newViewFactory(String outputView, IAnimationModel model, String outputName,
-                                           int outputSpeed) {
+  public static ViewFactory newViewFactory(String outputView, IAnimationModel model,
+                                           String outputName, int outputSpeed) {
     return new ViewFactory(outputView, model, outputName, outputSpeed);
   }
 

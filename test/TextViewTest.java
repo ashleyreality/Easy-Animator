@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -135,8 +134,8 @@ public class TextViewTest {
                     "disk5 moves from (145.0,50.0) to (445.0,50.0) from time t=516 to t=526\n" +
                     "disk5 moves from (445.0,50.0) to (445.0,240.0) from time t=527 to t=537\n" +
                     "disk1 moves from (340.0,186.0) to (340.0,50.0) from time t=537 to t=547\n" +
-                    "disk5 changes color from (56,214,194) to (0,255,0) from time t=537 to t=545\n" +
-                    "disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=548 to t=558\n" +
+                    "disk5 changes color from (56,214,194) to (0,255,0) from time t=537 to t=545\n"
+                    + "disk1 moves from (340.0,50.0) to (190.0,50.0) from time t=548 to t=558\n" +
                     "disk1 moves from (190.0,50.0) to (190.0,240.0) from time t=559 to t=569\n" +
                     "disk2 moves from (328.0,204.0) to (328.0,50.0) from time t=569 to t=579\n" +
                     "disk2 moves from (328.0,50.0) to (478.0,50.0) from time t=580 to t=590\n" +
@@ -226,12 +225,14 @@ public class TextViewTest {
 
   @Test
   public void canvasOnly() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\canvasOnly.txt";
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
+            "\\canvasOnly.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
+    ViewFactory newView = new ViewFactory("text", model, "System.out",
+            1);
     IView textView = newView.create();
     assertEquals("\n\n",
             textView.getViewState());
@@ -239,7 +240,8 @@ public class TextViewTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void shapeWithoutMotion() throws IOException {
-    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\shapeWithoutMotion.txt";
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
+            "\\shapeWithoutMotion.txt";
     JFrame frame = AnimatorHelper.jFrameStart();
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
