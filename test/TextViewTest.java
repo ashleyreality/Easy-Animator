@@ -303,8 +303,15 @@ public class TextViewTest {
     this.file = AnimatorHelper.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
-    ViewFactory newView = new ViewFactory("text", model, "System.out", 1);
-    IView textView = newView.create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void invalidShape() throws IOException {
+    String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\hexagon.txt";
+    JFrame frame = AnimatorHelper.jFrameStart();
+    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    this.build = new Builder(model);
+    model = AnimationReader.parseFile(file, build);
   }
 
 //ideas to test
