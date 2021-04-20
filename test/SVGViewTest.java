@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import cs5004.animator.AnimatorHelper;
+import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
@@ -33,8 +33,8 @@ public class SVGViewTest {
   public void testState() throws IOException {
     String inputName = "/Users/abrown/Northeastern/CS5004/Homeworks/HW6/Easy-Animator/src/cs5004/"
             + "animator/smalldemo.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("svg", model, "System.out", 1);
@@ -82,8 +82,8 @@ public class SVGViewTest {
   @Test
   public void empty() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles\\empty.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);
@@ -96,8 +96,8 @@ public class SVGViewTest {
   public void canvasOnly() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\canvasOnly.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);
@@ -111,8 +111,8 @@ public class SVGViewTest {
   public void shapeWithoutMotion() throws IOException {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\shapeWithoutMotion.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
     ViewFactory newView = new ViewFactory("svg", model, "test.svg", 1);

@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import javax.swing.JFrame;
 
-import cs5004.animator.AnimatorHelper;
+import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
@@ -27,8 +27,8 @@ public class BuilderTest {
   public void canvasNegativeDimensions() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\canvasNeg.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
@@ -37,8 +37,8 @@ public class BuilderTest {
   public void negativeHeight() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\negativeHeight.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
@@ -47,8 +47,8 @@ public class BuilderTest {
   public void invalidColor() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\invalidColor.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
@@ -57,8 +57,8 @@ public class BuilderTest {
   public void motionWithoutShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\motionWithoutShape.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
@@ -67,8 +67,8 @@ public class BuilderTest {
   public void sameNameShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\sameNameShape.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }
@@ -77,8 +77,8 @@ public class BuilderTest {
   public void invalidShape() {
     String inputName = "C:\\Users\\jenrw\\IdeaProjects\\Easy-Animator\\test\\testFiles" +
             "\\hexagon.txt";
-    JFrame frame = AnimatorHelper.jFrameStart();
-    this.file = AnimatorHelper.fileExceptions(inputName, frame);
+    JFrame frame = AnimatorController.jFrameStart();
+    this.file = AnimatorController.fileExceptions(inputName, frame);
     this.build = new Builder(model);
     model = AnimationReader.parseFile(file, build);
   }

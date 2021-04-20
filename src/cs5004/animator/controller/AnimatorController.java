@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.controller;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,21 +18,21 @@ import cs5004.animator.view.IView;
 
 
 /**
- * The AnimatorHelper class helps construct an animation as a start. The start/main uses a
+ * The AnimatorController class controls animations. The start/main uses a
  * Readable object to read one "token" at a time (where each token is a String separated by a space)
  * from the input (like a text file input) and it decides how/what will be output for the view's
  * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
  * outputs (like a text file output).
  */
-public class AnimatorHelper {
+public class AnimatorController {
   private String[] args;
 
   /**
-   * _____________________________ CONSTRUCTOR: AnimatorHelper() __________________________________.
-   * Constructs an AnimatorHelper instance, which contains the start functionalities.
+   * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
+   * Constructs an AnimatorController instance, which contains the start functionalities.
    * @param args the arguments from the command line being parsed, an array of Strings
    */
-  public AnimatorHelper(String[] args) {
+  public AnimatorController(String[] args) {
     this.args = args;
   }
 
