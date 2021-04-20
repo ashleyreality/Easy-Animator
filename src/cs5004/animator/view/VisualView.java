@@ -14,8 +14,8 @@ import cs5004.animator.model.IAnimationModel;
  *
  */
 public class VisualView extends JFrame implements IView {
-  private final IAnimationModel model;
-  private final int speed;
+  protected final IAnimationModel model;
+  protected final int speed;
 
   /**
    * The VisualView constructor takes in a model and the specified speed.
@@ -32,20 +32,20 @@ public class VisualView extends JFrame implements IView {
    * Creates a visual view.
    */
   public void createView() {
-    // Set the layout of the JPanel container to a BorderLayout
-    this.setLayout(new BorderLayout());
+    // Set the layout of the JFrame container to a BorderLayout
+    //this.setLayout(new BorderLayout());
 
     // Instantiate AnimationPanel with the tick at 0 to be updated later
     AnimationPanel animationPanel = new AnimationPanel(model, 0);
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.add(animationPanel, BorderLayout.CENTER);
+    this.add(animationPanel);
 
     // Create a Scroll Pane
     JScrollPane scrollPane = new JScrollPane(animationPanel);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    this.add(scrollPane, BorderLayout.CENTER);
+    this.add(scrollPane);
 
     this.pack();
     this.setVisible(true);
@@ -105,7 +105,7 @@ public class VisualView extends JFrame implements IView {
   /**
    * Gets a text representation of the view state. Does not apply to visual view.
    *
-   * @return null
+   * @throws UnsupportedOperationException because there is no view state for the visual view
    */
   @Override
   public String getViewState() {

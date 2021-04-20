@@ -378,10 +378,12 @@ public class AnimatorController {
   public static void viewExceptions(String outputView, JFrame frame) {
     if (!outputView.equalsIgnoreCase("text")
             && !outputView.equalsIgnoreCase("svg")
-            && !outputView.equalsIgnoreCase("visual")) {
+            && !outputView.equalsIgnoreCase("visual")
+            && !outputView.equalsIgnoreCase("playback")) {
       frame.setVisible(true);
-      JOptionPane.showMessageDialog(frame, "The view type must be text, svg, or visual",
-              "Invalid view", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(frame, "The view type must be text, svg," +
+                      " visual, or playback.",
+              "Invalid view type", JOptionPane.ERROR_MESSAGE);
     }
   }
 
