@@ -284,7 +284,7 @@ public class AnimatorController {
    */
   public static void packFrameAndExit(JFrame frame) {
     frame.pack();
-    System.exit(0);
+    //System.exit(0);
   }
 
 

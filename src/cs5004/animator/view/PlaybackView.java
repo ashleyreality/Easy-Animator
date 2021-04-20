@@ -8,38 +8,43 @@ import java.awt.*;
 
 public class PlaybackView extends VisualView {
 
-  static JFrame frame;
+  private JPanel playbackAnimationFrame;
+  private ButtonGroup buttonGroup;
+  private GridBagLayout playbackLayout;
+  private GridBagConstraints layoutConstraints;
 
-  private JPanel PlaybackAnimation;
-  private ButtonGroup rbgPlaybackAnimation;
-  private GridBagLayout gbPlaybackAnimation;
-  private GridBagConstraints gbcPlaybackAnimation;
-
-  private AnimationPanel Animation;
+  private AnimationPanel animationPanel;
   private JToggleButton startAnimation;
   private JToggleButton resumeButton;
   private JToggleButton restartAnimation;
   private JButton fasterButton;
   private JButton slowerButton;
-  private JTextArea Speed;
+  private JTextArea speedNumber;
   private JLabel speedLabel;
   private JCheckBox loopCheckbox;
+
+  private JButton saveAsText;
+  private JButton saveAsSVG;
+  private JButton loadFile;
 
 
   public PlaybackView(IAnimationModel model, int speed) {
     super(model, speed);
+  }
 
+  @Override
+  public void createView() {
     // create outer container
-    PlaybackAnimation = new JPanel();
-    PlaybackAnimation.setBorder(BorderFactory.createTitledBorder("Playback Animation"));
+    playbackAnimationFrame = new JPanel();
+    playbackAnimationFrame.setBorder(BorderFactory.createTitledBorder("Playback Animation"));
+
+    // create "GridBag" layout for outer container - this holds the jpanels
+    playbackLayout = new GridBagLayout();
+    layoutConstraints = new GridBagConstraints();
+    playbackAnimationFrame.setLayout(playbackLayout);
 
     // group for buttons -- may not be needed?
-    rbgPlaybackAnimation = new ButtonGroup();
-
-    // create gridbag layout for outer container - this holds the jpanels
-    gbPlaybackAnimation = new GridBagLayout();
-    gbcPlaybackAnimation = new GridBagConstraints();
-    PlaybackAnimation.setLayout(gbPlaybackAnimation);
+    buttonGroup = new ButtonGroup();
 
     // add animation
     createAnimation();
@@ -52,10 +57,13 @@ public class PlaybackView extends VisualView {
     slowButton();
     speedArea();
     loopCheckbox();
+    loadButton();
+    saveTextButton();
+    saveSVGButton();
 
     // add scroll pane
-    JScrollPane scpPlaybackAnimation = new JScrollPane(PlaybackAnimation);
-    setContentPane(scpPlaybackAnimation);
+    JScrollPane scrollAnimation = new JScrollPane(playbackAnimationFrame);
+    setContentPane(scrollAnimation);
 
     // finish up JFrame
     setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,16 +72,16 @@ public class PlaybackView extends VisualView {
   }
 
   private void createAnimation() {
-    Animation = new AnimationPanel(model, 0);
+    animationPanel = new AnimationPanel(model, 0);
 
-    Animation.setPreferredSize(new Dimension((model.getBoundsWidth()), model.getBoundsHeight()));
+    animationPanel.setPreferredSize(new Dimension((model.getBoundsWidth()), model.getBoundsHeight()));
     GridBagLayout gbAnimation = new GridBagLayout();
     GridBagConstraints gbcAnimation = new GridBagConstraints();
 
-    Animation.setLayout(gbAnimation);
-    setItemFields(Animation, 4, 0, 16, 17, GridBagConstraints.BOTH,
+    animationPanel.setLayout(gbAnimation);
+    setItemFields(animationPanel, 4, 0, 16, 17, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(Animation);
+    playbackAnimationFrame.add(animationPanel);
 
     // add animation
     int lastShapeTime = model.getEndTick();
@@ -83,10 +91,10 @@ public class PlaybackView extends VisualView {
       long startTime = System.currentTimeMillis();
 
       // Update the tick being passed into AnimationPanel
-      Animation.setTick(tick);
+      animationPanel.setTick(tick);
 
       // Repaint
-      Animation.repaint();
+      animationPanel.repaint();
 
       // Get the current epoch timestamp in milliseconds precision
       double endTime = System.currentTimeMillis();
@@ -112,54 +120,54 @@ public class PlaybackView extends VisualView {
   private void startButton() {
     startAnimation = new JToggleButton("Start");
     startAnimation.setSelected(true);
-    rbgPlaybackAnimation.add(startAnimation);
+    buttonGroup.add(startAnimation);
     setItemFields(startAnimation, 1, 1, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(startAnimation);
+    playbackAnimationFrame.add(startAnimation);
   }
 
   private void resumeButton() {
     resumeButton = new JToggleButton("Resume");
-    rbgPlaybackAnimation.add(resumeButton);
+    buttonGroup.add(resumeButton);
     setItemFields(resumeButton, 1, 3, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(resumeButton);
+    playbackAnimationFrame.add(resumeButton);
   }
 
   private void restartButton() {
     restartAnimation = new JToggleButton("Restart");
-    rbgPlaybackAnimation.add(restartAnimation);
+    buttonGroup.add(restartAnimation);
     setItemFields(restartAnimation, 1, 4, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(restartAnimation);
+    playbackAnimationFrame.add(restartAnimation);
   }
 
   private void fastButton() {
     fasterButton = new JButton("Faster");
     setItemFields(fasterButton, 1, 9, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(fasterButton);
+    playbackAnimationFrame.add(fasterButton);
   }
 
   private void slowButton() {
     slowerButton = new JButton("Slower");
     setItemFields(slowerButton, 1, 10, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(slowerButton);
+    playbackAnimationFrame.add(slowerButton);
   }
 
   private void speedArea() {
     // text area where speed will be displayed
-    Speed = new JTextArea();
-    setItemFields(Speed, 1, 8, 1, 1, GridBagConstraints.BOTH,
+    speedNumber = new JTextArea();
+    setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.SOUTH);
-    PlaybackAnimation.add(Speed);
+    playbackAnimationFrame.add(speedNumber);
 
     // label for text area
     speedLabel = new JLabel("Current speed");
     setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
             1, 1, GridBagConstraints.SOUTH);
-    PlaybackAnimation.add(speedLabel);
+    playbackAnimationFrame.add(speedLabel);
   }
 
   private void loopCheckbox() {
@@ -167,21 +175,42 @@ public class PlaybackView extends VisualView {
     loopCheckbox.setSelected(true);
     setItemFields(loopCheckbox, 1, 14, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
-    PlaybackAnimation.add(loopCheckbox);
+    playbackAnimationFrame.add(loopCheckbox);
+  }
+
+  private void loadButton() {
+    loadFile = new JButton("Load file");
+    setItemFields(loadFile, 11, 17, 1, 1, GridBagConstraints.BOTH,
+            1, 0, GridBagConstraints.NORTH);
+    playbackAnimationFrame.add(loadFile);
+  }
+
+  private void saveTextButton() {
+    saveAsText = new JButton("Save as text");
+    setItemFields(saveAsText, 14, 17, 1, 1, GridBagConstraints.BOTH,
+            1, 0, GridBagConstraints.NORTH);
+    playbackAnimationFrame.add(saveAsText);
+  }
+
+  private void saveSVGButton() {
+    saveAsSVG = new JButton("Save as SVG");
+    setItemFields(saveAsSVG, 17, 17, 1, 1, GridBagConstraints.BOTH,
+            1, 0, GridBagConstraints.NORTH);
+    playbackAnimationFrame.add(saveAsSVG);
   }
 
   private void setItemFields(JComponent item, int gridX, int gridY, int gridWidth,
                              int gridHeight, int fill, int weightX, int weightY,
                              int anchor) {
-    gbcPlaybackAnimation.gridx = gridX;
-    gbcPlaybackAnimation.gridy = gridY;
-    gbcPlaybackAnimation.gridwidth = gridWidth;
-    gbcPlaybackAnimation.gridheight = gridHeight;
-    gbcPlaybackAnimation.fill = fill;
-    gbcPlaybackAnimation.weightx = weightX;
-    gbcPlaybackAnimation.weighty = weightY;
-    gbcPlaybackAnimation.anchor = anchor;
-    gbPlaybackAnimation.setConstraints(item, gbcPlaybackAnimation);
+    layoutConstraints.gridx = gridX;
+    layoutConstraints.gridy = gridY;
+    layoutConstraints.gridwidth = gridWidth;
+    layoutConstraints.gridheight = gridHeight;
+    layoutConstraints.fill = fill;
+    layoutConstraints.weightx = weightX;
+    layoutConstraints.weighty = weightY;
+    layoutConstraints.anchor = anchor;
+    playbackLayout.setConstraints(item, layoutConstraints);
 
   }
 }
