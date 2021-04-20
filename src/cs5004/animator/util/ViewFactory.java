@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
+import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
@@ -51,10 +52,12 @@ public class ViewFactory {
       return new TextView(model, this.outputName);
     } else if (outputView.equalsIgnoreCase("visual")) {
       return new VisualView(model, speed);
+    } else if (outputView.equalsIgnoreCase("playback")) {
+      return new PlaybackView(model, speed);
     } else {
-      throw new IllegalArgumentException("View type does not exist.");
+        throw new IllegalArgumentException("View type does not exist.");
+      }
     }
-  }
 
   public String getOutputName() {
     return outputName;
