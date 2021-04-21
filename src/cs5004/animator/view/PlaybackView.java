@@ -70,7 +70,15 @@ public class PlaybackView extends VisualView {
     // finish up JFrame
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     pack();
-    setVisible(true);
+
+    frameAtTick(0);
+  }
+
+  private void frameAtTick(int tick) {
+    animationPanel.setTick(tick);
+    // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
+    // is overridden in animationPanel
+    animationPanel.repaint();
   }
 
   private void createAnimation() {
@@ -82,41 +90,11 @@ public class PlaybackView extends VisualView {
 
     animationPanel.setLayout(gbAnimation);
     setItemFields(animationPanel, 4, 0, 16, 17, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+            1, 0, gbcAnimation.NORTH);
     playbackAnimationFrame.add(animationPanel);
 
-    // add animation
-    int lastShapeTime = model.getEndTick();
-
-    for (int tick = 0; tick < lastShapeTime; tick++) {
-      // Get the current epoch timestamp in milliseconds precision
-      long startTime = System.currentTimeMillis();
-
-      // Update the tick being passed into AnimationPanel
-      animationPanel.setTick(tick);
-
-      // Repaint
-      animationPanel.repaint();
-
-      // Get the current epoch timestamp in milliseconds precision
-      double endTime = System.currentTimeMillis();
-
-      // Calculate the duration between epoch times
-      double duration = endTime - startTime;
-
-      // Calculate frame rate
-      int desiredTime = 1000 / speed;
-
-      // Calculate the remaining sleep time
-      double remainingSleepTime = desiredTime - duration;
-
-      // Set the sleep time using the remaining sleep time
-      try {
-        Thread.sleep((long) remainingSleepTime);
-      } catch (InterruptedException e) {
-        // Do nothing
-      }
-    }
+    setVisible(true);
+    //super.drawShapes(animationPanel);
   }
 
   private void startButton() {

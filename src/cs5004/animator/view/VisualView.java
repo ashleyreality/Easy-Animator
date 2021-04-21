@@ -37,19 +37,32 @@ public class VisualView extends JFrame implements IView {
 
     // Instantiate AnimationPanel with the tick at 0 to be updated later
     AnimationPanel animationPanel = new AnimationPanel(model, 0);
+
+    newPanel(animationPanel);
+
+    scrollPanel(animationPanel);
+
+    this.pack();
+    this.setVisible(true);
+
+    drawShapes(animationPanel);
+  }
+
+  protected void newPanel(AnimationPanel animationPanel) {
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel);
+  }
 
+  protected void scrollPanel(AnimationPanel animationPanel) {
     // Create a Scroll Pane
     JScrollPane scrollPane = new JScrollPane(animationPanel);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     this.add(scrollPane);
+  }
 
-    this.pack();
-    this.setVisible(true);
-
+  protected void drawShapes(AnimationPanel animationPanel) {
     // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
