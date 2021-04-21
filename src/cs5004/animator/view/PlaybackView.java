@@ -148,28 +148,52 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame.add(stopButton);
   }
 
-
+  @Override
+  public void setStopButtonListener(ActionListener actionEvent) {
+    stopButton.addActionListener(actionEvent);
+  }
 
   private void restartButton() {
     restartAnimation = new JToggleButton("Start over");
     buttonGroup.add(restartAnimation);
     setItemFields(restartAnimation, 1, 4, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    restartAnimation.setActionCommand(Actions.RESTART.name());
     playbackAnimationFrame.add(restartAnimation);
+  }
+
+  @Override
+  public void setRestartButtonListener(ActionListener actionEvent) {
+    restartAnimation.addActionListener(actionEvent);
   }
 
   private void fastButton() {
     fasterButton = new JButton("Faster");
     setItemFields(fasterButton, 1, 9, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    fasterButton.setActionCommand(Actions.FAST.name());
     playbackAnimationFrame.add(fasterButton);
+  }
+
+  @Override
+  public void setFastButtonListener(ActionListener actionEvent) {
+    fasterButton.addActionListener(actionEvent);
   }
 
   private void slowButton() {
     slowerButton = new JButton("Slower");
     setItemFields(slowerButton, 1, 10, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    slowerButton.setActionCommand(Actions.SLOW.name());
     playbackAnimationFrame.add(slowerButton);
+  }
+
+  @Override
+  public void setSlowButtonListener(ActionListener actionEvent) {
+    slowerButton.addActionListener(actionEvent);
   }
 
   private void speedArea() {
@@ -191,28 +215,58 @@ public class PlaybackView extends VisualView {
     loopCheckbox.setSelected(true);
     setItemFields(loopCheckbox, 1, 14, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    loopCheckbox.setActionCommand(Actions.LOOP.name());
     playbackAnimationFrame.add(loopCheckbox);
+  }
+
+  @Override
+  public void setLoopButtonListener(ActionListener actionEvent) {
+    // fixme -- this construction isn't working for loop checkbox --
+    //  may need to find another solution -- AB
+    loopCheckbox.addActionListener(actionEvent);
   }
 
   private void loadButton() {
     loadFile = new JButton("Load file");
     setItemFields(loadFile, 11, 17, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    loadFile.setActionCommand(Actions.LOAD.name());
     playbackAnimationFrame.add(loadFile);
+  }
+
+  @Override
+  public void setLoadButtonListener(ActionListener actionEvent) {
+    loadFile.addActionListener(actionEvent);
   }
 
   private void saveTextButton() {
     saveAsText = new JButton("Save as text");
     setItemFields(saveAsText, 14, 17, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    saveAsText.setActionCommand(Actions.SAVETEXT.name());
     playbackAnimationFrame.add(saveAsText);
+  }
+
+  @Override
+  public void setSaveTextButtonListener(ActionListener actionEvent) {
+    saveAsText.addActionListener(actionEvent);
   }
 
   private void saveSVGButton() {
     saveAsSVG = new JButton("Save as SVG");
     setItemFields(saveAsSVG, 17, 17, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    saveAsSVG.setActionCommand(Actions.SAVESVG.name());
     playbackAnimationFrame.add(saveAsSVG);
+  }
+
+  @Override
+  public void setSaveSVGButtonListener(ActionListener actionEvent) {
+    saveAsSVG.addActionListener(actionEvent);
   }
 
   private void setItemFields(JComponent item, int gridX, int gridY, int gridWidth,

@@ -116,6 +116,54 @@ public class VisualView extends JFrame implements IView {
   public void setStartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
   }
+
+  @Override
+  public void setStopButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setRestartButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setFastButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setSlowButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setLoopButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setLoadButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setSaveTextButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
+
+  @Override
+  public void setSaveSVGButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
+
+  }
 }
 
 

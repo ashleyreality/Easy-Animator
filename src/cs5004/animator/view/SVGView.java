@@ -244,4 +244,46 @@ public class SVGView implements IView {
   public void setStartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The SVG view does not use this.");
   }
+
+  @Override
+  public void setStopButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+
+  }
+
+  @Override
+  public void setRestartButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+
+  }
+
+  @Override
+  public void setFastButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public void setSlowButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public void setLoopButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public void setLoadButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public void setSaveTextButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public void setSaveSVGButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
 }

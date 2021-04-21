@@ -10,7 +10,14 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import cs5004.animator.controller.commands.LoadFile;
+import cs5004.animator.controller.commands.RestartAnimation;
+import cs5004.animator.controller.commands.SaveAsSVG;
+import cs5004.animator.controller.commands.SaveAsText;
+import cs5004.animator.controller.commands.SlowDown;
+import cs5004.animator.controller.commands.SpeedUp;
 import cs5004.animator.controller.commands.StartAnimation;
+import cs5004.animator.controller.commands.StopAnimation;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.Actions;
@@ -280,6 +287,14 @@ public class AnimatorController implements ActionListener {
 
     view.createView();
     view.setStartButtonListener(this);
+    view.setStopButtonListener(this);
+    view.setRestartButtonListener(this);
+    view.setSlowButtonListener(this);
+    view.setFastButtonListener(this);
+    view.setLoopButtonListener(this);
+    view.setLoadButtonListener(this);
+    view.setSaveTextButtonListener(this);
+    view.setSaveSVGButtonListener(this);
   }
 
 
@@ -457,9 +472,37 @@ public class AnimatorController implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     AnimationCommand cmd = null;
-    if (e.getActionCommand() == Actions.START.name()) {
-      cmd = new StartAnimation();
+
+    switch (e.getActionCommand()) {
+      case "START":
+        cmd = new StartAnimation();
+        break;
+      case "STOP":
+        cmd = new StopAnimation();
+        break;
+      case "FAST":
+        cmd = new SpeedUp();
+        break;
+      case "SLOW":
+        cmd = new SlowDown();
+        break;
+      case "RESTART":
+        cmd = new RestartAnimation();
+        break;
+      case "LOAD":
+        cmd = new LoadFile();
+        break;
+      case "SAVETEXT":
+        cmd = new SaveAsText();
+        break;
+      case "SAVESVG":
+        cmd = new SaveAsSVG();
+        break;
+      default:
+        cmd = null;
+        break;
     }
+
 
     if (cmd != null) {
       cmd.go(model);
