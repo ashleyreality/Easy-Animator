@@ -1,5 +1,6 @@
 package cs5004.animator.view;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -237,5 +238,10 @@ public class SVGView implements IView {
   public String getViewState() {
     buildTheSVGString();
     return sb.toString();
+  }
+
+  @Override
+  public void setStartButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
   }
 }

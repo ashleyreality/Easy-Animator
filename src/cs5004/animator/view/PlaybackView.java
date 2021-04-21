@@ -1,10 +1,12 @@
 package cs5004.animator.view;
 
 import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.Actions;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PlaybackView extends VisualView {
 
@@ -15,7 +17,7 @@ public class PlaybackView extends VisualView {
 
   private AnimationPanel animationPanel;
   private JToggleButton startAnimation;
-  private JToggleButton resumeButton;
+  private JToggleButton stopButton;
   private JToggleButton restartAnimation;
   private JButton fasterButton;
   private JButton slowerButton;
@@ -51,7 +53,7 @@ public class PlaybackView extends VisualView {
 
     // add other components (buttons, text areas, checkboxes, etc) to frame
     startButton();
-    resumeButton();
+    stopButton();
     restartButton();
     fastButton();
     slowButton();
@@ -123,19 +125,33 @@ public class PlaybackView extends VisualView {
     buttonGroup.add(startAnimation);
     setItemFields(startAnimation, 1, 1, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
+
+    // set up event listener
+    startAnimation.setActionCommand(Actions.START.name());
+
+    // add button to frame
     playbackAnimationFrame.add(startAnimation);
   }
 
-  private void resumeButton() {
-    resumeButton = new JToggleButton("Resume");
-    buttonGroup.add(resumeButton);
-    setItemFields(resumeButton, 1, 3, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
-    playbackAnimationFrame.add(resumeButton);
+  @Override
+  public void setStartButtonListener(ActionListener actionEvent) {
+    startAnimation.addActionListener(actionEvent);
   }
 
+  private void stopButton() {
+    stopButton = new JToggleButton("Stop");
+    buttonGroup.add(stopButton);
+    setItemFields(stopButton, 1, 3, 1, 1, GridBagConstraints.BOTH,
+            1, 0, GridBagConstraints.NORTH);
+
+    stopButton.setActionCommand(Actions.STOP.name());
+    playbackAnimationFrame.add(stopButton);
+  }
+
+
+
   private void restartButton() {
-    restartAnimation = new JToggleButton("Restart");
+    restartAnimation = new JToggleButton("Start over");
     buttonGroup.add(restartAnimation);
     setItemFields(restartAnimation, 1, 4, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
@@ -213,4 +229,6 @@ public class PlaybackView extends VisualView {
     playbackLayout.setConstraints(item, layoutConstraints);
 
   }
+
+
 }

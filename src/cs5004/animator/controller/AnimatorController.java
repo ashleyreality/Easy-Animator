@@ -1,5 +1,7 @@
 package cs5004.animator.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,8 +10,10 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import cs5004.animator.controller.commands.StartAnimation;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.Actions;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
@@ -24,8 +28,9 @@ import cs5004.animator.view.IView;
  * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
  * outputs (like a text file output).
  */
-public class AnimatorController {
+public class AnimatorController implements ActionListener {
   private String[] args;
+  private IAnimationModel model;
 
   /**
    * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
@@ -42,7 +47,7 @@ public class AnimatorController {
    */
   public void start() {
     // Step 1) Create the model
-    IAnimationModel model = newAnimation();
+    model = newAnimation();
 
     // Step 2) Create the frame
     JFrame frame = newFrame();
@@ -267,12 +272,14 @@ public class AnimatorController {
 
   /**
    * ___________________________ CONTROLLER STEP 15: createTheView() ______________________________.
-   * Creae the view.
+   * Create the view.
    *
    * @param view the view that has been requested per the command line, an IView
    */
-  public static void createTheView(IView view) {
+  public void createTheView(IView view) {
+
     view.createView();
+    view.setStartButtonListener(this);
   }
 
 
@@ -285,6 +292,8 @@ public class AnimatorController {
   public static void packFrameAndExit(JFrame frame) {
     frame.pack();
     //System.exit(0);
+    // commented this out because different views have different exits --
+    // we need to exit in each view -- AB
   }
 
 
@@ -441,6 +450,19 @@ public class AnimatorController {
       frame.setVisible(true);
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
+    }
+  }
+
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    AnimationCommand cmd = null;
+    if (e.getActionCommand() == Actions.START.name()) {
+      cmd = new StartAnimation();
+    }
+
+    if (cmd != null) {
+      cmd.go(model);
     }
   }
 }

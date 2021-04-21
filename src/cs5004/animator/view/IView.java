@@ -1,5 +1,7 @@
 package cs5004.animator.view;
 
+import java.awt.event.ActionListener;
+
 /**
  * The IView interface describes methods common to all views.
  */
@@ -16,4 +18,22 @@ public interface IView {
    * @return a string representing the view state
    */
   String getViewState();
+
+  void setStartButtonListener(ActionListener actionEvent);
+
+  void setStopButtonListener(ActionListener actionEvent);
+
+  void setRestartButtonListener(ActionListener actionEvent);
+
+  void setFastButtonListener(ActionListener actionEvent);
+
+  void setSlowButtonListener(ActionListener actionEvent);
+
+  void setLoopButtonListener(ActionListener actionEvent);
+
+  void setLoadButtonListener(ActionListener actionEvent);
+
+  void setSaveTextButtonListener(ActionListener actionEvent);
+
+  void setSaveSVGButtonListener(ActionListener actionEvent);
 }

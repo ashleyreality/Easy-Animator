@@ -1,11 +1,11 @@
 package cs5004.animator.view;
 
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
 import cs5004.animator.model.IAnimationModel;
 
 /**
@@ -110,6 +110,11 @@ public class VisualView extends JFrame implements IView {
   @Override
   public String getViewState() {
     throw new UnsupportedOperationException("No view state for visual");
+  }
+
+  @Override
+  public void setStartButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("No need for button listener in visual view");
   }
 }
 

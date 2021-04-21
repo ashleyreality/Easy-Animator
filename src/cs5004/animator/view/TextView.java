@@ -1,5 +1,6 @@
 package cs5004.animator.view;
 
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -98,6 +99,11 @@ public class TextView implements IView {
   public String getViewState() {
     buildTheTextString();
     return sb.toString();
+  }
+
+  @Override
+  public void setStartButtonListener(ActionListener actionEvent) {
+    throw new UnsupportedOperationException("The text view does not use this.");
   }
 }
 
