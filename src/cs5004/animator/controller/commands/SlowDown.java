@@ -9,5 +9,6 @@ public class SlowDown implements AnimationCommand {
   public void go(IAnimationModel model, IView view) {
     // do something
     System.out.println("Slow down command received");
+
   }
 }

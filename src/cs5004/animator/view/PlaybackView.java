@@ -183,7 +183,7 @@ public class PlaybackView extends VisualView {
 
   private void speedArea() {
     // text area where speed will be displayed
-    speedNumber = new JTextArea();
+    speedNumber = new JTextArea(String.valueOf(speed));
     setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.SOUTH);
     playbackAnimationFrame.add(speedNumber);
