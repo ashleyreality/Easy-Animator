@@ -108,35 +108,48 @@ public class TextView implements IView {
 
   @Override
   public void setStopButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setRestartButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setFastButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setSlowButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setLoopButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setLoadButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setSaveTextButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
-    throw new UnsupportedOperationException("The text view does not use this.");  }
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public void drawShapes(int fromTick) {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 }
 
 

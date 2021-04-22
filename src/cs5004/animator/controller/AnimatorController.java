@@ -38,10 +38,12 @@ import cs5004.animator.view.IView;
 public class AnimatorController implements ActionListener {
   private String[] args;
   private IAnimationModel model;
+  private IView view;
 
   /**
    * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
    * Constructs an AnimatorController instance, which contains the start functionalities.
+   *
    * @param args the arguments from the command line being parsed, an array of Strings
    */
   public AnimatorController(String[] args) {
@@ -50,7 +52,6 @@ public class AnimatorController implements ActionListener {
 
   /**
    * _______________________________ PRIMARY CONTROLLER METHOD ____________________________________.
-
    */
   public void start() {
     // Step 1) Create the model
@@ -93,10 +94,10 @@ public class AnimatorController implements ActionListener {
     ViewFactory factory = newViewFactory(outputView, model, outputName, outputSpeed);
 
     // Step 14) Construct the view
-    IView view = newView(factory);
+    this.view = newView(factory);
 
     // Step 15) Create the view
-    createTheView(view);
+    createTheView(this.view);
 
     // Step 16) Pack the frame and then exit once animation has completed running
     packFrameAndExit(frame);
@@ -405,8 +406,8 @@ public class AnimatorController implements ActionListener {
             && !outputView.equalsIgnoreCase("visual")
             && !outputView.equalsIgnoreCase("playback")) {
       frame.setVisible(true);
-      JOptionPane.showMessageDialog(frame, "The view type must be text, svg," +
-                      " visual, or playback.",
+      JOptionPane.showMessageDialog(frame, "The view type must be text, svg,"
+                      + " visual, or playback.",
               "Invalid view type", JOptionPane.ERROR_MESSAGE);
     }
   }
@@ -505,7 +506,7 @@ public class AnimatorController implements ActionListener {
 
 
     if (cmd != null) {
-      cmd.go(model);
+      cmd.go(model, view);
     }
   }
 }

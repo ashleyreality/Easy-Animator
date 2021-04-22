@@ -16,6 +16,7 @@ import cs5004.animator.model.ShapeType;
  * components.
  */
 public class AnimationPanel extends JPanel {
+
   private int someTick;
   private IAnimationModel model;
 
@@ -187,6 +188,10 @@ public class AnimationPanel extends JPanel {
    */
   public void setTick(int someTick) {
     this.someTick = someTick;
+  }
+
+  public int getSomeTick() {
+    return someTick;
   }
 
 }

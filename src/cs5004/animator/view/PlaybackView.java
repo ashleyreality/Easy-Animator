@@ -15,7 +15,6 @@ public class PlaybackView extends VisualView {
   private GridBagLayout playbackLayout;
   private GridBagConstraints layoutConstraints;
 
-  private AnimationPanel animationPanel;
   private JToggleButton startAnimation;
   private JToggleButton stopButton;
   private JToggleButton restartAnimation;
@@ -71,7 +70,9 @@ public class PlaybackView extends VisualView {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     pack();
 
+
     frameAtTick(0);
+    //drawShapes(0);
   }
 
   private void frameAtTick(int tick) {
@@ -81,16 +82,19 @@ public class PlaybackView extends VisualView {
     animationPanel.repaint();
   }
 
-  private void createAnimation() {
-    animationPanel = new AnimationPanel(model, 0);
+  @Override
+  public void drawShapes(int fromTick) {
+    super.drawShapes(animationPanel.getSomeTick());
+  }
 
+  private void createAnimation() {
     animationPanel.setPreferredSize(new Dimension((model.getBoundsWidth()), model.getBoundsHeight()));
     GridBagLayout gbAnimation = new GridBagLayout();
     GridBagConstraints gbcAnimation = new GridBagConstraints();
 
     animationPanel.setLayout(gbAnimation);
     setItemFields(animationPanel, 4, 0, 16, 17, GridBagConstraints.BOTH,
-            1, 0, gbcAnimation.NORTH);
+            1, 0, GridBagConstraints.NORTH);
     playbackAnimationFrame.add(animationPanel);
 
     setVisible(true);
@@ -261,6 +265,5 @@ public class PlaybackView extends VisualView {
     playbackLayout.setConstraints(item, layoutConstraints);
 
   }
-
 
 }

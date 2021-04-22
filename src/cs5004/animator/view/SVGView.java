@@ -286,4 +286,9 @@ public class SVGView implements IView {
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The SVG view does not use this.");
   }
+
+  @Override
+  public void drawShapes(int fromTick) {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
 }

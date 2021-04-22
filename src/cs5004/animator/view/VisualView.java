@@ -16,6 +16,7 @@ import cs5004.animator.model.IAnimationModel;
 public class VisualView extends JFrame implements IView {
   protected final IAnimationModel model;
   protected final int speed;
+  protected AnimationPanel animationPanel;
 
   /**
    * The VisualView constructor takes in a model and the specified speed.
@@ -26,6 +27,8 @@ public class VisualView extends JFrame implements IView {
     super();
     this.model = model;
     this.speed = speed;
+    // Instantiate AnimationPanel with the tick at 0 to be updated later
+    animationPanel = new AnimationPanel(model, 0);
   }
 
   /**
@@ -35,9 +38,6 @@ public class VisualView extends JFrame implements IView {
     // Set the layout of the JFrame container to a BorderLayout
     //this.setLayout(new BorderLayout());
 
-    // Instantiate AnimationPanel with the tick at 0 to be updated later
-    AnimationPanel animationPanel = new AnimationPanel(model, 0);
-
     newPanel(animationPanel);
 
     scrollPanel(animationPanel);
@@ -45,7 +45,7 @@ public class VisualView extends JFrame implements IView {
     this.pack();
     this.setVisible(true);
 
-    drawShapes(animationPanel);
+    drawShapes(0);
   }
 
   protected void newPanel(AnimationPanel animationPanel) {
@@ -62,12 +62,12 @@ public class VisualView extends JFrame implements IView {
     this.add(scrollPane);
   }
 
-  protected void drawShapes(AnimationPanel animationPanel) {
+  public void drawShapes(int fromTick) {
     // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
-    for (int tick = 0; tick < lastShapeTime; tick++) {
+    for (int tick = fromTick; tick <= lastShapeTime; tick++) {
       //System.out.println(tick);
 
       // Get the current epoch timestamp in milliseconds precision
@@ -75,10 +75,10 @@ public class VisualView extends JFrame implements IView {
 
       // Update the tick being passed into AnimationPanel
       animationPanel.setTick(tick);
-
       // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
       // is overridden in animationPanel
       animationPanel.repaint();
+      System.out.println("draw frame " + tick);
 
       // Get the current epoch timestamp in milliseconds precision
       double endTime = System.currentTimeMillis();

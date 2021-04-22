@@ -36,4 +36,6 @@ public interface IView {
   void setSaveTextButtonListener(ActionListener actionEvent);
 
   void setSaveSVGButtonListener(ActionListener actionEvent);
+
+  void drawShapes(int fromTick);
 }
