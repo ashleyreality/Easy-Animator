@@ -7,8 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import cs5004.animator.controller.commands.LoadFile;
 import cs5004.animator.controller.commands.RestartAnimation;
@@ -20,7 +19,6 @@ import cs5004.animator.controller.commands.StartAnimation;
 import cs5004.animator.controller.commands.StopAnimation;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
-import cs5004.animator.util.Actions;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Builder;
@@ -64,10 +62,10 @@ public class AnimatorController implements ActionListener {
     StringBuilder parsedString = parsedCommandLine(args);
 
     // Step 4) Find the input file
-    String inputName = inputFile(parsedString);
+    String inputFile = inputFile(parsedString);
 
     // Step 5) Check input file for exceptions
-    Readable file = checkInputFile(inputName, frame);
+    Readable file = checkInputFile(inputFile, frame);
 
     // Step 6) Create a new build
     AnimationBuilder build = newBuild(model);
@@ -76,10 +74,10 @@ public class AnimatorController implements ActionListener {
     fillTheModel(file, build);
 
     // Step 8) Find the view type
-    String outputView = findViewType(parsedString);
+    String viewType = findViewType(parsedString);
 
     // Step 9) Check the view type for exceptions
-    checkViewType(outputView, frame);
+    checkViewType(viewType, frame);
 
     // Step 10) Find the output file's name
     String outputName = findOutputFileName(parsedString);
@@ -91,13 +89,13 @@ public class AnimatorController implements ActionListener {
     checkSpeed(outputSpeed, frame);
 
     // Step 13) Send commandline arguments to the ViewFactory
-    ViewFactory factory = newViewFactory(outputView, model, outputName, outputSpeed);
+    ViewFactory factory = newViewFactory(viewType, model, outputName, outputSpeed);
 
     // Step 14) Construct the view
     this.view = newView(factory);
 
     // Step 15) Create the view
-    createTheView(this.view);
+    createTheView(this.view, viewType);
 
     // Step 16) Pack the frame and then exit once animation has completed running
     packFrameAndExit(frame);
@@ -284,18 +282,22 @@ public class AnimatorController implements ActionListener {
    *
    * @param view the view that has been requested per the command line, an IView
    */
-  public void createTheView(IView view) {
+  public void createTheView(IView view, String viewType) {
 
     view.createView();
-    view.setStartButtonListener(this);
-    view.setStopButtonListener(this);
-    view.setRestartButtonListener(this);
-    view.setSlowButtonListener(this);
-    view.setFastButtonListener(this);
-    view.setLoopButtonListener(this);
-    view.setLoadButtonListener(this);
-    view.setSaveTextButtonListener(this);
-    view.setSaveSVGButtonListener(this);
+
+    if (viewType.equalsIgnoreCase("playback")) {
+
+      view.setStartButtonListener(this);
+      view.setStopButtonListener(this);
+      view.setRestartButtonListener(this);
+      view.setSlowButtonListener(this);
+      view.setFastButtonListener(this);
+      view.setLoopButtonListener(this);
+      view.setLoadButtonListener(this);
+      view.setSaveTextButtonListener(this);
+      view.setSaveSVGButtonListener(this);
+    }
   }
 
 

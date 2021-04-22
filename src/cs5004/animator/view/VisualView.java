@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -13,10 +14,12 @@ import cs5004.animator.model.IAnimationModel;
  * the animation. It extends JFrame JFC/Swing component architecture.
  *
  */
-public class VisualView extends JFrame implements IView {
+public class VisualView extends JFrame implements IView, ActionListener {
   protected final IAnimationModel model;
   protected final int speed;
   protected AnimationPanel animationPanel;
+  protected int tick;
+  protected Timer timer;
 
   /**
    * The VisualView constructor takes in a model and the specified speed.
@@ -67,7 +70,13 @@ public class VisualView extends JFrame implements IView {
     // this is making the program "sleep" so it doesn't draw
     // use the swing timer -- give the timer an action listener and implement action performed
 
-    // get the disappear time of the last shape in the sorted treemap
+    // i think passing in speed is wrong here -- in this context it is the amount of time
+    // in between times the timer goes off and calls actionPerformed, in milliseconds
+    timer = new Timer(speed, this);
+    timer.setInitialDelay(1000);
+    timer.start();
+
+    /*// get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
@@ -105,7 +114,7 @@ public class VisualView extends JFrame implements IView {
       } catch (InterruptedException e) {
         // Do nothing
       }
-    }
+    }*/
   }
 
   /**
@@ -180,6 +189,20 @@ public class VisualView extends JFrame implements IView {
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    animationPanel.setTick(tick);
+    animationPanel.repaint();
+    System.out.println("draw frame " + tick);
+
+    int lastShapeTime = model.getEndTick();
+    if (tick == lastShapeTime) {
+      tick = 0;
+      timer.restart();
+    }
+    tick++;
   }
 }
 
