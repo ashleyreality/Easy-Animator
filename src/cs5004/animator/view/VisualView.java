@@ -63,6 +63,10 @@ public class VisualView extends JFrame implements IView {
   }
 
   public void drawShapes(int fromTick) {
+    // timer makes the program multi-threaded, so the program will keep running
+    // this is making the program "sleep" so it doesn't draw
+    // use the swing timer -- give the timer an action listener and implement action performed
+
     // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via

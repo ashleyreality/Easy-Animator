@@ -39,7 +39,7 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame = new JPanel();
     playbackAnimationFrame.setBorder(BorderFactory.createTitledBorder("Playback Animation"));
 
-    // create "GridBag" layout for outer container - this holds the jpanels
+    // create "GridBag" layout for outer container - this holds the jPanels in the right place
     playbackLayout = new GridBagLayout();
     layoutConstraints = new GridBagConstraints();
     playbackAnimationFrame.setLayout(playbackLayout);
@@ -64,6 +64,7 @@ public class PlaybackView extends VisualView {
 
     // add scroll pane
     JScrollPane scrollAnimation = new JScrollPane(playbackAnimationFrame);
+    this.add(scrollAnimation);
     setContentPane(scrollAnimation);
 
     // finish up JFrame
@@ -79,7 +80,8 @@ public class PlaybackView extends VisualView {
     animationPanel.setTick(tick);
     // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
     // is overridden in animationPanel
-    animationPanel.repaint();
+    this.repaint();
+
   }
 
   @Override
