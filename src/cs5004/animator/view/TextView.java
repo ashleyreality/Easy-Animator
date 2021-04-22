@@ -1,6 +1,7 @@
 package cs5004.animator.view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -9,6 +10,8 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.swing.*;
 
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
@@ -127,7 +130,7 @@ public class TextView implements IView {
   }
 
   @Override
-  public void setLoopButtonListener(ActionListener actionEvent) {
+  public void setLoopButtonListener(ItemListener itemEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
@@ -148,6 +151,31 @@ public class TextView implements IView {
 
   @Override
   public void drawShapes(int fromTick) {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public Timer getTimer() {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public void setTick(int tick) {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public JCheckBox getLoopCheckbox() {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public void loop() {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public void noLoop() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 }

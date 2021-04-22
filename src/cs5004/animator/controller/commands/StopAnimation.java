@@ -7,8 +7,6 @@ import cs5004.animator.view.IView;
 public class StopAnimation implements AnimationCommand {
   @Override
   public void go(IAnimationModel model, IView view) {
-    // do something
-    System.out.println("Animation stop command received");
-
+    view.getTimer().stop();
   }
 }

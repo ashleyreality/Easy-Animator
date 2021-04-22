@@ -4,10 +4,15 @@ import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 
-public class LoopTrue implements AnimationCommand {
+public class Loop implements AnimationCommand {
   @Override
   public void go(IAnimationModel model, IView view) {
-    // do something
-    System.out.println("Loop true command received");
+
+    if (view.getLoopCheckbox().isSelected()) {
+      view.loop();
+    }
+    if (!view.getLoopCheckbox().isSelected()) {
+      view.noLoop();
+    }
   }
 }

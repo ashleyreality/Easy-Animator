@@ -1,6 +1,9 @@
 package cs5004.animator.view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+
+import javax.swing.*;
 
 /**
  * The IView interface describes methods common to all views.
@@ -29,7 +32,7 @@ public interface IView {
 
   void setSlowButtonListener(ActionListener actionEvent);
 
-  void setLoopButtonListener(ActionListener actionEvent);
+  void setLoopButtonListener(ItemListener itemEvent);
 
   void setLoadButtonListener(ActionListener actionEvent);
 
@@ -38,4 +41,14 @@ public interface IView {
   void setSaveSVGButtonListener(ActionListener actionEvent);
 
   void drawShapes(int fromTick);
+
+  Timer getTimer();
+
+  void setTick(int tick);
+
+  JCheckBox getLoopCheckbox();
+
+  void loop();
+
+  void noLoop();
 }

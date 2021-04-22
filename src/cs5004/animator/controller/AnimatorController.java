@@ -2,6 +2,8 @@ package cs5004.animator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.util.Scanner;
 import javax.swing.*;
 
 import cs5004.animator.controller.commands.LoadFile;
+import cs5004.animator.controller.commands.Loop;
 import cs5004.animator.controller.commands.RestartAnimation;
 import cs5004.animator.controller.commands.SaveAsSVG;
 import cs5004.animator.controller.commands.SaveAsText;
@@ -33,7 +36,7 @@ import cs5004.animator.view.IView;
  * use. The View (such as TextView) uses an Appendable object for the View to use to transmit all
  * outputs (like a text file output).
  */
-public class AnimatorController implements ActionListener {
+public class AnimatorController implements ActionListener, ItemListener {
   private String[] args;
   private IAnimationModel model;
   private IView view;
@@ -469,6 +472,12 @@ public class AnimatorController implements ActionListener {
       JOptionPane.showMessageDialog(frame, "Speed must be a positive integer",
               "Invalid speed", JOptionPane.ERROR_MESSAGE);
     }
+  }
+
+  @Override
+  public void itemStateChanged(ItemEvent e) {
+    AnimationCommand cmd = new Loop();
+    cmd.go(model, view);
   }
 
 

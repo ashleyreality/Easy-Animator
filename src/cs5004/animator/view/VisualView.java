@@ -4,9 +4,12 @@ package cs5004.animator.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
+import cs5004.animator.controller.AnimationCommand;
+import cs5004.animator.controller.commands.Loop;
 import cs5004.animator.model.IAnimationModel;
 
 /**
@@ -117,6 +120,20 @@ public class VisualView extends JFrame implements IView, ActionListener {
     }*/
   }
 
+  public Timer getTimer() {
+    return timer;
+  }
+
+  @Override
+  public void setTick(int tick) {
+    this.tick = tick;
+  }
+
+  @Override
+  public JCheckBox getLoopCheckbox() {
+    throw new UnsupportedOperationException("This doesn't apply to the visual view");
+  }
+
   /**
    * Show an error message.
    *
@@ -168,7 +185,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   @Override
-  public void setLoopButtonListener(ActionListener actionEvent) {
+  public void setLoopButtonListener(ItemListener itemEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
@@ -196,14 +213,26 @@ public class VisualView extends JFrame implements IView, ActionListener {
     animationPanel.setTick(tick);
     animationPanel.repaint();
     System.out.println("draw frame " + tick);
+    tick++;
+    AnimationCommand loop = new Loop();
+    loop.go(model, this);
+  }
 
+  public void loop() {
     int lastShapeTime = model.getEndTick();
     if (tick == lastShapeTime) {
       tick = 0;
       timer.restart();
     }
-    tick++;
   }
+
+  public void noLoop() {
+    int lastShapeTime = model.getEndTick();
+    if (tick == lastShapeTime) {
+      timer.stop();
+    }
+  }
+
 }
 
 

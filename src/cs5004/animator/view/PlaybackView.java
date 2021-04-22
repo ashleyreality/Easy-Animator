@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 public class PlaybackView extends VisualView {
 
@@ -196,7 +197,7 @@ public class PlaybackView extends VisualView {
 
   private void loopCheckbox() {
     loopCheckbox = new JCheckBox("  Loop?");
-    loopCheckbox.setSelected(true);
+
     setItemFields(loopCheckbox, 1, 14, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.NORTH);
 
@@ -204,11 +205,11 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame.add(loopCheckbox);
   }
 
-  @Override
-  public void setLoopButtonListener(ActionListener actionEvent) {
-    // fixme -- this construction isn't working for loop checkbox --
-    //  may need to find another solution -- AB
-    loopCheckbox.addActionListener(actionEvent);
+  public JCheckBox getLoopCheckbox() { return loopCheckbox; }
+
+
+  public void setLoopButtonListener(ItemListener itemEvent) {
+    loopCheckbox.addItemListener(itemEvent);
   }
 
   private void loadButton() {
@@ -267,5 +268,6 @@ public class PlaybackView extends VisualView {
     playbackLayout.setConstraints(item, layoutConstraints);
 
   }
+
 
 }
