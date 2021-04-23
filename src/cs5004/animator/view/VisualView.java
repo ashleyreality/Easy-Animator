@@ -19,7 +19,7 @@ import cs5004.animator.model.IAnimationModel;
  */
 public class VisualView extends JFrame implements IView, ActionListener {
   protected final IAnimationModel model;
-  protected final int speed;
+  protected int speed;
   protected AnimationPanel animationPanel;
   protected int tick;
   protected Timer timer;
@@ -76,7 +76,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
     // i think passing in speed is wrong here -- in this context it is the amount of time
     // in between times the timer goes off and calls actionPerformed, in milliseconds
     timer = new Timer(1000 / speed, this);
-    timer.setInitialDelay(1000);
+    timer.setInitialDelay(100);
     timer.start();
 
     /*// get the disappear time of the last shape in the sorted treemap
@@ -220,7 +220,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
   public void loop() {
     int lastShapeTime = model.getEndTick();
-    if (tick == lastShapeTime) {
+    if (tick > lastShapeTime) {
       tick = 0;
       timer.restart();
     }
@@ -228,9 +228,19 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
   public void noLoop() {
     int lastShapeTime = model.getEndTick();
-    if (tick == lastShapeTime) {
+    if (tick > lastShapeTime) {
       timer.stop();
     }
+  }
+
+  @Override
+  public void setSpeed(int speed) {
+    throw new UnsupportedOperationException("Visual view does not support this");
+  }
+
+  @Override
+  public int getSpeed() {
+    throw new UnsupportedOperationException("Visual view does not support this");
   }
 
 }

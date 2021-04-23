@@ -51,4 +51,8 @@ public interface IView {
   void loop();
 
   void noLoop();
+
+  void setSpeed(int speed);
+
+  int getSpeed();
 }

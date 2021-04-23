@@ -178,6 +178,16 @@ public class TextView implements IView {
   public void noLoop() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
+
+  @Override
+  public void setSpeed(int speed) {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public int getSpeed() {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 }
 
 
