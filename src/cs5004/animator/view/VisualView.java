@@ -75,7 +75,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
     // i think passing in speed is wrong here -- in this context it is the amount of time
     // in between times the timer goes off and calls actionPerformed, in milliseconds
-    timer = new Timer(speed, this);
+    timer = new Timer(1000 / speed, this);
     timer.setInitialDelay(1000);
     timer.start();
 
