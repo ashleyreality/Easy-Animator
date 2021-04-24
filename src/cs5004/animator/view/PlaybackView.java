@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 
 public class PlaybackView extends VisualView {
 
@@ -292,7 +293,11 @@ public class PlaybackView extends VisualView {
     tick++;
     noLoop();
     AnimationCommand loop = new Loop();
-    loop.go(model, this);
+    try {
+      loop.go(model, this);
+    } catch (IOException ioException) {
+      ioException.printStackTrace();
+    }
   }
 
   @Override
@@ -311,5 +316,15 @@ public class PlaybackView extends VisualView {
       timer.stop();
     }
   }
+
+  /*
+  public void newText() throws IOException {
+    // we can figure out if we want to name the outstring something good later
+    new TextView(model, "text.txt");
+  }
+
+  public void newSVG() throws IOException {
+    new SVGView(model, "svg.txt", speed);
+  }*/
 
 }

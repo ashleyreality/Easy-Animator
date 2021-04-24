@@ -1,5 +1,7 @@
 package cs5004.animator.controller;
 
+import java.io.IOException;
+
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 
@@ -14,5 +16,5 @@ public interface AnimationCommand {
    * @param model the IAnimationModel instance containing the animation data.
    * @param view
    */
-  void go(IAnimationModel model, IView view);
+  void go(IAnimationModel model, IView view) throws IOException;
 }

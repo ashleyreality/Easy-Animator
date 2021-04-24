@@ -477,7 +477,11 @@ public class AnimatorController implements ActionListener, ItemListener {
   @Override
   public void itemStateChanged(ItemEvent e) {
     AnimationCommand cmd = new Loop();
-    cmd.go(model, view);
+    try {
+      cmd.go(model, view);
+    } catch (IOException ioException) {
+      ioException.printStackTrace();
+    }
   }
 
 
@@ -517,7 +521,11 @@ public class AnimatorController implements ActionListener, ItemListener {
 
 
     if (cmd != null) {
-      cmd.go(model, view);
+      try {
+        cmd.go(model, view);
+      } catch (IOException ioException) {
+        ioException.printStackTrace();
+      }
     }
   }
 }
