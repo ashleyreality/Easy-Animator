@@ -12,6 +12,7 @@ public class SaveAsSVG implements AnimationCommand {
   public void go(IAnimationModel model, IView view) throws IOException {
     // do something
     System.out.println("Save as SVG command received");
-    new SVGView(model, "svg.svg", view.getSpeed());
+    IView svg = new SVGView(model, "svg.svg", view.getSpeed());
+    svg.printView();
   }
 }

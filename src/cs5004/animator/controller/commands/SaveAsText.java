@@ -14,6 +14,7 @@ public class SaveAsText implements AnimationCommand {
   public void go(IAnimationModel model, IView view) throws IOException {
     // do something
     System.out.println("Save as text file command received");
-    new TextView(model, "text.txt");
+    IView text = new TextView(model, "text.txt");
+    text.printView();
   }
 }

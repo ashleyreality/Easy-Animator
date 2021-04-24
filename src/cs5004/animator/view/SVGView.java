@@ -104,6 +104,11 @@ public class SVGView implements IView {
    * Creates an SVG view.
    */
   public void createView() {
+    printView();
+    System.exit(0);
+  }
+
+  public void printView() {
     buildTheSVGString();
     out.print(sb.toString());
     out.close();

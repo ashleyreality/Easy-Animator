@@ -57,4 +57,6 @@ public interface IView {
   int getSpeed();
 
   void play();
+
+  void printView();
 }

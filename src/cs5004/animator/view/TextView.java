@@ -87,11 +87,14 @@ public class TextView implements IView {
    * Creates a text view.
    */
   public void createView() {
+    printView();
+    System.exit(0);
+  }
 
+  public void printView() {
     buildTheTextString();
     out.print(sb.toString());
     out.close();
-
   }
 
   /**

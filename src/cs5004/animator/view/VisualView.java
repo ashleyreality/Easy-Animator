@@ -233,6 +233,11 @@ public class VisualView extends JFrame implements IView, ActionListener {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 
+  @Override
+  public void printView() {
+    throw new UnsupportedOperationException("Visual view does not support this");
+  }
+
 }
 
 
