@@ -1,10 +1,13 @@
 package cs5004.animator.controller.commands;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 
-public class SlowDown implements AnimationCommand {
+public class SlowDown implements AnimationCommand, ActionListener {
 
   private int speed;
 
@@ -38,5 +41,16 @@ public class SlowDown implements AnimationCommand {
 
   public int getUpdatedSpeed() {
     return this.speed;
+  }
+
+  /**
+   * Invoked when an action occurs.
+   *
+   * @param e the event to be processed
+   */
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    System.out.println("Slow down button clicked!");
+
   }
 }

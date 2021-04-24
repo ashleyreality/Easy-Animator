@@ -46,6 +46,8 @@ public class PlaybackView extends VisualView {
 
   private JCheckBox loopCheckbox;
 
+  JTextField speedTextField;
+
 
   /**
    * ________________________________ CONSTRUCTOR: PlayBackView() _________________________________.
@@ -236,31 +238,39 @@ public class PlaybackView extends VisualView {
 
   private int getUpdatedSpeedWithButtonClick() {
 
-    int updatedSpeed = 0;
-
     //setSelected(boolean b)
     //Sets the state of the button. Note that this method does not trigger an actionEvent. Call doClick to perform a programmatic action change.
 
     //fasterButton.addActionListener(this);
 
+    int updatedSpeed = 0;
+
+
     fasterButton.addActionListener(new SpeedUp(this));
     fasterButton.doClick();
+    SpeedUp increasedSpeed = new SpeedUp(this);
+    updatedSpeed = increasedSpeed.getUpdatedSpeed();
+
+    slowerButton.addActionListener(new SlowDown(this));
+    slowerButton.doClick();
+    SlowDown decreasedSpeed = new SlowDown(this);
+    updatedSpeed = decreasedSpeed.getUpdatedSpeed();
 
     // If the speed up button is clicked
     if (fasterButton.getModel().isPressed()) {
       System.out.println("The button to speed up the animation has been pressed.");
       // Call SpeedUp and get the updated speed
-      SpeedUp increasedSpeed = new SpeedUp(this);
-      updatedSpeed = increasedSpeed.getUpdatedSpeed();
-      return updatedSpeed;
+      //SpeedUp increasedSpeed = new SpeedUp(this);
+      //updatedSpeed = increasedSpeed.getUpdatedSpeed();
+      //return updatedSpeed;
     }
     // If the slow down button is clicked
     if (slowerButton.getModel().isPressed()) {
       System.out.println("The button to slow down the animation has been pressed.");
       // Call SlowDown and get the updated speed
-      SlowDown increasedSpeed = new SlowDown(this);
-      updatedSpeed = increasedSpeed.getUpdatedSpeed();
-      return updatedSpeed;
+      //SlowDown increasedSpeed = new SlowDown(this);
+      //updatedSpeed = decreasedSpeed.getUpdatedSpeed();
+      //return updatedSpeed;
     }
 
     return updatedSpeed;
@@ -272,7 +282,7 @@ public class PlaybackView extends VisualView {
    */
   private void speedArea() {
     int updatedSpeed = getUpdatedSpeedWithButtonClick();
-    System.out.println(updatedSpeed);
+    System.out.println("The updated speed is: " + updatedSpeed);
 
     // The speed displayed in the animation window should update:
     speedNumber = new JLabel();
@@ -413,6 +423,12 @@ public class PlaybackView extends VisualView {
     } catch (IOException ioException) {
       ioException.printStackTrace();
     }
+
+//    speedTextField = new JTextField(30);
+//
+//    if (e.getSource() == fasterButton) {
+//      System.out.println("THE FASTER BUTTON HAS BEEN CLICKED!");
+//    }
   }
 
   @Override
