@@ -188,6 +188,11 @@ public class TextView implements IView {
   public int getSpeed() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
+
+  @Override
+  public void play() {
+    throw new UnsupportedOperationException("The text view does not use this.");
+  }
 }
 
 

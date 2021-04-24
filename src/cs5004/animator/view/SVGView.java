@@ -329,4 +329,9 @@ public class SVGView implements IView {
   public int getSpeed() {
     throw new UnsupportedOperationException("The SVG view does not use this.");
   }
+
+  @Override
+  public void play() {
+    throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
 }

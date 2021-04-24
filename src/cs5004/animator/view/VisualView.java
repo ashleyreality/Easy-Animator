@@ -90,7 +90,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
       // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
       // is overridden in animationPanel
       animationPanel.repaint();
-      System.out.println("draw frame " + tick);
+      // System.out.println("draw frame " + tick);
 
       // Get the current epoch timestamp in milliseconds precision
       double endTime = System.currentTimeMillis();
@@ -208,19 +208,14 @@ public class VisualView extends JFrame implements IView, ActionListener {
     throw new UnsupportedOperationException("Not supported in visual view");
   }
 
+  @Override
   public void loop() {
-    int lastShapeTime = model.getEndTick();
-    if (tick > lastShapeTime) {
-      tick = 0;
-      timer.restart();
-    }
+    throw new UnsupportedOperationException("Not supported in visual view");
   }
 
+  @Override
   public void noLoop() {
-    int lastShapeTime = model.getEndTick();
-    if (tick > lastShapeTime) {
-      timer.stop();
-    }
+    throw new UnsupportedOperationException("Not supported in visual view");
   }
 
   @Override
@@ -230,6 +225,11 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
   @Override
   public int getSpeed() {
+    throw new UnsupportedOperationException("Visual view does not support this");
+  }
+
+  @Override
+  public void play() {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 

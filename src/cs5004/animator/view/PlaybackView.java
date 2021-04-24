@@ -89,7 +89,7 @@ public class PlaybackView extends VisualView {
   }
 
   @Override
-  public void drawShapes(int fromTick) {
+  public void play() {
     timer = new Timer(1000 / speed, this);
     timer.setInitialDelay(100);
     timer.start();
@@ -290,8 +290,26 @@ public class PlaybackView extends VisualView {
     animationPanel.repaint();
     System.out.println("draw frame " + tick);
     tick++;
+    noLoop();
     AnimationCommand loop = new Loop();
     loop.go(model, this);
+  }
+
+  @Override
+  public void loop() {
+    int lastShapeTime = model.getEndTick();
+    if (tick > lastShapeTime) {
+      tick = 0;
+      timer.restart();
+    }
+  }
+
+  @Override
+  public void noLoop() {
+    int lastShapeTime = model.getEndTick();
+    if (tick > lastShapeTime) {
+      timer.stop();
+    }
   }
 
 }

@@ -7,6 +7,6 @@ import cs5004.animator.view.IView;
 public class StartAnimation implements AnimationCommand {
   @Override
   public void go(IAnimationModel model, IView view) {
-      view.drawShapes(0);
+      view.play();
   }
 }
