@@ -1,6 +1,7 @@
 package cs5004.animator.view;
 
 import cs5004.animator.controller.AnimationCommand;
+import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.controller.commands.Loop;
 import cs5004.animator.controller.commands.SlowDown;
 import cs5004.animator.controller.commands.SpeedUp;
@@ -16,6 +17,8 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 
 /**
+ * ____________________________________ CLASS: PlaybackView() _____________________________________.
+ *
  * This class represents a PlayBack view. The PlayBack view outputs a window that allows the user
  * to start and stop the animation, load an animation, slow down and speed up the animation, and
  * save the animation as a text or svg, loop the animation and start it over as desired.
@@ -23,6 +26,7 @@ import java.io.IOException;
 public class PlaybackView extends VisualView {
 
   private JPanel playbackAnimationFrame;
+
   private ButtonGroup buttonGroup;
   private GridBagLayout playbackLayout;
   private GridBagConstraints layoutConstraints;
@@ -30,15 +34,17 @@ public class PlaybackView extends VisualView {
   private JToggleButton startAnimation;
   private JToggleButton stopButton;
   private JToggleButton restartAnimation;
+
   private JButton fasterButton;
   private JButton slowerButton;
-  private JLabel speedNumber;
-  private JLabel speedLabel;
-  private JCheckBox loopCheckbox;
-
   private JButton saveAsText;
   private JButton saveAsSVG;
   private JButton loadFile;
+
+  private JLabel speedNumber;
+  private JLabel speedLabel;
+
+  private JCheckBox loopCheckbox;
 
 
   /**
@@ -95,19 +101,29 @@ public class PlaybackView extends VisualView {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     pack();
 
-
     frameAtTick(0);
     //drawShapes(0);
   }
 
+  /**
+   * ___________________________________ METHOD: frameAtTick() ____________________________________.
+   * This is the frameAtTick() method which sets the tick/frame using the AnimationPanel, the
+   * JPanel container class and repaints the animation using Java Swing/AWT API.
+   *
+   * @param tick the tick you'd like to set the current tick to
+   */
   private void frameAtTick(int tick) {
     animationPanel.setTick(tick);
     // Draw the shape(s) at this time using the paintComponent method inside of repaint(), which
     // is overridden in animationPanel
     this.repaint();
-
   }
 
+  /**
+   * _________________________________ METHOD OVERRIDE: play() ____________________________________.
+   * This is the play() method override from the IView interface. It instantiates a new Timer object
+   * with a time delay defined by the user's speed selection and the view being the listener.
+   */
   @Override
   public void play() {
     timer = new Timer(1000 / speed, this);
@@ -135,6 +151,11 @@ public class PlaybackView extends VisualView {
     //super.drawShapes(animationPanel);
   }
 
+  /**
+   * ___________________________________ METHOD: startButton() ____________________________________.
+   * This is the startButton() method which instantiates a new JToggleButton, which creates an
+   * unselected toggle button with the specified text, "Start".
+   */
   private void startButton() {
     startAnimation = new JToggleButton("Start");
     startAnimation.setSelected(true);
@@ -217,6 +238,14 @@ public class PlaybackView extends VisualView {
 
     int updatedSpeed = 0;
 
+    //setSelected(boolean b)
+    //Sets the state of the button. Note that this method does not trigger an actionEvent. Call doClick to perform a programmatic action change.
+
+    //fasterButton.addActionListener(this);
+
+    fasterButton.addActionListener(new SpeedUp(this));
+    fasterButton.doClick();
+
     // If the speed up button is clicked
     if (fasterButton.getModel().isPressed()) {
       System.out.println("The button to speed up the animation has been pressed.");
@@ -238,8 +267,10 @@ public class PlaybackView extends VisualView {
   }
 
 
+  /**
+   * This is the text area in the animation frame where the speed is displayed and updated.
+   */
   private void speedArea() {
-    // text area where speed will be displayed
     int updatedSpeed = getUpdatedSpeedWithButtonClick();
     System.out.println(updatedSpeed);
 

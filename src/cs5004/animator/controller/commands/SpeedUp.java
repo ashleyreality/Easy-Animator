@@ -1,6 +1,7 @@
 package cs5004.animator.controller.commands;
 
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
@@ -10,7 +11,7 @@ import cs5004.animator.view.IView;
  * This is the SpeedUp class. It implements the AnimationCommand interface which contains methods
  * common to all animation commands.
  */
-public class SpeedUp implements AnimationCommand {
+public class SpeedUp implements AnimationCommand, ActionListener {
 
   private final int speed;
 
@@ -41,4 +42,14 @@ public class SpeedUp implements AnimationCommand {
     return this.speed;
   }
 
+  /**
+   * Invoked when an action occurs.
+   *
+   * @param e the event to be processed
+   */
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    System.out.println("Speed up button clicked!");
+
+  }
 }

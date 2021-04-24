@@ -474,6 +474,16 @@ public class AnimatorController implements ActionListener, ItemListener {
     }
   }
 
+  /**
+   * _____________________________ METHOD OVERRIDE: itemStateChanged() ____________________________.
+   * This is an override of the itemStateChanged() from the ItemListener Interface, which is called
+   * just after a state change in the listened-to component event. The override creates an Item
+   * Listener for the AnimationCommand interface which instantiates a Loop() object for the
+   * JCheckBox getLoopCheckbox(), an implementation of a check box -- an item that can be selected
+   * or deselected, and which displays its state to the user.
+   *
+   * @param e the item event, an ActionEvent
+   */
   @Override
   public void itemStateChanged(ItemEvent e) {
     AnimationCommand cmd = new Loop();
@@ -485,6 +495,16 @@ public class AnimatorController implements ActionListener, ItemListener {
   }
 
 
+  /**
+   * _____________________________ METHOD OVERRIDE: actionPerformed() _____________________________.
+   * This is an override of the actionPerformed() method override from the ActionListener interface,
+   * which is invoked when an action event occurs whenever an action is performed by the user. An
+   * example of an action is when a user clicks a button. In this case, an action performed occurs
+   * when the user selection a button to start, stop, speed up, slow down, and restart the animation,
+   * as well as loading an animation file, and saving an animation as a text or svg file.
+   *
+   * @param e the item event, an ActionEvent
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     AnimationCommand cmd = null;
