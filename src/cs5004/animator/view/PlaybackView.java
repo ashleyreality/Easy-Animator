@@ -291,7 +291,7 @@ public class PlaybackView extends VisualView {
     animationPanel.repaint();
     System.out.println("draw frame " + tick);
     tick++;
-    noLoop();
+    //noLoop();
     AnimationCommand loop = new Loop();
     try {
       loop.go(model, this);
