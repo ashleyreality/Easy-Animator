@@ -497,10 +497,10 @@ public class AnimatorController implements ActionListener, ItemListener {
         cmd = new StopAnimation();
         break;
       case "FAST":
-        cmd = new SpeedUp();
+        cmd = new SpeedUp(view);
         break;
       case "SLOW":
-        cmd = new SlowDown();
+        cmd = new SlowDown(view);
         break;
       case "RESTART":
         cmd = new RestartAnimation();

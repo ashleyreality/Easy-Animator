@@ -14,7 +14,7 @@ public interface AnimationCommand {
    * Perform the command.
    *
    * @param model the IAnimationModel instance containing the animation data.
-   * @param view
+   * @param view the type of view specified, an IView
    */
   void go(IAnimationModel model, IView view) throws IOException;
 }
