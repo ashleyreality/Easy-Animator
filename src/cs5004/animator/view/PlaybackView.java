@@ -8,6 +8,16 @@ import cs5004.animator.controller.commands.SpeedUp;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.Actions;
 
+import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
+import javax.swing.JToggleButton;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
+import javax.swing.Timer;
 import javax.swing.*;
 
 import java.awt.*;
@@ -78,6 +88,14 @@ public class PlaybackView extends VisualView {
 
     // group for buttons -- may not be needed?
     buttonGroup = new ButtonGroup();
+
+    // New Speed Label
+    speedLabel = new JLabel();
+    // New Speed Number
+    speedNumber = new JLabel();
+    this.speed = 1;
+    playbackAnimationFrame.add(this.speedLabel);
+    playbackAnimationFrame.add(this.speedNumber);
 
     // add animation
     createAnimation();
@@ -236,13 +254,13 @@ public class PlaybackView extends VisualView {
   }
 
 
-  private int getUpdatedSpeedWithButtonClick() {
+ // private int getUpdatedSpeedWithButtonClick() {
 
     //setSelected(boolean b)
     //Sets the state of the button. Note that this method does not trigger an actionEvent. Call doClick to perform a programmatic action change.
 
     //fasterButton.addActionListener(this);
-
+/*
     int updatedSpeed = 0;
 
 
@@ -274,30 +292,36 @@ public class PlaybackView extends VisualView {
     }
 
     return updatedSpeed;
+
+
   }
+    */
 
 
   /**
    * This is the text area in the animation frame where the speed is displayed and updated.
    */
   private void speedArea() {
-    int updatedSpeed = getUpdatedSpeedWithButtonClick();
+    //int updatedSpeed = getUpdatedSpeedWithButtonClick();
+    int updatedSpeed = this.speed;
     System.out.println("The updated speed is: " + updatedSpeed);
 
     // The speed displayed in the animation window should update:
-    speedNumber = new JLabel();
-    speedNumber.setText(String.valueOf("test"));
-    super.update(this.getGraphics());
+    //speedNumber = new JLabel(); can't create a new object with GUIs as the animation is running
+    // we don't update the GUI like this
+    speedLabel.setText("Current Speed:");
+    speedNumber.setText(String.valueOf(updatedSpeed));
+    //super.update(this.getGraphics());
 
-    setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.SOUTH);
-    playbackAnimationFrame.add(speedNumber);
+    //setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
+    //        1, 0, GridBagConstraints.SOUTH);
+    //playbackAnimationFrame.add(speedNumber);
 
     // label for text area
-    speedLabel = new JLabel("Current Speed");
-    setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
-            1, 1, GridBagConstraints.SOUTH);
-    playbackAnimationFrame.add(speedLabel);
+    //speedLabel = new JLabel("Current Speed");
+    //setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
+    //        1, 1, GridBagConstraints.SOUTH);
+    //playbackAnimationFrame.add(speedLabel);
   }
 
   private void loopCheckbox() {
@@ -403,6 +427,9 @@ public class PlaybackView extends VisualView {
   @Override
   public void setSpeed(int speed) {
     this.speed =speed;
+
+    // Update the speed
+    speedArea();
   }
 
   @Override
@@ -458,4 +485,13 @@ public class PlaybackView extends VisualView {
     new SVGView(model, "svg.txt", speed);
   }*/
 
+  @Override
+  public IAnimationModel getModel() {
+    return this.model;
+  }
+
+  @Override
+  public void setModel(IAnimationModel model) {
+    this.model = model;
+  }
 }

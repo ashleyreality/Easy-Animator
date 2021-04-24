@@ -24,7 +24,7 @@ import cs5004.animator.model.ShapeType;
  */
 public class SVGView implements IView {
   private final PrintStream out;
-  private final IAnimationModel model;
+  private IAnimationModel model;
   private final int speed;
   private final StringBuilder sb;
 
@@ -338,5 +338,15 @@ public class SVGView implements IView {
   @Override
   public void play() {
     throw new UnsupportedOperationException("The SVG view does not use this.");
+  }
+
+  @Override
+  public IAnimationModel getModel() {
+    return this.model;
+  }
+
+  @Override
+  public void setModel(IAnimationModel model) {
+    this.model = model;
   }
 }

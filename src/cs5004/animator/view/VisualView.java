@@ -18,7 +18,7 @@ import cs5004.animator.model.IAnimationModel;
  *
  */
 public class VisualView extends JFrame implements IView, ActionListener {
-  protected final IAnimationModel model;
+  protected IAnimationModel model;
   protected int speed;
   protected AnimationPanel animationPanel;
   protected int tick;
@@ -236,6 +236,16 @@ public class VisualView extends JFrame implements IView, ActionListener {
   @Override
   public void printView() {
     throw new UnsupportedOperationException("Visual view does not support this");
+  }
+
+  @Override
+  public IAnimationModel getModel() {
+    return this.model;
+  }
+
+  @Override
+  public void setModel(IAnimationModel model) {
+    this.model = model;
   }
 
 }

@@ -22,7 +22,7 @@ import cs5004.animator.model.IShape;
  * an appendable.
  */
 public class TextView implements IView {
-  private final IAnimationModel model;
+  private IAnimationModel model;
   private final PrintStream out;
   private final StringBuilder sb;
 
@@ -195,6 +195,16 @@ public class TextView implements IView {
   @Override
   public void play() {
     throw new UnsupportedOperationException("The text view does not use this.");
+  }
+
+  @Override
+  public IAnimationModel getModel() {
+    return this.model;
+  }
+
+  @Override
+  public void setModel(IAnimationModel model) {
+    this.model = model;
   }
 }
 

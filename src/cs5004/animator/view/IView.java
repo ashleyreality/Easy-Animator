@@ -5,6 +5,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
+import cs5004.animator.model.IAnimationModel;
+
 /**
  * The IView interface describes methods common to all views.
  */
@@ -59,4 +61,8 @@ public interface IView {
   void play();
 
   void printView();
+
+  IAnimationModel getModel();
+
+  void setModel(IAnimationModel model);
 }

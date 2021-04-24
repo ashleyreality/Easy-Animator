@@ -15,6 +15,7 @@ import cs5004.animator.view.IView;
  */
 public class SlowDown implements AnimationCommand, ActionListener {
   private int speed;
+  private IView view;
 
 
   /**
@@ -26,6 +27,7 @@ public class SlowDown implements AnimationCommand, ActionListener {
    */
   public SlowDown(IView view) {
     this.speed = view.getSpeed();
+    this.view = view;
 
     if (speed < 1) {
       // set it to 1? 0 speed is just pausing at some point so 1 makes sense for minimal speed
@@ -85,6 +87,6 @@ public class SlowDown implements AnimationCommand, ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     System.out.println("Slow down button clicked!");
-
+    view.setSpeed(speed);
   }
 }
