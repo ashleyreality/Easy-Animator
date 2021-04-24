@@ -10,5 +10,6 @@ public class SpeedUp implements AnimationCommand {
     System.out.println("Speed up command received");
     view.setSpeed(view.getSpeed() + 1);
     System.out.println("speed + " +view.getSpeed());
+    view.play();
   }
 }

@@ -14,5 +14,6 @@ public class SlowDown implements AnimationCommand {
       view.setSpeed(1);
     }
     System.out.println("speed - " +view.getSpeed());
+    view.play();
   }
 }
