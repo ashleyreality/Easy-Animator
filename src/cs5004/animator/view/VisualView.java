@@ -75,11 +75,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
     // i think passing in speed is wrong here -- in this context it is the amount of time
     // in between times the timer goes off and calls actionPerformed, in milliseconds
-    timer = new Timer(1000 / speed, this);
-    timer.setInitialDelay(100);
-    timer.start();
-
-    /*// get the disappear time of the last shape in the sorted treemap
+    // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
@@ -117,7 +113,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
       } catch (InterruptedException e) {
         // Do nothing
       }
-    }*/
+    }
   }
 
   public Timer getTimer() {
@@ -205,17 +201,11 @@ public class VisualView extends JFrame implements IView, ActionListener {
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
-
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    animationPanel.setTick(tick);
-    animationPanel.repaint();
-    System.out.println("draw frame " + tick);
-    tick++;
-    AnimationCommand loop = new Loop();
-    loop.go(model, this);
+    throw new UnsupportedOperationException("Not supported in visual view");
   }
 
   public void loop() {

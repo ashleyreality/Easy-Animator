@@ -1,11 +1,14 @@
 package cs5004.animator.view;
 
+import cs5004.animator.controller.AnimationCommand;
+import cs5004.animator.controller.commands.Loop;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.Actions;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
@@ -87,7 +90,9 @@ public class PlaybackView extends VisualView {
 
   @Override
   public void drawShapes(int fromTick) {
-    super.drawShapes(animationPanel.getSomeTick());
+    timer = new Timer(1000 / speed, this);
+    timer.setInitialDelay(100);
+    timer.start();
   }
 
   private void createAnimation() {
@@ -277,6 +282,16 @@ public class PlaybackView extends VisualView {
   @Override
   public int getSpeed() {
     return this.speed;
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    animationPanel.setTick(tick);
+    animationPanel.repaint();
+    System.out.println("draw frame " + tick);
+    tick++;
+    AnimationCommand loop = new Loop();
+    loop.go(model, this);
   }
 
 }
