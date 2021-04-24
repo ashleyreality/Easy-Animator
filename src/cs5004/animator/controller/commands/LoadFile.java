@@ -18,10 +18,12 @@ import cs5004.animator.view.IView;
  * methods common to all animation commands. The LoadFile receives the command to load a file per
  * the user button click in the animation playback window.
  */
-public class LoadFile implements AnimationCommand {
+public class LoadFile implements AnimationCommand, ActionListener {
 
   /**
    * _________________________________ METHOD OVERRIDE: go() ______________________________________.
+   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * command, being loading a file.
    *
    * @param model the IAnimationModel instance containing the animation data.
    * @param view  the type of view specified, an IView
@@ -36,25 +38,44 @@ public class LoadFile implements AnimationCommand {
     //JFrame frame = new JFrame("JComboBox Test");
     //frame.setLayout(new FlowLayout());
     //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JButton button = new JButton("Select File");
-    button.addActionListener(new ActionListener() {
+   JButton button = new JButton("Select File");
+//    button.addActionListener(new ActionListener() {
 
 
-      public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-          File selectedFile = fileChooser.getSelectedFile();
-          try {
-            Desktop.getDesktop().open(selectedFile);
-          } catch (IOException ioException) {
-            ioException.printStackTrace();
-          }
-          System.out.println(selectedFile.getName());
-        }
+//      public void actionPerformed(ActionEvent e) {
+//        JFileChooser fileChooser = new JFileChooser();
+//        int returnValue = fileChooser.showOpenDialog(null);
+//        if (returnValue == JFileChooser.APPROVE_OPTION) {
+//          File selectedFile = fileChooser.getSelectedFile();
+//          try {
+//            Desktop.getDesktop().open(selectedFile);
+//          } catch (IOException ioException) {
+//            ioException.printStackTrace();
+//          }
+//          System.out.println(selectedFile.getName());
+//        }
+//      }
+//    });
+
+  }
+
+  /**
+   * Invoked when an action occurs.
+   *
+   * @param e the event to be processed
+   */
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    JFileChooser fileChooser = new JFileChooser();
+    int returnValue = fileChooser.showOpenDialog(null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = fileChooser.getSelectedFile();
+      try {
+        Desktop.getDesktop().open(selectedFile);
+      } catch (IOException ioException) {
+        ioException.printStackTrace();
       }
-
-
-    });
+      System.out.println(selectedFile.getName());
+    }
   }
 }
