@@ -11,7 +11,7 @@ import cs5004.animator.view.IView;
 public interface AnimationCommand {
 
   /**
-   * _____________________________ METHOD OVERRIDE: go() __________________________________________.
+   * _____________________________ METHOD OVERRIDE: start() _______________________________________.
    * This method performs the command.
    *
    * @param model the IAnimationModel instance containing the animation data.

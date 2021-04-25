@@ -29,8 +29,8 @@ public class SpeedUp implements AnimationCommand, ActionListener {
   }
 
   /**
-   * _____________________________ METHOD OVERRIDE: go() __________________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _____________________________ METHOD OVERRIDE: start() _______________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being speeding up the speed of the animation.
    *
    * @param model the IAnimationModel instance containing the animation data.

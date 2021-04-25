@@ -14,8 +14,8 @@ import cs5004.animator.view.IView;
 public class Loop implements AnimationCommand {
 
   /**
-   * _____________________________ METHOD OVERRIDE: go() __________________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _____________________________ METHOD OVERRIDE: start() _______________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being loading a loop.
    *
    * @param model the IAnimationModel instance containing the animation data.

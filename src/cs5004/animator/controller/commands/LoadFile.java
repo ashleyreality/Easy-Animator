@@ -26,8 +26,8 @@ import static cs5004.animator.controller.AnimatorController.newBuild;
 public class LoadFile implements AnimationCommand, ActionListener {
 
   /**
-   * _________________________________ METHOD OVERRIDE: go() ______________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _________________________________ METHOD OVERRIDE: start() ___________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being loading a file.
    *
    * @param model the IAnimationModel instance containing the animation data.

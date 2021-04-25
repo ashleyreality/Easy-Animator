@@ -14,8 +14,8 @@ public class SaveAsText implements AnimationCommand {
 
 
   /**
-   * _____________________________ METHOD OVERRIDE: go() __________________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _____________________________ METHOD OVERRIDE: start() ______________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being saving the animation as a text file.
    *
    * @param model the IAnimationModel instance containing the animation data.
