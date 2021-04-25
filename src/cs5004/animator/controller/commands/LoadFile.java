@@ -1,18 +1,20 @@
 package cs5004.animator.controller.commands;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import javax.swing.*;
 
 import cs5004.animator.controller.AnimationCommand;
-import cs5004.animator.controller.AnimatorController;
-import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.model.IAnimationModel;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.IView;
+
+import static cs5004.animator.controller.AnimatorController.newBuild;
 
 /**
  * ___________________________________ CLASS: LoadFile {} _________________________________________.
@@ -31,9 +33,10 @@ public class LoadFile implements AnimationCommand, ActionListener {
    * @param view  the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void go(IAnimationModel model, IView view) throws FileNotFoundException {
     // do something
     System.out.println("Load file command received");
+    view.getTimer().stop();
 
     JFileChooser fileChooser = new JFileChooser();
     int returnValue = fileChooser.showOpenDialog(null);
@@ -42,13 +45,28 @@ public class LoadFile implements AnimationCommand, ActionListener {
       // Get the file name
       String filename = selectedFile.getName();
 
+      System.out.println(model.getShapeMap().toString());
+
       // To load the file...
       // 1) Clear the model to remove all events and shapes from a model, so the model is
       // essentially empty again
       model.clearShapeMap();
-      // 2) Do what the controller does to add all the shapes and events to the model.
+      view.clearModel();
+      System.out.println(model.getShapeMap().toString());
 
-      System.out.println(selectedFile.getName());
+
+      // 2) Do what the controller does to add all the shapes and events to the model.
+      //  public void loadFile(String inputFile) {
+    // Takes in file name
+
+
+    AnimationBuilder build = newBuild(model);
+
+    Readable readableFile = new FileReader(filename);
+    // Step 7) Fill the model
+    fillTheModel(readableFile, build);
+
+    System.out.println(selectedFile.getName());
     }
   }
 
@@ -63,6 +81,42 @@ public class LoadFile implements AnimationCommand, ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
+  }
 
+
+  /**
+   * ____________________________ CONTROLLER STEP 7: fillTheModel() _______________________________.
+   * Parse the file so the model is filled, and set the model variable to the filled model.
+   *
+   * @param file  the file being input, a Readable
+   * @param build the build of the model, an AnimationBuilder
+   */
+  public static void fillTheModel(Readable file, AnimationBuilder build) {
+    AnimationReader.parseFile(file, build);
+  }
+
+  public static Readable checkInputFile(String inputName, JFrame frame) {
+    return fileExceptions(inputName, frame);
+  }
+
+  /**
+   * _____________________________ HELPER METHOD: fileExceptions() ________________________________.
+   * Checks for problems with input files and throws exceptions if problems exist.
+   *
+   * @param inputName the name of the in file
+   * @param frame     the JFrame used for exception-throwing
+   * @return a FileReader object with the in file specified
+   */
+  public static Readable fileExceptions(String inputName, JFrame frame) {
+    try {
+      return new FileReader(inputName);
+    } catch (FileNotFoundException e) {
+      frame.setVisible(true);
+      JOptionPane.showMessageDialog(frame, "Input file not found", "Input file error",
+              JOptionPane.ERROR_MESSAGE);
+      System.out.println("The input file was not found.");
+      e.printStackTrace();
+    }
+    return null;
   }
 }
