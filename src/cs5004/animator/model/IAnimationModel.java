@@ -71,14 +71,42 @@ public interface IAnimationModel {
    */
   IShape getShape(String name);
 
+  /**
+   * Sets the bounds for the animation.
+   *
+   * @param x the x position for the bounds
+   * @param y the y position for the bounds
+   * @param width the width of the bounds
+   * @param height the height of the bounds
+   */
   void addBounds(int x, int y, int width, int height);
 
+  /**
+   * Gets the x position of the bounds
+   *
+   * @return the x position for the bounds
+   */
   int getBoundsX();
 
+  /**
+   * Gets the y position of the bounds
+   *
+   * @return the y position for the bounds
+   */
   int getBoundsY();
 
+  /**
+   * Gets the height of the bounds
+   *
+   * @return the height for the bounds
+   */
   int getBoundsHeight();
 
+  /**
+   * Gets the width of the bounds
+   *
+   * @return the width for the bounds
+   */
   int getBoundsWidth();
 
   /**
@@ -95,6 +123,9 @@ public interface IAnimationModel {
    */
   void setEndTick(int endTick);
 
+  /**
+   * Clears the shape map.
+   */
   void clearShapeMap();
 
 }

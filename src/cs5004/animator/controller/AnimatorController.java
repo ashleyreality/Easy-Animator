@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -38,11 +39,9 @@ import cs5004.animator.view.IView;
  * outputs (like a text file output).
  */
 public class AnimatorController implements ActionListener, ItemListener {
-  private String[] args;
+  private final String[] args;
   private IAnimationModel model;
   private IView view;
-  private JFrame frame;
-  private AnimationBuilder build;
 
   /**
    * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
@@ -62,7 +61,7 @@ public class AnimatorController implements ActionListener, ItemListener {
     model = newAnimation();
 
     // Step 2) Create the frame
-    this.frame = newFrame();
+    JFrame frame = newFrame();
 
     // Step 3) Parse the command-line arguments
     StringBuilder parsedString = parsedCommandLine(args);
@@ -71,10 +70,10 @@ public class AnimatorController implements ActionListener, ItemListener {
     String inputFile = inputFile(parsedString);
 
     // Step 5) Check input file for exceptions
-    Readable file = checkInputFile(inputFile, this.frame);
+    Readable file = checkInputFile(inputFile, frame);
 
     // Step 6) Create a new build
-    this.build = newBuild(model);
+    AnimationBuilder build = newBuild(model);
 
     // Step 7) Fill the model
     fillTheModel(file, build);
@@ -549,5 +548,14 @@ public class AnimatorController implements ActionListener, ItemListener {
         ioException.printStackTrace();
       }
     }
+  }
+
+  /**
+   * Gets the model for testing.
+   *
+   * @return the model in this controller
+   */
+  public IAnimationModel getModel() {
+    return model;
   }
 }
