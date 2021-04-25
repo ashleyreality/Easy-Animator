@@ -51,8 +51,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
-   * @param animationPanel
+   * Creates a panel.
+   * @param animationPanel an animation panel
    */
   protected void newPanel(AnimationPanel animationPanel) {
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
@@ -61,8 +61,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
-   * @param animationPanel
+   * Creates a scroll pane
+   * @param animationPanel an animation panel
    */
   protected void scrollPanel(AnimationPanel animationPanel) {
     // Create a Scroll Pane
@@ -117,29 +117,30 @@ public class VisualView extends JFrame implements IView, ActionListener {
     }
   }
 
+  /**
+   * Gets the timer of the animation.
+   * @return the timer, a Timer
+   */
   public Timer getTimer() {
     return timer;
   }
 
+  /**
+   * Sets the tick in the animation Timer.
+   * @param tick a tick/frame rate, an int
+   */
   @Override
   public void setTick(int tick) {
     this.tick = tick;
   }
 
+  /**
+   * Gets the loop checkbox from the aniimation.
+   * @return a loop checkbox, a JCheckBox
+   */
   @Override
   public JCheckBox getLoopCheckbox() {
     throw new UnsupportedOperationException("This doesn't apply to the visual view");
-  }
-
-  /**
-   * Show an error message.
-   *
-   * @param error the text of the error message
-   */
-  // fixme - do we use this anywhere? we can delete if not?
-  public void showErrorMessage(String error) {
-    JOptionPane.showMessageDialog(this, error, "Error",
-            JOptionPane.ERROR_MESSAGE);
   }
 
   /**
@@ -153,8 +154,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _____________________________ METHOD: setStartButtonListener() _______________________________.
+   * Creates a listener for the start button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setStartButtonListener(ActionListener actionEvent) {
@@ -162,8 +165,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ______________________________ METHOD: setStopButtonListener() _______________________________.
+   * Creates a listener for the stop button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setStopButtonListener(ActionListener actionEvent) {
@@ -172,8 +177,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ____________________________ METHOD: setRestartButtonListener() ______________________________.
+   * Creates a listener for the restart button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setRestartButtonListener(ActionListener actionEvent) {
@@ -182,8 +189,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _______________________________ METHOD: setFastButtonListener() ______________________________.
+   * Creates a listener for the "faster" button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setFastButtonListener(ActionListener actionEvent) {
@@ -192,8 +201,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ______________________________ METHOD: setSlowButtonListener() _______________________________.
+   * Creates a listener for the "slower" button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setSlowButtonListener(ActionListener actionEvent) {
@@ -202,8 +213,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ______________________________ METHOD: setLoopButtonListener() _______________________________.
+   * Creates a listener for the "loop" checkbox.
    *
-   * @param itemEvent
+   * @param itemEvent the event, an ItemListener
    */
   @Override
   public void setLoopButtonListener(ItemListener itemEvent) {
@@ -212,8 +225,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ______________________________ METHOD: setLoadButtonListener() _______________________________.
+   * Creates a listener for the "load" button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setLoadButtonListener(ActionListener actionEvent) {
@@ -222,8 +237,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ____________________________ METHOD: setSaveTextButtonListener() _____________________________.
+   * Creates a listener for the "save as text" button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setSaveTextButtonListener(ActionListener actionEvent) {
@@ -232,8 +249,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _____________________________ METHOD: setSaveSVGButtonListener() _____________________________.
+   * Creates a listener for the "save as svg" button.
    *
-   * @param actionEvent
+   * @param actionEvent an event, an ActionListener
    */
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
@@ -241,8 +260,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _____________________________ METHOD OVERRIDE: actionPerformed() _____________________________.
+   * Repaints the animation to play the animation.
    *
-   * @param e
+   * @param e the event, an ActionEvent
    */
   @Override
   public void actionPerformed(ActionEvent e) {
@@ -250,7 +271,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
+   * ____________________________________ METHOD OVERRIDE: loop() _________________________________.
+   * Loops the animation to play the animation.
    */
   @Override
   public void loop() {
@@ -258,7 +280,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
+   * __________________________________ METHOD OVERRIDE: noLoop() _________________________________.
+   * Does not loop the animation after the last tick.
    */
   @Override
   public void noLoop() {
@@ -266,8 +289,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _____________________________________ METHOD: setSpeed() _____________________________________.
+   * Sets the speed of the animation.
    *
-   * @param speed
+   * @param speed the speed to set the animation to, an int
    */
   @Override
   public void setSpeed(int speed) {
@@ -275,8 +300,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * _____________________________________ METHOD: getSpeed() _____________________________________.
+   * Gets the speed of the animation.
    *
-   * @return
+   * @return the speed of the animation, an int
    */
   @Override
   public int getSpeed() {
@@ -284,7 +311,9 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
+   * _________________________________ METHOD OVERRIDE: play() ____________________________________.
+   * This is the play() method override from the IView interface. It instantiates a new Timer object
+   * with a time delay defined by the user's speed selection and the view being the listener.
    */
   @Override
   public void play() {
@@ -292,7 +321,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
+   * Prints the current view to an out file.
    */
   @Override
   public void printView() {
@@ -300,8 +329,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ________________________________ METHOD OVERRIDE: getModel() _________________________________.
+   * Gets the current model.
    *
-   * @return
+   * @return the model, an IAnimationModel
    */
   @Override
   public IAnimationModel getModel() {
@@ -309,8 +340,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
+   * ________________________________ METHOD OVERRIDE: setModel() _________________________________.
+   * Sets the model.
    *
-   * @param model
+   * @param model the model, an IAnimationModel
    */
   @Override
   public void setModel(IAnimationModel model) {
@@ -318,7 +351,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   *
+   * ______________________________ METHOD OVERRIDE: clearModel() _________________________________.
+   * Clears the model.
    */
   @Override
   public void clearModel() {

@@ -111,106 +111,218 @@ public class TextView implements IView {
     return sb.toString();
   }
 
+  /**
+   * _____________________________ METHOD: setStartButtonListener() _______________________________.
+   * Creates a listener for the start button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setStartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ______________________________ METHOD: setStopButtonListener() _______________________________.
+   * Creates a listener for the stop button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setStopButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ____________________________ METHOD: setRestartButtonListener() ______________________________.
+   * Creates a listener for the restart button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setRestartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * _______________________________ METHOD: setFastButtonListener() ______________________________.
+   * Creates a listener for the "faster" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setFastButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ______________________________ METHOD: setSlowButtonListener() _______________________________.
+   * Creates a listener for the "slower" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSlowButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ______________________________ METHOD: setLoopButtonListener() _______________________________.
+   * Creates a listener for the "loop" checkbox.
+   *
+   * @param itemEvent the event, an ItemListener
+   */
   @Override
   public void setLoopButtonListener(ItemListener itemEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ______________________________ METHOD: setLoadButtonListener() _______________________________.
+   * Creates a listener for the "load" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setLoadButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ____________________________ METHOD: setSaveTextButtonListener() _____________________________.
+   * Creates a listener for the "save as text" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSaveTextButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * _____________________________ METHOD: setSaveSVGButtonListener() _____________________________.
+   * Creates a listener for the "save as svg" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * Draws the shapes at a given tick.
+   *
+   * @param fromTick the current tick
+   */
   @Override
   public void drawShapes(int fromTick) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * Gets the timer of the animation.
+   * @return the timer, a Timer
+   */
   @Override
   public Timer getTimer() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * Sets the tick in the animation Timer.
+   * @param tick a tick/frame rate, an int
+   */
   @Override
   public void setTick(int tick) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * Gets the loop checkbox from the aniimation.
+   * @return a loop checkbox, a JCheckBox
+   */
   @Override
   public JCheckBox getLoopCheckbox() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ____________________________________ METHOD OVERRIDE: loop() _________________________________.
+   * Loops the animation to play the animation.
+   */
   @Override
   public void loop() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * __________________________________ METHOD OVERRIDE: noLoop() _________________________________.
+   * Does not loop the animation after the last tick.
+   */
   @Override
   public void noLoop() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * _____________________________________ METHOD: setSpeed() _____________________________________.
+   * Sets the speed of the animation.
+   *
+   * @param speed the speed to set the animation to, an int
+   */
   @Override
   public void setSpeed(int speed) {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * _____________________________________ METHOD: getSpeed() _____________________________________.
+   * Gets the speed of the animation.
+   *
+   * @return the speed of the animation, an int
+   */
   @Override
   public int getSpeed() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * _________________________________ METHOD OVERRIDE: play() ____________________________________.
+   * This is the play() method override from the IView interface. It instantiates a new Timer object
+   * with a time delay defined by the user's speed selection and the view being the listener.
+   */
   @Override
   public void play() {
     throw new UnsupportedOperationException("The text view does not use this.");
   }
 
+  /**
+   * ________________________________ METHOD OVERRIDE: getModel() _________________________________.
+   * Gets the current model.
+   *
+   * @return the model, an IAnimationModel
+   */
   @Override
   public IAnimationModel getModel() {
     return this.model;
   }
 
+  /**
+   * ________________________________ METHOD OVERRIDE: setModel() _________________________________.
+   * Sets the model.
+   *
+   * @param model the model, an IAnimationModel
+   */
   @Override
   public void setModel(IAnimationModel model) {
     this.model = model;
   }
 
+  /**
+   * ______________________________ METHOD OVERRIDE: clearModel() _________________________________.
+   * Clears the model.
+   */
   @Override
   public void clearModel() {
     // no op

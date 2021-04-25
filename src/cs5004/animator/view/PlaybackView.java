@@ -256,7 +256,7 @@ public class PlaybackView extends VisualView {
   }
 
   /**
-   * ____________________________ METHOD: setRestartButtonListener() ______________________________.
+   * _______________________________ METHOD: setFastButtonListener() ______________________________.
    * Creates a listener for the "faster" button.
    *
    * @param actionEvent an event, an ActionListener
