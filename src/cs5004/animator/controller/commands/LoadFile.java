@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import cs5004.animator.controller.AnimationCommand;
@@ -26,15 +28,15 @@ import static cs5004.animator.controller.AnimatorController.newBuild;
 public class LoadFile implements AnimationCommand, ActionListener {
 
   /**
-   * _________________________________ METHOD OVERRIDE: go() ______________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _____________________________ METHOD OVERRIDE: start() ______________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being loading a file.
    *
    * @param model the IAnimationModel instance containing the animation data.
    * @param view  the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     System.out.println("Load file command received");
     if (view.getTimer() != null) {
       view.getTimer().stop();
@@ -57,15 +59,11 @@ public class LoadFile implements AnimationCommand, ActionListener {
       // Get the file name
       //String filename = selectedFile.getName();
 
-      //System.out.println(model.getShapeMap().toString());
-
       // To load the file...
       // 1) Clear the model to remove all events and shapes from a model, so the model is
       // essentially empty again
       model.clearShapeMap();
       view.clearModel();
-      //System.out.println(model.getShapeMap().toString());
-
 
       // 2) Do what the controller does to add all the shapes and events to the model.
       //  public void loadFile(String inputFile) {
@@ -105,6 +103,7 @@ public class LoadFile implements AnimationCommand, ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
+    // do nothing
   }
 
 

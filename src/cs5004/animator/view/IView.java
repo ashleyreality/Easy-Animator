@@ -3,7 +3,9 @@ package cs5004.animator.view;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.Timer;
+
 
 import cs5004.animator.model.IAnimationModel;
 

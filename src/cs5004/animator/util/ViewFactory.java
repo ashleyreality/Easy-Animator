@@ -55,9 +55,9 @@ public class ViewFactory {
     } else if (outputView.equalsIgnoreCase("playback")) {
       return new PlaybackView(model, speed);
     } else {
-        throw new IllegalArgumentException("View type does not exist.");
-      }
+      throw new IllegalArgumentException("View type does not exist.");
     }
+  }
 
   public String getOutputName() {
     return outputName;
