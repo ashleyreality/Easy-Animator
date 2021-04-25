@@ -112,7 +112,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    *
    * @return the model animation, an IAnimationModel
    */
-  public static IAnimationModel newAnimation() {
+  private static IAnimationModel newAnimation() {
     return new AnimationModelImpl();
   }
 
@@ -135,7 +135,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param args the passed in arguments being parsed
    * @return the string after parsing, a StringBuilder
    */
-  public static StringBuilder parsedCommandLine(String[] args) {
+  private static StringBuilder parsedCommandLine(String[] args) {
     return stringBuilder(args);
   }
 
@@ -147,7 +147,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the parsed command line, the StringBuilder
    * @return the name of the input file, a String
    */
-  public static String inputFile(StringBuilder sb) {
+  private static String inputFile(StringBuilder sb) {
     return inScanner(sb);
   }
 
@@ -194,7 +194,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the String being reviewed, a StringBuilder
    * @return the view type to be output, a String
    */
-  public static String findViewType(StringBuilder sb) {
+  private static String findViewType(StringBuilder sb) {
     return viewScanner(sb);
   }
 
@@ -206,7 +206,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param outputView the view to be output, a String
    * @param frame      the frame of the animation, a JFrame
    */
-  public static void checkViewType(String outputView, JFrame frame) {
+  private static void checkViewType(String outputView, JFrame frame) {
     viewExceptions(outputView, frame);
   }
 
@@ -218,7 +218,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the String being reviewed, a StringBuilder
    * @return the output name of the file, a String
    */
-  public static String findOutputFileName(StringBuilder sb) {
+  private static String findOutputFileName(StringBuilder sb) {
     return outScanner(sb);
   }
 
@@ -230,7 +230,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the String being reviewed, a StringBuilder
    * @return the output speed of teh file, an int
    */
-  public static int findOutputSpeed(StringBuilder sb) {
+  private static int findOutputSpeed(StringBuilder sb) {
     return speedScanner(sb);
   }
 
@@ -242,7 +242,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param outputSpeed the speed being output, an int
    * @param frame       the frame of the animation, a JFrame
    */
-  public static void checkSpeed(int outputSpeed, JFrame frame) {
+  private static void checkSpeed(int outputSpeed, JFrame frame) {
     speedExceptions(outputSpeed, frame);
   }
 
@@ -257,7 +257,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param outputSpeed the speed of the output animation, an int
    * @return the factory construction of what a view will contain, a ViewFactory
    */
-  public static ViewFactory newViewFactory(String outputView, IAnimationModel model,
+  private static ViewFactory newViewFactory(String outputView, IAnimationModel model,
                                            String outputName, int outputSpeed) {
     return new ViewFactory(outputView, model, outputName, outputSpeed);
   }
@@ -270,7 +270,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param factory the factory construction of what a view will contain, a ViewFactory
    * @return the view that has been requested per the command line, an IView
    */
-  public static IView newView(ViewFactory factory) {
+  private static IView newView(ViewFactory factory) {
     IView view = null;
     try {
       view = factory.create(); ///////////
@@ -286,7 +286,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    *
    * @param view the view that has been requested per the command line, an IView
    */
-  public void createTheView(IView view, String viewType) {
+  private void createTheView(IView view, String viewType) {
 
     view.createView();
 
@@ -311,7 +311,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    *
    * @param frame the frame of the animation, a JFrame
    */
-  public static void packFrameAndExit(JFrame frame) {
+  private static void packFrameAndExit(JFrame frame) {
     frame.pack();
     //System.exit(0);
     // commented this out because different views have different exits --
@@ -339,7 +339,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param args arguments passed in from the command line
    * @return a StringBuilder
    */
-  public static StringBuilder stringBuilder(String[] args) {
+  private static StringBuilder stringBuilder(String[] args) {
     StringBuilder sb = new StringBuilder();
     for (String arg : args) {
       sb.append(arg);
@@ -357,7 +357,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the StringBuilder to be scanned
    * @return the name of the in file
    */
-  public static String inScanner(StringBuilder sb) {
+  private static String inScanner(StringBuilder sb) {
     Scanner in = new Scanner(sb.toString());
     in.findInLine("-in");
     return in.next();
@@ -393,7 +393,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the StringBuilder to scan
    * @return the view type as a string
    */
-  public static String viewScanner(StringBuilder sb) {
+  private static String viewScanner(StringBuilder sb) {
     Scanner view = new Scanner(sb.toString());
     view.findInLine("-view");
     return view.next();
@@ -406,7 +406,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param outputView the view type, a String
    * @param frame      the frame used to throw exceptions
    */
-  public static void viewExceptions(String outputView, JFrame frame) {
+  private static void viewExceptions(String outputView, JFrame frame) {
     if (!outputView.equalsIgnoreCase("text")
             && !outputView.equalsIgnoreCase("svg")
             && !outputView.equalsIgnoreCase("visual")
@@ -427,7 +427,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb the StringBuilder to be scanned
    * @return the name of the out file as a string
    */
-  public static String outScanner(StringBuilder sb) {
+  private static String outScanner(StringBuilder sb) {
     Scanner out = new Scanner(sb.toString());
     String outFile = out.findInLine("-out");
     if (outFile == null || outFile.equals("")) {
@@ -446,7 +446,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param sb sb the StringBuilder to be scanned
    * @return the speed as a String
    */
-  public static int speedScanner(StringBuilder sb) {
+  private static int speedScanner(StringBuilder sb) {
     Scanner outputSpeed = new Scanner(sb.toString());
     String stringSpeed = outputSpeed.findInLine("-speed");
     if (stringSpeed == null) {
@@ -463,7 +463,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    * @param outputSpeed the speed, as a string
    * @param frame       the frame used to throw exceptions
    */
-  public static void speedExceptions(int outputSpeed, JFrame frame) {
+  private static void speedExceptions(int outputSpeed, JFrame frame) {
     try {
       if (outputSpeed < 1) {
         throw new NumberFormatException();
@@ -508,7 +508,7 @@ public class AnimatorController implements ActionListener, ItemListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
-    AnimationCommand cmd = null;
+    AnimationCommand cmd;
 
     switch (e.getActionCommand()) {
       case "START":
@@ -539,7 +539,6 @@ public class AnimatorController implements ActionListener, ItemListener {
         cmd = null;
         break;
     }
-
 
     if (cmd != null) {
       try {
