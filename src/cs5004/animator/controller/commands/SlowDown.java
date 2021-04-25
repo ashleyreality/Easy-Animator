@@ -30,7 +30,6 @@ public class SlowDown implements AnimationCommand, ActionListener {
     this.view = view;
 
     if (speed < 1) {
-      // set it to 1? 0 speed is just pausing at some point so 1 makes sense for minimal speed
       this.speed = 1;
     }
   }
@@ -46,11 +45,7 @@ public class SlowDown implements AnimationCommand, ActionListener {
   @Override
   public void go(IAnimationModel model, IView view) {
     System.out.println("Slow down command received");
-    //view.setSpeed(view.getSpeed() - 1);
     setUpdatedSpeed(view);
-    //System.out.println("speed - " + view.getSpeed());
-    //view.getTimer().setDelay(1000 / view.getSpeed());
-    System.out.println("The speed is now: " + speed);
     setTimerDelay(view);
   }
 
@@ -74,6 +69,12 @@ public class SlowDown implements AnimationCommand, ActionListener {
     view.getTimer().setDelay(1000/speed);
   }
 
+  /**
+   * ________________________________ METHOD: getUpdatedSpeed() ___________________________________.
+   * This getter method gets the speed of this SpeedUp object.
+   *
+   * @return the current speed, an int
+   */
   public int getUpdatedSpeed() {
     return this.speed;
   }
@@ -86,7 +87,7 @@ public class SlowDown implements AnimationCommand, ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println("Slow down button clicked!");
+    //System.out.println("Slow down button clicked!");
     view.setSpeed(speed);
   }
 }

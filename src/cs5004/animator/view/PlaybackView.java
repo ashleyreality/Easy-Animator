@@ -1,10 +1,7 @@
 package cs5004.animator.view;
 
 import cs5004.animator.controller.AnimationCommand;
-import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.controller.commands.Loop;
-import cs5004.animator.controller.commands.SlowDown;
-import cs5004.animator.controller.commands.SpeedUp;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.Actions;
 
@@ -253,75 +250,22 @@ public class PlaybackView extends VisualView {
     slowerButton.addActionListener(actionEvent);
   }
 
-
- // private int getUpdatedSpeedWithButtonClick() {
-
-    //setSelected(boolean b)
-    //Sets the state of the button. Note that this method does not trigger an actionEvent. Call doClick to perform a programmatic action change.
-
-    //fasterButton.addActionListener(this);
-/*
-    int updatedSpeed = 0;
-
-
-    fasterButton.addActionListener(new SpeedUp(this));
-    fasterButton.doClick();
-    SpeedUp increasedSpeed = new SpeedUp(this);
-    updatedSpeed = increasedSpeed.getUpdatedSpeed();
-
-    slowerButton.addActionListener(new SlowDown(this));
-    slowerButton.doClick();
-    SlowDown decreasedSpeed = new SlowDown(this);
-    updatedSpeed = decreasedSpeed.getUpdatedSpeed();
-
-    // If the speed up button is clicked
-    if (fasterButton.getModel().isPressed()) {
-      System.out.println("The button to speed up the animation has been pressed.");
-      // Call SpeedUp and get the updated speed
-      //SpeedUp increasedSpeed = new SpeedUp(this);
-      //updatedSpeed = increasedSpeed.getUpdatedSpeed();
-      //return updatedSpeed;
-    }
-    // If the slow down button is clicked
-    if (slowerButton.getModel().isPressed()) {
-      System.out.println("The button to slow down the animation has been pressed.");
-      // Call SlowDown and get the updated speed
-      //SlowDown increasedSpeed = new SlowDown(this);
-      //updatedSpeed = decreasedSpeed.getUpdatedSpeed();
-      //return updatedSpeed;
-    }
-
-    return updatedSpeed;
-
-
-  }
-    */
-
-
   /**
    * This is the text area in the animation frame where the speed is displayed and updated.
    */
   private void speedArea() {
-    //int updatedSpeed = getUpdatedSpeedWithButtonClick();
     int updatedSpeed = this.speed;
-    System.out.println("The updated speed is: " + updatedSpeed);
+    //System.out.println("The updated speed is: " + updatedSpeed);
 
     // The speed displayed in the animation window should update:
-    //speedNumber = new JLabel(); can't create a new object with GUIs as the animation is running
-    // we don't update the GUI like this
     speedLabel.setText("Current Speed:");
     speedNumber.setText(String.valueOf(updatedSpeed));
-    //super.update(this.getGraphics());
 
     setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.SOUTH);
-    //playbackAnimationFrame.add(speedNumber);
 
-    // label for text area
-    //speedLabel = new JLabel("Current Speed");
     setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
             1, 1, GridBagConstraints.SOUTH);
-    //playbackAnimationFrame.add(speedLabel);
   }
 
   private void loopCheckbox() {
@@ -441,7 +385,7 @@ public class PlaybackView extends VisualView {
   public void actionPerformed(ActionEvent e) {
     animationPanel.setTick(tick);
     animationPanel.repaint();
-    System.out.println("draw frame " + tick);
+    //System.out.println("draw frame " + tick);
     tick++;
     //noLoop();
     AnimationCommand loop = new Loop();
@@ -450,12 +394,6 @@ public class PlaybackView extends VisualView {
     } catch (IOException ioException) {
       ioException.printStackTrace();
     }
-
-//    speedTextField = new JTextField(30);
-//
-//    if (e.getSource() == fasterButton) {
-//      System.out.println("THE FASTER BUTTON HAS BEEN CLICKED!");
-//    }
   }
 
   @Override
@@ -474,16 +412,6 @@ public class PlaybackView extends VisualView {
       timer.stop();
     }
   }
-
-  /*
-  public void newText() throws IOException {
-    // we can figure out if we want to name the outstring something good later
-    new TextView(model, "text.txt");
-  }
-
-  public void newSVG() throws IOException {
-    new SVGView(model, "svg.txt", speed);
-  }*/
 
   @Override
   public IAnimationModel getModel() {

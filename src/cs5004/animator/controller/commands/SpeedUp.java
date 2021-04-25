@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
-import cs5004.animator.view.PlaybackView;
 
 /**
  * ____________________________________ CLASS: SpeedUp {} _________________________________________.
@@ -39,15 +38,9 @@ public class SpeedUp implements AnimationCommand, ActionListener {
    */
   @Override
   public void go(IAnimationModel model, IView view) {
-
     view.setSpeed(speed);
-
     System.out.println("Speed up command received");
-    //view.setSpeed(view.getSpeed() + 1);
     setUpdatedSpeed(view);
-    System.out.println("The speed is now: " + speed);
-    //System.out.println("speed + " + view.getSpeed());
-    //view.getTimer().setDelay(1000 / view.getSpeed());
     setTimerDelay(view);
   }
 
@@ -89,7 +82,7 @@ public class SpeedUp implements AnimationCommand, ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println("Speed up button clicked!");
+    //System.out.println("Speed up button clicked!");
     view.setSpeed(speed);
   }
 }
