@@ -11,13 +11,14 @@ import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
-import javax.swing.JTextField;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
-import javax.swing.*;
+import javax.swing.JComponent;
 
-import java.awt.*;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
@@ -25,10 +26,9 @@ import java.io.IOException;
 
 /**
  * ____________________________________ CLASS: PlaybackView() _____________________________________.
- *
- * This class represents a PlayBack view. The PlayBack view outputs a window that allows the user
- * to start and stop the animation, load an animation, slow down and speed up the animation, and
- * save the animation as a text or svg, loop the animation and start it over as desired.
+ * This class represents a PlayBack view. The PlayBack view outputs a window that allows the user to
+ * start and stop the animation, load an animation, slow down and speed up the animation, and save
+ * the animation as a text or svg, loop the animation and start it over as desired.
  */
 public class PlaybackView extends VisualView {
 
@@ -52,9 +52,6 @@ public class PlaybackView extends VisualView {
   private JLabel speedLabel;
 
   private JCheckBox loopCheckbox;
-
-  JTextField speedTextField;
-
 
   /**
    * ________________________________ CONSTRUCTOR: PlayBackView() _________________________________.
@@ -119,13 +116,12 @@ public class PlaybackView extends VisualView {
     pack();
 
     frameAtTick(0);
-    //drawShapes(0);
   }
 
   /**
    * ___________________________________ METHOD: frameAtTick() ____________________________________.
-   * This is the frameAtTick() method which sets the tick/frame using the AnimationPanel, the
-   * JPanel container class and repaints the animation using Java Swing/AWT API.
+   * This is the frameAtTick() method which sets the tick/frame using the AnimationPanel, the JPanel
+   * container class and repaints the animation using Java Swing/AWT API.
    *
    * @param tick the tick you'd like to set the current tick to
    */
@@ -157,15 +153,13 @@ public class PlaybackView extends VisualView {
     animationPanel.setPreferredSize(new Dimension((model.getBoundsWidth()),
             model.getBoundsHeight()));
     GridBagLayout gbAnimation = new GridBagLayout();
-    GridBagConstraints gbcAnimation = new GridBagConstraints();
 
     animationPanel.setLayout(gbAnimation);
-    setItemFields(animationPanel, 4, 0, 16, 17, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(animationPanel, 4, 0, 16, 17,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
     playbackAnimationFrame.add(animationPanel);
 
     setVisible(true);
-    //super.drawShapes(animationPanel);
   }
 
   /**
@@ -177,8 +171,8 @@ public class PlaybackView extends VisualView {
     startAnimation = new JToggleButton("Start");
     startAnimation.setSelected(true);
     buttonGroup.add(startAnimation);
-    setItemFields(startAnimation, 1, 1, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(startAnimation, 1, 1, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     // set up event listener
     startAnimation.setActionCommand(Actions.START.name());
@@ -187,70 +181,117 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame.add(startAnimation);
   }
 
+  /**
+   * _____________________________ METHOD: setStartButtonListener() _______________________________.
+   * Creates a listener for the start button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setStartButtonListener(ActionListener actionEvent) {
     startAnimation.addActionListener(actionEvent);
   }
 
+  /**
+   * __________________________________ METHOD: stopButton() ______________________________________.
+   * Creates a JToggleButton for stopping/pausing the animation.
+   */
   private void stopButton() {
     stopButton = new JToggleButton("Stop");
     buttonGroup.add(stopButton);
-    setItemFields(stopButton, 1, 3, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(stopButton, 1, 3, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     stopButton.setActionCommand(Actions.STOP.name());
     playbackAnimationFrame.add(stopButton);
   }
 
+  /**
+   * ______________________________ METHOD: setStopButtonListener() _______________________________.
+   * Creates a listener for the stop button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setStopButtonListener(ActionListener actionEvent) {
     stopButton.addActionListener(actionEvent);
   }
 
+  /**
+   * ________________________________ METHOD: restartButton() _____________________________________.
+   * Creates a JToggleButton for restarting the animation.
+   */
   private void restartButton() {
     restartAnimation = new JToggleButton("Start over");
     buttonGroup.add(restartAnimation);
-    setItemFields(restartAnimation, 1, 4, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(restartAnimation, 1, 4, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     restartAnimation.setActionCommand(Actions.RESTART.name());
     playbackAnimationFrame.add(restartAnimation);
   }
 
+  /**
+   * ____________________________ METHOD: setRestartButtonListener() ______________________________.
+   * Creates a listener for the restart button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setRestartButtonListener(ActionListener actionEvent) {
     restartAnimation.addActionListener(actionEvent);
   }
 
+  /**
+   * __________________________________ METHOD: fastButton() ______________________________________.
+   * Creates a JToggleButton for speeding up the animation.
+   */
   private void fastButton() {
     fasterButton = new JButton("Faster");
-    setItemFields(fasterButton, 1, 9, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(fasterButton, 1, 9, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     fasterButton.setActionCommand(Actions.FAST.name());
     playbackAnimationFrame.add(fasterButton);
   }
 
+  /**
+   * ____________________________ METHOD: setRestartButtonListener() ______________________________.
+   * Creates a listener for the "faster" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setFastButtonListener(ActionListener actionEvent) {
     fasterButton.addActionListener(actionEvent);
   }
 
+  /**
+   * __________________________________ METHOD: slowButton() ______________________________________.
+   * Creates a JToggleButton for slowing down the animation.
+   */
   private void slowButton() {
     slowerButton = new JButton("Slower");
-    setItemFields(slowerButton, 1, 10, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(slowerButton, 1, 10, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     slowerButton.setActionCommand(Actions.SLOW.name());
     playbackAnimationFrame.add(slowerButton);
   }
 
+  /**
+   * ______________________________ METHOD: setSlowButtonListener() _______________________________.
+   * Creates a listener for the "slower" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSlowButtonListener(ActionListener actionEvent) {
     slowerButton.addActionListener(actionEvent);
   }
 
   /**
+   * ____________________________________ METHOD: speedArea() _____________________________________.
    * This is the text area in the animation frame where the speed is displayed and updated.
    */
   private void speedArea() {
@@ -261,30 +302,53 @@ public class PlaybackView extends VisualView {
     speedLabel.setText("Current Speed:");
     speedNumber.setText(String.valueOf(updatedSpeed));
 
-    setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.SOUTH);
+    setItemFields(speedNumber, 1, 8, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.SOUTH);
 
-    setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
-            1, 1, GridBagConstraints.SOUTH);
+    setItemFields(speedLabel, 1, 7, 1, 1,
+            GridBagConstraints.HORIZONTAL, 1, 1, GridBagConstraints.SOUTH);
   }
 
+  /**
+   * ___________________________________ METHOD: loopCheckbox() ___________________________________.
+   * This is the checkbox in the animation frame where the user selects whether the animation should
+   * be automatically replayed.
+   */
   private void loopCheckbox() {
     loopCheckbox = new JCheckBox("  Loop?");
 
-    setItemFields(loopCheckbox, 1, 14, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(loopCheckbox, 1, 14, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     loopCheckbox.setActionCommand(Actions.LOOP.name());
     playbackAnimationFrame.add(loopCheckbox);
   }
 
-  public JCheckBox getLoopCheckbox() { return loopCheckbox; }
+  /**
+   * _________________________________ METHOD: getLoopCheckbox() __________________________________.
+   * This getter method returns the checkbox in the animation frame.
+   *
+   * @return the loopCheckbox, a JCheckBox
+   */
+  public JCheckBox getLoopCheckbox() {
+    return loopCheckbox;
+  }
 
 
+  /**
+   * ______________________________ METHOD: setLoopButtonListener() _______________________________.
+   * Creates a listener for the "loop" checkbox.
+   *
+   * @param itemEvent the event, an ItemListener
+   */
   public void setLoopButtonListener(ItemListener itemEvent) {
     loopCheckbox.addItemListener(itemEvent);
   }
 
+  /**
+   * __________________________________ METHOD: loadButton() ______________________________________.
+   * Creates a JToggleButton for loading a .txt file that would be build a new animation to play.
+   */
   private void loadButton() {
     loadFile = new JButton("Load file");
     setItemFields(loadFile, 11, 17, 1, 1, GridBagConstraints.BOTH,
@@ -294,25 +358,45 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame.add(loadFile);
   }
 
+  /**
+   * ______________________________ METHOD: setLoadButtonListener() _______________________________.
+   * Creates a listener for the "load" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setLoadButtonListener(ActionListener actionEvent) {
     loadFile.addActionListener(actionEvent);
   }
 
+  /**
+   * ________________________________ METHOD: saveTextButton() ____________________________________.
+   * Creates a JToggleButton for saving an animation file as a text file.
+   */
   private void saveTextButton() {
     saveAsText = new JButton("Save as text");
-    setItemFields(saveAsText, 14, 17, 1, 1, GridBagConstraints.BOTH,
-            1, 0, GridBagConstraints.NORTH);
+    setItemFields(saveAsText, 14, 17, 1, 1,
+            GridBagConstraints.BOTH, 1, 0, GridBagConstraints.NORTH);
 
     saveAsText.setActionCommand(Actions.SAVETEXT.name());
     playbackAnimationFrame.add(saveAsText);
   }
 
+  /**
+   * ____________________________ METHOD: setSaveTextButtonListener() _____________________________.
+   * Creates a listener for the "save as text" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSaveTextButtonListener(ActionListener actionEvent) {
     saveAsText.addActionListener(actionEvent);
   }
 
+  /**
+   * _________________________________ METHOD: saveSVGButton() ____________________________________.
+   * Creates a JToggleButton for saving an animation file as an svg file.
+   */
   private void saveSVGButton() {
     saveAsSVG = new JButton("Save as SVG");
     setItemFields(saveAsSVG, 17, 17, 1, 1, GridBagConstraints.BOTH,
@@ -322,6 +406,12 @@ public class PlaybackView extends VisualView {
     playbackAnimationFrame.add(saveAsSVG);
   }
 
+  /**
+   * _____________________________ METHOD: setSaveSVGButtonListener() _____________________________.
+   * Creates a listener for the "save as svg" button.
+   *
+   * @param actionEvent an event, an ActionListener
+   */
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     saveAsSVG.addActionListener(actionEvent);
@@ -332,26 +422,27 @@ public class PlaybackView extends VisualView {
    * This is the setItemFields() method. It uses the GridBagConstraints object to set the animation
    * constraints.
    *
-   * @param item  an instance of JComponent, which is a base class for both standard and custom
-   *              components that use the Swing architecture
-   * @param gridX an int that specifies the cell containing the leading edge of the component's
-   *              display area, where the first cell in a row has gridx=0. The leading edge of a
-   *              component's display area is its left edge for a horizontal, left-to-right
-   *              container and its right edge for a horizontal, right-to-left container.
-   * @param gridY an int that specifies the cell at the top of the component's display area, where
-   *              the topmost cell has gridy=0.
-   * @param gridWidth an int that specifies the number of cells in a row for the component's
-   *                  display area.
+   * @param item       an instance of JComponent, which is a base class for both standard and custom
+   *                   components that use the Swing architecture
+   * @param gridX      an int that specifies the cell containing the leading edge of the component's
+   *                   display area, where the first cell in a row has gridx=0. The leading edge of
+   *                   a component's display area is its left edge for a horizontal, left-to-right
+   *                   container and its right edge for a horizontal, right-to-left container.
+   * @param gridY      an int that specifies the cell at the top of the component's display area,
+   *                   where the topmost cell has gridy=0.
+   * @param gridWidth  an int that specifies the number of cells in a row for the component's
+   *                   display area.
    * @param gridHeight an int that specifies the number of cells in a column for the component's
    *                   display area.
-   * @param fill an int that determines whether to and how to resize the component's display area,
-   *             when the component's display area is larger than the component's requested size.
-   * @param weightX an int that specifies how to distribute extra horizontal space, where the
-   *                default value of this field is 0. weightx should be a non-negative value.
-   * @param weightY an int that specifies how to distribute extra vertical space. The default value
-   *                of this field is 0. weighty should be a non-negative value.
-   * @param anchor an int that determines where, within the display area, to place the component
-   *               when the component is smaller than its display area.
+   * @param fill       an int that determines whether to and how to resize the component's display
+   *                   area, when the component's display area is larger than the component's
+   *                   requested size.
+   * @param weightX    an int that specifies how to distribute extra horizontal space, where the
+   *                   default value of this field is 0. weightx should be a non-negative value.
+   * @param weightY    an int that specifies how to distribute extra vertical space. The default
+   *                   value of this field is 0. weighty should be a non-negative value.
+   * @param anchor     an int that determines where, within the display area, to place the component
+   *                   when the component is smaller than its display area.
    */
   private void setItemFields(JComponent item, int gridX, int gridY, int gridWidth,
                              int gridHeight, int fill, int weightX, int weightY,
@@ -368,19 +459,37 @@ public class PlaybackView extends VisualView {
 
   }
 
+  /**
+   * _____________________________________ METHOD: setSpeed() _____________________________________.
+   * Sets the speed of the animation.
+   *
+   * @param speed the speed to set the animation to, an int
+   */
   @Override
   public void setSpeed(int speed) {
-    this.speed =speed;
+    this.speed = speed;
 
     // Update the speed
     speedArea();
   }
 
+  /**
+   * _____________________________________ METHOD: getSpeed() _____________________________________.
+   * Gets the speed of the animation.
+   *
+   * @return the speed of the animation, an int
+   */
   @Override
   public int getSpeed() {
     return this.speed;
   }
 
+  /**
+   * _____________________________ METHOD OVERRIDE: actionPerformed() _____________________________.
+   * Repaints the animation to play the animation.
+   *
+   * @param e the event, an ActionEvent
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     animationPanel.setTick(tick);
@@ -396,6 +505,10 @@ public class PlaybackView extends VisualView {
     }
   }
 
+  /**
+   * ____________________________________ METHOD OVERRIDE: loop() _________________________________.
+   * Loops the animation to play the animation.
+   */
   @Override
   public void loop() {
     int lastShapeTime = model.getEndTick();
@@ -405,6 +518,10 @@ public class PlaybackView extends VisualView {
     }
   }
 
+  /**
+   * __________________________________ METHOD OVERRIDE: noLoop() _________________________________.
+   * Does not loop the animation after the last tick.
+   */
   @Override
   public void noLoop() {
     int lastShapeTime = model.getEndTick();
@@ -413,16 +530,32 @@ public class PlaybackView extends VisualView {
     }
   }
 
+  /**
+   * ________________________________ METHOD OVERRIDE: getModel() _________________________________.
+   * Gets the current model.
+   *
+   * @return the model, an IAnimationModel
+   */
   @Override
   public IAnimationModel getModel() {
     return this.model;
   }
 
+  /**
+   * ________________________________ METHOD OVERRIDE: setModel() _________________________________.
+   * Sets the model.
+   *
+   * @param model the model, an IAnimationModel
+   */
   @Override
   public void setModel(IAnimationModel model) {
     this.model = model;
   }
 
+  /**
+   * ______________________________ METHOD OVERRIDE: clearModel() _________________________________.
+   * Clears the model.
+   */
   @Override
   public void clearModel() {
     this.model.clearShapeMap();
