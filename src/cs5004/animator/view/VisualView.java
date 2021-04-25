@@ -43,25 +43,27 @@ public class VisualView extends JFrame implements IView, ActionListener {
    * Creates a visual view.
    */
   public void createView() {
-    // Set the layout of the JFrame container to a BorderLayout
-    //this.setLayout(new BorderLayout());
-
     newPanel(animationPanel);
-
     scrollPanel(animationPanel);
-
     this.pack();
     this.setVisible(true);
-
     drawShapes(0);
   }
 
+  /**
+   *
+   * @param animationPanel
+   */
   protected void newPanel(AnimationPanel animationPanel) {
     animationPanel.setPreferredSize(new Dimension(model.getBoundsWidth(), model.getBoundsHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(animationPanel);
   }
 
+  /**
+   *
+   * @param animationPanel
+   */
   protected void scrollPanel(AnimationPanel animationPanel) {
     // Create a Scroll Pane
     JScrollPane scrollPane = new JScrollPane(animationPanel);
@@ -76,18 +78,10 @@ public class VisualView extends JFrame implements IView, ActionListener {
    * @param fromTick the current tick
    */
   public void drawShapes(int fromTick) {
-    // timer makes the program multi-threaded, so the program will keep running
-    // this is making the program "sleep" so it doesn't draw
-    // use the swing timer -- give the timer an action listener and implement action performed
-
-    // i think passing in speed is wrong here -- in this context it is the amount of time
-    // in between times the timer goes off and calls actionPerformed, in milliseconds
-    // get the disappear time of the last shape in the sorted treemap
     int lastShapeTime = model.getEndTick();
     // For the duration of the animation, where the end of the animation is calculated via
     // lastShapeTime, run through each tick from 0 through lastShapeTime
     for (int tick = fromTick; tick <= lastShapeTime; tick++) {
-      //System.out.println(tick);
 
       // Get the current epoch timestamp in milliseconds precision
       long startTime = System.currentTimeMillis();
@@ -158,103 +152,174 @@ public class VisualView extends JFrame implements IView, ActionListener {
     throw new UnsupportedOperationException("No view state for visual");
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setStartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setStopButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setRestartButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setFastButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setSlowButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param itemEvent
+   */
   @Override
   public void setLoopButtonListener(ItemListener itemEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setLoadButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setSaveTextButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
 
   }
 
+  /**
+   *
+   * @param actionEvent
+   */
   @Override
   public void setSaveSVGButtonListener(ActionListener actionEvent) {
     throw new UnsupportedOperationException("No need for button listener in visual view");
   }
 
+  /**
+   *
+   * @param e
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     throw new UnsupportedOperationException("Not supported in visual view");
   }
 
+  /**
+   *
+   */
   @Override
   public void loop() {
     throw new UnsupportedOperationException("Not supported in visual view");
   }
 
+  /**
+   *
+   */
   @Override
   public void noLoop() {
     throw new UnsupportedOperationException("Not supported in visual view");
   }
 
+  /**
+   *
+   * @param speed
+   */
   @Override
   public void setSpeed(int speed) {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public int getSpeed() {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 
+  /**
+   *
+   */
   @Override
   public void play() {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 
+  /**
+   *
+   */
   @Override
   public void printView() {
     throw new UnsupportedOperationException("Visual view does not support this");
   }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public IAnimationModel getModel() {
     return this.model;
   }
 
+  /**
+   *
+   * @param model
+   */
   @Override
   public void setModel(IAnimationModel model) {
     this.model = model;
   }
 
+  /**
+   *
+   */
   @Override
   public void clearModel() {
     // no op

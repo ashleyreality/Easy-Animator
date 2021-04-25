@@ -6,14 +6,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.util.AnimationBuilder;
-import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.IView;
 
 import static cs5004.animator.controller.AnimatorController.newBuild;
@@ -88,5 +87,6 @@ public class LoadFile implements AnimationCommand, ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
+    // Do nothing
   }
 }

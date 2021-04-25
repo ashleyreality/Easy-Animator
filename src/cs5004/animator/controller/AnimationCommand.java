@@ -11,10 +11,11 @@ import cs5004.animator.view.IView;
 public interface AnimationCommand {
 
   /**
-   * Perform the command.
+   * _____________________________ METHOD OVERRIDE: go() __________________________________________.
+   * This method performs the command.
    *
    * @param model the IAnimationModel instance containing the animation data.
    * @param view the type of view specified, an IView
    */
-  void start(IAnimationModel model, IView view) throws IOException;
+  void go(IAnimationModel model, IView view) throws IOException;
 }

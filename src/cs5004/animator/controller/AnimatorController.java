@@ -41,6 +41,8 @@ public class AnimatorController implements ActionListener, ItemListener {
   private String[] args;
   private IAnimationModel model;
   private IView view;
+  private JFrame frame;
+  private AnimationBuilder build;
 
   /**
    * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
@@ -60,7 +62,7 @@ public class AnimatorController implements ActionListener, ItemListener {
     model = newAnimation();
 
     // Step 2) Create the frame
-    JFrame frame = newFrame();
+    this.frame = newFrame();
 
     // Step 3) Parse the command-line arguments
     StringBuilder parsedString = parsedCommandLine(args);
@@ -69,10 +71,10 @@ public class AnimatorController implements ActionListener, ItemListener {
     String inputFile = inputFile(parsedString);
 
     // Step 5) Check input file for exceptions
-    Readable file = checkInputFile(inputFile, frame);
+    Readable file = checkInputFile(inputFile, this.frame);
 
     // Step 6) Create a new build
-    AnimationBuilder build = newBuild(model);
+    this.build = newBuild(model);
 
     // Step 7) Fill the model
     fillTheModel(file, build);
@@ -488,7 +490,7 @@ public class AnimatorController implements ActionListener, ItemListener {
   public void itemStateChanged(ItemEvent e) {
     AnimationCommand cmd = new Loop();
     try {
-      cmd.start(model, view);
+      cmd.go(model, view);
     } catch (IOException ioException) {
       ioException.printStackTrace();
     }
@@ -542,7 +544,7 @@ public class AnimatorController implements ActionListener, ItemListener {
 
     if (cmd != null) {
       try {
-        cmd.start(model, view);
+        cmd.go(model, view);
       } catch (IOException ioException) {
         ioException.printStackTrace();
       }
