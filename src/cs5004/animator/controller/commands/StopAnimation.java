@@ -18,7 +18,7 @@ public class StopAnimation implements AnimationCommand {
    * @param view  the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     view.getTimer().stop();
   }
 }

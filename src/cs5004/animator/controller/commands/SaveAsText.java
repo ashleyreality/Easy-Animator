@@ -23,7 +23,7 @@ public class SaveAsText implements AnimationCommand {
    * @throws IOException if there is a problem saving the file.
    */
   @Override
-  public void go(IAnimationModel model, IView view) throws IOException {
+  public void start(IAnimationModel model, IView view) throws IOException {
     // do something
     System.out.println("Save as text file command received");
     IView text = new TextView(model, "text.txt");

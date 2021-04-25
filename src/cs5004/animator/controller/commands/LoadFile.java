@@ -34,7 +34,7 @@ public class LoadFile implements AnimationCommand, ActionListener {
    * @param view  the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     System.out.println("Load file command received");
     if (view.getTimer() != null) {
       view.getTimer().stop();

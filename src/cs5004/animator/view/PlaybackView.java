@@ -499,7 +499,7 @@ public class PlaybackView extends VisualView {
     //noLoop();
     AnimationCommand loop = new Loop();
     try {
-      loop.go(model, this);
+      loop.start(model, this);
     } catch (IOException ioException) {
       ioException.printStackTrace();
     }

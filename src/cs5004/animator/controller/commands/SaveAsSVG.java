@@ -23,7 +23,7 @@ public class SaveAsSVG implements AnimationCommand {
    * @throws IOException if there is a problem saving the file
    */
   @Override
-  public void go(IAnimationModel model, IView view) throws IOException {
+  public void start(IAnimationModel model, IView view) throws IOException {
     IView svg = new SVGView(model, "svg.svg", view.getSpeed());
     svg.printView();
   }
