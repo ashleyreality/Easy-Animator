@@ -1,49 +1,31 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.util.Timer;
 
 import cs5004.animator.controller.AnimatorController;
-import cs5004.animator.model.AnimationModelImpl;
-import cs5004.animator.model.Ellipse;
-import cs5004.animator.model.IAnimationModel;
-import cs5004.animator.model.IEvent;
-import cs5004.animator.model.IShape;
-import cs5004.animator.model.Rectangle;
+import cs5004.animator.view.IView;
+import cs5004.animator.view.PlaybackView;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * This class contains the tests for the controller.
  */
 public class ControllerTest {
-  private IAnimationModel testAnimation;
+  public IView view;
   public AnimatorController controller;
-
-  // IShapes: Rectangle named R & Oval named C
-  IShape r;
-  IShape c;
-
-  // IEvents for IShape moves
-  IEvent move1;
-  IEvent move2;
-  IEvent move3;
-
-  // IEvents for IShape size changes
-  IEvent size1;
-  IEvent size2;
-
-  // IEvents for IShape color changes
-  IEvent colorChange1;
-  IEvent colorChange2;
 
   @Before
   public void setUp() {
     controller = new AnimatorController(new String[]{"-in C:\\Users\\jenrw\\IdeaProjects\\"
             + "Easy-Animator\\test\\testFiles\\smalldemo.txt -view playback -out test.txt "
             + "-speed 1"});
+    controller.start();
+    view = controller.getView();
   }
 
   @Test
@@ -75,14 +57,14 @@ public class ControllerTest {
             controller.getModel().toString());
   }
 
-  @Test (expected = NullPointerException.class)
+  @Test(expected = NullPointerException.class)
   public void noFileTest() {
     controller = new AnimatorController(new String[]{"-in none -view playback -out test.txt "
             + "-speed 1"});
     controller.start();
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void invalidViewTest() {
     controller = new AnimatorController(new String[]{"-in C:\\Users\\jenrw\\IdeaProjects\\"
             + "Easy-Animator\\test\\testFiles\\smalldemo.txt -view test -out test.txt "
@@ -90,11 +72,31 @@ public class ControllerTest {
     controller.start();
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void negativeSpeedTest() {
     controller = new AnimatorController(new String[]{"-in C:\\Users\\jenrw\\IdeaProjects\\"
             + "Easy-Animator\\test\\testFiles\\smalldemo.txt -view visual -out test.txt "
             + "-speed -1"});
     controller.start();
+  }
+
+  @Test
+  public void actionPerformedTest() {
+    ActionEvent start = new ActionEvent(view, 1, "START");
+    controller.actionPerformed(start);
+    assertTrue(view.getTimer().isRunning());
+    ActionEvent stop = new ActionEvent(view, 1, "STOP");
+    controller.actionPerformed(stop);
+    assertFalse(view.getTimer().isRunning());
+    assertEquals(1, view.getSpeed());
+    ActionEvent fast = new ActionEvent(view, 1, "FAST");
+    controller.actionPerformed(fast);
+    assertEquals(2, view.getSpeed());
+    ActionEvent slow = new ActionEvent(view, 1, "SLOW");
+    controller.actionPerformed(slow);
+    assertEquals(1, view.getSpeed());
+    // try to make speed 0
+    controller.actionPerformed(slow);
+    assertEquals(1, view.getSpeed());
   }
 }

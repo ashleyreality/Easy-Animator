@@ -29,7 +29,7 @@ public class SlowDown implements AnimationCommand, ActionListener {
     this.speed = view.getSpeed();
     this.view = view;
 
-    if (speed < 1) {
+    if (speed <= 1) {
       this.speed = 1;
     }
   }
@@ -56,6 +56,9 @@ public class SlowDown implements AnimationCommand, ActionListener {
    */
   private void setUpdatedSpeed(IView view) {
     view.setSpeed(speed - 1);
+    if (view.getSpeed() <= 1) {
+      view.setSpeed(1);
+    }
   }
 
   /**

@@ -557,4 +557,13 @@ public class AnimatorController implements ActionListener, ItemListener {
   public IAnimationModel getModel() {
     return model;
   }
+
+  /**
+   * Gets the view for testing.
+   *
+   * @return the view in this controller
+   */
+  public IView getView() {
+    return view;
+  }
 }
