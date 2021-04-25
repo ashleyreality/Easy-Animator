@@ -35,15 +35,15 @@ public class SlowDown implements AnimationCommand, ActionListener {
   }
 
   /**
-   * _________________________________ METHOD OVERRIDE: go() ______________________________________.
-   * This is an override of the go() method from the AnimationCommand interface. It performs the
+   * _____________________________ METHOD OVERRIDE: start() ______________________________________.
+   * This is an override of the start() method from the AnimationCommand interface. It performs the
    * command, being slowing down the speed of the animation.
    *
    * @param model the IAnimationModel instance containing the animation data.
    * @param view the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     System.out.println("Slow down command received");
     setUpdatedSpeed(view);
     setTimerDelay(view);
@@ -66,7 +66,7 @@ public class SlowDown implements AnimationCommand, ActionListener {
    * @param view the type of view specified, an IView
    */
   private void setTimerDelay(IView view) {
-    view.getTimer().setDelay(1000/speed);
+    view.getTimer().setDelay(1000 / speed);
   }
 
   /**

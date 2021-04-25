@@ -4,9 +4,19 @@ import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 
+/**
+ * Restarts the animation.
+ */
 public class RestartAnimation implements AnimationCommand {
+
+  /**
+   * Restarts the animation.
+   *
+   * @param model the IAnimationModel instance containing the animation data.
+   * @param view  the type of view specified, an IView
+   */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     view.setTick(0);
     view.getTimer().restart();
   }

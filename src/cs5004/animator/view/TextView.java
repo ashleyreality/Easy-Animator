@@ -11,7 +11,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.Timer;
 
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.model.IEvent;
@@ -91,6 +92,9 @@ public class TextView implements IView {
     System.exit(0);
   }
 
+  /**
+   * Prints the current view to an out file.
+   */
   public void printView() {
     buildTheTextString();
     out.print(sb.toString());
@@ -208,7 +212,9 @@ public class TextView implements IView {
   }
 
   @Override
-  public void clearModel() {}
+  public void clearModel() {
+    // no op
+  }
 }
 
 

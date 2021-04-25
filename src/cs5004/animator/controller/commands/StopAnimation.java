@@ -4,9 +4,19 @@ import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
 import cs5004.animator.view.IView;
 
+/**
+ * Stops the animation.
+ */
 public class StopAnimation implements AnimationCommand {
+
+  /**
+   * Stops the animation.
+   *
+   * @param model the IAnimationModel instance containing the animation data.
+   * @param view  the type of view specified, an IView
+   */
   @Override
-  public void go(IAnimationModel model, IView view) {
+  public void start(IAnimationModel model, IView view) {
     view.getTimer().stop();
   }
 }

@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.Timer;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
 
-import cs5004.animator.controller.AnimationCommand;
-import cs5004.animator.controller.commands.Loop;
 import cs5004.animator.model.IAnimationModel;
 
 /**
@@ -68,6 +70,11 @@ public class VisualView extends JFrame implements IView, ActionListener {
     this.add(scrollPane);
   }
 
+  /**
+   * Draws the shapes at a given tick.
+   *
+   * @param fromTick the current tick
+   */
   public void drawShapes(int fromTick) {
     // timer makes the program multi-threaded, so the program will keep running
     // this is making the program "sleep" so it doesn't draw
@@ -249,7 +256,9 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   @Override
-  public void clearModel() {}
+  public void clearModel() {
+    // no op
+  }
 
 }
 

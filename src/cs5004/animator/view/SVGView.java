@@ -7,7 +7,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.Timer;
 
 import cs5004.animator.model.EventType;
 import cs5004.animator.model.IAnimationModel;
@@ -108,6 +109,9 @@ public class SVGView implements IView {
     System.exit(0);
   }
 
+  /**
+   * Prints the requested view to an out file.
+   */
   public void printView() {
     buildTheSVGString();
     out.print(sb.toString());
@@ -351,5 +355,7 @@ public class SVGView implements IView {
   }
 
   @Override
-  public void clearModel() {}
+  public void clearModel() {
+    // no op
+  }
 }

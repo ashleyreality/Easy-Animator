@@ -9,7 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.controller.commands.LoadFile;
 import cs5004.animator.controller.commands.Loop;
@@ -40,8 +41,6 @@ public class AnimatorController implements ActionListener, ItemListener {
   private String[] args;
   private IAnimationModel model;
   private IView view;
-  private JFrame frame;
-  private AnimationBuilder build;
 
   /**
    * _________________________ CONSTRUCTOR: AnimatorController() __________________________________.
@@ -61,8 +60,7 @@ public class AnimatorController implements ActionListener, ItemListener {
     model = newAnimation();
 
     // Step 2) Create the frame
-    this.frame = newFrame();
-    //JFrame frame = newFrame();
+    JFrame frame = newFrame();
 
     // Step 3) Parse the command-line arguments
     StringBuilder parsedString = parsedCommandLine(args);
@@ -71,12 +69,10 @@ public class AnimatorController implements ActionListener, ItemListener {
     String inputFile = inputFile(parsedString);
 
     // Step 5) Check input file for exceptions
-    Readable file = checkInputFile(inputFile, this.frame);
-    //Readable file = checkInputFile(inputFile, frame);
+    Readable file = checkInputFile(inputFile, frame);
 
     // Step 6) Create a new build
-    this.build = newBuild(model);
-    //AnimationBuilder build = newBuild(model);
+    AnimationBuilder build = newBuild(model);
 
     // Step 7) Fill the model
     fillTheModel(file, build);
@@ -108,20 +104,6 @@ public class AnimatorController implements ActionListener, ItemListener {
     // Step 16) Pack the frame and then exit once animation has completed running
     packFrameAndExit(frame);
   }
-
-//  /**
-//   *
-//   */
-//  public void loadFile(String inputFile) {
-//    // Takes in file name
-//
-//    // Step 5) Check input file for exceptions
-//    Readable file = checkInputFile(inputFile, this.frame);
-//
-//    // Step 7) Fill the model
-//    fillTheModel(file, build);
-//  }
-
 
   /**
    * ___________________________ CONTROLLER STEP 1: newAnimation() ________________________________.
@@ -506,7 +488,7 @@ public class AnimatorController implements ActionListener, ItemListener {
   public void itemStateChanged(ItemEvent e) {
     AnimationCommand cmd = new Loop();
     try {
-      cmd.go(model, view);
+      cmd.start(model, view);
     } catch (IOException ioException) {
       ioException.printStackTrace();
     }
@@ -518,8 +500,8 @@ public class AnimatorController implements ActionListener, ItemListener {
    * This is an override of the actionPerformed() method override from the ActionListener interface,
    * which is invoked when an action event occurs whenever an action is performed by the user. An
    * example of an action is when a user clicks a button. In this case, an action performed occurs
-   * when the user selection a button to start, stop, speed up, slow down, and restart the animation,
-   * as well as loading an animation file, and saving an animation as a text or svg file.
+   * when the user selection a button to start, stop, speed up, slow down, and restart the
+   * animation, as well as loading an animation file, and saving an animation as a text or svg file.
    *
    * @param e the item event, an ActionEvent
    */
@@ -560,7 +542,7 @@ public class AnimatorController implements ActionListener, ItemListener {
 
     if (cmd != null) {
       try {
-        cmd.go(model, view);
+        cmd.start(model, view);
       } catch (IOException ioException) {
         ioException.printStackTrace();
       }
