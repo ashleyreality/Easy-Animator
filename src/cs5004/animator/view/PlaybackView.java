@@ -254,26 +254,18 @@ public class PlaybackView extends VisualView {
    * This is the text area in the animation frame where the speed is displayed and updated.
    */
   private void speedArea() {
-    //int updatedSpeed = getUpdatedSpeedWithButtonClick();
     int updatedSpeed = this.speed;
-    System.out.println("The updated speed is: " + updatedSpeed);
+    //System.out.println("The updated speed is: " + updatedSpeed);
 
     // The speed displayed in the animation window should update:
-    //speedNumber = new JLabel(); can't create a new object with GUIs as the animation is running
-    // we don't update the GUI like this
     speedLabel.setText("Current Speed:");
     speedNumber.setText(String.valueOf(updatedSpeed));
-    //super.update(this.getGraphics());
 
     setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
             1, 0, GridBagConstraints.SOUTH);
-    //playbackAnimationFrame.add(speedNumber);
 
-    // label for text area
-    //speedLabel = new JLabel("Current Speed");
     setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
             1, 1, GridBagConstraints.SOUTH);
-    //playbackAnimationFrame.add(speedLabel);
   }
 
   private void loopCheckbox() {
@@ -395,7 +387,7 @@ public class PlaybackView extends VisualView {
   public void actionPerformed(ActionEvent e) {
     animationPanel.setTick(tick);
     animationPanel.repaint();
-    System.out.println("draw frame " + tick);
+    //System.out.println("draw frame " + tick);
     tick++;
     AnimationCommand loop = new Loop();
     try {
