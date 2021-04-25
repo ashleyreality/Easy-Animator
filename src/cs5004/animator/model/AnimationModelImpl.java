@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * The AnimationModelImpl class implements the method declarations of the AnimationModel interface.
  */
 public class AnimationModelImpl implements IAnimationModel {
-  private  Map<IShape, List<IEvent>> shapeMap;
+  private Map<IShape, List<IEvent>> shapeMap;
   private int boundsX;
   private int boundsY;
   private int boundsWidth;
@@ -206,6 +206,11 @@ public class AnimationModelImpl implements IAnimationModel {
     return this.shapeMap;
   }
 
+  @Override
+  public void clearShapeMap() {
+    this.shapeMap.clear();
+  }
+
   /**
    * ____________________________________ METHOD: getShape() ______________________________________.
    *
@@ -386,6 +391,9 @@ public class AnimationModelImpl implements IAnimationModel {
   public void setEndTick(int endTick) {
     this.endTick = endTick;
   }
+
+
+
 
 }
 

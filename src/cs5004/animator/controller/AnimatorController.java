@@ -62,6 +62,7 @@ public class AnimatorController implements ActionListener, ItemListener {
 
     // Step 2) Create the frame
     this.frame = newFrame();
+    //JFrame frame = newFrame();
 
     // Step 3) Parse the command-line arguments
     StringBuilder parsedString = parsedCommandLine(args);
@@ -69,12 +70,16 @@ public class AnimatorController implements ActionListener, ItemListener {
     // Step 4) Find the input file
     String inputFile = inputFile(parsedString);
 
-
+    // Step 5) Check input file for exceptions
+    Readable file = checkInputFile(inputFile, this.frame);
+    //Readable file = checkInputFile(inputFile, frame);
 
     // Step 6) Create a new build
     this.build = newBuild(model);
+    //AnimationBuilder build = newBuild(model);
 
-
+    // Step 7) Fill the model
+    fillTheModel(file, build);
 
     // Step 8) Find the view type
     String viewType = findViewType(parsedString);
@@ -104,18 +109,18 @@ public class AnimatorController implements ActionListener, ItemListener {
     packFrameAndExit(frame);
   }
 
-  /**
-   *
-   */
-  public void loadFile(String inputFile) {
-    // Takes in file name
-
-    // Step 5) Check input file for exceptions
-    Readable file = checkInputFile(inputFile, this.frame);
-
-    // Step 7) Fill the model
-    fillTheModel(file, build);
-  }
+//  /**
+//   *
+//   */
+//  public void loadFile(String inputFile) {
+//    // Takes in file name
+//
+//    // Step 5) Check input file for exceptions
+//    Readable file = checkInputFile(inputFile, this.frame);
+//
+//    // Step 7) Fill the model
+//    fillTheModel(file, build);
+//  }
 
 
   /**

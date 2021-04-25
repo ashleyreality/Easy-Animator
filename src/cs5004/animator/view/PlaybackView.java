@@ -93,7 +93,7 @@ public class PlaybackView extends VisualView {
     speedLabel = new JLabel();
     // New Speed Number
     speedNumber = new JLabel();
-    this.speed = 1;
+    //this.speed = 1;
     playbackAnimationFrame.add(this.speedLabel);
     playbackAnimationFrame.add(this.speedNumber);
 
@@ -313,14 +313,14 @@ public class PlaybackView extends VisualView {
     speedNumber.setText(String.valueOf(updatedSpeed));
     //super.update(this.getGraphics());
 
-    //setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
-    //        1, 0, GridBagConstraints.SOUTH);
+    setItemFields(speedNumber, 1, 8, 1, 1, GridBagConstraints.BOTH,
+            1, 0, GridBagConstraints.SOUTH);
     //playbackAnimationFrame.add(speedNumber);
 
     // label for text area
     //speedLabel = new JLabel("Current Speed");
-    //setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
-    //        1, 1, GridBagConstraints.SOUTH);
+    setItemFields(speedLabel, 1, 7, 1, 1, GridBagConstraints.HORIZONTAL,
+            1, 1, GridBagConstraints.SOUTH);
     //playbackAnimationFrame.add(speedLabel);
   }
 
@@ -493,5 +493,10 @@ public class PlaybackView extends VisualView {
   @Override
   public void setModel(IAnimationModel model) {
     this.model = model;
+  }
+
+  @Override
+  public void clearModel() {
+    this.model.clearShapeMap();
   }
 }

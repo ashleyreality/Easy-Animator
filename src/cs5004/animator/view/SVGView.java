@@ -349,4 +349,7 @@ public class SVGView implements IView {
   public void setModel(IAnimationModel model) {
     this.model = model;
   }
+
+  @Override
+  public void clearModel() {}
 }

@@ -65,4 +65,6 @@ public interface IView {
   IAnimationModel getModel();
 
   void setModel(IAnimationModel model);
+
+  void clearModel();
 }

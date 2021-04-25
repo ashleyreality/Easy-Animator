@@ -248,6 +248,9 @@ public class VisualView extends JFrame implements IView, ActionListener {
     this.model = model;
   }
 
+  @Override
+  public void clearModel() {}
+
 }
 
 
