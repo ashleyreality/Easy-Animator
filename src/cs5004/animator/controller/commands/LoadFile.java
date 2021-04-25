@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import cs5004.animator.controller.AnimationCommand;
 import cs5004.animator.model.IAnimationModel;
@@ -33,40 +34,63 @@ public class LoadFile implements AnimationCommand, ActionListener {
    * @param view  the type of view specified, an IView
    */
   @Override
-  public void go(IAnimationModel model, IView view) throws FileNotFoundException {
-    // do something
+  public void go(IAnimationModel model, IView view) {
     System.out.println("Load file command received");
-    view.getTimer().stop();
+    if (view.getTimer() != null) {
+      view.getTimer().stop();
+    }
 
     JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Choose an animation file to load.");
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    fileChooser.setAcceptAllFileFilterUsed(false);
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("XML and TXT files",
+            "xml", "txt");
+    fileChooser.addChoosableFileFilter(filter);
+
+
     int returnValue = fileChooser.showOpenDialog(null);
+
+
     if (returnValue == JFileChooser.APPROVE_OPTION) {
       File selectedFile = fileChooser.getSelectedFile();
       // Get the file name
-      String filename = selectedFile.getName();
+      //String filename = selectedFile.getName();
 
-      System.out.println(model.getShapeMap().toString());
+      //System.out.println(model.getShapeMap().toString());
 
       // To load the file...
       // 1) Clear the model to remove all events and shapes from a model, so the model is
       // essentially empty again
       model.clearShapeMap();
       view.clearModel();
-      System.out.println(model.getShapeMap().toString());
+      //System.out.println(model.getShapeMap().toString());
 
 
       // 2) Do what the controller does to add all the shapes and events to the model.
       //  public void loadFile(String inputFile) {
-    // Takes in file name
+      // Takes in file name
+
+      // Specify allowable file types that can be loaded
+
+      // New build
+      AnimationBuilder build = newBuild(model);
+
+      // New readable
+      Readable readableFile = null;
+      try {
+        readableFile = new FileReader(selectedFile);
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
+
+      // Fill the model with the readable and build
+      fillTheModel(readableFile, build);
+
+      // Set -out viewtype -- as playback?
 
 
-    AnimationBuilder build = newBuild(model);
-
-    Readable readableFile = new FileReader(filename);
-    // Step 7) Fill the model
-    fillTheModel(readableFile, build);
-
-    System.out.println(selectedFile.getName());
+      System.out.println(selectedFile.getName());
     }
   }
 
