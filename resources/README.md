@@ -56,14 +56,16 @@ data, the output file’s name, and the speed at which the animation should anim
   the output file’s name, and the desired speed of the animation
 
 ### IView
-The IView interface describes the methods common to all view types. 
+The IView interface describes the methods common to all view types. We added many methods to the 
+interface for the new Playback view.
 
 ###### Useful methods
 * `createView()` - creates a view of the specified type.
 * ` getViewState()` - gets the String representation of the current state of the view.
 
 ### TextView
-The TextView outputs a text description of the animation to an appendable. 
+The TextView outputs a text description of the animation to an appendable. Added a method 
+to print this view without exiting the program.
 
 ###### Useful methods
 * `buildTheTextString()` - adds the shapes, their appearance times, and their associated events 
@@ -74,7 +76,9 @@ The TextView outputs a text description of the animation to an appendable.
 
 ### SVGView
 The SVGView outputs an SVG file description of the animation to an appendable. This was added for 
-the View’s use. The SVG is written in XML and is used to display the animation.
+the View’s use. The SVG is written in XML and is used to display the animation. Added a method
+to print this view without exiting the program.
+
 ###### Useful methods
 * `buildTheSVGString()` - considers XML formatting to add the shapes and their associated events as 
   Strings to the constructor’s declared StringBuilder. This method helps create the SVG View file 
@@ -103,6 +107,7 @@ architecture. It reads the text files and transforms them into an animation.
 The PlaybackView outputs a visual display of the animation using the JFrame JFC/Swing component
 architecture. It extends the VisualView and includes new buttons. The playback view includes new 
 buttons to affect how the animation plays. The current functionality features:
+
 * Start button (to either begin or resume the animation playing), 
 * Stop button (to pause the animation), 
 * Start over button (to replay the animation from the beginning), 
