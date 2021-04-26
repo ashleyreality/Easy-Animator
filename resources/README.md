@@ -5,11 +5,13 @@ model to create text output describing a simple animation.
 
 ### EasyAnimator
 The EasyAnimator class holds main, where animations are run. It takes in arguments from a formatted test
-file to create animations using the AnimatorHelper and Builder classes.
+file to create animations using the AnimatorController and Builder classes.
 
-### AnimatorHelper
-The AnimatorHelper class constructs an animation. It takes in a readable object and decides the 
-view output. It calls other objects, parses the readable, and builds the model for a view.
+### AnimatorController
+The AnimatorController (changed from AnimatorHelper) class constructs an animation. It takes in a 
+readable object and decides the view output. It calls other objects, parses the readable, and builds
+the model for a view. It is updated to take in actions events from the new PlaybackView. It takes 
+the specific command to the AnimationCommand interface.
 
 ### IAnimationModel
 The IAnimationModel interface describes methods you must use if you implement IAnimationModel. 
@@ -91,10 +93,40 @@ the View’s use. The SVG is written in XML and is used to display the animation
 ### VisualView
 The VisualView outputs a visual display of the animation using the JFrame JFC/Swing component 
 architecture. It reads the text files and transforms them into an animation. 
+
 ###### Useful methods
 * `createView()` - creates the visual view using methods extended from the JFrame library and 
   considers the speed being requested at the command line to calculate the speed that the animation 
   will play.
+
+### PlaybackView
+The PlaybackView outputs a visual display of the animation using the JFrame JFC/Swing component
+architecture. It extends the VisualView and includes new buttons. The playback view includes new 
+buttons to affect how the animation plays. The current functionality features:
+* Start button (to either begin or resume the animation playing), 
+* Stop button (to pause the animation), 
+* Start over button (to replay the animation from the beginning), 
+* Faster button (to speed up the animation), 
+* Slower button (to slow down the animation), 
+* Loop checkbox (to make the animation replay when it ends, if checked),
+* Load file button (to load a new file to play),
+* Save as text button (to save the animation as a text view in a txt file)
+* Save as SVG button (to save the animation as an SVG view in a svg file).
+
+### AnimationCommand
+The AnimationCommand interface is called after an action is performed in the PlaybackView and sent 
+to the AnimatorController. Depending on the button or checkbox, one of the AnimationCommand classes 
+is called to handle how the view reacts to the action. The classes include:
+* StartAnimation (reacts to the Start button),
+* StopAnimation (reacts to the Stop button),
+* RestartAnimation (reacts to the Start over button),
+* SpeedUp (reacts to the Faster button),
+* SlowDown (reacts to the Slower button),
+* Loop (reacts to the Loop checkbox being checked or unchecked),
+* LoadFile (reacts to the Load button),
+* SaveAsText (reacts to the Save as text button),
+* SaveAsSVG (reacts to the Save as SVG button),
+
 
 ### AnimationPanel
 The AnimationPanel extends JPanel and is a container that can store an organized group of 
