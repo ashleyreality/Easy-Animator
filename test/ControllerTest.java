@@ -1,13 +1,10 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.event.ActionEvent;
-import java.util.Timer;
 
 import cs5004.animator.controller.AnimatorController;
 import cs5004.animator.view.IView;
-import cs5004.animator.view.PlaybackView;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

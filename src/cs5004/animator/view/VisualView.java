@@ -10,7 +10,6 @@ import javax.swing.JCheckBox;
 import javax.swing.Timer;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
 
 import cs5004.animator.model.IAnimationModel;
 
@@ -61,7 +60,8 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   /**
-   * Creates a scroll pane
+   * Creates a scroll pane.
+   *
    * @param animationPanel an animation panel
    */
   protected void scrollPanel(AnimationPanel animationPanel) {

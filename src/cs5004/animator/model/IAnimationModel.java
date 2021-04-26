@@ -82,28 +82,28 @@ public interface IAnimationModel {
   void addBounds(int x, int y, int width, int height);
 
   /**
-   * Gets the x position of the bounds
+   * Gets the x position of the bounds.
    *
    * @return the x position for the bounds
    */
   int getBoundsX();
 
   /**
-   * Gets the y position of the bounds
+   * Gets the y position of the bounds.
    *
    * @return the y position for the bounds
    */
   int getBoundsY();
 
   /**
-   * Gets the height of the bounds
+   * Gets the height of the bounds.
    *
    * @return the height for the bounds
    */
   int getBoundsHeight();
 
   /**
-   * Gets the width of the bounds
+   * Gets the width of the bounds.
    *
    * @return the width for the bounds
    */
